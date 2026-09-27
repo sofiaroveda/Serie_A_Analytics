@@ -133,6 +133,8 @@ def build_site_data(
     upcoming["status"] = "upcoming"
 
     season_matches = pd.concat([played, upcoming], ignore_index=True)
+    # Whole-number goals, blank for upcoming matches (otherwise pandas turns 3 into 3.0)
+    season_matches[["home_goals", "away_goals"]] = season_matches[["home_goals", "away_goals"]].astype("Int64")
     for name in MODELS:
         season_matches = _with_model(season_matches, predictions.get(name), name)
     season_matches = season_matches.sort_values(["matchday", "date", "time", "home_team"])

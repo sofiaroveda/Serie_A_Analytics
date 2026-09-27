@@ -110,3 +110,10 @@ def test_build_site_data_without_model_has_null_probabilities():
     site = build_site_data(make_matches(), EMPTY_FIXTURES, make_schedule())
     assert all(m["elo_home"] is None for m in site["matches"])
     assert site["summary"]["scoreboard"] is None
+
+
+def test_goals_stay_whole_numbers_in_the_output():
+    site = build_site_data(make_matches(), EMPTY_FIXTURES, make_schedule())
+    played = next(m for m in site["matches"] if m["match_id"] == "a")
+    assert played["home_goals"] == 2 and isinstance(played["home_goals"], int)
+    assert all(isinstance(row["goals_for"], int) for row in site["table"])
