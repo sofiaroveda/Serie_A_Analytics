@@ -1,13 +1,14 @@
 {
- "generated_at": "2026-09-27T16:26+00:00",
+ "generated_at": "2026-09-27T16:31+00:00",
  "season": "2026/27",
  "matches_played": 50,
  "last_result_date": "2026-09-20",
  "favourite_win_rate": 0.58,
  "scoreboard": {
   "matches": 50,
+  "market_rps": 0.1955,
   "elo_rps": 0.1985,
-  "market_rps": 0.1955
+  "dc_rps": 0.1917
  },
  "current_matchday": 6,
  "matchdays": 38

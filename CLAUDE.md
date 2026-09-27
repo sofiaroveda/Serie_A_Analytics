@@ -91,7 +91,7 @@ The goal is a portfolio project for finance, trading, data science and consultin
 
 Brainstormed to make the site stand out. Build in this order:
 1. **Prediction record (tamper-evident):** done. `pipeline/ledger.py` appends forecasts for the next round to `predictions/<season>/matchday-NN.json` before kick-off. Append-only: an existing (match_id, model) entry is never changed, and nothing is recorded after kick-off (tests in `tests/test_ledger.py`). Honesty note: local commit timestamps can be set by anyone, so the strong proof is GitHub's own record of when commits were pushed, and it becomes strongest once GitHub Actions commits the forecasts itself (Phase 2). Say this plainly on the site; don't overclaim.
-2. **Dixon-Coles + season simulation** (prerequisite for 3 and 4).
+2. **Dixon-Coles** (done) **+ season simulation** (next; prerequisite for 3 and 4).
 3. **Serie A as a stock market:** each team's title / top-4 / relegation probability from the simulation, recorded after every matchday and charted over the season like a share price, with big moves annotated. Core of the team pages.
 4. **"What if?" simulator:** readers pick results of upcoming matches and the table probabilities recalculate in the browser.
 
@@ -166,7 +166,9 @@ If other people join the project:
   - Elo details: World Football Elo goal-difference multiplier; ratings recorded per date before any same-day update; ordered logit (rating gap -> H/D/A) refitted each season on earlier seasons only. Tuned: K=10, home advantage 0 (flat: logit thresholds absorb home advantage), regression 0.3, promoted gap 50.
   - Test result (4,378 matches with Pinnacle closing): RPS base rates 0.2316, Elo 0.1960, Pinnacle 0.1881. Elo loses to Pinnacle in all 12 seasons; captures ~82% of Pinnacle's edge over base rates.
   - `tests/conftest.py::assert_no_lookahead` scrambles results on/after a cut date and checks earlier predictions don't change; reuse it for Dixon-Coles. Verified it catches a deliberately leaky Elo.
-  - Next: Dixon-Coles, then a results notebook with calibration plots.
+  - **Dixon-Coles done** (`pipeline/dixon_coles.py`, `python -m pipeline.dixon_coles` re-runs tuning + backtest). Refitted before every match date on matches in the previous 4 years; analytic gradient (checked against numerical in tests); ridge pull (2.0) towards a prior, weaker for promoted teams. Tuned: half-life 270 days, promoted prior 0.3 (0.15 is equivalent).
+  - Test result (same 4,378 matches): RPS base rates 0.2316, Elo 0.1960, **Dixon-Coles 0.1946**, Pinnacle 0.1881. DC beats Elo in 9/12 seasons; captures ~85% of Pinnacle's edge over base rates.
+  - Next: results notebook with calibration plots (Phase 1 deliverable), then season simulation.
 - [ ] Phase 1b: First site. Brought forward: a version with market + Elo bars per match, table, Model vs market backtest page and About is **live at https://sofiaroveda.github.io/Serie_A_Analytics/** (repo public, Pages source = GitHub Actions). Models get added as they're finished. Data is only refreshed when `python -m pipeline.data && python -m pipeline.export` is run and committed, until Phase 2 automation.
 - [ ] Phase 2: Automation + depth
 - [ ] Phase 3: Transfer valuations

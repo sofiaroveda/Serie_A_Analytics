@@ -6,9 +6,9 @@
   "won": 4,
   "drawn": 1,
   "lost": 0,
-  "goals_for": 14,
-  "goals_against": 3,
-  "goal_diff": 11,
+  "goals_for": 14.0,
+  "goals_against": 3.0,
+  "goal_diff": 11.0,
   "points": 13
  },
  {
@@ -18,9 +18,9 @@
   "won": 4,
   "drawn": 1,
   "lost": 0,
-  "goals_for": 15,
-  "goals_against": 8,
-  "goal_diff": 7,
+  "goals_for": 15.0,
+  "goals_against": 8.0,
+  "goal_diff": 7.0,
   "points": 13
  },
  {
@@ -30,9 +30,9 @@
   "won": 4,
   "drawn": 1,
   "lost": 0,
-  "goals_for": 8,
-  "goals_against": 3,
-  "goal_diff": 5,
+  "goals_for": 8.0,
+  "goals_against": 3.0,
+  "goal_diff": 5.0,
   "points": 13
  },
  {
@@ -42,9 +42,9 @@
   "won": 4,
   "drawn": 0,
   "lost": 1,
-  "goals_for": 5,
-  "goals_against": 2,
-  "goal_diff": 3,
+  "goals_for": 5.0,
+  "goals_against": 2.0,
+  "goal_diff": 3.0,
   "points": 12
  },
  {
@@ -54,9 +54,9 @@
   "won": 3,
   "drawn": 2,
   "lost": 0,
-  "goals_for": 10,
-  "goals_against": 4,
-  "goal_diff": 6,
+  "goals_for": 10.0,
+  "goals_against": 4.0,
+  "goal_diff": 6.0,
   "points": 11
  },
  {
@@ -66,9 +66,9 @@
   "won": 3,
   "drawn": 1,
   "lost": 1,
-  "goals_for": 9,
-  "goals_against": 4,
-  "goal_diff": 5,
+  "goals_for": 9.0,
+  "goals_against": 4.0,
+  "goal_diff": 5.0,
   "points": 10
  },
  {
@@ -78,9 +78,9 @@
   "won": 3,
   "drawn": 1,
   "lost": 1,
-  "goals_for": 8,
-  "goals_against": 4,
-  "goal_diff": 4,
+  "goals_for": 8.0,
+  "goals_against": 4.0,
+  "goal_diff": 4.0,
   "points": 10
  },
  {
@@ -90,9 +90,9 @@
   "won": 3,
   "drawn": 1,
   "lost": 1,
-  "goals_for": 9,
-  "goals_against": 6,
-  "goal_diff": 3,
+  "goals_for": 9.0,
+  "goals_against": 6.0,
+  "goal_diff": 3.0,
   "points": 10
  },
  {
@@ -102,9 +102,9 @@
   "won": 2,
   "drawn": 1,
   "lost": 2,
-  "goals_for": 7,
-  "goals_against": 6,
-  "goal_diff": 1,
+  "goals_for": 7.0,
+  "goals_against": 6.0,
+  "goal_diff": 1.0,
   "points": 7
  },
  {
@@ -114,9 +114,9 @@
   "won": 2,
   "drawn": 1,
   "lost": 2,
-  "goals_for": 9,
-  "goals_against": 9,
-  "goal_diff": 0,
+  "goals_for": 9.0,
+  "goals_against": 9.0,
+  "goal_diff": 0.0,
   "points": 7
  },
  {
@@ -126,9 +126,9 @@
   "won": 2,
   "drawn": 0,
   "lost": 3,
-  "goals_for": 5,
-  "goals_against": 7,
-  "goal_diff": -2,
+  "goals_for": 5.0,
+  "goals_against": 7.0,
+  "goal_diff": -2.0,
   "points": 6
  },
  {
@@ -138,9 +138,9 @@
   "won": 2,
   "drawn": 0,
   "lost": 3,
-  "goals_for": 5,
-  "goals_against": 10,
-  "goal_diff": -5,
+  "goals_for": 5.0,
+  "goals_against": 10.0,
+  "goal_diff": -5.0,
   "points": 6
  },
  {
@@ -150,9 +150,9 @@
   "won": 1,
   "drawn": 1,
   "lost": 3,
-  "goals_for": 8,
-  "goals_against": 11,
-  "goal_diff": -3,
+  "goals_for": 8.0,
+  "goals_against": 11.0,
+  "goal_diff": -3.0,
   "points": 4
  },
  {
@@ -162,9 +162,9 @@
   "won": 1,
   "drawn": 1,
   "lost": 3,
-  "goals_for": 5,
-  "goals_against": 8,
-  "goal_diff": -3,
+  "goals_for": 5.0,
+  "goals_against": 8.0,
+  "goal_diff": -3.0,
   "points": 4
  },
  {
@@ -174,9 +174,9 @@
   "won": 1,
   "drawn": 1,
   "lost": 3,
-  "goals_for": 4,
-  "goals_against": 7,
-  "goal_diff": -3,
+  "goals_for": 4.0,
+  "goals_against": 7.0,
+  "goal_diff": -3.0,
   "points": 4
  },
  {
@@ -186,9 +186,9 @@
   "won": 1,
   "drawn": 1,
   "lost": 3,
-  "goals_for": 8,
-  "goals_against": 12,
-  "goal_diff": -4,
+  "goals_for": 8.0,
+  "goals_against": 12.0,
+  "goal_diff": -4.0,
   "points": 4
  },
  {
@@ -198,9 +198,9 @@
   "won": 1,
   "drawn": 1,
   "lost": 3,
-  "goals_for": 6,
-  "goals_against": 12,
-  "goal_diff": -6,
+  "goals_for": 6.0,
+  "goals_against": 12.0,
+  "goal_diff": -6.0,
   "points": 4
  },
  {
@@ -210,9 +210,9 @@
   "won": 0,
   "drawn": 2,
   "lost": 3,
-  "goals_for": 3,
-  "goals_against": 6,
-  "goal_diff": -3,
+  "goals_for": 3.0,
+  "goals_against": 6.0,
+  "goal_diff": -3.0,
   "points": 2
  },
  {
@@ -222,9 +222,9 @@
   "won": 0,
   "drawn": 1,
   "lost": 4,
-  "goals_for": 3,
-  "goals_against": 10,
-  "goal_diff": -7,
+  "goals_for": 3.0,
+  "goals_against": 10.0,
+  "goal_diff": -7.0,
   "points": 1
  },
  {
@@ -234,9 +234,9 @@
   "won": 0,
   "drawn": 0,
   "lost": 5,
-  "goals_for": 4,
-  "goals_against": 13,
-  "goal_diff": -9,
+  "goals_for": 4.0,
+  "goals_against": 13.0,
+  "goal_diff": -9.0,
   "points": 0
  }
 ]

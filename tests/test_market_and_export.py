@@ -100,7 +100,7 @@ def test_upcoming_from_schedule_excludes_played_matches():
 
 def test_build_site_data_attaches_model_and_scoreboard():
     elo = pd.DataFrame({"match_id": ["a", "b", "c"], "p_home": [0.5] * 3, "p_draw": [0.3] * 3, "p_away": [0.2] * 3})
-    site = build_site_data(make_matches(), EMPTY_FIXTURES, make_schedule(), elo_results=elo)
+    site = build_site_data(make_matches(), EMPTY_FIXTURES, make_schedule(), {"elo": elo})
     assert next(m for m in site["matches"] if m["match_id"] == "a")["elo_home"] == 0.5
     board = site["summary"]["scoreboard"]
     assert board["matches"] == 3 and 0 < board["elo_rps"] < 1 and 0 < board["market_rps"] < 1

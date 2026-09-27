@@ -155,7 +155,7 @@ button.more {
 }
 
 /* Two rows per match: a label column and a bar column */
-.forecasts { display: grid; grid-template-columns: 5.5em 1fr; gap: 6px 10px; align-items: center; }
+.forecasts { display: grid; grid-template-columns: 7em 1fr; gap: 6px 10px; align-items: center; }
 .forecast-label { font-size: 0.8rem; color: var(--text-muted); }
 @media (max-width: 600px) {
   /* On phones, put each label above its bar so the bar gets the full width */
@@ -256,3 +256,9 @@ tr.total td { border-top: 2px solid var(--border); font-weight: 600; }
 
 /* Hidden visually but still read out by screen readers */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Mini leaderboard inside a stat tile */
+.leaderboard { list-style: none; margin: 0 0 6px; padding: 0; font-weight: 600; }
+.leaderboard li { display: flex; justify-content: space-between; gap: 12px; }
+.leaderboard li:first-child { font-size: 1.15rem; }
+.num { font-variant-numeric: tabular-nums; }

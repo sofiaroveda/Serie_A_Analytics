@@ -23,7 +23,7 @@
     <main class="container">
       <h1>Model vs market</h1>
       <p class="muted">
-        How accurate is our Elo model compared with the betting market? We replayed 12 past seasons
+        How accurate are our models compared with the betting market? We replayed 12 past seasons
         match by match. Each forecast used only results from before that match's date, just as if we had
         made it at the time.
       </p>
@@ -39,13 +39,7 @@
       <div class="table-wrap">
         <table>
           <thead>
-            <tr>
-              <th class="team">Season</th>
-              <th class="hide-narrow">Matches</th>
-              <th>Base rates</th>
-              <th>Elo</th>
-              <th>Pinnacle</th>
-            </tr>
+            <tr id="backtest-head"></tr>
           </thead>
           <tbody id="backtest-body"></tbody>
         </table>
@@ -54,12 +48,13 @@
       <h2>What this shows</h2>
       <div class="prose">
         <p>
-          The Elo model is clearly better than guessing from base rates, but the market is better still,
-          in every season. That is the expected result: Pinnacle's closing odds reflect team news, injuries
-          and the views of professional bettors, while Elo only knows past scores. A goals-based model
-          (Dixon-Coles) is next, to see how much of the remaining gap it can close.
+          Both models are clearly better than guessing from base rates, and the goals-based Dixon-Coles model
+          beats Elo overall. But the market is better still, in every season. That is the expected result:
+          Pinnacle's closing odds reflect team news, injuries and the views of professional bettors, while our
+          models only know past scores.
         </p>
-        <p class="muted small" id="settings"></p>
+        <p class="muted small" id="settings-elo"></p>
+        <p class="muted small" id="settings-dc"></p>
       </div>
     </main>
 

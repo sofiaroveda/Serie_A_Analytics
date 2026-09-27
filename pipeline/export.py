@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from pipeline.data import PROCESSED_DIR, ROOT, make_match_ids, season_label
-from pipeline.elo import EloParams, predict_fixtures, predict_matches
+from pipeline import dixon_coles, elo
 from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, rps
 from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
@@ -21,6 +21,11 @@ SITE_DATA_DIR = ROOT / "site" / "data"
 # exists, otherwise the market-average closing price for that match.
 CLOSING_SOURCES = ["pin_close", "avg_close", "b365_close"]
 PRE_MATCH_SOURCES = ["pin", "avg", "b365"]
+# Our models: key used in the data files -> display name
+MODELS = {"elo": "Elo", "dc": "Dixon-Coles"}
+# Extra model outputs copied to the site when a model provides them (Dixon-Coles does)
+EXTRA_OUTPUTS = {"exp_home_goals": "xg_home", "exp_away_goals": "xg_away", "p_over_2_5": "over_2_5", "p_btts": "btts"}
+
 SOURCE_LABELS = {
     "pin_close": "Pinnacle closing",
     "avg_close": "Market average closing",
@@ -70,14 +75,17 @@ def _with_probabilities(matches: pd.DataFrame, sources: list[str]) -> pd.DataFra
 
 
 def _with_model(matches: pd.DataFrame, predictions: pd.DataFrame | None, name: str) -> pd.DataFrame:
-    """Add a model's probabilities as {name}_home / {name}_draw / {name}_away columns (null if missing)."""
-    cols = [f"{name}_home", f"{name}_draw", f"{name}_away"]
+    """Add a model's outputs as {name}_home, {name}_draw, {name}_away (+ extras). Null where missing."""
+    renames = {"p_home": f"{name}_home", "p_draw": f"{name}_draw", "p_away": f"{name}_away"}
     if predictions is None or predictions.empty:
-        return matches.assign(**{c: np.nan for c in cols})
-    probs = predictions[["match_id", "p_home", "p_draw", "p_away"]].copy()
-    probs.columns = ["match_id", *cols]
-    probs[cols] = probs[cols].round(4)
-    return matches.merge(probs, on="match_id", how="left")
+        return matches.assign(**{c: np.nan for c in renames.values()})
+    renames.update({k: f"{name}_{v}" for k, v in EXTRA_OUTPUTS.items() if k in predictions})
+    outputs = predictions[["match_id", *renames]].rename(columns=renames)
+    return matches.merge(outputs.round(4), on="match_id", how="left")
+
+
+def _model_columns(df: pd.DataFrame) -> list[str]:
+    return [c for c in df.columns if c.split("_")[0] in MODELS]
 
 
 def _records(df: pd.DataFrame, columns: list[str]) -> list[dict]:
@@ -102,20 +110,19 @@ def build_site_data(
     matches: pd.DataFrame,
     fixtures: pd.DataFrame,
     schedule: pd.DataFrame,
-    elo_results: pd.DataFrame | None = None,
-    elo_upcoming: pd.DataFrame | None = None,
+    predictions: dict[str, pd.DataFrame] | None = None,
 ) -> dict[str, object]:
     """Everything the site needs, keyed by output file name.
 
-    `schedule` is this season's full fixture list with matchdays. `elo_results` /
-    `elo_upcoming` are Elo predictions (match_id, p_home, p_draw, p_away) for
-    played and not-yet-played matches.
+    `schedule` is this season's full fixture list with matchdays. `predictions`
+    maps a model key in MODELS to its forecasts (match_id, p_home, p_draw,
+    p_away, optional extras) for played and upcoming matches.
     """
+    predictions = predictions or {}
     season = int(schedule["season"].iloc[0])
     matchdays = schedule[["home_team", "away_team", "matchday"]]
 
     played = _with_probabilities(matches[matches["season"] == season], CLOSING_SOURCES)
-    played = _with_model(played, elo_results, "elo")
     played = played.merge(matchdays, on=["home_team", "away_team"], how="left", validate="one_to_one")
     played["status"] = "played"
 
@@ -123,26 +130,27 @@ def build_site_data(
     upcoming = upcoming_from_schedule(schedule, matches)
     odds = _with_probabilities(fixtures, PRE_MATCH_SOURCES)[["home_team", "away_team", "p_home", "p_draw", "p_away", "odds_source"]]
     upcoming = upcoming.merge(odds, on=["home_team", "away_team"], how="left")
-    upcoming = _with_model(upcoming, elo_upcoming, "elo")
     upcoming["status"] = "upcoming"
 
     season_matches = pd.concat([played, upcoming], ignore_index=True)
+    for name in MODELS:
+        season_matches = _with_model(season_matches, predictions.get(name), name)
     season_matches = season_matches.sort_values(["matchday", "date", "time", "home_team"])
+    played = season_matches[season_matches["status"] == "played"]
 
     # How often did the market's favourite (highest probability) win?
     with_probs = played.dropna(subset=["p_home"])
     favourite = with_probs[["p_home", "p_draw", "p_away"]].to_numpy().argmax(axis=1)
     outcome = with_probs["result"].map({"H": 0, "D": 1, "A": 2}).to_numpy()
 
-    # This season's scoreboard: Elo vs the market on the same matches
-    both = played.dropna(subset=["p_home", "elo_home"])
+    # This season's scoreboard: every model and the market, on the same matches
+    scored = played.dropna(subset=["p_home", *[f"{name}_home" for name in predictions]])
     scoreboard = None
-    if len(both):
-        scoreboard = {
-            "matches": len(both),
-            "elo_rps": round(rps(both[["elo_home", "elo_draw", "elo_away"]].to_numpy(), both["result"]), 4),
-            "market_rps": round(rps(both[["p_home", "p_draw", "p_away"]].to_numpy(), both["result"]), 4),
-        }
+    if len(scored) and predictions:
+        scoreboard = {"matches": len(scored)}
+        for key, prefix in [("market", "p"), *[(name, name) for name in predictions]]:
+            probs = scored[[f"{prefix}_home", f"{prefix}_draw", f"{prefix}_away"]].to_numpy()
+            scoreboard[f"{key}_rps"] = round(rps(probs, scored["result"]), 4)
 
     # The matchday to show first: the earliest one with a match still to play
     next_matchday = int(upcoming["matchday"].min()) if len(upcoming) else int(schedule["matchday"].max())
@@ -164,38 +172,38 @@ def build_site_data(
         ]),  # fmt: skip
         "matches": _records(season_matches, [
             "match_id", "matchday", "status", "date", "time", "home_team", "away_team",
-            "home_goals", "away_goals", "result",
-            "p_home", "p_draw", "p_away", "odds_source", "elo_home", "elo_draw", "elo_away",
+            "home_goals", "away_goals", "result", "p_home", "p_draw", "p_away", "odds_source",
+            *_model_columns(season_matches),
         ]),  # fmt: skip
     }
 
 
-def backtest_summary(matches: pd.DataFrame, elo_predictions: pd.DataFrame) -> dict[str, object]:
-    """Walk-forward test results: Elo vs Pinnacle closing vs base rates, per test season."""
-    preds = elo_predictions[elo_predictions["season"].isin(TEST_SEASONS)]
-    # Score everything on the same matches: those with Pinnacle closing odds
-    covered = matches.dropna(subset=["pin_close_h", "pin_close_d", "pin_close_a"])["match_id"]
-    preds = preds[preds["match_id"].isin(covered)]
-    base = preds[["match_id"]].copy()
-    base[["p_home", "p_draw", "p_away"]] = base_rate_forecast(matches, preds)
+def backtest_summary(matches: pd.DataFrame, predictions: dict[str, pd.DataFrame]) -> dict[str, object]:
+    """Walk-forward test results per test season: each model vs Pinnacle closing vs base rates."""
+    # Score everything on the same matches: test seasons with Pinnacle closing odds
+    covered = matches.dropna(subset=["pin_close_h", "pin_close_d", "pin_close_a"])
+    covered = covered.loc[covered["season"].isin(TEST_SEASONS), "match_id"]
+    base = pd.DataFrame({"match_id": covered})
+    base = base.merge(matches[["match_id", "season"]], on="match_id")
+    base[["p_home", "p_draw", "p_away"]] = base_rate_forecast(matches, base)
 
-    table = pd.concat([
-        compare_with_market(preds, matches, "elo", markets={"pinnacle": "pin_close"}),
-        compare_with_market(base, matches, "base_rates", markets={}),
-    ])  # fmt: skip
+    tables = [compare_with_market(base, matches, "base_rates", markets={"pinnacle": "pin_close"})]
+    for name, preds in predictions.items():
+        tables.append(compare_with_market(preds[preds["match_id"].isin(covered)], matches, name, markets={}))
+    table = pd.concat(tables)
     wide = table.pivot(index="season", columns="forecaster", values="rps")
-    counts = table[table["forecaster"] == "elo"].set_index("season")["matches"]
+    counts = table[table["forecaster"] == "pinnacle"].set_index("season")["matches"]
+    forecasters = ["base_rates", *predictions, "pinnacle"]
 
     def row(label, key):
-        return {
-            "season": label, "matches": int(counts[key]),
-            **{name: round(float(wide.loc[key, name]), 4) for name in ("elo", "pinnacle", "base_rates")},
-        }  # fmt: skip
+        return {"season": label, "matches": int(counts[key]),
+                **{name: round(float(wide.loc[key, name]), 4) for name in forecasters}}  # fmt: skip
 
     return {
+        "forecasters": {"base_rates": "Base rates", **{k: MODELS[k] for k in predictions}, "pinnacle": "Pinnacle"},
         "seasons": [row(season_label(int(s)), s) for s in wide.index if s != "All"],
         "overall": row(f"{season_label(min(TEST_SEASONS))} to {season_label(max(TEST_SEASONS))}", "All"),
-        "elo_params": EloParams().__dict__,
+        "params": {"elo": elo.EloParams().__dict__, "dc": dixon_coles.DCParams().__dict__},
     }
 
 
@@ -205,23 +213,30 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     fixtures = pd.read_csv(PROCESSED_DIR / "fixtures.csv", parse_dates=["date"])
     schedule = pd.read_csv(PROCESSED_DIR / "schedule.csv", parse_dates=["date"])
     season = int(schedule["season"].iloc[0])
-
-    params = EloParams()
-    elo_results = predict_matches(matches, params, first_season=min(TEST_SEASONS))
     upcoming = upcoming_from_schedule(schedule, matches)
-    elo_upcoming = predict_fixtures(matches, upcoming, params, season=season) if len(upcoming) else None
+    first = min(TEST_SEASONS)
+
+    # Walk-forward forecasts for played matches, and latest forecasts for upcoming ones
+    played_preds = {
+        "elo": elo.predict_matches(matches, elo.EloParams(), first_season=first),
+        "dc": dixon_coles.predict_matches(matches, dixon_coles.DCParams(), first_season=first),
+    }
+    upcoming_preds = {
+        "elo": elo.predict_fixtures(matches, upcoming, elo.EloParams(), season),
+        "dc": dixon_coles.predict_fixtures(matches, upcoming, dixon_coles.DCParams(), season),
+    } if len(upcoming) else {}  # fmt: skip
 
     # Lock in forecasts for the next round before kick-off (append-only record)
-    if elo_upcoming is not None:
-        now = datetime.now(timezone.utc)
-        to_record = next_round(upcoming, now).merge(
-            elo_upcoming[["match_id", "p_home", "p_draw", "p_away"]], on="match_id"
-        )
-        added = record_forecasts(to_record.assign(model="elo"), season_label(season), now)
-        print(f"Prediction record: {added} new forecasts saved")
+    now = datetime.now(timezone.utc)
+    to_record = next_round(upcoming, now)
+    for name, preds in upcoming_preds.items():
+        rows = to_record.merge(preds[["match_id", "p_home", "p_draw", "p_away"]], on="match_id")
+        added = record_forecasts(rows.assign(model=name), season_label(season), now)
+        print(f"Prediction record: {added} new {MODELS[name]} forecasts saved")
 
-    content = build_site_data(matches, fixtures, schedule, elo_results, elo_upcoming)
-    content["backtest"] = backtest_summary(matches, elo_results)
+    predictions = {name: pd.concat([played_preds[name], upcoming_preds.get(name)]) for name in MODELS}
+    content = build_site_data(matches, fixtures, schedule, predictions)
+    content["backtest"] = backtest_summary(matches, played_preds)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, data in content.items():

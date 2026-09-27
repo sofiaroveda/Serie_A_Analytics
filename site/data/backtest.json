@@ -1,101 +1,128 @@
 {
+ "forecasters": {
+  "base_rates": "Base rates",
+  "elo": "Elo",
+  "dc": "Dixon-Coles",
+  "pinnacle": "Pinnacle"
+ },
  "seasons": [
   {
    "season": "2014/15",
    "matches": 380,
+   "base_rates": 0.2246,
    "elo": 0.2076,
-   "pinnacle": 0.2009,
-   "base_rates": 0.2246
+   "dc": 0.205,
+   "pinnacle": 0.2009
   },
   {
    "season": "2015/16",
    "matches": 380,
+   "base_rates": 0.2275,
    "elo": 0.1987,
-   "pinnacle": 0.1906,
-   "base_rates": 0.2275
+   "dc": 0.1995,
+   "pinnacle": 0.1906
   },
   {
    "season": "2016/17",
    "matches": 380,
+   "base_rates": 0.232,
    "elo": 0.1877,
-   "pinnacle": 0.1805,
-   "base_rates": 0.232
+   "dc": 0.1876,
+   "pinnacle": 0.1805
   },
   {
    "season": "2017/18",
    "matches": 380,
+   "base_rates": 0.2404,
    "elo": 0.1902,
-   "pinnacle": 0.1767,
-   "base_rates": 0.2404
+   "dc": 0.1845,
+   "pinnacle": 0.1767
   },
   {
    "season": "2018/19",
    "matches": 380,
+   "base_rates": 0.2239,
    "elo": 0.1892,
-   "pinnacle": 0.1804,
-   "base_rates": 0.2239
+   "dc": 0.1878,
+   "pinnacle": 0.1804
   },
   {
    "season": "2019/20",
    "matches": 380,
+   "base_rates": 0.2415,
    "elo": 0.2065,
-   "pinnacle": 0.1968,
-   "base_rates": 0.2415
+   "dc": 0.2047,
+   "pinnacle": 0.1968
   },
   {
    "season": "2020/21",
    "matches": 380,
+   "base_rates": 0.2354,
    "elo": 0.1892,
-   "pinnacle": 0.1822,
-   "base_rates": 0.2354
+   "dc": 0.1886,
+   "pinnacle": 0.1822
   },
   {
    "season": "2021/22",
    "matches": 380,
+   "base_rates": 0.2376,
    "elo": 0.2029,
-   "pinnacle": 0.1951,
-   "base_rates": 0.2376
+   "dc": 0.1989,
+   "pinnacle": 0.1951
   },
   {
    "season": "2022/23",
    "matches": 380,
+   "base_rates": 0.2303,
    "elo": 0.2,
-   "pinnacle": 0.1951,
-   "base_rates": 0.2303
+   "dc": 0.1989,
+   "pinnacle": 0.1951
   },
   {
    "season": "2023/24",
    "matches": 380,
+   "base_rates": 0.2244,
    "elo": 0.1904,
-   "pinnacle": 0.1841,
-   "base_rates": 0.2244
+   "dc": 0.1914,
+   "pinnacle": 0.1841
   },
   {
    "season": "2024/25",
    "matches": 380,
+   "base_rates": 0.23,
    "elo": 0.1909,
-   "pinnacle": 0.1841,
-   "base_rates": 0.23
+   "dc": 0.191,
+   "pinnacle": 0.1841
   },
   {
    "season": "2025/26",
    "matches": 198,
+   "base_rates": 0.2306,
    "elo": 0.2011,
-   "pinnacle": 0.1933,
-   "base_rates": 0.2306
+   "dc": 0.2006,
+   "pinnacle": 0.1933
   }
  ],
  "overall": {
   "season": "2014/15 to 2025/26",
   "matches": 4378,
+  "base_rates": 0.2316,
   "elo": 0.196,
-  "pinnacle": 0.1881,
-  "base_rates": 0.2316
+  "dc": 0.1946,
+  "pinnacle": 0.1881
  },
- "elo_params": {
-  "k": 10.0,
-  "home_advantage": 0.0,
-  "season_regression": 0.3,
-  "promoted_gap": 50.0
+ "params": {
+  "elo": {
+   "k": 10.0,
+   "home_advantage": 0.0,
+   "season_regression": 0.3,
+   "promoted_gap": 50.0
+  },
+  "dc": {
+   "half_life_days": 270.0,
+   "promoted_prior": 0.3,
+   "ridge": 2.0,
+   "window_days": 1460
+  }
  }
 }

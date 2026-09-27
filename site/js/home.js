@@ -6,7 +6,8 @@ import {
 // Each forecaster: its key prefix in the data files and the label shown on the page
 const FORECASTERS = [
   { prefix: "p", label: "Market" },
-  { prefix: "elo", label: "Elo model" },
+  { prefix: "dc", label: "Dixon-Coles" },
+  { prefix: "elo", label: "Elo" },
 ];
 const SURPRISE_THRESHOLD = 0.25; // flag results the market rated below 25%
 const RESULT_TO_OUTCOME = { H: "home", D: "draw", A: "away" };
@@ -31,21 +32,30 @@ async function main() {
 }
 
 function renderStats(summary) {
-  const stats = [
-    [summary.matches_played, "matches played"],
-    [summary.favourite_win_rate === null ? "–" : percent(summary.favourite_win_rate), "won by the market favourite"],
-  ];
-  const board = summary.scoreboard;
-  if (board) {
-    stats.push([
-      `${board.elo_rps.toFixed(3)} vs ${board.market_rps.toFixed(3)}`,
-      "Elo vs market accuracy this season (RPS, lower is better)",
-    ]);
-  }
   const container = document.getElementById("stats");
-  for (const [value, label] of stats) {
+  const addStat = (value, label) => {
     const box = el("div", "stat");
     box.append(el("div", "stat-value", value), el("div", "stat-label", label));
+    container.append(box);
+    return box;
+  };
+  addStat(summary.matches_played, "matches played");
+  addStat(summary.favourite_win_rate === null ? "–" : percent(summary.favourite_win_rate), "won by the market favourite");
+
+  const board = summary.scoreboard;
+  if (board) {
+    // A small leaderboard: lowest RPS (most accurate) first
+    const box = el("div", "stat");
+    const rows = FORECASTERS.map(({ prefix, label }) => [label, board[`${prefix === "p" ? "market" : prefix}_rps`]])
+      .filter(([, value]) => value !== undefined)
+      .sort((a, b) => a[1] - b[1]);
+    const list = el("ol", "leaderboard");
+    for (const [label, value] of rows) {
+      const item = el("li");
+      item.append(el("span", "", label), el("span", "num", value.toFixed(3)));
+      list.append(item);
+    }
+    box.append(list, el("div", "stat-label", `Accuracy this season (RPS, lower is better). Only ${board.matches} matches, so mostly luck so far.`));
     container.append(box);
   }
 }
@@ -92,7 +102,7 @@ function renderMatchday(n) {
   const played = matches.filter((m) => m.status === "played").length;
   const status =
     played === matches.length ? "All matches played." :
-    played === 0 ? "Not played yet. Elo forecasts use the latest ratings; market odds appear a few days before kick-off." :
+    played === 0 ? "Not played yet. Model forecasts use all results so far; market odds appear a few days before kick-off." :
     `${played} of ${matches.length} matches played.`;
   container.append(el("p", "muted small", status));
   container.append(outcomeLegend());
