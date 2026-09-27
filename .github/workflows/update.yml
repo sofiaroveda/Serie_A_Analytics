@@ -1,0 +1,74 @@
+# Daily update: new results, refitted models, next-round forecasts saved to the
+# prediction record, then the site is republished. If any step fails, nothing is
+# committed or published (the live site keeps its last good data) and GitHub emails
+# the repository owner.
+name: Daily update
+
+on:
+  schedule:
+    - cron: "30 6 * * *" # every day at 06:30 UTC (07:30 UK summer time, 06:30 winter)
+  workflow_dispatch: # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write # to commit the new data
+  pages: write # for the deploy step
+  id-token: write
+
+# Never run two updates at once
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+
+      - name: Run the tests
+        run: pytest
+
+      # Finished seasons never change, so keep the downloaded files between runs
+      - name: Reuse downloaded seasons
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: raw-${{ github.run_id }}
+          restore-keys: raw-
+
+      - name: Download and clean the data
+        run: python -m pipeline.data
+
+      - name: Run the models and write the site data (saves next-round forecasts)
+        run: python -m pipeline.export
+
+      - name: Check everything before publishing
+        run: python -m pipeline.check --since HEAD
+
+      # Commit only if something real changed (not just the "updated at" time)
+      - name: Commit new data
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          new_files="$(git ls-files --others --exclude-standard -- site/data predictions)"
+          if git diff --quiet -- site/data predictions ':(exclude)site/data/summary.json' && [ -z "$new_files" ]; then
+            echo "No new results or forecasts today."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git add site/data predictions
+            git commit -m "Daily update: results, ratings and forecasts ($(date -u +%Y-%m-%d))"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: update
+    if: needs.update.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml

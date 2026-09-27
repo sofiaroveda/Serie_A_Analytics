@@ -1,4 +1,5 @@
-# Publishes the site/ folder to GitHub Pages every time main is pushed.
+# Publishes the site/ folder to GitHub Pages every time main is pushed,
+# and when the daily update (update.yml) has new data.
 # GitHub runs this on its own machines; results appear in the repo's "Actions" tab.
 name: Deploy site
 
@@ -6,6 +7,7 @@ on:
   push:
     branches: [main]
   workflow_dispatch: # adds a "Run workflow" button in the Actions tab
+  workflow_call: # lets update.yml run this after committing new data
 
 # Allow this workflow to publish to GitHub Pages
 permissions:
@@ -13,7 +15,7 @@ permissions:
   pages: write
   id-token: write
 
-# If two pushes happen close together, finish one deploy before starting the next
+# If two deploys start close together, finish one before starting the next
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -23,11 +25,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main # the latest main, including any data the daily update just committed
+          fetch-depth: 0 # full history, so past predictions can be compared
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
       - run: pytest
+      # Past predictions may be added to but never changed, whoever pushes
+      - name: Check no past prediction was changed
+        if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+        run: python -m pipeline.check --ledger-only --since ${{ github.event.before }}
 
   deploy:
     needs: test # only publish if the tests pass
@@ -37,11 +46,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       # Tag every CSS/JS link with this commit's ID (e.g. style.css?v=4ad3795), so after an
       # update browsers download the new files instead of reusing old saved copies.
       - name: Add version tags to file links
         run: |
-          VERSION="${GITHUB_SHA::7}"
+          VERSION="$(git rev-parse --short HEAD)"
           sed -i -E "s#(href|src)=\"((css|js)/[^\"?]+)\"#\1=\"\2?v=${VERSION}\"#g" site/*.html
           sed -i -E "s#from \"\./([^\"?]+\.js)\"#from \"./\1?v=${VERSION}\"#g" site/js/*.js
       - uses: actions/configure-pages@v5

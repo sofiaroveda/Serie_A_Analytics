@@ -103,6 +103,9 @@ Not chosen for now: luck index, upset hall of fame, Italian translation. Players
 
 ## Automation
 
+**Built (Sep 2026):** `.github/workflows/update.yml` runs daily at 06:30 UTC (and via "Run workflow"): tests, download (finished seasons cached), `pipeline.export` (also saves next-round forecasts to `predictions/`), `python -m pipeline.check --since HEAD` (site data sanity + prediction record append-only), then commits only if something besides `summary.json` changed and calls `deploy.yml` (reusable via `workflow_call`; checks out latest `main`). `deploy.yml` also runs the append-only check on every push against `github.event.before`, so nobody can edit a past forecast. Daily (not Tue/Fri) because it's free for public repos and guarantees forecasts are saved before any kick-off. Failure = no commit, no deploy, last good site stays up, GitHub emails the owner. GitHub pauses scheduled workflows after 60 days without repo activity; daily bot commits during the season keep it alive, but check it after the summer break.
+
+
 - A **GitHub Actions** workflow on a schedule (e.g. Tuesday and Friday mornings, UK time) that downloads new data, refits the models, regenerates JSON, rebuilds the site and deploys it.
 - If the pipeline fails, the live site must keep showing the last good data. The workflow should fail loudly (visible in GitHub) rather than publish broken numbers.
 
@@ -174,6 +177,20 @@ If other people join the project:
   - Test result (same 4,378 matches): RPS base rates 0.2316, Elo 0.1960, **Dixon-Coles 0.1946**, Pinnacle 0.1881. DC beats Elo in 9/12 seasons; captures ~85% of Pinnacle's edge over base rates.
   - Next: results notebook with calibration plots (Phase 1 deliverable), then season simulation.
 - [ ] Phase 1b: First site. Brought forward: a version with market + Elo bars per match, table, Model vs market backtest page and About is **live at https://sofiaroveda.github.io/Serie_A_Analytics/** (repo public, Pages source = GitHub Actions). Models get added as they're finished. Data is only refreshed when `python -m pipeline.data && python -m pipeline.export` is run and committed, until Phase 2 automation.
-- [ ] Phase 2: Automation + depth
+- [ ] Phase 2: Automation + depth. Daily automation built (see Automation). Next: season simulation.
 - [ ] Phase 3: Transfer valuations
 - [ ] Phase 4: Polish
+
+## To-do list (agreed with Sofia, Sep 2026, in this order)
+
+1. [x] **Automation** (built Sep 2026; first scheduled run to be confirmed). Scheduled GitHub Actions run: download results, refit models, save next-round forecasts to the prediction record, check the data, commit and redeploy. Fail loudly and keep the last good site if anything breaks. Needed before matchday 6 (10 Oct 2026).
+2. [ ] **Season simulation.** Monte Carlo (10,000+ runs) of the remaining fixtures with the goals model: each team's chance of the title, top 4, Europe and relegation; expected points; predicted final table on the Table page.
+3. [ ] **Stock market / team pages.** Record each team's title / top-4 / relegation chances after every matchday and chart them like a share price, with big moves annotated. A page per team: price chart, form, ratings, upcoming fixtures.
+4. [ ] **"What if?" simulator.** Readers pick results of upcoming matches; the table chances recalculate in the browser.
+5. [ ] **Maths page.** For readers who want to understand the model and the calculations: step-by-step derivations (Poisson, Dixon-Coles likelihood and ρ correction, time weighting, Elo update, ordered logit, odds to probabilities and the bookmaker margin, RPS), a walk-forward testing diagram, how the settings were tuned (with charts), and calibration charts ("when we say 70%, does it happen 70% of the time?"). Include interactive examples where they help. Also covers the Phase 1 calibration deliverable.
+6. [ ] **Players.** Use the source with the most data whose terms allow our use (candidates to compare: API-Football, football-data.org, FBref; never Transfermarkt or any site that forbids scraping). Needs Sofia to create the account; API key goes in GitHub Actions secrets, never in the repo. Read the terms before using.
+7. [ ] **Match pages.** Tap a match for: full scoreline grid, all three forecasts, and after full time the stats. Already available from football-data.co.uk: shots, shots on target, corners, fouls, yellow and red cards, and xG (2026/27). Needs the player source (item 6): goal scorers and minutes, who got the cards, possession, line-ups, other key events.
+8. [ ] **Recruiter README.** What the project is and what it found, readable in 60 seconds.
+9. [ ] **Table tiebreaks.** Serie A uses head-to-head before goal difference.
+10. [ ] **Name and link previews (last).** Choose a proper site name first, then add share previews (title, description, image) for WhatsApp / LinkedIn.
+11. [ ] Maybe later: Italian version, Serie B, transfer valuations (Phase 3).
