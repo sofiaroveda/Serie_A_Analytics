@@ -1,0 +1,215 @@
+/* ==========================================================================
+   Serie A Analytics: shared styles for every page.
+   Colours are defined once as "custom properties" (variables) on :root,
+   then redefined for dark mode, so the rest of the file never uses raw hex.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  --bg: #fcfcfb;
+  --surface: #ffffff;
+  --border: #e4e3df;
+  --text: #0b0b0b;
+  --text-muted: #52514e;
+  --accent: #1c5cab;
+
+  /* Outcome colours: home = blue, draw = neutral grey, away = orange */
+  --home: #2a78d6;
+  --draw: #a9a8a3;
+  --away: #eb6834;
+  /* text drawn on top of each coloured bar segment (chosen for contrast) */
+  --on-home: #ffffff;
+  --on-draw: #0b0b0b;
+  --on-away: #0b0b0b;
+
+  --radius: 10px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Dark mode: follows the operating system unless a page forces light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #1a1a19;
+    --surface: #232322;
+    --border: #383835;
+    --text: #ffffff;
+    --text-muted: #c3c2b7;
+    --accent: #86b6ef;
+    --home: #3987e5;
+    --draw: #6b6a66;
+    --away: #d95926;
+    --on-home: #0b0b0b;
+    --on-draw: #ffffff;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1a1a19;
+  --surface: #232322;
+  --border: #383835;
+  --text: #ffffff;
+  --text-muted: #c3c2b7;
+  --accent: #86b6ef;
+  --home: #3987e5;
+  --draw: #6b6a66;
+  --away: #d95926;
+  --on-home: #0b0b0b;
+  --on-draw: #ffffff;
+}
+
+/* ---------- Base ---------- */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a { color: var(--accent); }
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 16px; /* the side gutter on phones */
+}
+
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 1.2rem; margin: 40px 0 12px; }
+.muted { color: var(--text-muted); }
+.small { font-size: 0.875rem; }
+
+/* ---------- Header and navigation ---------- */
+
+.site-header { border-bottom: 1px solid var(--border); background: var(--surface); }
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.brand { font-weight: 700; color: var(--text); text-decoration: none; }
+.nav { display: flex; gap: 20px; }
+.nav a { color: var(--text-muted); text-decoration: none; }
+.nav a:hover { color: var(--text); }
+.nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
+
+main { padding: 32px 0 64px; }
+
+.site-footer { border-top: 1px solid var(--border); padding: 20px 0 40px; }
+
+/* ---------- Headline stats ---------- */
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 24px; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat-value { font-size: 1.6rem; font-weight: 700; }
+.stat-label { color: var(--text-muted); font-size: 0.875rem; }
+
+/* ---------- Match list ---------- */
+
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 8px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+.day-heading { font-size: 0.875rem; font-weight: 600; color: var(--text-muted); margin: 20px 0 8px; }
+
+.match {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+.match-teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.match-teams .away-name { text-align: right; }
+.score { font-variant-numeric: tabular-nums; font-size: 1.1rem; text-align: center; min-width: 3.5em; }
+.match-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-top: 8px; font-size: 0.8rem; color: var(--text-muted); }
+.tag { font-weight: 600; color: var(--text); }
+
+.empty { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); padding: 20px 16px; color: var(--text-muted); }
+
+button.more {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* ---------- Probability bar ---------- */
+/* Three segments whose widths are the home/draw/away probabilities,
+   separated by a 2px gap so neighbouring colours never touch. */
+
+.prob-bar { display: flex; gap: 2px; height: 26px; }
+.prob-seg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  outline-offset: 2px;
+}
+.prob-seg:first-child { border-radius: 4px 0 0 4px; }
+.prob-seg:last-child { border-radius: 0 4px 4px 0; }
+.prob-seg.home { background: var(--home); color: var(--on-home); }
+.prob-seg.draw { background: var(--draw); color: var(--on-draw); }
+.prob-seg.away { background: var(--away); color: var(--on-away); }
+/* The outcome that actually happened gets a solid outline */
+.prob-seg.happened { outline: 2px solid var(--text); outline-offset: -2px; }
+
+.tooltip {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.8rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  max-width: 240px;
+}
+
+/* ---------- League table ---------- */
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+th { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+tbody tr:last-child td { border-bottom: none; }
+th.team, td.team { text-align: left; width: 100%; }
+td.team { font-weight: 600; }
+td.pts { font-weight: 700; }
+
+/* On narrow screens hide the less important columns */
+@media (max-width: 520px) {
+  .hide-narrow { display: none; }
+  th, td { padding: 8px 6px; }
+}
+
+/* ---------- Text pages ---------- */
+
+.prose { max-width: 680px; }
+.prose p, .prose li { color: var(--text); }

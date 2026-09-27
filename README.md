@@ -6,7 +6,7 @@ This is an analysis project, not a betting product.
 
 ## Status
 
-Phase 0 (setup): data downloader and cleaning are working. Models, backtest and website are next.
+Data pipeline and a first, market-only version of the website are working. The Elo and Dixon-Coles models and the backtest are next.
 
 ## Quick start
 
@@ -17,7 +17,14 @@ python3 -m venv .venv                # create an isolated Python environment
 source .venv/bin/activate            # activate it (run this in every new terminal)
 pip install -e ".[dev]"              # install this project and its pinned dependencies
 python -m pipeline.data              # download all seasons and build data/processed/matches.csv
+python -m pipeline.export            # write the website's data files to site/data/
 pytest                               # run the tests
+```
+
+To view the website locally:
+
+```bash
+python3 -m http.server 8000 --directory site   # then open http://localhost:8000
 ```
 
 ## Data
@@ -38,5 +45,5 @@ pipeline/   Python package: download, clean, models, evaluation, export
 tests/      pytest tests
 data/       raw downloads, processed tables, team-name mapping
 notebooks/  exploration only
-site/       the website (coming in Phase 1b)
+site/       the website: plain HTML/CSS/JavaScript reading site/data/*.json
 ```

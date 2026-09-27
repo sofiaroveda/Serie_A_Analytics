@@ -68,7 +68,9 @@ The goal is a portfolio project for finance, trading, data science and consultin
 
 ## Website
 
-- **Static site** that reads JSON files produced by the Python pipeline. Suggested stack: **Astro** with a simple charting library (e.g. Chart.js or Observable Plot). If a simpler option would clearly suit a web beginner better, propose it before starting.
+- **Static site** that reads JSON files produced by the Python pipeline.
+- **Decision (Sep 2026):** plain HTML/CSS/JavaScript in `site/`, no framework or build step (Node.js isn't installed, and plain files suit a web beginner). Pages are `index.html`, `table.html`, `about.html`; shared code is in `site/js/common.js`, styles in `site/css/style.css`. `python -m pipeline.export` writes `site/data/*.json`, which is committed so Pages can serve it. Revisit Astro only if the site outgrows this (e.g. hundreds of match pages).
+- Preview locally with `python3 -m http.server 8000 --directory site` (pages opened as plain files can't load the JSON).
 - Pages:
   - **Home / This matchday:** fixtures with model vs market probabilities; highlight the biggest disagreements.
   - **Match page:** scoreline heatmap, probabilities, both models, market odds.
@@ -77,7 +79,7 @@ The goal is a portfolio project for finance, trading, data science and consultin
   - **Methodology:** plain-English explanation of the models and evaluation, plus data credits.
   - **About:** who built it and why.
 - Mobile-friendly, fast, clean. Available in English (Italian translation is a possible later extra).
-- Hosting: **GitHub Pages** (or Vercel) on the free tier.
+- Hosting: **GitHub Pages** on the free tier, deployed by `.github/workflows/deploy.yml` on every push to `main` (tests must pass first). Free Pages needs a **public** repo.
 
 ## Automation
 
@@ -103,7 +105,7 @@ The goal is a portfolio project for finance, trading, data science and consultin
 │   ├── raw/             # downloaded CSVs (can be git-ignored and re-downloaded)
 │   └── processed/
 ├── site/                # the website
-│   └── public/data/     # JSON written by the pipeline
+│   └── data/            # JSON written by the pipeline (committed)
 └── .github/workflows/   # scheduled update + deploy
 ```
 
@@ -144,7 +146,7 @@ If other people join the project:
   - Data notes (checked Sep 2026): 22 seasons, 8,030 matches, all UTF-8, all passing validation. Pinnacle closing odds cover 2012/13 to 14 Jan 2026 only; football-data stopped publishing Pinnacle odds mid-2025/26, so 2026/27 has none. Market average (`avg_close_*`) and Bet365 closing odds exist from 2019/20. The benchmark for the live season needs a decision (see Market comparison).
   - `fixtures.csv` can have zero Serie A rows between rounds; code handles this.
 - [ ] Phase 1: Models + backtest
-- [ ] Phase 1b: First site
+- [ ] Phase 1b: First site. Brought forward: a market-only version (fixtures, latest results with market probabilities, table, About) is built; models get added as they're finished.
 - [ ] Phase 2: Automation + depth
 - [ ] Phase 3: Transfer valuations
 - [ ] Phase 4: Polish

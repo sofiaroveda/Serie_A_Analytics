@@ -12,3 +12,6 @@ data/processed/
 
 # macOS
 .DS_Store
+
+# Local preview settings for the Claude desktop app
+.claude/launch.json

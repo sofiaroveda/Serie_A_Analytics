@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Serie A Table</title>
+    <meta name="description" content="The current Serie A league table." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="./">Serie A Analytics</a>
+        <nav class="nav">
+          <a href="./">Matches</a>
+          <a href="table.html" aria-current="page">Table</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Table <span id="season"></span></h1>
+      <p class="muted">
+        The current standings. A simulated final table, with each team's chances of winning the title,
+        qualifying for the Champions League or being relegated, is coming once our model is ready.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="team">Team</th>
+              <th title="Played">P</th>
+              <th title="Won">W</th>
+              <th title="Drawn">D</th>
+              <th title="Lost">L</th>
+              <th class="hide-narrow" title="Goals for">GF</th>
+              <th class="hide-narrow" title="Goals against">GA</th>
+              <th title="Goal difference">GD</th>
+              <th title="Points">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <p class="muted small">
+        Teams level on points are ordered by goal difference, then goals scored. (Serie A officially uses
+        head-to-head results first; we will add that.)
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container small muted">
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a>.
+        An analysis project, not betting advice.
+      </div>
+    </footer>
+
+    <script type="module" src="js/table.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Serie A Analytics</title>
+    <meta name="description" content="What this site is, how the numbers are made, and where the data comes from." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="./">Serie A Analytics</a>
+        <nav class="nav">
+          <a href="./">Matches</a>
+          <a href="table.html">Table</a>
+          <a href="about.html" aria-current="page">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container prose">
+      <h1>About</h1>
+      <p>
+        Serie A Analytics puts a probability on every Serie A match and checks, honestly and in public,
+        how those probabilities compare with the betting market. It is an analysis project, not a betting
+        product: there are no tips here, and past results do not predict future ones.
+      </p>
+
+      <h2>What you see now</h2>
+      <p>
+        For each match, the bars show the market's view: the chance of a home win, a draw and an away win.
+        We work these out from bookmakers' decimal odds. Odds of 2.00 imply a 1 in 2 (50%) chance. Because
+        bookmakers build in a profit margin, the three implied chances add up to a little over 100%, so we
+        scale them down proportionally until they add up to exactly 100%.
+      </p>
+      <p>
+        For finished matches we use the <strong>closing odds</strong>, the last prices before kick-off,
+        when the market knows the most (team news, injuries, late money). We use Pinnacle's closing
+        prices where available, since Pinnacle is a low-margin bookmaker whose prices are widely seen as
+        the most accurate. Pinnacle odds are not available from January 2026, so from then on we use the
+        average closing price across bookmakers, which in past seasons was typically within half a
+        percentage point of Pinnacle's.
+      </p>
+
+      <h2>What's coming</h2>
+      <ul>
+        <li><strong>Our own models:</strong> an Elo rating model and a Dixon-Coles goals model, shown next to the market for every match.</li>
+        <li><strong>Model vs market scoreboard:</strong> a running, walk-forward comparison of accuracy, with no peeking at future data.</li>
+        <li><strong>Simulated final table:</strong> each team's chances of the title, Champions League and relegation.</li>
+      </ul>
+
+      <h2>Data</h2>
+      <p>
+        Results and odds come from <a href="https://www.football-data.co.uk/">football-data.co.uk</a>,
+        which generously makes them available for free. Thank you.
+      </p>
+
+      <h2>Who built this</h2>
+      <p>
+        Sofia, a materials science and engineering student at Imperial College London, as a project in
+        forecasting and data analysis. The code is on GitHub.
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container small muted">
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a>.
+        An analysis project, not betting advice.
+      </div>
+    </footer>
+  </body>
+</html>

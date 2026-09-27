@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Makes the page scale properly on phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Serie A Analytics</title>
+    <meta name="description" content="Serie A match probabilities: bookmaker markets now, our own models soon." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="./">Serie A Analytics</a>
+        <nav class="nav">
+          <a href="./" aria-current="page">Matches</a>
+          <a href="table.html">Table</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Serie A <span id="season"></span></h1>
+      <p class="muted">
+        What the betting market thought would happen in each match, and what actually happened.
+        Our own prediction models are being built and will appear here alongside the market.
+      </p>
+
+      <!-- The script fills these empty sections with data -->
+      <div class="stats" id="stats"></div>
+
+      <h2>Upcoming matches</h2>
+      <div id="fixtures"></div>
+
+      <h2>Latest results</h2>
+      <div id="results"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container small muted">
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a>.
+        An analysis project, not betting advice. <span id="updated"></span>
+      </div>
+    </footer>
+
+    <script type="module" src="js/home.js"></script>
+  </body>
+</html>
