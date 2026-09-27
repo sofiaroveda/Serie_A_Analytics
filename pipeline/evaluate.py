@@ -49,8 +49,16 @@ def brier(probs: np.ndarray, results) -> float:
     return float(np.mean(np.sum((probs - outcome_matrix(results)) ** 2, axis=1)))
 
 
+def hit_rate(probs: np.ndarray, results) -> float:
+    """Share of matches where the outcome rated most likely actually happened."""
+    return float(np.mean(probs.argmax(axis=1) == outcome_matrix(results).argmax(axis=1)))
+
+
 def scores(probs: np.ndarray, results) -> dict[str, float]:
-    return {"rps": rps(probs, results), "log_loss": log_loss(probs, results), "brier": brier(probs, results)}
+    return {
+        "rps": rps(probs, results), "log_loss": log_loss(probs, results),
+        "brier": brier(probs, results), "hit_rate": hit_rate(probs, results),
+    }  # fmt: skip
 
 
 def base_rate_forecast(matches: pd.DataFrame, target: pd.DataFrame) -> np.ndarray:

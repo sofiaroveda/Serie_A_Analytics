@@ -231,15 +231,19 @@ def predict_matches(matches: pd.DataFrame, params: DCParams, first_season: int) 
     return matches[["match_id", "season", "date", "home_team", "away_team", "result"]].merge(preds, on="match_id")
 
 
+def fit_latest(matches: pd.DataFrame, season: int, params: DCParams, as_of: pd.Timestamp,
+               season_teams: set[str] | None = None) -> DCFit:  # fmt: skip
+    """Fit on every result before `as_of`, for `season` (whose teams may not all have played yet)."""
+    season_teams = set(season_teams or ()) | set(matches.loc[matches["season"] == season, ["home_team", "away_team"]].stack())
+    previous = set(matches.loc[matches["season"] == season - 1, ["home_team", "away_team"]].stack())
+    train = matches[(matches["date"] < as_of) & (matches["date"] >= as_of - pd.Timedelta(days=params.window_days))]
+    return fit(train, as_of, params, season_teams - previous, season_teams)
+
+
 def predict_fixtures(matches: pd.DataFrame, fixtures: pd.DataFrame, params: DCParams, season: int) -> pd.DataFrame:
     """Forecasts for upcoming `fixtures` in `season`, fitted on every result so far."""
     as_of = max(matches["date"].max() + pd.Timedelta(days=1), fixtures["date"].min())
-    season_teams = set(fixtures[["home_team", "away_team"]].stack()) | set(
-        matches.loc[matches["season"] == season, ["home_team", "away_team"]].stack()
-    )
-    previous = set(matches.loc[matches["season"] == season - 1, ["home_team", "away_team"]].stack())
-    train = matches[matches["date"] >= as_of - pd.Timedelta(days=params.window_days)]
-    model = fit(train, as_of, params, season_teams - previous, season_teams)
+    model = fit_latest(matches, season, params, as_of, set(fixtures[["home_team", "away_team"]].stack()))
     preds = pd.DataFrame(_predict_rows(model, fixtures))
     return fixtures[["match_id", "date", "home_team", "away_team"]].merge(preds, on="match_id")
 

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from pipeline.evaluate import base_rate_forecast, brier, compare_with_market, log_loss, rps
+from pipeline.evaluate import base_rate_forecast, brier, compare_with_market, hit_rate, log_loss, rps
 
 
 def test_perfect_forecast_scores_zero():
@@ -50,3 +50,8 @@ def test_base_rate_forecast_uses_only_earlier_seasons():
     target = matches[matches["season"] == 2]
     probs = base_rate_forecast(matches, target)
     assert np.allclose(probs, [[0.5, 0.25, 0.25]] * 2)  # season 2's own results are not used
+
+
+def test_hit_rate_counts_matches_where_the_favourite_happened():
+    probs = np.array([[0.5, 0.3, 0.2], [0.2, 0.3, 0.5], [0.4, 0.35, 0.25]])
+    assert hit_rate(probs, ["H", "H", "D"]) == pytest.approx(1 / 3)

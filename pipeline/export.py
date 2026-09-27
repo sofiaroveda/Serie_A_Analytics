@@ -11,7 +11,7 @@ import pandas as pd
 
 from pipeline.data import PROCESSED_DIR, ROOT, make_match_ids, season_label
 from pipeline import dixon_coles, elo
-from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, rps
+from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, hit_rate, rps
 from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
 
@@ -156,6 +156,7 @@ def build_site_data(
         for key, prefix in [("market", "p"), *[(name, name) for name in predictions]]:
             probs = scored[[f"{prefix}_home", f"{prefix}_draw", f"{prefix}_away"]].to_numpy()
             scoreboard[f"{key}_rps"] = round(rps(probs, scored["result"]), 4)
+            scoreboard[f"{key}_hit_rate"] = round(hit_rate(probs, scored["result"]), 4)
 
     # The matchday to show first: the earliest one with a match still to play
     next_matchday = int(upcoming["matchday"].min()) if len(upcoming) else int(schedule["matchday"].max())
@@ -200,15 +201,56 @@ def backtest_summary(matches: pd.DataFrame, predictions: dict[str, pd.DataFrame]
     counts = table[table["forecaster"] == "pinnacle"].set_index("season")["matches"]
     forecasters = ["base_rates", *predictions, "pinnacle"]
 
+    hits = table.pivot(index="season", columns="forecaster", values="hit_rate")
+
     def row(label, key):
         return {"season": label, "matches": int(counts[key]),
-                **{name: round(float(wide.loc[key, name]), 4) for name in forecasters}}  # fmt: skip
+                **{name: round(float(wide.loc[key, name]), 4) for name in forecasters},
+                "hit_rate": {name: round(float(hits.loc[key, name]), 4) for name in forecasters}}  # fmt: skip
 
     return {
         "forecasters": {"base_rates": "Base rates", **{k: MODELS[k] for k in predictions}, "pinnacle": "Pinnacle"},
         "seasons": [row(season_label(int(s)), s) for s in wide.index if s != "All"],
         "overall": row(f"{season_label(min(TEST_SEASONS))} to {season_label(max(TEST_SEASONS))}", "All"),
         "params": {"elo": elo.EloParams().__dict__, "dc": dixon_coles.DCParams().__dict__},
+    }
+
+
+def team_ratings(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.DataFrame) -> dict[str, object]:
+    """This season's teams with their current Elo rating and goals-model attack/defence.
+
+    Attack and defence are shown as multipliers of an average team's goals:
+    attack 1.30 = scores 30% more than average; defence 0.80 = concedes 20% less.
+    """
+    season = int(schedule["season"].iloc[0])
+    teams = set(schedule[["home_team", "away_team"]].stack())
+    # Same date as the upcoming predictions (see dixon_coles.predict_fixtures), so the
+    # "How it works" example reproduces the prediction shown on the Matches page exactly.
+    as_of = matches["date"].max() + pd.Timedelta(days=1)
+    if len(upcoming):
+        as_of = max(as_of, upcoming["date"].min())
+
+    _, elo_ratings = elo.run_elo(matches, elo.EloParams())
+    if season not in set(matches["season"]):  # new season not started: apply the summer reset
+        elo_ratings = elo.start_new_season(elo_ratings, teams, elo.EloParams())
+    model = dixon_coles.fit_latest(matches, season, dixon_coles.DCParams(), as_of, teams)
+    index = {team: i for i, team in enumerate(model.teams)}
+
+    rows = [{
+        "team": team,
+        "elo": round(elo_ratings[team]),
+        "attack": round(float(np.exp(model.attack[index[team]])), 2),
+        "defence": round(float(np.exp(model.defence[index[team]])), 2),
+    } for team in teams]  # fmt: skip
+    return {
+        "as_of": as_of.strftime("%Y-%m-%d"),
+        "teams": sorted(rows, key=lambda r: -r["elo"]),
+        "goals_model": {
+            "base_goals": round(float(np.exp(model.intercept)), 3),  # an average team away from home
+            "home_boost": round(float(np.exp(model.home_advantage)), 3),
+            "rho": round(model.rho, 3),
+        },
+        "elo_k": elo.EloParams().k,
     }
 
 
@@ -242,6 +284,7 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     predictions = {name: pd.concat([played_preds[name], upcoming_preds.get(name)]) for name in MODELS}
     content = build_site_data(matches, fixtures, schedule, predictions)
     content["backtest"] = backtest_summary(matches, played_preds)
+    content["ratings"] = team_ratings(matches, schedule, upcoming)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, data in content.items():

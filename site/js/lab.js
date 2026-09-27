@@ -17,14 +17,19 @@ let allMatches = [];
 async function main() {
   enableTooltips();
   try {
-    const [summary, matches, backtest] = await Promise.all([
-      loadData("summary"), loadData("matches"), loadData("backtest"),
+    const [summary, matches, backtest, ratings] = await Promise.all([
+      loadData("summary"), loadData("matches"), loadData("backtest"), loadData("ratings"),
     ]);
     allMatches = matches;
     document.getElementById("updated").textContent = `Updated ${formatDate(summary.generated_at.slice(0, 10))}.`;
     setUpStrip({ matches, total: summary.matchdays, next: summary.current_matchday, onShow: renderMatchday });
     renderScoreboard(summary);
     renderBacktest(backtest);
+    renderHitRates(backtest);
+    const g = ratings.goals_model;
+    document.getElementById("current-params").textContent =
+      `Current fit: an average away side scores ${g.base_goals.toFixed(2)} goals, home advantage multiplies goals by ` +
+      `${g.home_boost.toFixed(2)}, and ρ = ${g.rho.toFixed(3)}.`;
   } catch (error) {
     showError(document.querySelector("main"), error);
   }
@@ -100,20 +105,37 @@ function renderScoreboard(summary) {
     container.append(el("p", "empty", "No matches played yet this season."));
     return;
   }
-  const rows = FORECASTERS.map(({ key, label }) => [label, board[`${key}_rps`]])
+  const rows = FORECASTERS.map(({ key, label }) => [label, board[`${key}_rps`], board[`${key}_hit_rate`]])
     .filter(([, value]) => value !== undefined)
     .sort((a, b) => a[1] - b[1]);
   const list = el("ol", "leaderboard");
-  for (const [label, value] of rows) {
+  for (const [label, value, hits] of rows) {
     const item = el("li");
-    item.append(el("span", "", label), el("span", "num", value.toFixed(4)));
+    item.append(el("span", "", label), el("span", "num muted small", `${percent(hits)} right`), el("span", "num", `RPS ${value.toFixed(4)}`));
     list.append(item);
   }
   container.append(list, el("p", "muted small",
-    `Ranked Probability Score over ${board.matches} matches (lower is better). This early in the season the order is mostly luck.`));
+    `Over ${board.matches} matches, ranked by Ranked Probability Score (lower is better). This early in the season the order is mostly luck.`));
 }
 
 // ---------- 12 seasons of testing ----------
+
+function renderHitRates(backtest) {
+  const labels = { ...backtest.forecasters, base_rates: "Always home" };
+  const keys = Object.keys(labels);
+  const head = document.getElementById("hits-head");
+  head.append(el("th", "team", "Season"));
+  for (const key of keys) head.append(el("th", "", labels[key]));
+  const body = document.getElementById("hits-body");
+  for (const row of [...backtest.seasons, backtest.overall]) {
+    const isTotal = row === backtest.overall;
+    const highest = Math.max(...keys.map((k) => row.hit_rate[k]));
+    const tr = el("tr", isTotal ? "total" : "");
+    tr.append(el("td", "team", isTotal ? "All seasons" : row.season));
+    for (const key of keys) tr.append(el("td", row.hit_rate[key] === highest ? "pts" : "", `${(row.hit_rate[key] * 100).toFixed(1)}%`));
+    body.append(tr);
+  }
+}
 
 function renderBacktest(backtest) {
   const { overall, forecasters, params } = backtest;

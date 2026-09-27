@@ -12,7 +12,13 @@
    "base_rates": 0.2246,
    "elo": 0.2076,
    "dc": 0.205,
-   "pinnacle": 0.2009
+   "pinnacle": 0.2009,
+   "hit_rate": {
+    "base_rates": 0.4,
+    "elo": 0.4632,
+    "dc": 0.4816,
+    "pinnacle": 0.4737
+   }
   },
   {
    "season": "2015/16",
@@ -20,7 +26,13 @@
    "base_rates": 0.2275,
    "elo": 0.1987,
    "dc": 0.1995,
-   "pinnacle": 0.1906
+   "pinnacle": 0.1906,
+   "hit_rate": {
+    "base_rates": 0.4605,
+    "elo": 0.5289,
+    "dc": 0.5263,
+    "pinnacle": 0.5553
+   }
   },
   {
    "season": "2016/17",
@@ -28,7 +40,13 @@
    "base_rates": 0.232,
    "elo": 0.1877,
    "dc": 0.1876,
-   "pinnacle": 0.1805
+   "pinnacle": 0.1805,
+   "hit_rate": {
+    "base_rates": 0.4842,
+    "elo": 0.5974,
+    "dc": 0.6079,
+    "pinnacle": 0.6132
+   }
   },
   {
    "season": "2017/18",
@@ -36,7 +54,13 @@
    "base_rates": 0.2404,
    "elo": 0.1902,
    "dc": 0.1845,
-   "pinnacle": 0.1767
+   "pinnacle": 0.1767,
+   "hit_rate": {
+    "base_rates": 0.4316,
+    "elo": 0.5842,
+    "dc": 0.5789,
+    "pinnacle": 0.5974
+   }
   },
   {
    "season": "2018/19",
@@ -44,7 +68,13 @@
    "base_rates": 0.2239,
    "elo": 0.1892,
    "dc": 0.1878,
-   "pinnacle": 0.1804
+   "pinnacle": 0.1804,
+   "hit_rate": {
+    "base_rates": 0.4368,
+    "elo": 0.5368,
+    "dc": 0.5474,
+    "pinnacle": 0.5553
+   }
   },
   {
    "season": "2019/20",
@@ -52,7 +82,13 @@
    "base_rates": 0.2415,
    "elo": 0.2065,
    "dc": 0.2047,
-   "pinnacle": 0.1968
+   "pinnacle": 0.1968,
+   "hit_rate": {
+    "base_rates": 0.4158,
+    "elo": 0.5447,
+    "dc": 0.5553,
+    "pinnacle": 0.5711
+   }
   },
   {
    "season": "2020/21",
@@ -60,7 +96,13 @@
    "base_rates": 0.2354,
    "elo": 0.1892,
    "dc": 0.1886,
-   "pinnacle": 0.1822
+   "pinnacle": 0.1822,
+   "hit_rate": {
+    "base_rates": 0.4079,
+    "elo": 0.55,
+    "dc": 0.5526,
+    "pinnacle": 0.5684
+   }
   },
   {
    "season": "2021/22",
@@ -68,7 +110,13 @@
    "base_rates": 0.2376,
    "elo": 0.2029,
    "dc": 0.1989,
-   "pinnacle": 0.1951
+   "pinnacle": 0.1951,
+   "hit_rate": {
+    "base_rates": 0.3895,
+    "elo": 0.5132,
+    "dc": 0.5447,
+    "pinnacle": 0.5447
+   }
   },
   {
    "season": "2022/23",
@@ -76,7 +124,13 @@
    "base_rates": 0.2303,
    "elo": 0.2,
    "dc": 0.1989,
-   "pinnacle": 0.1951
+   "pinnacle": 0.1951,
+   "hit_rate": {
+    "base_rates": 0.4237,
+    "elo": 0.5211,
+    "dc": 0.5263,
+    "pinnacle": 0.5158
+   }
   },
   {
    "season": "2023/24",
@@ -84,7 +138,13 @@
    "base_rates": 0.2244,
    "elo": 0.1904,
    "dc": 0.1914,
-   "pinnacle": 0.1841
+   "pinnacle": 0.1841,
+   "hit_rate": {
+    "base_rates": 0.4184,
+    "elo": 0.5316,
+    "dc": 0.5289,
+    "pinnacle": 0.5553
+   }
   },
   {
    "season": "2024/25",
@@ -92,7 +152,13 @@
    "base_rates": 0.23,
    "elo": 0.1909,
    "dc": 0.191,
-   "pinnacle": 0.1841
+   "pinnacle": 0.1841,
+   "hit_rate": {
+    "base_rates": 0.3974,
+    "elo": 0.5158,
+    "dc": 0.5237,
+    "pinnacle": 0.5395
+   }
   },
   {
    "season": "2025/26",
@@ -100,7 +166,13 @@
    "base_rates": 0.2306,
    "elo": 0.2011,
    "dc": 0.2006,
-   "pinnacle": 0.1933
+   "pinnacle": 0.1933,
+   "hit_rate": {
+    "base_rates": 0.3737,
+    "elo": 0.5,
+    "dc": 0.5,
+    "pinnacle": 0.5152
+   }
   }
  ],
  "overall": {
@@ -109,7 +181,13 @@
   "base_rates": 0.2316,
   "elo": 0.196,
   "dc": 0.1946,
-  "pinnacle": 0.1881
+  "pinnacle": 0.1881,
+  "hit_rate": {
+   "base_rates": 0.4219,
+   "elo": 0.5336,
+   "dc": 0.5411,
+   "pinnacle": 0.5519
+  }
  },
  "params": {
   "elo": {

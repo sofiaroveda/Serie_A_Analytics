@@ -37,7 +37,7 @@
     <section class="hero">
       <div class="container">
         <h1>How it works</h1>
-        <p>Where our predictions come from, in plain English.</p>
+        <p>How our predictions are made, how often they are right, and what Elo is. In plain English.</p>
       </div>
     </section>
 
@@ -58,32 +58,103 @@
         "wrong": football is unpredictable, and good predictions are honest about it.
       </p>
 
-      <h2>How we predict</h2>
+      <h2>How often are we right?</h2>
+      <p>
+        Over 12 past seasons, here is how often each method's most likely result was what actually happened:
+      </p>
+      <div class="meters" id="hit-rates"></div>
+      <p>
+        Why isn't it higher? About <strong>1 match in 4 ends in a draw</strong>, and a draw is almost never the
+        single most likely result, so nobody calls those in advance. Upsets do the rest. That is why even the
+        bookmakers, with up-to-date knowledge of injuries and team news, top out at around 55%.
+      </p>
+      <p class="muted small" id="hit-rate-season"></p>
+
+      <h2>How our prediction works</h2>
+      <p>Our prediction comes from a <strong>goals model</strong> (statisticians call it the Dixon-Coles model). It works in four steps.</p>
+
+      <ol class="steps">
+        <li>
+          <h3>Rate every team's attack and defence</h3>
+          <p>
+            From its results, each team gets an <strong>attack</strong> rating (how many goals it scores compared
+            with an average team) and a <strong>defence</strong> rating (how many it concedes). An attack of 1.30 means
+            30% more goals than average; a defence of 0.80 means 20% fewer goals conceded. Recent matches count most:
+            a match from nine months ago counts half as much as one played this week.
+          </p>
+        </li>
+        <li>
+          <h3>Work out the expected goals</h3>
+          <p>Multiply the ratings together, with a small bonus for playing at home.</p>
+          <div class="example" id="example-goals"></div>
+        </li>
+        <li>
+          <h3>Turn goals into every possible score</h3>
+          <p>
+            Goals in football are rare, random events, and their count follows a well-known pattern (the Poisson
+            distribution). From the expected goals we get the chance of every scoreline, with a small correction
+            for low-scoring draws.
+          </p>
+          <div class="example" id="example-scores"></div>
+        </li>
+        <li>
+          <h3>Add them up</h3>
+          <p>Add up every score where the home side wins, every draw, and every away win.</p>
+          <div class="example" id="example-result"></div>
+        </li>
+      </ol>
+      <p class="muted">
+        What the model does not know: injuries, suspensions, new signings, a new coach, or a team resting players
+        for a cup final. It only learns from scores, so it catches up with these after a few matches. The bookmakers
+        know about them straight away, which is a big part of why they are slightly more accurate.
+      </p>
+
+      <h2>What is Elo?</h2>
+      <p>
+        Elo is a rating system invented by <strong>Arpad Elo</strong>, a Hungarian-American physics professor and
+        chess master, to rank chess players in the 1960s. It is now used well beyond chess, including in FIFA's
+        world rankings. We use it as our second model.
+      </p>
       <div class="cards">
         <div class="card">
-          <div class="icon" aria-hidden="true">⚽</div>
-          <h3>Attack and defence</h3>
+          <div class="icon" aria-hidden="true">🔢</div>
+          <h3>One number per team</h3>
+          <p>Every team has a rating. An average Serie A team is about 1500; the best are around 1600 or more.</p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">⚖️</div>
+          <h3>Points change hands</h3>
           <p>
-            Every team gets an attack rating (how much it tends to score) and a defence rating (how much it tends to
-            concede), learned from its results. Recent matches count most, so a team's rating follows its form.
+            After each match the winner takes rating points from the loser. Beat a stronger team and you take a lot;
+            beat a weaker one and you take very few. Bigger wins move a little more.
           </p>
         </div>
         <div class="card">
-          <div class="icon" aria-hidden="true">🎯</div>
-          <h3>Goals, then results</h3>
+          <div class="icon" aria-hidden="true">☀️</div>
+          <h3>Summer reset</h3>
           <p>
-            From those ratings we estimate how many goals each side is likely to score, then the chance of every
-            possible scoreline. Add those up and you get the chance of a home win, a draw and an away win.
+            Squads change over the summer, so each season every rating moves 30% of the way back towards average,
+            and promoted teams start a little below average.
           </p>
         </div>
-        <div class="card">
-          <div class="icon" aria-hidden="true">🔄</div>
-          <h3>Updated every round</h3>
-          <p>
-            After each matchday the ratings are updated with the new results, and the next round's predictions are
-            made from them. We never use a result to "predict" a match it came from.
-          </p>
-        </div>
+      </div>
+      <div class="example" id="example-elo"></div>
+
+      <h2>Current team ratings</h2>
+      <p class="muted" id="ratings-note"></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="team">Team</th>
+              <th title="Elo rating">Elo</th>
+              <th title="Goals scored compared with an average team">Attack</th>
+              <th title="Goals conceded compared with an average team (lower is better)">Defence</th>
+            </tr>
+          </thead>
+          <tbody id="ratings-body"></tbody>
+        </table>
       </div>
 
       <h2>Our prediction record</h2>
@@ -96,8 +167,8 @@
 
       <h2>Want the numbers?</h2>
       <p>
-        The <a href="lab.html">Data lab</a> puts our prediction side by side with a second model (Elo ratings) and
-        the bookmakers' odds for every match, and shows how accurate each one has been over 12 seasons.
+        The <a href="lab.html">Data lab</a> puts our prediction side by side with Elo and the bookmakers for every
+        match, and has the full accuracy results and the model's technical details.
       </p>
     </main>
 
@@ -109,5 +180,6 @@
         <span id="updated"></span>
       </div>
     </footer>
+    <script type="module" src="js/guide.js"></script>
   </body>
 </html>
