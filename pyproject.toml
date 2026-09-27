@@ -1,0 +1,24 @@
+[project]
+name = "serie-a-analytics"
+version = "0.1.0"
+description = "Serie A match predictions (Elo, Dixon-Coles) compared with bookmaker odds."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy==2.5.3",
+    "pandas==3.0.6",
+    "requests==2.34.2",
+    "scipy==1.18.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["pipeline"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

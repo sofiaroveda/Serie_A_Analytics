@@ -1,0 +1,14 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data: downloaded and generated files can be rebuilt with `python -m pipeline.data`
+data/raw/
+data/processed/
+
+# macOS
+.DS_Store
