@@ -254,27 +254,89 @@ def team_ratings(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.Dat
     }
 
 
-def season_simulation(matches: pd.DataFrame, season: int, dc_upcoming: pd.DataFrame | None) -> dict[str, object]:
-    """Chances of the title, top 4, Europe and relegation from simulating the rest of the season."""
-    played = matches[matches["season"] == season]
-    remaining = dc_upcoming if dc_upcoming is not None else pd.DataFrame(
-        columns=["home_team", "away_team", "exp_home_goals", "exp_away_goals"]
-    )
-    table = simulate.simulate_season(played, remaining)
-    teams = [{
+def _now_cutoff(matches: pd.DataFrame, upcoming: pd.DataFrame) -> pd.Timestamp:
+    """The date "now" forecasts are made as of (same rule as dixon_coles.predict_fixtures)."""
+    cutoff = matches["date"].max() + pd.Timedelta(days=1)
+    return max(cutoff, upcoming["date"].min()) if len(upcoming) else cutoff
+
+
+def _team_chances(table: pd.DataFrame) -> list[dict]:
+    return [{
         "team": row.team, "played": int(row.played), "points": int(row.points),
         "exp_points": round(float(row.exp_points), 1), "exp_position": round(float(row.exp_position), 1),
         "p_title": round(float(row.p_title), 4), "p_top4": round(float(row.p_top4), 4),
         "p_europe": round(float(row.p_europe), 4), "p_relegation": round(float(row.p_relegation), 4),
         "positions": [round(float(p), 4) for p in row.position_probs],
     } for row in table.itertuples()]  # fmt: skip
+
+
+def season_simulation(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.DataFrame) -> dict[str, object]:
+    """Chances of the title, top 4, Europe and relegation from simulating the rest of the season."""
+    season = int(schedule["season"].iloc[0])
+    table = simulate.simulate_as_of(matches, schedule, season, _now_cutoff(matches, upcoming))
     return {
         "season": season_label(season),
         "n_sims": simulate.N_SIMS,
         "strength_sd": simulate.STRENGTH_SD,
-        "remaining_matches": len(remaining),
-        "teams": teams,
+        "remaining_matches": len(upcoming),
+        "teams": _team_chances(table),
     }
+
+
+def market_checkpoints(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.DataFrame) -> list[tuple[str, int, pd.Timestamp]]:
+    """(label, matchday, cutoff) for the start of the season, after each completed matchday, and now.
+
+    A matchday counts as completed once at least 8 of its 10 matches are played (so a
+    postponed game doesn't hold the chart up). Its cutoff is the first date of the next
+    matchday: results before that date are known, everything later is simulated.
+    """
+    season = int(schedule["season"].iloc[0])
+    played = matches[matches["season"] == season].drop(columns="matchday", errors="ignore").merge(
+        schedule[["home_team", "away_team", "matchday"]], on=["home_team", "away_team"]
+    )
+    # Each fixture's date: when it was played, otherwise when it is scheduled
+    dates = schedule[["home_team", "away_team", "matchday", "date"]].merge(
+        played[["home_team", "away_team", "date"]], on=["home_team", "away_team"], how="left", suffixes=("", "_played")
+    )
+    dates["date"] = dates["date_played"].fillna(dates["date"])
+    first_date = dates.groupby("matchday")["date"].min()
+    counts = played["matchday"].value_counts()
+    completed = [md for md in sorted(first_date.index) if counts.get(md, 0) >= 8]
+    last_completed = max(completed, default=0)
+
+    now = _now_cutoff(matches, upcoming)
+    points = [("Start", 0, first_date.iloc[0])]
+    for md in range(1, last_completed + 1):
+        points.append((f"MD {md}", md, first_date.get(md + 1, now)))
+    n_before = lambda cutoff: int((played["date"] < cutoff).sum())  # noqa: E731
+    if n_before(now) > n_before(points[-1][2]):  # results since the last completed matchday
+        points.append(("Now", last_completed, now))
+    return points
+
+
+def market_history(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.DataFrame) -> dict[str, object]:
+    """Every team's chances at each checkpoint of the season: the "share prices" for the market charts.
+
+    Each checkpoint is a full walk-forward simulation using only results known then.
+    """
+    season = int(schedule["season"].iloc[0])
+    history = []
+    this_season = matches[matches["season"] == season]
+    for label, matchday, cutoff in market_checkpoints(matches, schedule, upcoming):
+        table = simulate.simulate_as_of(matches, schedule, season, cutoff)
+        known = this_season.loc[this_season["date"] < cutoff, "date"]
+        as_of = known.max() if len(known) else cutoff - pd.Timedelta(days=1)  # date of the latest result used
+        history.append({
+            "label": label,
+            "matchday": matchday,
+            "as_of": as_of.strftime("%Y-%m-%d"),
+            "teams": {row.team: {
+                "p_title": round(float(row.p_title), 4), "p_top4": round(float(row.p_top4), 4),
+                "p_relegation": round(float(row.p_relegation), 4), "exp_points": round(float(row.exp_points), 1),
+                "points": int(row.points),
+            } for row in table.itertuples()},
+        })  # fmt: skip
+    return {"season": season_label(season), "n_sims": simulate.N_SIMS, "checkpoints": history}
 
 
 def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
@@ -308,7 +370,8 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     content = build_site_data(matches, fixtures, schedule, predictions)
     content["backtest"] = backtest_summary(matches, played_preds)
     content["ratings"] = team_ratings(matches, schedule, upcoming)
-    content["simulation"] = season_simulation(matches, season, upcoming_preds.get("dc"))
+    content["simulation"] = season_simulation(matches, schedule, upcoming)
+    content["market"] = market_history(matches, schedule, upcoming)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, data in content.items():

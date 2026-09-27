@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <!-- Makes the page scale properly on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Serie A Analytics</title>
-    <meta name="description" content="Predictions for every Serie A match, and how they turned out." />
+    <title>Team · Serie A Analytics</title>
+    <meta name="description" content="A Serie A team's chances over the season, form, ratings and next matches." />
     <meta name="theme-color" content="#0c1210" />
     <!-- Fonts: Barlow (text) and Barlow Condensed (headings), a sporty, scoreboard-like family -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
           Serie A Analytics
         </a>
         <nav class="nav">
-          <a href="./" aria-current="page">Matches</a>
+          <a href="./">Matches</a>
           <a href="table.html">Table</a>
           <a href="market.html">Market</a>
           <a href="model.html">How it works</a>
@@ -37,20 +37,36 @@
 
     <section class="hero">
       <div class="container">
-        <h1>Serie A <span id="season"></span></h1>
-        <p>Our prediction for every match, and how it turned out.</p>
-        <nav class="md-strip" aria-label="Matchdays">
-          <button class="strip-arrow" id="prev" aria-label="Previous matchday">‹</button>
-          <div class="md-scroller" id="md-scroller"></div>
-          <button class="strip-arrow" id="next" aria-label="Next matchday">›</button>
-        </nav>
+        <h1 class="team-title" id="team-name"></h1>
+        <p id="team-summary"></p>
       </div>
     </section>
-
     <main class="container">
-      <!-- The script fills these empty sections with data -->
-      <section id="talking-points"></section>
-      <div id="matchday"></div>
+      <div class="stats" id="tickers"></div>
+
+      <h2>Share price</h2>
+      <div class="segmented" role="tablist" aria-label="What to track" id="metric-tabs">
+        <button role="tab" data-metric="title" aria-selected="true">Title</button>
+        <button role="tab" data-metric="top4" aria-selected="false">Top 4</button>
+        <button role="tab" data-metric="relegation" aria-selected="false">Relegation</button>
+      </div>
+      <div class="chart-card" id="price-chart"></div>
+      <p class="muted small" id="chart-note"></p>
+      <h3 class="section-kicker">Biggest moves</h3>
+      <p class="muted small">Chances also move with rivals' results, so a narrow win can still cost a few points.</p>
+      <ul class="moves" id="moves"></ul>
+
+      <h2>Form</h2>
+      <div class="form-row" id="form"></div>
+
+      <h2>Ratings</h2>
+      <div class="stats" id="ratings"></div>
+
+      <h2>Next matches</h2>
+      <div id="next"></div>
+
+      <h2>Results this season</h2>
+      <ul class="results" id="results"></ul>
     </main>
 
     <footer class="site-footer">
@@ -61,6 +77,6 @@
         <span id="updated"></span>
       </div>
     </footer>
-    <script type="module" src="js/home.js"></script>
+    <script type="module" src="js/team.js"></script>
   </body>
 </html>

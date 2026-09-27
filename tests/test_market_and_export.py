@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from pipeline.export import build_site_data, league_table, upcoming_from_schedule
+from pipeline.export import build_site_data, league_table, market_checkpoints, upcoming_from_schedule
 from pipeline.market import best_available_probabilities, implied_probabilities, overround
 
 
@@ -117,3 +117,23 @@ def test_goals_stay_whole_numbers_in_the_output():
     played = next(m for m in site["matches"] if m["match_id"] == "a")
     assert played["home_goals"] == 2 and isinstance(played["home_goals"], int)
     assert all(isinstance(row["goals_for"], int) for row in site["table"])
+
+
+def test_market_checkpoints_follow_completed_matchdays():
+    # Matchday 1 complete; only 3 of matchday 2's 10 matches played (fewer than 8, so not completed)
+    teams = [f"T{i}" for i in range(20)]
+    rows = []
+    for md, date in ((1, "2026-08-22"), (2, "2026-08-29"), (3, "2026-09-05")):
+        for k in range(10):
+            home, away = teams[(k + md) % 20], teams[(19 - k + md) % 20]
+            rows.append({"season": 2026, "matchday": md, "date": pd.Timestamp(date), "time": "15:00",
+                         "home_team": home, "away_team": away})  # fmt: skip
+    schedule = pd.DataFrame(rows).assign(home_goals=pd.NA, away_goals=pd.NA)  # like openfootball: no scores yet
+    played = schedule[schedule["matchday"] == 1].assign(home_goals=1, away_goals=0, result="H")
+    played = pd.concat([played, schedule[schedule["matchday"] == 2].head(3).assign(home_goals=0, away_goals=0, result="D")])
+    played["match_id"] = range(len(played))
+    upcoming = upcoming_from_schedule(schedule, played)
+    points = market_checkpoints(played, schedule, upcoming)
+    assert [label for label, _, _ in points] == ["Start", "MD 1", "Now"]
+    assert points[1][2] == pd.Timestamp("2026-08-29")  # after MD 1 = before MD 2 starts
+    assert points[2][2] > points[1][2]  # "Now" includes the three MD 2 results

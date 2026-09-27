@@ -1,7 +1,7 @@
 // Table page: the standings now (data/table.json) and the predicted final table
 // from 10,000 simulated seasons (data/simulation.json), switched with two tabs.
 import { loadData, el, formatDate, showError } from "./common.js";
-import { kitBadge } from "./teams.js";
+import { teamLink } from "./stocks.js";
 
 /** Zone for a league position (Serie A: top 4 Champions League, 5-6 Europe, bottom 3 relegated). */
 function zone(position, teams) {
@@ -29,7 +29,7 @@ function chanceCell(p, kind, extraClass = "") {
 
 function teamCell(team) {
   const cell = el("td", "team");
-  cell.append(kitBadge(team), team);
+  cell.append(teamLink(team)); // links to the team's page
   return cell;
 }
 

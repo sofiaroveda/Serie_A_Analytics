@@ -20,7 +20,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from pipeline.dixon_coles import DCParams, fit, _promoted, _predict_rows
+from pipeline.dixon_coles import DCParams, _predict_rows, fit_latest
 from pipeline.evaluate import TUNING_SEASONS
 
 N_SIMS = 10_000
@@ -113,17 +113,39 @@ def simulate_season(
 CHECKPOINTS = (50, 100, 190, 280)  # stop the season after this many matches and simulate the rest
 
 
+def simulate_as_of(
+    matches: pd.DataFrame,
+    fixtures: pd.DataFrame,
+    season: int,
+    cutoff: pd.Timestamp,
+    n_sims: int = N_SIMS,
+    strength_sd: float = STRENGTH_SD,
+    params: DCParams = DCParams(),
+) -> pd.DataFrame:
+    """Walk-forward simulation using only results from before `cutoff`.
+
+    `fixtures` is the season's full fixture list (home_team, away_team). Matches of
+    `season` played before `cutoff` count as results; every other fixture is
+    simulated, with forecasts from the goals model fitted as of `cutoff`.
+    """
+    played = matches[(matches["season"] == season) & (matches["date"] < cutoff)]
+    done = set(zip(played["home_team"], played["away_team"]))
+    remaining = fixtures[[pair not in done for pair in zip(fixtures["home_team"], fixtures["away_team"])]]
+    remaining = remaining[["home_team", "away_team"]].sort_values(["home_team", "away_team"])  # fixed order: same draws
+    remaining = remaining.assign(match_id=remaining["home_team"] + "_" + remaining["away_team"]).reset_index(drop=True)
+
+    season_teams = set(fixtures[["home_team", "away_team"]].stack())
+    model = fit_latest(matches, season, params, cutoff, season_teams)
+    forecasts = remaining.merge(pd.DataFrame(_predict_rows(model, remaining)), on="match_id")
+    return simulate_season(played, forecasts, n_sims=n_sims, strength_sd=strength_sd)
+
+
 def simulate_from_checkpoint(matches: pd.DataFrame, season: int, n_played: int, strength_sd: float,
                              n_sims: int, params: DCParams = DCParams()) -> pd.DataFrame:  # fmt: skip
-    """Walk-forward: stop `season` after `n_played` matches, fit on what was known, simulate the rest."""
+    """Stop a past `season` after `n_played` matches and simulate the rest (used for tuning)."""
     this = matches[matches["season"] == season].sort_values(["date", "match_id"])
     cutoff = this["date"].iloc[n_played]  # everything from this date on is "the future"
-    played, remaining = this[this["date"] < cutoff], this[this["date"] >= cutoff]
-    season_teams, promoted = _promoted(matches, season)
-    train = matches[(matches["date"] < cutoff) & (matches["date"] >= cutoff - pd.Timedelta(days=params.window_days))]
-    model = fit(train, cutoff, params, promoted, season_teams)
-    forecasts = remaining[["home_team", "away_team"]].join(pd.DataFrame(_predict_rows(model, remaining), index=remaining.index))
-    return simulate_season(played, forecasts, n_sims=n_sims, strength_sd=strength_sd)
+    return simulate_as_of(matches, this, season, cutoff, n_sims, strength_sd, params)
 
 
 def final_positions(matches: pd.DataFrame, season: int) -> dict[str, int]:

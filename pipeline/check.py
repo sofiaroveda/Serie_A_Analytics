@@ -89,15 +89,31 @@ def check_simulation(simulation: dict) -> list[str]:
     return errors
 
 
+def check_market(market: dict, simulation: dict) -> list[str]:
+    """Every checkpoint adds up, and the latest one is exactly today's simulation."""
+    errors = []
+    for point in market["checkpoints"]:
+        for field, total in (("p_title", 1), ("p_top4", 4), ("p_relegation", 3)):
+            if abs(sum(t[field] for t in point["teams"].values()) - total) > 0.01:
+                errors.append(f"market {point['label']}: {field} doesn't add up to {total}")
+    if market["checkpoints"]:
+        latest = market["checkpoints"][-1]["teams"]
+        for team in simulation["teams"]:
+            if latest.get(team["team"], {}).get("p_title") != team["p_title"]:
+                errors.append(f"market: latest {team['team']} title chance differs from the predicted table")
+    return errors
+
+
 def check_site_data(data_dir: Path = SITE_DATA_DIR) -> list[str]:
     try:
         load = lambda name: json.loads((data_dir / f"{name}.json").read_text())  # noqa: E731
         summary, matches, table = load("summary"), load("matches"), load("table")
-        simulation = load("simulation")
+        simulation, market = load("simulation"), load("market")
         load("backtest"), load("ratings")
     except (OSError, json.JSONDecodeError) as error:
         return [f"Could not read the site data: {error}"]
-    return check_matches(matches, summary["matchdays"]) + check_table(table, matches) + check_simulation(simulation)
+    return (check_matches(matches, summary["matchdays"]) + check_table(table, matches)
+            + check_simulation(simulation) + check_market(market, simulation))  # fmt: skip
 
 
 # ---------------------------------------------------------------------------
