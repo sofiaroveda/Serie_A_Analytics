@@ -14,11 +14,12 @@
   --text-muted: #5a5f5a;
   --accent: #0d6b44; /* links: pitch green */
 
-  --pitch: #0f4a32; /* header and hero */
-  --pitch-stripe: #125538; /* lighter mowing stripe */
+  --pitch: #0c1210; /* header and hero: near-black, like a floodlit night match */
   --on-pitch: #ffffff;
-  --on-pitch-muted: #cfe3d7;
-  --chalk: rgba(255, 255, 255, 0.16); /* faint pitch markings */
+  --on-pitch-muted: #9fb3a8;
+  --line: #2c3a33; /* hairlines on the dark header */
+  --neon: #3ddc84; /* bright pitch green for highlights on the dark header */
+  --on-neon: #06301a;
 
   --it-green: #009246;
   --it-red: #ce2b37;
@@ -38,6 +39,7 @@
   --zone-europe: #e08a00;
   --zone-releg: #c62828;
 
+  --kit-outline: rgba(0, 0, 0, 0.45); /* shirt outlines: dark on light pages */
   --radius: 14px;
   --shadow: 0 1px 2px rgba(20, 23, 26, 0.06), 0 4px 14px rgba(20, 23, 26, 0.05);
   --font: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -55,8 +57,6 @@
     --text: #f1f4f1;
     --text-muted: #b3beb7;
     --accent: #7fd3a8;
-    --pitch: #0a3323;
-    --pitch-stripe: #0c3a28;
     --home: #3987e5;
     --draw: #6b6a66;
     --away: #d95926;
@@ -65,6 +65,7 @@
     --good: #5fcf8c;
     --bad: #f08a80;
     --shadow: none;
+    --kit-outline: rgba(255, 255, 255, 0.6);
   }
 }
 :root[data-theme="dark"] {
@@ -76,8 +77,6 @@
   --text: #f1f4f1;
   --text-muted: #b3beb7;
   --accent: #7fd3a8;
-  --pitch: #0a3323;
-  --pitch-stripe: #0c3a28;
   --home: #3987e5;
   --draw: #6b6a66;
   --away: #d95926;
@@ -86,6 +85,7 @@
   --good: #5fcf8c;
   --bad: #f08a80;
   --shadow: none;
+  --kit-outline: rgba(255, 255, 255, 0.6);
 }
 
 /* ---------- Base ---------- */
@@ -118,7 +118,7 @@ h2 { font-size: 1.5rem; margin: 40px 0 12px; text-transform: uppercase; }
 /* ---------- Header: green-white-red stripe, then a mown pitch ---------- */
 
 .site-header {
-  background: repeating-linear-gradient(90deg, var(--pitch) 0 64px, var(--pitch-stripe) 64px 128px);
+  background: var(--pitch);
   color: var(--on-pitch);
   border-top: 5px solid;
   border-image: linear-gradient(90deg, var(--it-green) 0 33.3%, #ffffff 33.3% 66.6%, var(--it-red) 66.6%) 1;
@@ -131,6 +131,7 @@ h2 { font-size: 1.5rem; margin: 40px 0 12px; text-transform: uppercase; }
   gap: 8px 24px;
   padding-top: 14px;
   padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
 }
 .brand {
   display: inline-flex;
@@ -155,33 +156,28 @@ h2 { font-size: 1.5rem; margin: 40px 0 12px; text-transform: uppercase; }
   border-bottom: 2px solid transparent;
 }
 .nav a:hover { color: var(--on-pitch); }
-.nav a[aria-current="page"] { color: var(--on-pitch); border-bottom-color: var(--on-pitch); }
+.nav a[aria-current="page"] { color: var(--on-pitch); border-bottom-color: var(--neon); }
 @media (max-width: 420px) {
   .nav { gap: 4px 14px; font-size: 0.95rem; } /* fit all five tabs on one line on phones */
 }
 
-/* ---------- Hero band: a slice of pitch with its markings ---------- */
+/* ---------- Hero: continues the dark header, with a whole pitch drawn faintly ---------- */
+/* The pitch is an SVG sized to 85% of the hero's height, so it is never cut off. */
 
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--pitch-stripe), var(--pitch));
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 130' fill='none' stroke='white' stroke-opacity='0.13' stroke-width='1.2'%3E%3Crect x='1' y='1' width='198' height='128' rx='2'/%3E%3Cline x1='100' y1='1' x2='100' y2='129'/%3E%3Ccircle cx='100' cy='65' r='20'/%3E%3Ccircle cx='100' cy='65' r='1.2' fill='white' fill-opacity='0.13'/%3E%3Crect x='1' y='31' width='32' height='68'/%3E%3Crect x='1' y='49' width='11' height='32'/%3E%3Cpath d='M33 51 A16 16 0 0 1 33 79'/%3E%3Crect x='167' y='31' width='32' height='68'/%3E%3Crect x='188' y='49' width='11' height='32'/%3E%3Cpath d='M167 51 A16 16 0 0 0 167 79'/%3E%3C/svg%3E")
+      right max(16px, calc(50% - 400px)) center / auto 85% no-repeat,
+    var(--pitch);
   color: var(--on-pitch);
-  padding: 28px 0 32px;
-}
-/* halfway line and centre circle, drawn faintly behind the text */
-.hero::before,
-.hero::after { content: ""; position: absolute; pointer-events: none; }
-.hero::before { top: 0; bottom: 0; left: 50%; border-left: 2px solid var(--chalk); }
-.hero::after {
-  width: 220px; height: 220px; left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid var(--chalk);
-  border-radius: 50%;
+  padding: 26px 0 30px;
+  border-bottom: 1px solid var(--line);
 }
 .hero .container { position: relative; z-index: 1; }
 .hero p { color: var(--on-pitch-muted); margin: 0; max-width: 560px; }
-.hero a { color: var(--on-pitch); }
+.hero a { color: var(--neon); }
 
 main { padding: 32px 0 64px; } /* breathing room below the green band */
 
@@ -225,27 +221,27 @@ main { padding: 32px 0 64px; } /* breathing room below the green band */
   flex-direction: column;
   align-items: center;
   min-width: 84px;
-  padding: 8px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.07);
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
   color: var(--on-pitch);
   font: inherit;
   cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
+  transition: background 0.15s, border-color 0.15s;
 }
-.md-chip:hover { background: rgba(255, 255, 255, 0.16); }
-.md-chip .md-num { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.1; }
-.md-chip .md-dates { font-size: 0.75rem; color: var(--on-pitch-muted); white-space: nowrap; }
-.md-chip.is-next .md-dates { color: #ffe27a; font-weight: 600; }
-.md-chip[aria-pressed="true"] { background: var(--on-pitch); color: var(--pitch); border-color: var(--on-pitch); transform: translateY(-1px); }
-.md-chip[aria-pressed="true"] .md-dates { color: var(--pitch); }
+.md-chip:hover { border-color: var(--on-pitch-muted); }
+.md-chip .md-num { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.1; }
+.md-chip .md-dates { font-size: 0.72rem; color: var(--on-pitch-muted); white-space: nowrap; }
+.md-chip.is-next .md-dates { color: var(--neon); font-weight: 600; }
+.md-chip[aria-pressed="true"] { background: var(--neon); border-color: var(--neon); color: var(--on-neon); }
+.md-chip[aria-pressed="true"] .md-dates { color: var(--on-neon); }
 .strip-arrow {
   flex: none;
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--line);
   background: transparent;
   color: var(--on-pitch);
   font-size: 1.3rem;
@@ -358,11 +354,8 @@ main { padding: 32px 0 64px; } /* breathing room below the green band */
   .score { font-size: 1.35rem; min-width: 2.6em; padding: 0 6px; }
   .match-teams { gap: 8px; }
 }
-.kit {
-  width: 16px; height: 16px; flex: none;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
-}
+.kit { width: 24px; height: 23px; flex: none; } /* mini kit shirt (drawn in js/teams.js) */
+.kit-outline { stroke: var(--kit-outline); }
 .score {
   font-family: var(--font-display);
   font-variant-numeric: tabular-nums;
@@ -446,7 +439,7 @@ th { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transfo
 tbody tr:last-child td { border-bottom: none; }
 th.team, td.team { text-align: left; width: 100%; }
 td.team { font-weight: 600; }
-td.team .kit { display: inline-block; vertical-align: -2px; margin-right: 8px; }
+td.team .kit { display: inline-block; vertical-align: -5px; margin-right: 8px; }
 td.pts { font-weight: 700; }
 tr.total td { border-top: 2px solid var(--border); font-weight: 600; }
 /* League table zones: a coloured bar on the left of the position */

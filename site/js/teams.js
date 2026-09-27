@@ -1,41 +1,69 @@
-// Each club's kit colours [primary, secondary], used for the small badges next to team names.
-// These are just the traditional shirt colours, not club logos or crests (those are trademarks).
-export const KIT_COLOURS = {
-  Atalanta: ["#1b5ea8", "#111111"],
-  Bologna: ["#a3162b", "#1a2f5a"],
-  Cagliari: ["#a3162b", "#1a2f5a"],
-  Como: ["#1c4c9c", "#ffffff"],
-  Cremonese: ["#b01e2e", "#8a8d8f"],
-  Empoli: ["#1d5bbf", "#ffffff"],
-  Fiorentina: ["#5b2d8e", "#ffffff"],
-  Frosinone: ["#f2c500", "#1a3b8f"],
-  Genoa: ["#a3162b", "#1a2f5a"],
-  Inter: ["#0a4fa3", "#111111"],
-  Juventus: ["#111111", "#ffffff"],
-  Lazio: ["#8fc8ee", "#ffffff"],
-  Lecce: ["#f2c500", "#c8102e"],
-  Milan: ["#c8102e", "#111111"],
-  Monza: ["#c8102e", "#ffffff"],
-  Napoli: ["#1e8fd6", "#ffffff"],
-  Parma: ["#f2c500", "#1a3b8f"],
-  Pisa: ["#111111", "#1a3b8f"],
-  Roma: ["#8e1f2f", "#f0a500"],
-  Salernitana: ["#6d1a2a", "#ffffff"],
-  Sampdoria: ["#1d4fa0", "#ffffff"],
-  Sassuolo: ["#00873e", "#111111"],
-  Spezia: ["#ffffff", "#111111"],
-  Torino: ["#7a1d2a", "#ffffff"],
-  Udinese: ["#111111", "#ffffff"],
-  Venezia: ["#f26a1b", "#0f7a3d"],
-  Verona: ["#f2c500", "#1a3b8f"],
+// Mini kit shirts shown next to team names: each club's traditional home shirt design.
+// These are drawn by us from the shirt colours and pattern, not club logos or crests
+// (those are trademarks).
+
+// pattern: "stripes" (vertical), "halves" (left/right), "plain" (with a coloured collar),
+// "trim" (collar and sleeve cuffs), "cross" (Parma), "band" (a chest band, Sampdoria)
+export const KITS = {
+  Atalanta: { pattern: "stripes", base: "#111111", detail: "#1b5ea8" },
+  Bologna: { pattern: "halves", base: "#a3162b", detail: "#1a2f5a" },
+  Cagliari: { pattern: "halves", base: "#a3162b", detail: "#1a2f5a" },
+  Como: { pattern: "plain", base: "#1c4c9c", detail: "#ffffff" },
+  Cremonese: { pattern: "stripes", base: "#8a8d8f", detail: "#b01e2e" },
+  Empoli: { pattern: "plain", base: "#1d5bbf", detail: "#ffffff" },
+  Fiorentina: { pattern: "trim", base: "#5b2d8e", detail: "#ffffff" },
+  Frosinone: { pattern: "trim", base: "#f2c500", detail: "#1a3b8f" },
+  Genoa: { pattern: "halves", base: "#a3162b", detail: "#1a2f5a" },
+  Inter: { pattern: "stripes", base: "#111111", detail: "#0a4fa3" },
+  Juventus: { pattern: "stripes", base: "#ffffff", detail: "#111111" },
+  Lazio: { pattern: "trim", base: "#8fc8ee", detail: "#ffffff" },
+  Lecce: { pattern: "stripes", base: "#f2c500", detail: "#c8102e" },
+  Milan: { pattern: "stripes", base: "#111111", detail: "#c8102e" },
+  Monza: { pattern: "trim", base: "#c8102e", detail: "#ffffff" },
+  Napoli: { pattern: "plain", base: "#1e8fd6", detail: "#ffffff" },
+  Parma: { pattern: "cross", base: "#ffffff", detail: "#111111" },
+  Pisa: { pattern: "stripes", base: "#111111", detail: "#1a3b8f" },
+  Roma: { pattern: "trim", base: "#8e1f2f", detail: "#f0a500" },
+  Salernitana: { pattern: "plain", base: "#6d1a2a", detail: "#ffffff" },
+  Sampdoria: { pattern: "band", base: "#1d4fa0", detail: "#ffffff" },
+  Sassuolo: { pattern: "stripes", base: "#111111", detail: "#00873e" },
+  Spezia: { pattern: "trim", base: "#ffffff", detail: "#111111" },
+  Torino: { pattern: "trim", base: "#7a1d2a", detail: "#ffffff" },
+  Udinese: { pattern: "stripes", base: "#ffffff", detail: "#111111" },
+  Venezia: { pattern: "trim", base: "#111111", detail: "#f26a1b" },
+  Verona: { pattern: "trim", base: "#1a3b8f", detail: "#f2c500" },
 };
 
-/** A small round badge split into the team's two kit colours (grey if unknown). */
+// The shirt outline, in a 44 x 42 drawing
+const SHIRT = "M13 4 L4 10 L7 17 L11 15 L11 38 L33 38 L33 15 L37 17 L40 10 L31 4 Q22 10 13 4 Z";
+const COLLAR = "M13 4 Q22 10 31 4 L31 7 Q22 13 13 7 Z";
+const SVG_NS = "http://www.w3.org/2000/svg";
+let nextId = 0; // each shirt needs its own clip-path id on the page
+
+/** The coloured shapes inside the shirt, for one pattern. */
+function patternShapes({ pattern, base, detail }) {
+  const rect = (x, y, w, h, fill) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}"/>`;
+  let shapes = rect(0, 0, 44, 42, base);
+  if (pattern === "stripes") shapes += [11, 21, 31].map((x) => rect(x, 0, 5, 42, detail)).join("");
+  if (pattern === "halves") shapes += rect(22, 0, 22, 42, detail);
+  if (pattern === "plain") shapes += `<path d="${COLLAR}" fill="${detail}"/>`;
+  if (pattern === "trim") shapes += `<path d="${COLLAR}" fill="${detail}"/>` + rect(0, 10, 11, 3, detail) + rect(33, 10, 11, 3, detail);
+  if (pattern === "cross") shapes += rect(19, 0, 6, 42, detail) + rect(0, 17, 44, 6, detail);
+  if (pattern === "band") shapes += rect(0, 18, 44, 3, detail) + rect(0, 21, 44, 2, "#c8102e") + rect(0, 23, 44, 2, "#111111") + rect(0, 25, 44, 3, detail);
+  return shapes;
+}
+
+/** A small shirt in the team's colours (plain grey if we don't know the club). */
 export function kitBadge(team) {
-  const [a, b] = KIT_COLOURS[team] ?? ["#9a9a9a", "#d0d0d0"];
-  const badge = document.createElement("span");
-  badge.className = "kit";
-  badge.style.background = `linear-gradient(135deg, ${a} 0 50%, ${b} 50% 100%)`;
-  badge.setAttribute("aria-hidden", "true"); // decoration only; the team name is written next to it
-  return badge;
+  const kit = KITS[team] ?? { pattern: "plain", base: "#9a9a9a", detail: "#d0d0d0" };
+  const id = `kit-${nextId++}`;
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 44 42");
+  svg.setAttribute("class", "kit");
+  svg.setAttribute("aria-hidden", "true"); // decoration only; the team name is written next to it
+  svg.innerHTML =
+    `<clipPath id="${id}"><path d="${SHIRT}"/></clipPath>` +
+    `<g clip-path="url(#${id})">${patternShapes(kit)}</g>` +
+    `<path class="kit-outline" d="${SHIRT}" fill="none" stroke-width="1.4"/>`; // colour set in the CSS (light/dark)
+  return svg;
 }
