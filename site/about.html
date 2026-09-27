@@ -14,6 +14,7 @@
         <nav class="nav">
           <a href="./">Matches</a>
           <a href="table.html">Table</a>
+          <a href="model.html">Model vs market</a>
           <a href="about.html" aria-current="page">About</a>
         </nav>
       </div>
@@ -43,11 +44,25 @@
         percentage point of Pinnacle's.
       </p>
 
+      <h2>The Elo model</h2>
+      <p>
+        Every team has a rating. Beat a stronger team and your rating rises a lot; beat a weaker one and it
+        rises a little. Bigger winning margins count for more. Between seasons, ratings drift part of the
+        way back to average (squads change), and promoted teams start below average. A statistical model
+        fitted on earlier seasons turns the gap between two teams' ratings into chances of a home win,
+        draw and away win.
+      </p>
+      <p>
+        The model's settings were chosen using the 2008/09 to 2013/14 seasons only, then tested on
+        2014/15 to 2025/26, which it had never seen. Each prediction uses only matches played before its
+        date. <a href="model.html">See how it did.</a>
+      </p>
+
       <h2>What's coming</h2>
       <ul>
-        <li><strong>Our own models:</strong> an Elo rating model and a Dixon-Coles goals model, shown next to the market for every match.</li>
-        <li><strong>Model vs market scoreboard:</strong> a running, walk-forward comparison of accuracy, with no peeking at future data.</li>
+        <li><strong>A goals model (Dixon-Coles):</strong> forecasts exact scorelines, not just win/draw/loss.</li>
         <li><strong>Simulated final table:</strong> each team's chances of the title, Champions League and relegation.</li>
+        <li><strong>Automatic updates</strong> twice a week.</li>
       </ul>
 
       <h2>Data</h2>

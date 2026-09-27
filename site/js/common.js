@@ -29,35 +29,52 @@ export function el(tag, className, text) {
 
 const OUTCOME_NAMES = { home: "Home win", draw: "Draw", away: "Away win" };
 
+/** Pick a forecaster's probabilities out of a match record, e.g. probs(match, "p") or probs(match, "elo"). */
+export function probs(match, prefix) {
+  const p = { home: match[`${prefix}_home`], draw: match[`${prefix}_draw`], away: match[`${prefix}_away`] };
+  return p.home === null || p.home === undefined ? null : p;
+}
+
 /**
  * A horizontal bar split into home / draw / away segments.
- * `match` needs p_home, p_draw, p_away and team names; `happened` is
- * "home" | "draw" | "away" for played matches (that segment gets outlined).
+ * `p` is {home, draw, away}; `source` names who made the forecast (for screen
+ * readers and tooltips); `happened` is "home" | "draw" | "away" for played
+ * matches (that segment gets outlined).
  */
-export function probabilityBar(match, happened) {
+export function probabilityBar(p, match, source, happened) {
   const bar = el("div", "prob-bar");
   bar.setAttribute("role", "img");
   bar.setAttribute(
     "aria-label",
-    `Market probabilities: ${match.home_team} win ${percent(match.p_home)}, ` +
-      `draw ${percent(match.p_draw)}, ${match.away_team} win ${percent(match.p_away)}`
+    `${source}: ${match.home_team} win ${percent(p.home)}, ` +
+      `draw ${percent(p.draw)}, ${match.away_team} win ${percent(p.away)}`
   );
 
   for (const outcome of ["home", "draw", "away"]) {
-    const p = match[`p_${outcome}`];
     const seg = el("div", `prob-seg ${outcome}`);
-    seg.style.flexGrow = p; // segment width is proportional to the probability
+    seg.style.flexGrow = p[outcome]; // segment width is proportional to the probability
     seg.style.flexBasis = "0";
-    if (p >= 0.1) seg.textContent = percent(p); // only label segments wide enough to fit text
+    seg.dataset.label = percent(p[outcome]);
     if (outcome === happened) seg.classList.add("happened");
 
     const team = outcome === "home" ? match.home_team : outcome === "away" ? match.away_team : null;
     const name = team ? `${team} win` : OUTCOME_NAMES[outcome];
-    seg.dataset.tip = `${name}: ${percent(p)}${outcome === happened ? " (what happened)" : ""}`;
+    seg.dataset.tip = `${source}. ${name}: ${percent(p[outcome])}${outcome === happened ? " (what happened)" : ""}`;
     bar.append(seg);
   }
+  labelObserver.observe(bar);
   return bar;
 }
+
+/** Show each segment's percentage only if it fits; recheck whenever the bar is resized. */
+const MIN_LABEL_WIDTH_PX = 34;
+const labelObserver = new ResizeObserver((entries) => {
+  for (const { target } of entries) {
+    for (const seg of target.children) {
+      seg.textContent = seg.offsetWidth >= MIN_LABEL_WIDTH_PX ? seg.dataset.label : "";
+    }
+  }
+});
 
 /** Legend explaining the bar colours. */
 export function outcomeLegend() {

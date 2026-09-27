@@ -1,0 +1,101 @@
+{
+ "seasons": [
+  {
+   "season": "2014/15",
+   "matches": 380,
+   "elo": 0.2076,
+   "pinnacle": 0.2009,
+   "base_rates": 0.2246
+  },
+  {
+   "season": "2015/16",
+   "matches": 380,
+   "elo": 0.1987,
+   "pinnacle": 0.1906,
+   "base_rates": 0.2275
+  },
+  {
+   "season": "2016/17",
+   "matches": 380,
+   "elo": 0.1877,
+   "pinnacle": 0.1805,
+   "base_rates": 0.232
+  },
+  {
+   "season": "2017/18",
+   "matches": 380,
+   "elo": 0.1902,
+   "pinnacle": 0.1767,
+   "base_rates": 0.2404
+  },
+  {
+   "season": "2018/19",
+   "matches": 380,
+   "elo": 0.1892,
+   "pinnacle": 0.1804,
+   "base_rates": 0.2239
+  },
+  {
+   "season": "2019/20",
+   "matches": 380,
+   "elo": 0.2065,
+   "pinnacle": 0.1968,
+   "base_rates": 0.2415
+  },
+  {
+   "season": "2020/21",
+   "matches": 380,
+   "elo": 0.1892,
+   "pinnacle": 0.1822,
+   "base_rates": 0.2354
+  },
+  {
+   "season": "2021/22",
+   "matches": 380,
+   "elo": 0.2029,
+   "pinnacle": 0.1951,
+   "base_rates": 0.2376
+  },
+  {
+   "season": "2022/23",
+   "matches": 380,
+   "elo": 0.2,
+   "pinnacle": 0.1951,
+   "base_rates": 0.2303
+  },
+  {
+   "season": "2023/24",
+   "matches": 380,
+   "elo": 0.1904,
+   "pinnacle": 0.1841,
+   "base_rates": 0.2244
+  },
+  {
+   "season": "2024/25",
+   "matches": 380,
+   "elo": 0.1909,
+   "pinnacle": 0.1841,
+   "base_rates": 0.23
+  },
+  {
+   "season": "2025/26",
+   "matches": 198,
+   "elo": 0.2011,
+   "pinnacle": 0.1933,
+   "base_rates": 0.2306
+  }
+ ],
+ "overall": {
+  "season": "2014/15 to 2025/26",
+  "matches": 4378,
+  "elo": 0.196,
+  "pinnacle": 0.1881,
+  "base_rates": 0.2316
+ },
+ "elo_params": {
+  "k": 10.0,
+  "home_advantage": 0.0,
+  "season_regression": 0.3,
+  "promoted_gap": 50.0
+ }
+}

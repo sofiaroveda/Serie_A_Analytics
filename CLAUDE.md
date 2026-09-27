@@ -145,8 +145,13 @@ If other people join the project:
   - Pushing: Sofia pushes with GitHub Desktop; the terminal has no GitHub credentials, so Claude commits and Sofia clicks "Push origin".
   - Data notes (checked Sep 2026): 22 seasons, 8,030 matches, all UTF-8, all passing validation. Pinnacle closing odds cover 2012/13 to 14 Jan 2026 only; football-data stopped publishing Pinnacle odds mid-2025/26, so 2026/27 has none. Market average (`avg_close_*`) and Bet365 closing odds exist from 2019/20. The benchmark for the live season needs a decision (see Market comparison).
   - `fixtures.csv` can have zero Serie A rows between rounds; code handles this.
-- [ ] Phase 1: Models + backtest
-- [ ] Phase 1b: First site. Brought forward: a market-only version (fixtures, latest results with market probabilities, table, About) is **live at https://sofiaroveda.github.io/Serie_A_Analytics/** (repo public, Pages source = GitHub Actions). Models get added as they're finished. Data is only refreshed when `python -m pipeline.data && python -m pipeline.export` is run and committed, until Phase 2 automation.
+- [ ] Phase 1: Models + backtest. **Elo done** (`pipeline/elo.py`, `python -m pipeline.elo` re-runs tuning + backtest).
+  - Season split (in `pipeline/evaluate.py`): warm-up 2005/06-2007/08, tuning 2008/09-2013/14, test 2014/15-2025/26. Never tune on test seasons.
+  - Elo details: World Football Elo goal-difference multiplier; ratings recorded per date before any same-day update; ordered logit (rating gap -> H/D/A) refitted each season on earlier seasons only. Tuned: K=10, home advantage 0 (flat: logit thresholds absorb home advantage), regression 0.3, promoted gap 50.
+  - Test result (4,378 matches with Pinnacle closing): RPS base rates 0.2316, Elo 0.1960, Pinnacle 0.1881. Elo loses to Pinnacle in all 12 seasons; captures ~82% of Pinnacle's edge over base rates.
+  - `tests/conftest.py::assert_no_lookahead` scrambles results on/after a cut date and checks earlier predictions don't change; reuse it for Dixon-Coles. Verified it catches a deliberately leaky Elo.
+  - Next: Dixon-Coles, then a results notebook with calibration plots.
+- [ ] Phase 1b: First site. Brought forward: a version with market + Elo bars per match, table, Model vs market backtest page and About is **live at https://sofiaroveda.github.io/Serie_A_Analytics/** (repo public, Pages source = GitHub Actions). Models get added as they're finished. Data is only refreshed when `python -m pipeline.data && python -m pipeline.export` is run and committed, until Phase 2 automation.
 - [ ] Phase 2: Automation + depth
 - [ ] Phase 3: Transfer valuations
 - [ ] Phase 4: Polish

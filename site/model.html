@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Model vs Market</title>
+    <meta name="description" content="How our Elo model's forecasts compare with Pinnacle closing odds over 12 Serie A seasons." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="./">Serie A Analytics</a>
+        <nav class="nav">
+          <a href="./">Matches</a>
+          <a href="table.html">Table</a>
+          <a href="model.html" aria-current="page">Model vs market</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Model vs market</h1>
+      <p class="muted">
+        How accurate is our Elo model compared with the betting market? We replayed 12 past seasons
+        match by match. Each forecast used only results from before that match's date, just as if we had
+        made it at the time.
+      </p>
+
+      <div class="stats" id="stats"></div>
+
+      <h2>Season by season</h2>
+      <p class="muted small">
+        Accuracy is measured by the Ranked Probability Score (RPS): 0 would be a perfect forecast, and
+        <strong>lower is better</strong>. "Base rates" is a no-skill forecast that ignores the teams and always
+        predicts the league's usual share of home wins, draws and away wins.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="team">Season</th>
+              <th class="hide-narrow">Matches</th>
+              <th>Base rates</th>
+              <th>Elo</th>
+              <th>Pinnacle</th>
+            </tr>
+          </thead>
+          <tbody id="backtest-body"></tbody>
+        </table>
+      </div>
+
+      <h2>What this shows</h2>
+      <div class="prose">
+        <p>
+          The Elo model is clearly better than guessing from base rates, but the market is better still,
+          in every season. That is the expected result: Pinnacle's closing odds reflect team news, injuries
+          and the views of professional bettors, while Elo only knows past scores. A goals-based model
+          (Dixon-Coles) is next, to see how much of the remaining gap it can close.
+        </p>
+        <p class="muted small" id="settings"></p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container small muted">
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a>.
+        An analysis project, not betting advice.
+      </div>
+    </footer>
+
+    <script type="module" src="js/model.js"></script>
+  </body>
+</html>

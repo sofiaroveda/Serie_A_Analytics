@@ -1,7 +1,13 @@
 // Home page: headline stats, upcoming fixtures and latest results.
 import {
-  loadData, formatDate, percent, el, probabilityBar, outcomeLegend, enableTooltips, showError,
+  loadData, formatDate, percent, el, probs, probabilityBar, outcomeLegend, enableTooltips, showError,
 } from "./common.js";
+
+// Each forecaster: its key prefix in the data files and the label shown on the page
+const FORECASTERS = [
+  { prefix: "p", label: "Market" },
+  { prefix: "elo", label: "Elo model" },
+];
 
 const RESULTS_SHOWN_AT_FIRST = 20; // about two rounds
 const SURPRISE_THRESHOLD = 0.25; // flag results the market rated below 25%
@@ -28,8 +34,14 @@ function renderStats(summary) {
   const stats = [
     [summary.matches_played, "matches played"],
     [summary.favourite_win_rate === null ? "–" : percent(summary.favourite_win_rate), "won by the market favourite"],
-    [formatDate(summary.last_result_date), "latest result"],
   ];
+  const board = summary.scoreboard;
+  if (board) {
+    stats.push([
+      `${board.elo_rps.toFixed(3)} vs ${board.market_rps.toFixed(3)}`,
+      "Elo vs market accuracy this season (RPS, lower is better)",
+    ]);
+  }
   const container = document.getElementById("stats");
   for (const [value, label] of stats) {
     const box = el("div", "stat");
@@ -56,17 +68,18 @@ function matchCard(match, { played }) {
   teams.append(el("span", "", match.home_team), el("span", "score", middle), el("span", "away-name", match.away_team));
   card.append(teams);
 
-  if (match.p_home === null) {
-    card.append(el("p", "muted small", "No odds available for this match."));
-    return card;
-  }
-
   const happened = played ? RESULT_TO_OUTCOME[match.result] : null;
-  card.append(probabilityBar(match, happened));
+  const rows = el("div", "forecasts");
+  for (const { prefix, label } of FORECASTERS) {
+    const p = probs(match, prefix);
+    rows.append(el("span", "forecast-label", label));
+    rows.append(p ? probabilityBar(p, match, label, happened) : el("span", "muted small", "Not available"));
+  }
+  card.append(rows);
 
   const meta = el("div", "match-meta");
-  meta.append(el("span", "", match.odds_source));
-  if (happened && match[`p_${happened}`] < SURPRISE_THRESHOLD) {
+  if (match.odds_source) meta.append(el("span", "", `Market odds: ${match.odds_source}`));
+  if (happened && match.p_home !== null && match[`p_${happened}`] < SURPRISE_THRESHOLD) {
     meta.append(el("span", "tag", `⚡ Surprise: the market gave this ${percent(match[`p_${happened}`])}`));
   }
   card.append(meta);

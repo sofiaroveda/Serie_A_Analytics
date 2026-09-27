@@ -1,7 +1,12 @@
 {
- "generated_at": "2026-09-27T15:39+00:00",
+ "generated_at": "2026-09-27T16:10+00:00",
  "season": "2026/27",
  "matches_played": 50,
  "last_result_date": "2026-09-20",
- "favourite_win_rate": 0.58
+ "favourite_win_rate": 0.58,
+ "scoreboard": {
+  "matches": 50,
+  "elo_rps": 0.1985,
+  "market_rps": 0.1955
+ }
 }
