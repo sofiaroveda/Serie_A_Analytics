@@ -12,6 +12,7 @@ import pandas as pd
 from pipeline.data import PROCESSED_DIR, ROOT, make_match_ids, season_label
 from pipeline.elo import EloParams, predict_fixtures, predict_matches
 from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, rps
+from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
 
 SITE_DATA_DIR = ROOT / "site" / "data"
@@ -209,6 +210,15 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     elo_results = predict_matches(matches, params, first_season=min(TEST_SEASONS))
     upcoming = upcoming_from_schedule(schedule, matches)
     elo_upcoming = predict_fixtures(matches, upcoming, params, season=season) if len(upcoming) else None
+
+    # Lock in forecasts for the next round before kick-off (append-only record)
+    if elo_upcoming is not None:
+        now = datetime.now(timezone.utc)
+        to_record = next_round(upcoming, now).merge(
+            elo_upcoming[["match_id", "p_home", "p_draw", "p_away"]], on="match_id"
+        )
+        added = record_forecasts(to_record.assign(model="elo"), season_label(season), now)
+        print(f"Prediction record: {added} new forecasts saved")
 
     content = build_site_data(matches, fixtures, schedule, elo_results, elo_upcoming)
     content["backtest"] = backtest_summary(matches, elo_results)

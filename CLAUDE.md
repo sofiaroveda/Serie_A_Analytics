@@ -87,6 +87,16 @@ The goal is a portfolio project for finance, trading, data science and consultin
 - Mobile-friendly, fast, clean. Available in English (Italian translation is a possible later extra).
 - Hosting: **GitHub Pages** on the free tier, deployed by `.github/workflows/deploy.yml` on every push to `main` (tests must pass first). Free Pages needs a **public** repo.
 
+## Distinctive features (chosen by Sofia, Sep 2026)
+
+Brainstormed to make the site stand out. Build in this order:
+1. **Prediction record (tamper-evident):** done. `pipeline/ledger.py` appends forecasts for the next round to `predictions/<season>/matchday-NN.json` before kick-off. Append-only: an existing (match_id, model) entry is never changed, and nothing is recorded after kick-off (tests in `tests/test_ledger.py`). Honesty note: local commit timestamps can be set by anyone, so the strong proof is GitHub's own record of when commits were pushed, and it becomes strongest once GitHub Actions commits the forecasts itself (Phase 2). Say this plainly on the site; don't overclaim.
+2. **Dixon-Coles + season simulation** (prerequisite for 3 and 4).
+3. **Serie A as a stock market:** each team's title / top-4 / relegation probability from the simulation, recorded after every matchday and charted over the season like a share price, with big moves annotated. Core of the team pages.
+4. **"What if?" simulator:** readers pick results of upcoming matches and the table probabilities recalculate in the browser.
+
+Not chosen for now: luck index, upset hall of fame, Italian translation. Players/transfers stay in Phase 3 (need a licence-compliant source).
+
 ## Automation
 
 - A **GitHub Actions** workflow on a schedule (e.g. Tuesday and Friday mornings, UK time) that downloads new data, refits the models, regenerates JSON, rebuilds the site and deploys it.
