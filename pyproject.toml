@@ -22,3 +22,4 @@ packages = ["pipeline"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]  # so tests can import `pipeline` and `tests.conftest` however pytest is started
