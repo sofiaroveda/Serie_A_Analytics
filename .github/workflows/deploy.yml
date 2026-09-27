@@ -37,6 +37,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # Tag every CSS/JS link with this commit's ID (e.g. style.css?v=4ad3795), so after an
+      # update browsers download the new files instead of reusing old saved copies.
+      - name: Add version tags to file links
+        run: |
+          VERSION="${GITHUB_SHA::7}"
+          sed -i -E "s#(href|src)=\"((css|js)/[^\"?]+)\"#\1=\"\2?v=${VERSION}\"#g" site/*.html
+          sed -i -E "s#from \"\./([^\"?]+\.js)\"#from \"./\1?v=${VERSION}\"#g" site/js/*.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

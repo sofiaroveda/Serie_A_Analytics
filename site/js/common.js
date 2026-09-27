@@ -3,7 +3,7 @@
 
 /** Fetch one of the JSON files the Python pipeline writes to site/data/. */
 export async function loadData(name) {
-  const response = await fetch(`data/${name}.json`);
+  const response = await fetch(`data/${name}.json`, { cache: "no-cache" }); // always check for fresh data
   if (!response.ok) throw new Error(`Could not load data/${name}.json (${response.status})`);
   return response.json();
 }
