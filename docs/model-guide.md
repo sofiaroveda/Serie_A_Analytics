@@ -143,6 +143,8 @@ A team's title chance is the share of simulated seasons it finishes first; likew
 
 Without the shock the simulation is overconfident (Inter 67% for the title after 5 games); with $\sigma = 0.10$ it is 56%.
 
+**"What if?" simulator** (`site/js/whatif.js`): the same simulation re-implemented in the browser (10,000 seasons, about half a second). Picked matches are forced to the chosen result: the score is redrawn from the model until it matches, so a picked home win is usually a plausible scoreline like 1-0 or 2-1. It uses a seeded random number generator with **common random numbers**: every unpicked match gets exactly the same random draws with and without the picks, so the ▲ / ▼ changes come from the picks rather than simulation noise. With no picks it agrees with the Python simulation to within Monte Carlo noise (expected points within 0.3, chances within about 1.5 percentage points).
+
 **Market history** (`pipeline/export.py::market_history`): the same simulation is re-run at the start of the season and after each completed matchday (at least 8 of 10 matches played), each time with only the results known then, so the charts are walk-forward too. The latest point always equals today's predicted table (checked before publishing).
 
 ---

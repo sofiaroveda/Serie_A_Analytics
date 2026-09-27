@@ -1,5 +1,5 @@
-// Table page: the standings now (data/table.json) and the predicted final table
-// from 10,000 simulated seasons (data/simulation.json), switched with two tabs.
+// Table page: the standings now (data/table.json), the predicted final table from
+// 10,000 simulated seasons (data/simulation.json), and the What if? simulator (js/whatif.js).
 import { loadData, el, formatDate, showError } from "./common.js";
 import { teamLink } from "./stocks.js";
 
@@ -71,19 +71,24 @@ function renderPredicted(sim) {
     "then goals scored.";
 }
 
-/** The Now / Predicted tabs. The choice is kept in the page address (#predicted) so it can be shared. */
-function setUpTabs() {
-  const tabs = { now: document.getElementById("tab-now"), predicted: document.getElementById("tab-predicted") };
+/** The Now / Predicted / What if? tabs. The choice is kept in the page address (#predicted, #whatif). */
+function setUpTabs(onFirstOpen) {
+  const names = ["now", "predicted", "whatif"];
+  const opened = new Set();
   const show = (name) => {
-    for (const [key, tab] of Object.entries(tabs)) {
-      tab.setAttribute("aria-selected", String(key === name));
+    for (const key of names) {
+      document.getElementById(`tab-${key}`).setAttribute("aria-selected", String(key === name));
       document.getElementById(`view-${key}`).hidden = key !== name;
     }
-    history.replaceState(null, "", name === "predicted" ? "#predicted" : location.pathname + location.search);
+    history.replaceState(null, "", name === "now" ? location.pathname + location.search : `#${name}`);
+    if (!opened.has(name)) {
+      opened.add(name);
+      onFirstOpen(name);
+    }
   };
-  tabs.now.addEventListener("click", () => show("now"));
-  tabs.predicted.addEventListener("click", () => show("predicted"));
-  show(location.hash === "#predicted" ? "predicted" : "now");
+  for (const key of names) document.getElementById(`tab-${key}`).addEventListener("click", () => show(key));
+  const fromUrl = location.hash.slice(1);
+  show(names.includes(fromUrl) ? fromUrl : "now");
 }
 
 async function main() {
@@ -93,7 +98,12 @@ async function main() {
     document.getElementById("updated").textContent = `Updated ${formatDate(summary.generated_at.slice(0, 10))}.`;
     renderNow(table);
     renderPredicted(sim);
-    setUpTabs();
+    setUpTabs(async (name) => {
+      if (name !== "whatif") return;
+      // The simulator's code and match data are only loaded when someone opens the tab
+      const [{ setUpWhatIf }, matches] = await Promise.all([import("./whatif.js"), loadData("matches")]);
+      setUpWhatIf({ matches, table, simulation: sim });
+    });
   } catch (error) {
     showError(document.querySelector("main"), error);
   }

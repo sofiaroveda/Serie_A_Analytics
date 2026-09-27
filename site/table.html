@@ -45,7 +45,8 @@
     <main class="container">
       <div class="segmented" role="tablist" aria-label="Table view">
         <button role="tab" id="tab-now" aria-selected="true" aria-controls="view-now">Now</button>
-        <button role="tab" id="tab-predicted" aria-selected="false" aria-controls="view-predicted">Predicted final table</button>
+        <button role="tab" id="tab-predicted" aria-selected="false" aria-controls="view-predicted">Predicted</button>
+        <button role="tab" id="tab-whatif" aria-selected="false" aria-controls="view-whatif">What if?</button>
       </div>
 
       <section id="view-now" role="tabpanel" aria-labelledby="tab-now">
@@ -99,6 +100,39 @@
           </table>
         </div>
         <p class="muted small" id="sim-note"></p>
+      </section>
+      <section id="view-whatif" role="tabpanel" aria-labelledby="tab-whatif" hidden>
+        <p>
+          Pick results for upcoming matches and see how the title race and the relegation battle change. Leave a match
+          alone and our model decides it. Tap a pick again to remove it.
+        </p>
+        <div class="whatif">
+          <div class="whatif-picker" id="whatif-picker"></div>
+          <div class="whatif-side">
+            <div class="whatif-bar">
+              <span class="muted small" id="whatif-status"></span>
+              <button class="reset" id="whatif-reset" type="button" hidden>Reset</button>
+            </div>
+            <div class="table-wrap" id="whatif-results">
+              <table class="sim-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="team">Team</th>
+                    <th title="Expected final points">Pts</th>
+                    <th title="Chance of winning the league">Title</th>
+                    <th title="Chance of a top-4 finish">Top 4</th>
+                    <th title="Chance of relegation">Down</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="muted small">▲ / ▼ show how your picks changed each chance, in percentage points.</p>
+          </div>
+        </div>
+        <!-- Phones: a bar pinned to the bottom of the screen with the headline changes -->
+        <button class="whatif-summary" id="whatif-summary" type="button" hidden></button>
       </section>
     </main>
 

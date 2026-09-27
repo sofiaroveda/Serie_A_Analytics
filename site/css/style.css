@@ -609,3 +609,51 @@ a.point.mover:hover { border-color: var(--accent); }
 .compact-vs { font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
 .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
 .team-grid a.team-link { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+
+/* ---------- What if? simulator ---------- */
+
+.whatif { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.whatif-side { position: sticky; top: 12px; } /* results stay in view while you pick */
+@media (max-width: 760px) {
+  .whatif { grid-template-columns: 1fr; }
+  .whatif-side { position: static; }
+}
+.whatif-md { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 10px 12px; margin-bottom: 10px; }
+.whatif-md summary { cursor: pointer; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.whatif-md[open] summary { margin-bottom: 8px; }
+.pick { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; padding: 6px 0; border-top: 1px solid var(--border); }
+.pick button {
+  font: inherit; cursor: pointer; min-height: 44px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  padding: 4px 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); color: var(--text);
+}
+.pick button:hover { border-color: var(--text-muted); }
+.pick button[aria-pressed="true"] { background: var(--neon); border-color: var(--neon); color: var(--on-neon); }
+.pick-name { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; font-size: 0.9rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pick-name .kit { width: 18px; height: 17px; }
+.pick-chance { font-size: 0.75rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.pick button[aria-pressed="true"] .pick-chance { color: var(--on-neon); }
+.pick .pick-D { min-width: 64px; }
+.whatif-bar { display: flex; justify-content: space-between; align-items: center; min-height: 32px; margin-bottom: 6px; }
+button.reset { font: inherit; font-weight: 600; font-size: 0.875rem; color: var(--accent); background: none; border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+td.whatif-cell { font-variant-numeric: tabular-nums; white-space: nowrap; line-height: 1.25; }
+td.whatif-cell .change { display: block; width: fit-content; margin: 2px 0 0 auto; } /* badge under the number, so columns stay narrow */
+#whatif-results th, #whatif-results td { padding-left: 6px; padding-right: 6px; }
+
+/* Phones: headline changes pinned to the bottom of the screen while picking */
+.whatif-summary {
+  display: none;
+  position: sticky; bottom: 10px; z-index: 5;
+  width: 100%; margin-top: 12px;
+  font: inherit; font-size: 0.85rem; text-align: left; cursor: pointer;
+  flex-wrap: wrap; align-items: center; gap: 4px 10px;
+  padding: 10px 14px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--pitch); color: var(--on-pitch);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 760px) {
+  .whatif-summary:not([hidden]) { display: flex; }
+}
+.summary-label { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; color: var(--neon); letter-spacing: 0.04em; }
+.summary-item { font-weight: 600; white-space: nowrap; }
+.summary-more { margin-left: auto; color: var(--on-pitch-muted); font-size: 0.8rem; }
