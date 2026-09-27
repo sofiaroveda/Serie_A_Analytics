@@ -224,3 +224,35 @@ td.pts { font-weight: 700; }
 .prose p, .prose li { color: var(--text); }
 
 tr.total td { border-top: 2px solid var(--border); font-weight: 600; }
+
+/* ---------- Matchday picker ---------- */
+
+.matchday-bar { display: flex; align-items: center; gap: 8px; margin: 40px 0 12px; }
+.matchday-bar select {
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  flex: 1;
+  max-width: 260px;
+}
+.nav-button {
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 44px;
+  height: 44px; /* big enough to tap on a phone */
+  cursor: pointer;
+}
+.nav-button:disabled { opacity: 0.35; cursor: default; }
+
+/* Hidden visually but still read out by screen readers */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

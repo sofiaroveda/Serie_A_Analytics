@@ -31,6 +31,11 @@ The goal is a portfolio project for finance, trading, data science and consultin
 - Download raw CSVs to `data/raw/` untouched; all cleaning happens in code, never by hand-editing files.
 - Build a team-name mapping table (the same club can be spelled differently across seasons and sources).
 
+### Source: openfootball (public domain)
+- Official matchday numbers and the full season fixture list: `https://raw.githubusercontent.com/openfootball/football.json/master/{2026-27}/it.1.json` (available from 2014-15). Licence: public domain, "use as you please with no restrictions". Credited on the site.
+- Joined to football-data by (season, home_team, away_team), which is unique per season, so postponed matches keep their official matchday. `check_schedule_matches_results` fails the pipeline if a played match is missing from the schedule or the two sources disagree on a score.
+- Why: football-data has no matchday numbers, and deriving them from dates fails in 12 of 22 seasons because of postponements.
+
 ### Rules
 - Respect every site's terms of use. **Do not scrape Transfermarkt** or any site that forbids scraping. If a data source's terms are unclear, stop and ask Sofia.
 - No API keys or secrets in the repository. Use environment variables / GitHub Actions secrets if ever needed.
@@ -78,6 +83,7 @@ The goal is a portfolio project for finance, trading, data science and consultin
   - **Model vs market:** season scoreboard (RPS, log loss), calibration chart, history.
   - **Methodology:** plain-English explanation of the models and evaluation, plus data credits.
   - **About:** who built it and why.
+- Home page is organised by **matchday** (dropdown + prev/next, address `#matchday-N`), opening on the next matchday to be played. Future matchdays show Elo forecasts; market odds appear once football-data publishes them.
 - Mobile-friendly, fast, clean. Available in English (Italian translation is a possible later extra).
 - Hosting: **GitHub Pages** on the free tier, deployed by `.github/workflows/deploy.yml` on every push to `main` (tests must pass first). Free Pages needs a **public** repo.
 

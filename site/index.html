@@ -31,16 +31,18 @@
       <!-- The script fills these empty sections with data -->
       <div class="stats" id="stats"></div>
 
-      <h2>Upcoming matches</h2>
-      <div id="fixtures"></div>
-
-      <h2>Latest results</h2>
-      <div id="results"></div>
+      <div class="matchday-bar">
+        <button class="nav-button" id="prev" aria-label="Previous matchday">‹</button>
+        <label class="visually-hidden" for="matchday-select">Matchday</label>
+        <select id="matchday-select"></select>
+        <button class="nav-button" id="next" aria-label="Next matchday">›</button>
+      </div>
+      <div id="matchday"></div>
     </main>
 
     <footer class="site-footer">
       <div class="container small muted">
-        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a>.
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and <a href="https://github.com/openfootball/football.json">openfootball</a>.
         An analysis project, not betting advice. <span id="updated"></span>
       </div>
     </footer>

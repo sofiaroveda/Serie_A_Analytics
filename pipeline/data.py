@@ -5,6 +5,7 @@ Raw CSVs are saved to data/raw/ exactly as downloaded; all cleaning happens in c
 
 from __future__ import annotations
 
+import json
 import time
 from datetime import date
 from pathlib import Path
@@ -22,6 +23,10 @@ BASE_URL = "https://www.football-data.co.uk"
 FIRST_SEASON_START = 2005  # 2005/06
 LEAGUE = "I1"  # Serie A (Serie B is "I2")
 REQUEST_PAUSE_SECONDS = 1.0  # be polite to a free data source
+
+# Official matchday numbers and the full season fixture list come from
+# openfootball (public domain: https://github.com/openfootball/football.json).
+SCHEDULE_URL = "https://raw.githubusercontent.com/openfootball/football.json/master/{season}/it.1.json"
 
 
 def season_code(start_year: int) -> str:
@@ -82,6 +87,16 @@ def download_all_seasons(league: str = LEAGUE, today: date | None = None) -> lis
         if needs_fetch:
             time.sleep(REQUEST_PAUSE_SECONDS)
     return paths
+
+
+def raw_schedule_path(start_year: int) -> Path:
+    return RAW_DIR / f"openfootball_{LEAGUE}_{season_code(start_year)}.json"
+
+
+def download_schedule(start_year: int) -> Path:
+    """Download a season's full fixture list with matchday numbers (always refreshed)."""
+    season = f"{start_year}-{(start_year + 1) % 100:02d}"
+    return _download(SCHEDULE_URL.format(season=season), raw_schedule_path(start_year))
 
 
 def download_fixtures() -> Path:
@@ -158,7 +173,8 @@ def _extract_odds(raw: pd.DataFrame) -> pd.DataFrame:
     return odds
 
 
-def _make_match_ids(dates: pd.Series, home: pd.Series, away: pd.Series) -> pd.Series:
+def make_match_ids(dates: pd.Series, home: pd.Series, away: pd.Series) -> pd.Series:
+    """IDs like "2026-09-20_Milan_Lecce"."""
     return dates.dt.strftime("%Y-%m-%d") + "_" + home.str.replace(" ", "") + "_" + away.str.replace(" ", "")
 
 
@@ -175,7 +191,7 @@ def clean_season(raw: pd.DataFrame, start_year: int, team_map: dict[str, str]) -
     dates = parse_dates(raw["Date"])
     matches = pd.DataFrame(
         {
-            "match_id": _make_match_ids(dates, home, away),
+            "match_id": make_match_ids(dates, home, away),
             "season": start_year,
             "date": dates,
             "time": raw["Time"] if "Time" in raw else pd.NA,
@@ -215,7 +231,7 @@ def clean_fixtures(raw: pd.DataFrame, team_map: dict[str, str], league: str = LE
     dates = parse_dates(raw["Date"])
     fixtures = pd.DataFrame(
         {
-            "match_id": _make_match_ids(dates, home, away),
+            "match_id": make_match_ids(dates, home, away),
             "date": dates,
             "time": raw["Time"],
             "home_team": home,
@@ -223,6 +239,54 @@ def clean_fixtures(raw: pd.DataFrame, team_map: dict[str, str], league: str = LE
         }
     )
     return pd.concat([fixtures, _extract_odds(raw)], axis=1)
+
+
+def clean_schedule(raw: dict, start_year: int, team_map: dict[str, str]) -> pd.DataFrame:
+    """One row per match of the season, played or not, with its official matchday."""
+    games = pd.DataFrame(raw["matches"])
+    scores = games["score"] if "score" in games else pd.Series([None] * len(games))
+    full_time = scores.map(lambda s: s.get("ft") if isinstance(s, dict) else None)
+    home = standardise_team_names(games["team1"], team_map)
+    away = standardise_team_names(games["team2"], team_map)
+    schedule = pd.DataFrame(
+        {
+            "season": start_year,
+            "matchday": games["round"].str.extract(r"(\d+)$", expand=False).astype(int),
+            "date": pd.to_datetime(games["date"], format="%Y-%m-%d"),
+            "time": games["time"],
+            "home_team": home,
+            "away_team": away,
+            "home_goals": pd.array([ft[0] if ft else None for ft in full_time], dtype="Int64"),
+            "away_goals": pd.array([ft[1] if ft else None for ft in full_time], dtype="Int64"),
+        }
+    )
+    validate_schedule(schedule)
+    return schedule.sort_values(["matchday", "date", "time", "home_team"]).reset_index(drop=True)
+
+
+def validate_schedule(schedule: pd.DataFrame) -> None:
+    """Each pair of teams meets once at each ground, and each team plays once per matchday."""
+    if schedule.duplicated(["home_team", "away_team"]).any():
+        raise ValueError("A home/away pairing appears twice in the schedule")
+    appearances = pd.concat([
+        schedule[["matchday", "home_team"]].rename(columns={"home_team": "team"}),
+        schedule[["matchday", "away_team"]].rename(columns={"away_team": "team"}),
+    ])  # fmt: skip
+    if appearances.duplicated().any():
+        raise ValueError("A team plays twice in the same matchday")
+
+
+def check_schedule_matches_results(schedule: pd.DataFrame, matches: pd.DataFrame) -> None:
+    """Every played match must be in the schedule, and scores must agree where both sources have one."""
+    played = matches[matches["season"] == schedule["season"].iloc[0]]
+    joined = played.merge(schedule, on=["home_team", "away_team"], how="left", suffixes=("", "_sched"))
+    missing = joined.loc[joined["matchday"].isna(), "match_id"].tolist()
+    if missing:
+        raise ValueError(f"Played matches not found in the schedule: {missing}")
+    both = joined.dropna(subset=["home_goals_sched"])
+    wrong = both[(both["home_goals"] != both["home_goals_sched"]) | (both["away_goals"] != both["away_goals_sched"])]
+    if len(wrong):
+        raise ValueError(f"The two sources disagree on the score of: {wrong['match_id'].tolist()}")
 
 
 def build_matches(start_years: list[int], league: str = LEAGUE) -> pd.DataFrame:
@@ -239,15 +303,21 @@ def main() -> None:
     print(f"Downloading {len(years)} seasons ({season_label(years[0])} to {season_label(years[-1])})...")
     download_all_seasons()
     download_fixtures()
+    download_schedule(years[-1])
 
+    team_map = load_team_map()
     matches = build_matches(years)
-    fixtures = clean_fixtures(load_raw_csv(RAW_DIR / "fixtures.csv"), load_team_map())
+    fixtures = clean_fixtures(load_raw_csv(RAW_DIR / "fixtures.csv"), team_map)
+    schedule = clean_schedule(json.loads(raw_schedule_path(years[-1]).read_text()), years[-1], team_map)
+    check_schedule_matches_results(schedule, matches)
 
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     matches.to_csv(PROCESSED_DIR / "matches.csv", index=False)
     fixtures.to_csv(PROCESSED_DIR / "fixtures.csv", index=False)
+    schedule.to_csv(PROCESSED_DIR / "schedule.csv", index=False)
 
-    print(f"Saved {len(matches)} matches and {len(fixtures)} upcoming fixtures to {PROCESSED_DIR}")
+    print(f"Saved {len(matches)} matches, {len(fixtures)} fixtures with odds and a "
+          f"{len(schedule)}-match {season_label(years[-1])} schedule to {PROCESSED_DIR}")  # fmt: skip
     print(matches.groupby("season").agg(matches=("match_id", "size"), pinnacle_closing=("pin_close_h", "count")))
 
 

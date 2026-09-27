@@ -9,7 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pipeline.data import PROCESSED_DIR, ROOT, current_season_start, season_label
+from pipeline.data import PROCESSED_DIR, ROOT, make_match_ids, season_label
 from pipeline.elo import EloParams, predict_fixtures, predict_matches
 from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, rps
 from pipeline.market import best_available_probabilities
@@ -88,23 +88,45 @@ def _records(df: pd.DataFrame, columns: list[str]) -> list[dict]:
     return df.to_dict(orient="records")
 
 
+def upcoming_from_schedule(schedule: pd.DataFrame, matches: pd.DataFrame) -> pd.DataFrame:
+    """Scheduled matches of the season that haven't been played yet."""
+    played = matches.loc[matches["season"] == schedule["season"].iloc[0], ["home_team", "away_team"]]
+    upcoming = schedule.merge(played, on=["home_team", "away_team"], how="left", indicator=True)
+    upcoming = upcoming[upcoming["_merge"] == "left_only"].drop(columns=["_merge", "home_goals", "away_goals"])
+    upcoming["match_id"] = make_match_ids(upcoming["date"], upcoming["home_team"], upcoming["away_team"])
+    return upcoming.reset_index(drop=True)
+
+
 def build_site_data(
     matches: pd.DataFrame,
     fixtures: pd.DataFrame,
+    schedule: pd.DataFrame,
     elo_results: pd.DataFrame | None = None,
-    elo_fixtures: pd.DataFrame | None = None,
+    elo_upcoming: pd.DataFrame | None = None,
 ) -> dict[str, object]:
     """Everything the site needs, keyed by output file name.
 
-    `elo_results` / `elo_fixtures` are walk-forward Elo predictions (match_id,
-    p_home, p_draw, p_away) for played matches and upcoming fixtures.
+    `schedule` is this season's full fixture list with matchdays. `elo_results` /
+    `elo_upcoming` are Elo predictions (match_id, p_home, p_draw, p_away) for
+    played and not-yet-played matches.
     """
-    season = int(matches["season"].max())
+    season = int(schedule["season"].iloc[0])
+    matchdays = schedule[["home_team", "away_team", "matchday"]]
+
     played = _with_probabilities(matches[matches["season"] == season], CLOSING_SOURCES)
     played = _with_model(played, elo_results, "elo")
-    played = played.sort_values(["date", "time", "home_team"], ascending=[False, False, True])
-    upcoming = _with_probabilities(fixtures, PRE_MATCH_SOURCES)
-    upcoming = _with_model(upcoming, elo_fixtures, "elo").sort_values(["date", "time", "home_team"])
+    played = played.merge(matchdays, on=["home_team", "away_team"], how="left", validate="one_to_one")
+    played["status"] = "played"
+
+    # Upcoming: market odds (when bookmakers have published them) joined by team pairing
+    upcoming = upcoming_from_schedule(schedule, matches)
+    odds = _with_probabilities(fixtures, PRE_MATCH_SOURCES)[["home_team", "away_team", "p_home", "p_draw", "p_away", "odds_source"]]
+    upcoming = upcoming.merge(odds, on=["home_team", "away_team"], how="left")
+    upcoming = _with_model(upcoming, elo_upcoming, "elo")
+    upcoming["status"] = "upcoming"
+
+    season_matches = pd.concat([played, upcoming], ignore_index=True)
+    season_matches = season_matches.sort_values(["matchday", "date", "time", "home_team"])
 
     # How often did the market's favourite (highest probability) win?
     with_probs = played.dropna(subset=["p_home"])
@@ -121,10 +143,9 @@ def build_site_data(
             "market_rps": round(rps(both[["p_home", "p_draw", "p_away"]].to_numpy(), both["result"]), 4),
         }
 
-    match_cols = [
-        "match_id", "date", "time", "home_team", "away_team",
-        "p_home", "p_draw", "p_away", "odds_source", "elo_home", "elo_draw", "elo_away",
-    ]  # fmt: skip
+    # The matchday to show first: the earliest one with a match still to play
+    next_matchday = int(upcoming["matchday"].min()) if len(upcoming) else int(schedule["matchday"].max())
+
     return {
         "summary": {
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="minutes"),
@@ -133,13 +154,18 @@ def build_site_data(
             "last_result_date": played["date"].max().strftime("%Y-%m-%d") if len(played) else None,
             "favourite_win_rate": round(float(np.mean(favourite == outcome)), 4) if len(with_probs) else None,
             "scoreboard": scoreboard,
+            "current_matchday": next_matchday,
+            "matchdays": int(schedule["matchday"].max()),
         },
         "table": _records(league_table(played), [
             "position", "team", "played", "won", "drawn", "lost",
             "goals_for", "goals_against", "goal_diff", "points",
         ]),  # fmt: skip
-        "results": _records(played, [*match_cols, "home_goals", "away_goals", "result"]),
-        "fixtures": _records(upcoming, match_cols),
+        "matches": _records(season_matches, [
+            "match_id", "matchday", "status", "date", "time", "home_team", "away_team",
+            "home_goals", "away_goals", "result",
+            "p_home", "p_draw", "p_away", "odds_source", "elo_home", "elo_draw", "elo_away",
+        ]),  # fmt: skip
     }
 
 
@@ -176,12 +202,15 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     """Read the processed CSVs, run the models and write one JSON file per page dataset."""
     matches = pd.read_csv(PROCESSED_DIR / "matches.csv", parse_dates=["date"])
     fixtures = pd.read_csv(PROCESSED_DIR / "fixtures.csv", parse_dates=["date"])
+    schedule = pd.read_csv(PROCESSED_DIR / "schedule.csv", parse_dates=["date"])
+    season = int(schedule["season"].iloc[0])
 
     params = EloParams()
     elo_results = predict_matches(matches, params, first_season=min(TEST_SEASONS))
-    elo_fixtures = predict_fixtures(matches, fixtures, params, season=current_season_start()) if len(fixtures) else None
+    upcoming = upcoming_from_schedule(schedule, matches)
+    elo_upcoming = predict_fixtures(matches, upcoming, params, season=season) if len(upcoming) else None
 
-    content = build_site_data(matches, fixtures, elo_results, elo_fixtures)
+    content = build_site_data(matches, fixtures, schedule, elo_results, elo_upcoming)
     content["backtest"] = backtest_summary(matches, elo_results)
 
     out_dir.mkdir(parents=True, exist_ok=True)

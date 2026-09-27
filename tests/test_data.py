@@ -139,3 +139,42 @@ def test_team_names_file_has_no_conflicting_aliases():
     table = pd.read_csv(data.TEAM_NAMES_PATH)
     assert not table["alias"].duplicated().any()
     assert set(table["team"]) <= set(table["alias"])  # every canonical name maps to itself
+
+
+def openfootball_raw() -> dict:
+    return {"matches": [
+        {"round": "Matchday 1", "date": "2026-08-22", "time": "18:30", "team1": "FC Internazionale Milano",
+         "team2": "AC Milan", "score": {"ht": [1, 0], "ft": [2, 1]}},
+        {"round": "Matchday 1", "date": "2026-08-22", "time": "20:45", "team1": "AS Roma", "team2": "SS Lazio",
+         "score": {"ft": [0, 0]}},
+        {"round": "Matchday 2", "date": "2026-08-29", "time": "20:45", "team1": "SS Lazio", "team2": "Inter"},
+    ]}  # fmt: skip
+
+
+SCHEDULE_TEAM_MAP = {**TEAM_MAP, "FC Internazionale Milano": "Inter", "AS Roma": "Roma", "SS Lazio": "Lazio"}
+
+
+def test_clean_schedule_reads_matchdays_and_unplayed_matches():
+    schedule = data.clean_schedule(openfootball_raw(), 2026, SCHEDULE_TEAM_MAP)
+    assert list(schedule["matchday"]) == [1, 1, 2]
+    assert list(schedule["home_team"]) == ["Inter", "Roma", "Lazio"]
+    assert schedule.loc[0, "home_goals"] == 2 and pd.isna(schedule.loc[2, "home_goals"])
+
+
+def test_schedule_with_a_team_twice_in_a_matchday_is_rejected():
+    raw = openfootball_raw()
+    raw["matches"][2]["round"] = "Matchday 1"  # Lazio would play twice on matchday 1
+    with pytest.raises(ValueError, match="twice in the same matchday"):
+        data.clean_schedule(raw, 2026, SCHEDULE_TEAM_MAP)
+
+
+def test_schedule_cross_check_with_results():
+    schedule = data.clean_schedule(openfootball_raw(), 2026, SCHEDULE_TEAM_MAP)
+    results = pd.DataFrame({"match_id": ["m1"], "season": [2026], "home_team": ["Inter"], "away_team": ["Milan"],
+                            "home_goals": [2], "away_goals": [1]})  # fmt: skip
+    data.check_schedule_matches_results(schedule, results)  # agrees: no error
+
+    with pytest.raises(ValueError, match="disagree"):
+        data.check_schedule_matches_results(schedule, results.assign(away_goals=3))
+    with pytest.raises(ValueError, match="not found"):
+        data.check_schedule_matches_results(schedule, results.assign(home_team="Juventus"))

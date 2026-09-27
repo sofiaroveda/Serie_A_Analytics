@@ -1,4 +1,4 @@
-// Home page: headline stats, upcoming fixtures and latest results.
+// Home page: headline stats and one matchday at a time, chosen from a dropdown.
 import {
   loadData, formatDate, percent, el, probs, probabilityBar, outcomeLegend, enableTooltips, showError,
 } from "./common.js";
@@ -8,23 +8,23 @@ const FORECASTERS = [
   { prefix: "p", label: "Market" },
   { prefix: "elo", label: "Elo model" },
 ];
-
-const RESULTS_SHOWN_AT_FIRST = 20; // about two rounds
 const SURPRISE_THRESHOLD = 0.25; // flag results the market rated below 25%
 const RESULT_TO_OUTCOME = { H: "home", D: "draw", A: "away" };
+
+let allMatches = [];
+let totalMatchdays = 38;
 
 async function main() {
   enableTooltips();
   try {
-    // Load the three files at the same time rather than one after another
-    const [summary, fixtures, results] = await Promise.all([
-      loadData("summary"), loadData("fixtures"), loadData("results"),
-    ]);
+    // Load both files at the same time rather than one after another
+    const [summary, matches] = await Promise.all([loadData("summary"), loadData("matches")]);
+    allMatches = matches;
+    totalMatchdays = summary.matchdays;
     document.getElementById("season").textContent = summary.season;
     document.getElementById("updated").textContent = `Updated ${summary.generated_at.slice(0, 10)}.`;
     renderStats(summary);
-    renderFixtures(fixtures);
-    renderResults(results);
+    setUpPicker(summary.current_matchday);
   } catch (error) {
     showError(document.querySelector("main"), error);
   }
@@ -50,6 +50,60 @@ function renderStats(summary) {
   }
 }
 
+// ---------- Matchday picker ----------
+
+/** The matchday in the page address (e.g. #matchday-4), if there is a valid one. */
+function matchdayFromUrl() {
+  const found = location.hash.match(/^#matchday-(\d+)$/);
+  const n = found ? Number(found[1]) : null;
+  return n >= 1 && n <= totalMatchdays ? n : null;
+}
+
+function setUpPicker(defaultMatchday) {
+  const select = document.getElementById("matchday-select");
+  for (let n = 1; n <= totalMatchdays; n++) {
+    const option = el("option", "", `Matchday ${n}`);
+    option.value = n;
+    if (n === defaultMatchday) option.textContent += " (next)";
+    select.append(option);
+  }
+
+  const show = (n) => {
+    select.value = n;
+    document.getElementById("prev").disabled = n <= 1;
+    document.getElementById("next").disabled = n >= totalMatchdays;
+    history.replaceState(null, "", `#matchday-${n}`); // update the address without reloading
+    renderMatchday(n);
+  };
+
+  select.addEventListener("change", () => show(Number(select.value)));
+  document.getElementById("prev").addEventListener("click", () => show(Number(select.value) - 1));
+  document.getElementById("next").addEventListener("click", () => show(Number(select.value) + 1));
+  window.addEventListener("hashchange", () => matchdayFromUrl() && show(matchdayFromUrl()));
+
+  show(matchdayFromUrl() ?? defaultMatchday);
+}
+
+function renderMatchday(n) {
+  const container = document.getElementById("matchday");
+  const matches = allMatches.filter((m) => m.matchday === n);
+  container.replaceChildren();
+
+  const played = matches.filter((m) => m.status === "played").length;
+  const status =
+    played === matches.length ? "All matches played." :
+    played === 0 ? "Not played yet. Elo forecasts use the latest ratings; market odds appear a few days before kick-off." :
+    `${played} of ${matches.length} matches played.`;
+  container.append(el("p", "muted small", status));
+  container.append(outcomeLegend());
+  if (played > 0) container.append(el("p", "muted small", "For played matches, the outlined segment is what happened."));
+
+  for (const [date, dayMatches] of groupByDate(matches)) {
+    container.append(el("h3", "day-heading", formatDate(date)));
+    for (const match of dayMatches) container.append(matchCard(match));
+  }
+}
+
 /** Group matches by date, keeping their order: [["2026-09-20", [...]], ...] */
 function groupByDate(matches) {
   const groups = new Map();
@@ -60,7 +114,10 @@ function groupByDate(matches) {
   return [...groups.entries()];
 }
 
-function matchCard(match, { played }) {
+// ---------- One match ----------
+
+function matchCard(match) {
+  const played = match.status === "played";
   const card = el("article", "match");
 
   const teams = el("div", "match-teams");
@@ -73,7 +130,7 @@ function matchCard(match, { played }) {
   for (const { prefix, label } of FORECASTERS) {
     const p = probs(match, prefix);
     rows.append(el("span", "forecast-label", label));
-    rows.append(p ? probabilityBar(p, match, label, happened) : el("span", "muted small", "Not available"));
+    rows.append(p ? probabilityBar(p, match, label, happened) : el("span", "muted small", "Not available yet"));
   }
   card.append(rows);
 
@@ -82,49 +139,8 @@ function matchCard(match, { played }) {
   if (happened && match.p_home !== null && match[`p_${happened}`] < SURPRISE_THRESHOLD) {
     meta.append(el("span", "tag", `⚡ Surprise: the market gave this ${percent(match[`p_${happened}`])}`));
   }
-  card.append(meta);
+  if (meta.childElementCount) card.append(meta);
   return card;
-}
-
-function renderMatchList(container, matches, options) {
-  for (const [date, dayMatches] of groupByDate(matches)) {
-    container.append(el("h3", "day-heading", formatDate(date)));
-    for (const match of dayMatches) container.append(matchCard(match, options));
-  }
-}
-
-function renderFixtures(fixtures) {
-  const container = document.getElementById("fixtures");
-  if (fixtures.length === 0) {
-    container.append(el("p", "empty", "The odds for the next round aren't published yet. They usually appear a few days before the matches."));
-    return;
-  }
-  container.append(outcomeLegend());
-  renderMatchList(container, fixtures, { played: false });
-}
-
-function renderResults(results) {
-  const container = document.getElementById("results");
-  if (results.length === 0) {
-    container.append(el("p", "empty", "No matches played yet this season."));
-    return;
-  }
-  container.append(outcomeLegend());
-  container.append(el("p", "muted small", "The outlined segment is what actually happened."));
-
-  const list = el("div");
-  container.append(list);
-  renderMatchList(list, results.slice(0, RESULTS_SHOWN_AT_FIRST), { played: true });
-
-  if (results.length > RESULTS_SHOWN_AT_FIRST) {
-    const button = el("button", "more", `Show all ${results.length} results`);
-    button.addEventListener("click", () => {
-      list.replaceChildren();
-      renderMatchList(list, results, { played: true });
-      button.remove();
-    });
-    container.append(button);
-  }
 }
 
 main();

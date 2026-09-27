@@ -29,13 +29,14 @@ python3 -m http.server 8000 --directory site   # then open http://localhost:8000
 
 ## Data
 
-Results and odds come from [football-data.co.uk](https://www.football-data.co.uk/), which provides them free of charge. Thank you!
+Results and odds come from [football-data.co.uk](https://www.football-data.co.uk/), which provides them free of charge. Matchday numbers and the full season fixture list come from [openfootball](https://github.com/openfootball/football.json) (public domain). Thank you to both!
 
 - `data/raw/`: CSV files exactly as downloaded (not committed; re-created by the downloader).
 - `data/processed/matches.csv`: one row per match since 2005/06, with standardised team names and odds columns:
   - `pin_*` / `pin_close_*`: Pinnacle pre-match and closing odds (2012/13 to mid-January 2026)
   - `avg_*` / `avg_close_*`: market average odds (closing from 2019/20)
   - `b365_*` / `b365_close_*`: Bet365 odds (closing from 2019/20)
+- `data/processed/schedule.csv`: this season's 380 matches with official matchday numbers, played or not.
 - `data/team_names.csv`: maps every spelling of a club to one canonical name. The pipeline stops with an error if it meets a name that isn't in this table (e.g. a newly promoted club), so add it there.
 
 ## Project layout
