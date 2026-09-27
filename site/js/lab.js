@@ -17,8 +17,8 @@ let allMatches = [];
 async function main() {
   enableTooltips();
   try {
-    const [summary, matches, backtest, ratings] = await Promise.all([
-      loadData("summary"), loadData("matches"), loadData("backtest"), loadData("ratings"),
+    const [summary, matches, backtest] = await Promise.all([
+      loadData("summary"), loadData("matches"), loadData("backtest"),
     ]);
     allMatches = matches;
     document.getElementById("updated").textContent = `Updated ${formatDate(summary.generated_at.slice(0, 10))}.`;
@@ -26,10 +26,6 @@ async function main() {
     renderScoreboard(summary);
     renderBacktest(backtest);
     renderHitRates(backtest);
-    const g = ratings.goals_model;
-    document.getElementById("current-params").textContent =
-      `Current fit: an average away side scores ${g.base_goals.toFixed(2)} goals, home advantage multiplies goals by ` +
-      `${g.home_boost.toFixed(2)}, and ρ = ${g.rho.toFixed(3)}.`;
   } catch (error) {
     showError(document.querySelector("main"), error);
   }
@@ -138,7 +134,7 @@ function renderHitRates(backtest) {
 }
 
 function renderBacktest(backtest) {
-  const { overall, forecasters, params } = backtest;
+  const { overall, forecasters } = backtest;
   const keys = Object.keys(forecasters);
   const models = keys.filter((k) => k !== "base_rates" && k !== "pinnacle");
   const best = models.reduce((a, b) => (overall[a] <= overall[b] ? a : b));
@@ -170,15 +166,6 @@ function renderBacktest(backtest) {
     for (const key of keys) tr.append(el("td", row[key] === lowest ? "pts" : "", row[key].toFixed(4))); // bold = most accurate
     body.append(tr);
   }
-
-  const e = params.elo;
-  const d = params.dc;
-  document.getElementById("settings").textContent =
-    `Goals model (Dixon-Coles): a match's weight halves every ${d.half_life_days} days; promoted teams start with a ` +
-    `weaker-than-average prior; refitted before every match date. Elo: K = ${e.k}, home advantage = ` +
-    `${e.home_advantage}, ratings pulled ${percent(e.season_regression)} back to average between seasons, promoted ` +
-    `teams start ${e.promoted_gap} points below average. Both models' settings were chosen on 2008/09 to 2013/14, ` +
-    `before the test period.`;
 }
 
 main();

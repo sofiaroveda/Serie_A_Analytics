@@ -27,6 +27,10 @@ To view the website locally:
 python3 -m http.server 8000 --directory site   # then open http://localhost:8000
 ```
 
+## How the models work
+
+See [docs/model-guide.md](docs/model-guide.md) for the formulas, a worked example, how every setting was tuned, and the backtest results.
+
 ## Data
 
 Results and odds come from [football-data.co.uk](https://www.football-data.co.uk/), which provides them free of charge. Matchday numbers and the full season fixture list come from [openfootball](https://github.com/openfootball/football.json) (public domain). Thank you to both!

@@ -38,7 +38,7 @@
     <section class="hero">
       <div class="container">
         <h1>How it works</h1>
-        <p>How our predictions are made, how often they are right, and what Elo is. In plain English.</p>
+        <p>How our predictions are made and how often they are right, in plain English.</p>
       </div>
     </section>
 
@@ -71,75 +71,48 @@
       </p>
       <p class="muted small" id="hit-rate-season"></p>
 
-      <h2>How our prediction works</h2>
-      <p>Our prediction comes from a <strong>goals model</strong> (statisticians call it the Dixon-Coles model). It works in four steps.</p>
-
-      <ol class="steps">
-        <li>
-          <h3>Rate every team's attack and defence</h3>
-          <p>
-            From its results, each team gets an <strong>attack</strong> rating (how many goals it scores compared
-            with an average team) and a <strong>defence</strong> rating (how many it concedes). An attack of 1.30 means
-            30% more goals than average; a defence of 0.80 means 20% fewer goals conceded. Recent matches count most:
-            a match from nine months ago counts half as much as one played this week.
-          </p>
-        </li>
-        <li>
-          <h3>Work out the expected goals</h3>
-          <p>Multiply the ratings together, with a small bonus for playing at home.</p>
-          <div class="example" id="example-goals"></div>
-        </li>
-        <li>
-          <h3>Turn goals into every possible score</h3>
-          <p>
-            Goals in football are rare, random events, and their count follows a well-known pattern (the Poisson
-            distribution). From the expected goals we get the chance of every scoreline, with a small correction
-            for low-scoring draws.
-          </p>
-          <div class="example" id="example-scores"></div>
-        </li>
-        <li>
-          <h3>Add them up</h3>
-          <p>Add up every score where the home side wins, every draw, and every away win.</p>
-          <div class="example" id="example-result"></div>
-        </li>
-      </ol>
-      <p class="muted">
-        What the model does not know: injuries, suspensions, new signings, a new coach, or a team resting players
-        for a cup final. It only learns from scores, so it catches up with these after a few matches. The bookmakers
-        know about them straight away, which is a big part of why they are slightly more accurate.
-      </p>
-
-      <h2>What is Elo?</h2>
-      <p>
-        Elo is a rating system invented by <strong>Arpad Elo</strong>, a Hungarian-American physics professor and
-        chess master, to rank chess players in the 1960s. It is now used well beyond chess, including in FIFA's
-        world rankings. We use it as our second model.
-      </p>
+      <h2>The different ways to predict a match</h2>
       <div class="cards">
         <div class="card">
-          <div class="icon" aria-hidden="true">🔢</div>
-          <h3>One number per team</h3>
-          <p>Every team has a rating. An average Serie A team is about 1500; the best are around 1600 or more.</p>
-        </div>
-        <div class="card">
-          <div class="icon" aria-hidden="true">⚖️</div>
-          <h3>Points change hands</h3>
+          <div class="icon" aria-hidden="true">⚽</div>
+          <h3>Goals model</h3>
           <p>
-            After each match the winner takes rating points from the loser. Beat a stronger team and you take a lot;
-            beat a weaker one and you take very few. Bigger wins move a little more.
+            <strong>Our main prediction.</strong> Every team gets an attack rating and a defence rating from its
+            results, with recent matches counting most. From these the model works out how many goals each side is
+            likely to score, then the chance of every scoreline, and so of a home win, draw or away win.
           </p>
         </div>
         <div class="card">
-          <div class="icon" aria-hidden="true">☀️</div>
-          <h3>Summer reset</h3>
+          <div class="icon" aria-hidden="true">📈</div>
+          <h3>Elo ratings</h3>
           <p>
-            Squads change over the summer, so each season every rating moves 30% of the way back towards average,
-            and promoted teams start a little below average.
+            Our second model, invented to rank chess players and now used in FIFA's world rankings. Each team has one
+            rating; after every match the winner takes points from the loser, more for a surprise win. Simple, and
+            surprisingly good.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">🏦</div>
+          <h3>The bookmakers</h3>
+          <p>
+            Betting odds turned into chances (odds of 2.00 mean about 50%). The market knows about injuries and team
+            news, so it is the benchmark to beat. You can compare it with our models in the <a href="lab.html">Data lab</a>.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">🎲</div>
+          <h3>Season simulation</h3>
+          <p>
+            For the predicted table and the Market, we play out the rest of the season 10,000 times using our
+            predictions. A team's title chance is simply how often it finished first.
           </p>
         </div>
       </div>
-      <div class="example" id="example-elo"></div>
+      <p class="muted">
+        What the models don't know: injuries, suspensions, new signings, a new coach, or a team resting players for a
+        cup final. They only learn from results, so they catch up after a few matches. The bookmakers know straight
+        away, which is a big part of why they are slightly more accurate.
+      </p>
 
       <h2>Current team ratings</h2>
       <p class="muted" id="ratings-note"></p>
@@ -169,7 +142,7 @@
       <h2>Want the numbers?</h2>
       <p>
         The <a href="lab.html">Data lab</a> puts our prediction side by side with Elo and the bookmakers for every
-        match, and has the full accuracy results and the model's technical details.
+        match, and has the full accuracy results season by season.
       </p>
     </main>
 

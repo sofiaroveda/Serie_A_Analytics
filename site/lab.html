@@ -93,44 +93,10 @@
         RPS rewards getting the probabilities right, which is why we use it to choose and compare models.
       </p>
 
-      <h2>Model details</h2>
-      <div class="prose">
-        <h3 class="section-kicker">Goals model (Dixon-Coles, 1997)</h3>
-        <p>
-          Home goals <code>X ~ Poisson(λ)</code> and away goals <code>Y ~ Poisson(μ)</code>, with
-          <code>log λ = c + h + a<sub>home</sub> + d<sub>away</sub></code> and
-          <code>log μ = c + a<sub>away</sub> + d<sub>home</sub></code>, where <code>a</code> is attack, <code>d</code>
-          is defence (both centred on zero), <code>h</code> is home advantage and <code>c</code> the baseline.
-          The joint probability is multiplied by a correction <code>τ(x, y; λ, μ, ρ)</code> for the scores 0-0, 1-0,
-          0-1 and 1-1.
-        </p>
-        <p>
-          Parameters maximise the time-weighted log-likelihood, with weight <code>w = 0.5<sup>t / 270</sup></code> for
-          a match <code>t</code> days old (the half-life was tuned on 2008/09 to 2013/14), minus a ridge penalty
-          pulling each team towards a prior (average, or weaker for promoted teams). Fitted with L-BFGS-B and an
-          exact gradient, refitted before every match date on the previous four years of results.
-        </p>
-        <p class="muted small" id="current-params"></p>
-
-        <h3 class="section-kicker">Elo</h3>
-        <p>
-          Expected score <code>E = 1 / (1 + 10<sup>−(R<sub>home</sub> − R<sub>away</sub>) / 400</sup>)</code>.
-          After the match both ratings move by <code>K · G · (S − E)</code>, where <code>S</code> is 1, ½ or 0,
-          and <code>G</code> is the goal-difference multiplier used by the World Football Elo Ratings. An ordered
-          logistic model, refitted each season on earlier seasons only, turns the rating gap into home, draw and
-          away probabilities.
-        </p>
-
-        <h3 class="section-kicker">Testing</h3>
-        <p>
-          Walk-forward only: every forecast uses data from strictly before its match date, and an automated test
-          fails if any prediction changes when later results are altered. Settings were tuned on 2008/09 to 2013/14;
-          2014/15 to 2025/26 were never used for tuning. Bookmaker probabilities are 1 / odds, rescaled to remove the
-          margin.
-        </p>
-        <p class="muted small" id="settings"></p>
-        <p><a href="https://github.com/sofiaroveda/Serie_A_Analytics">All the code is on GitHub.</a></p>
-      </div>
+      <p class="muted small">
+        Both models' settings were chosen on the 2008/09 to 2013/14 seasons, before the test period, and every
+        forecast only uses results from before its match. <a href="https://github.com/sofiaroveda/Serie_A_Analytics">The code is on GitHub.</a>
+      </p>
     </main>
 
     <footer class="site-footer">
