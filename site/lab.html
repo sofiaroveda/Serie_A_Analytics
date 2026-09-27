@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <!-- Makes the page scale properly on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Serie A Table</title>
-    <meta name="description" content="The current Serie A league table." />
+    <title>Data Lab</title>
+    <meta name="description" content="Our Serie A models side by side with the bookmakers, and how accurate they are." />
     <meta name="theme-color" content="#0f4a32" />
     <!-- Fonts: Barlow (text) and Barlow Condensed (headings), a sporty, scoreboard-like family -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,9 +26,9 @@
         </a>
         <nav class="nav">
           <a href="./">Matches</a>
-          <a href="table.html" aria-current="page">Table</a>
+          <a href="table.html">Table</a>
           <a href="model.html">How it works</a>
-          <a href="lab.html">Data lab</a>
+          <a href="lab.html" aria-current="page">Data lab</a>
           <a href="about.html">About</a>
         </nav>
       </div>
@@ -36,40 +36,45 @@
 
     <section class="hero">
       <div class="container">
-        <h1>Table <span id="season"></span></h1>
-        <p>The current standings.</p>
+        <h1>Data lab</h1>
+        <p>For the numbers people: our two models side by side with the bookmakers, and how accurate each one is.</p>
+        <nav class="md-strip" aria-label="Matchdays">
+          <button class="strip-arrow" id="prev" aria-label="Previous matchday">‹</button>
+          <div class="md-scroller" id="md-scroller"></div>
+          <button class="strip-arrow" id="next" aria-label="Next matchday">›</button>
+        </nav>
       </div>
     </section>
 
     <main class="container">
-      <div class="table-wrap">
+      <!-- The script fills these empty sections with data -->
+      <div id="matchday"></div>
+
+      <h2>This season's scoreboard</h2>
+      <div id="scoreboard"></div>
+
+      <h2>12 seasons of testing</h2>
+      <p>
+        We replayed 2014/15 to 2025/26 match by match. Each forecast used only results from before that match, as
+        if we had made it at the time, and the model settings were chosen on earlier seasons. Accuracy is the Ranked
+        Probability Score (RPS): 0 would be perfect and <strong>lower is better</strong>. "Base rates" ignores the
+        teams and always predicts the league's usual share of home wins, draws and away wins.
+      </p>
+      <div class="stats" id="backtest-stats"></div>
+      <div class="table-wrap" style="margin-top: 12px">
         <table>
           <thead>
-            <tr>
-              <th>#</th>
-              <th class="team">Team</th>
-              <th title="Played">P</th>
-              <th title="Won">W</th>
-              <th title="Drawn">D</th>
-              <th title="Lost">L</th>
-              <th class="hide-narrow" title="Goals for">GF</th>
-              <th class="hide-narrow" title="Goals against">GA</th>
-              <th title="Goal difference">GD</th>
-              <th title="Points">Pts</th>
-            </tr>
+            <tr id="backtest-head"></tr>
           </thead>
-          <tbody id="table-body"></tbody>
+          <tbody id="backtest-body"></tbody>
         </table>
       </div>
-      <div class="zone-key">
-        <span class="cl">Champions League</span>
-        <span class="europe">Europa / Conference League</span>
-        <span class="releg">Relegation</span>
-      </div>
-      <p class="muted small">
-        Teams level on points are ordered by goal difference, then goals scored (Serie A officially uses
-        head-to-head results first). European places can change with cup winners.
+      <p>
+        Both models clearly beat guessing, and the goals model beats Elo. The bookmakers' closing odds are better
+        still, in every season: they include team news and the views of professional bettors, while our models only
+        know past scores.
       </p>
+      <p class="muted small" id="settings"></p>
     </main>
 
     <footer class="site-footer">
@@ -80,6 +85,6 @@
         <span id="updated"></span>
       </div>
     </footer>
-    <script type="module" src="js/table.js"></script>
+    <script type="module" src="js/lab.js"></script>
   </body>
 </html>

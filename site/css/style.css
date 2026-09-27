@@ -156,6 +156,9 @@ h2 { font-size: 1.5rem; margin: 40px 0 12px; text-transform: uppercase; }
 }
 .nav a:hover { color: var(--on-pitch); }
 .nav a[aria-current="page"] { color: var(--on-pitch); border-bottom-color: var(--on-pitch); }
+@media (max-width: 420px) {
+  .nav { gap: 4px 14px; font-size: 0.95rem; } /* fit all five tabs on one line on phones */
+}
 
 /* ---------- Hero band: a slice of pitch with its markings ---------- */
 
@@ -472,3 +475,34 @@ tr.zone-releg td.pos { border-left-color: var(--zone-releg); }
 .card h3 { margin: 0 0 6px; font-size: 1.3rem; text-transform: uppercase; }
 .card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
 .card .icon { font-size: 1.6rem; line-height: 1; margin-bottom: 8px; }
+
+/* ---------- Data lab ---------- */
+
+/* Where our model and the bookmakers disagree on a match */
+.gap-note { margin: 10px 0 0; font-size: 0.875rem; color: var(--text-muted); }
+.gap-note.strong { color: var(--text); }
+
+/* This season's scoreboard: most accurate first */
+.leaderboard {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 6px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  counter-reset: rank;
+}
+.leaderboard li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  counter-increment: rank;
+}
+.leaderboard li:last-child { border-bottom: none; }
+.leaderboard li::before { content: counter(rank); font-family: var(--font-display); color: var(--text-muted); width: 1.2em; }
+.leaderboard li span:first-child { flex: 1; }
+.num { font-variant-numeric: tabular-nums; }

@@ -28,6 +28,7 @@
           <a href="./">Matches</a>
           <a href="table.html">Table</a>
           <a href="model.html" aria-current="page">How it works</a>
+          <a href="lab.html">Data lab</a>
           <a href="about.html">About</a>
         </nav>
       </div>
@@ -36,7 +37,7 @@
     <section class="hero">
       <div class="container">
         <h1>How it works</h1>
-        <p>Where our predictions come from, in plain English, and an honest look at how good they are.</p>
+        <p>Where our predictions come from, in plain English.</p>
       </div>
     </section>
 
@@ -57,58 +58,33 @@
         "wrong": football is unpredictable, and good predictions are honest about it.
       </p>
 
-      <h2>Three ways to predict a match</h2>
+      <h2>How we predict</h2>
       <div class="cards">
         <div class="card">
           <div class="icon" aria-hidden="true">⚽</div>
-          <h3>Goals model</h3>
+          <h3>Attack and defence</h3>
           <p>
-            Our main prediction (known as Dixon-Coles). Every team has an attack and a defence rating, learned from
-            its results, with recent matches counting most. It estimates how many goals each side will score, and
-            so the chance of every scoreline.
+            Every team gets an attack rating (how much it tends to score) and a defence rating (how much it tends to
+            concede), learned from its results. Recent matches count most, so a team's rating follows its form.
           </p>
         </div>
         <div class="card">
-          <div class="icon" aria-hidden="true">📈</div>
-          <h3>Elo ratings</h3>
+          <div class="icon" aria-hidden="true">🎯</div>
+          <h3>Goals, then results</h3>
           <p>
-            The system used to rank chess players. Beat a strong team and your rating jumps; beat a weak one and it
-            barely moves. Simple, but surprisingly good.
+            From those ratings we estimate how many goals each side is likely to score, then the chance of every
+            possible scoreline. Add those up and you get the chance of a home win, a draw and an away win.
           </p>
         </div>
         <div class="card">
-          <div class="icon" aria-hidden="true">🏦</div>
-          <h3>The bookmakers</h3>
+          <div class="icon" aria-hidden="true">🔄</div>
+          <h3>Updated every round</h3>
           <p>
-            Betting odds turned into chances (odds of 2.00 mean about 50%). The market knows about injuries and team
-            news, so it is the benchmark to beat. Tap "Compare with bookmakers" under any match to see it.
+            After each matchday the ratings are updated with the new results, and the next round's predictions are
+            made from them. We never use a result to "predict" a match it came from.
           </p>
         </div>
       </div>
-
-      <h2>How accurate are we?</h2>
-      <p>
-        We replayed 12 past seasons match by match. Each prediction used only results from before that match,
-        exactly as if we had made it at the time.
-      </p>
-      <div class="stats" id="stats"></div>
-      <p class="muted small">
-        Accuracy uses the Ranked Probability Score (RPS): 0 would be perfect, and <strong>lower is better</strong>.
-        "Base rates" is a no-skill guess that ignores the teams.
-      </p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr id="backtest-head"></tr>
-          </thead>
-          <tbody id="backtest-body"></tbody>
-        </table>
-      </div>
-      <p>
-        Both our models are clearly better than guessing, and the goals model beats Elo. The bookmakers are better
-        still, in every season. That is expected: their prices include team news and the views of professional
-        bettors, while our models only know past scores.
-      </p>
 
       <h2>Our prediction record</h2>
       <p>
@@ -118,9 +94,11 @@
         and when it was published.
       </p>
 
-      <h2>The fine print</h2>
-      <p class="muted small" id="settings-dc"></p>
-      <p class="muted small" id="settings-elo"></p>
+      <h2>Want the numbers?</h2>
+      <p>
+        The <a href="lab.html">Data lab</a> puts our prediction side by side with a second model (Elo ratings) and
+        the bookmakers' odds for every match, and shows how accurate each one has been over 12 seasons.
+      </p>
     </main>
 
     <footer class="site-footer">
@@ -131,6 +109,5 @@
         <span id="updated"></span>
       </div>
     </footer>
-    <script type="module" src="js/model.js"></script>
   </body>
 </html>
