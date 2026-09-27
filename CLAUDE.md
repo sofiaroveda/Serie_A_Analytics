@@ -56,6 +56,7 @@ The goal is a portfolio project for finance, trading, data science and consultin
 
 - Implied probability = 1 / decimal odds. Bookmaker prices include a margin (overround), so normalise the three probabilities to sum to 1 (proportional method to start; Shin's method as an optional improvement).
 - The main benchmark is **Pinnacle closing odds**, widely regarded as the most efficient market price.
+- **Decision (Sep 2026):** football-data has no Pinnacle odds after 14 Jan 2026. Backtest against Pinnacle closing where available (2012/13 to Jan 2026). For 2026/27 onwards, use **market-average closing odds** (`avg_close_*`) for that match. Also report how far market-average closing sits from Pinnacle closing in past seasons (2019/20 to 2025/26: about 0.5 points apart on average; log loss 0.9624 vs 0.9617), so readers can see the switch barely matters. Never use a previous season's odds as a benchmark: odds are per match.
 
 ## Evaluation (this is the heart of the project)
 
