@@ -180,7 +180,7 @@ h2 { font-size: 1.5rem; margin: 40px 0 12px; text-transform: uppercase; }
 .hero p { color: var(--on-pitch-muted); margin: 0; max-width: 560px; }
 .hero a { color: var(--on-pitch); }
 
-main { padding: 20px 0 64px; }
+main { padding: 32px 0 64px; } /* breathing room below the green band */
 
 .site-footer { border-top: 1px solid var(--border); padding: 20px 0 40px; }
 
@@ -198,37 +198,112 @@ main { padding: 20px 0 64px; }
   .stat-value { font-size: 1.6rem; }
 }
 
-/* ---------- Matchday picker (sits inside the hero) ---------- */
+/* ---------- Matchday strip (sits inside the hero) ---------- */
+/* A row of chips you can swipe sideways, like the date bar in sports apps. */
 
-.matchday-bar { display: flex; align-items: center; gap: 8px; margin-top: 20px; }
-.matchday-bar select {
-  font-family: var(--font-display);
+.md-strip { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.md-scroller {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none; /* hide the scrollbar (Firefox) */
+  padding: 4px 2px;
+  flex: 1;
+  position: relative; /* so chip positions are measured from the strip's own edge */
+  /* fade the chips out at both edges to hint that the row scrolls */
+  mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+}
+.md-scroller::-webkit-scrollbar { display: none; } /* hide the scrollbar (Chrome, Safari) */
+.md-chip {
+  flex: none;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 84px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--on-pitch);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.md-chip:hover { background: rgba(255, 255, 255, 0.16); }
+.md-chip .md-num { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.1; }
+.md-chip .md-dates { font-size: 0.75rem; color: var(--on-pitch-muted); white-space: nowrap; }
+.md-chip.is-next .md-dates { color: #ffe27a; font-weight: 600; }
+.md-chip[aria-pressed="true"] { background: var(--on-pitch); color: var(--pitch); border-color: var(--on-pitch); transform: translateY(-1px); }
+.md-chip[aria-pressed="true"] .md-dates { color: var(--pitch); }
+.strip-arrow {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: var(--on-pitch);
   font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.strip-arrow:disabled { opacity: 0.3; cursor: default; }
+@media (max-width: 600px) {
+  .strip-arrow { display: none; } /* on phones you swipe the strip instead */
+}
+
+/* ---------- Talking points ---------- */
+
+.section-kicker {
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--pitch);
-  background: var(--on-pitch);
-  border: none;
-  border-radius: 999px;
-  padding: 8px 18px;
-  flex: 1;
-  min-width: 0; /* allow shrinking on narrow screens so the › button stays visible */
-  max-width: 280px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 12px 0 10px;
 }
-.nav-button {
-  font: inherit;
-  font-size: 1.4rem;
-  line-height: 1;
-  color: var(--on-pitch);
-  background: transparent;
-  border: 2px solid var(--on-pitch-muted);
+.points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) {
+  /* On phones the cards become a row you swipe, so the matches stay near the top */
+  .points {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin: 0 -16px;
+    padding: 2px 16px 6px;
+    scroll-padding: 0 16px;
+  }
+  .points::-webkit-scrollbar { display: none; }
+  .point { flex: 0 0 82%; scroll-snap-align: start; }
+}
+.point {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  align-items: start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+}
+.point-icon {
+  grid-row: span 3;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  width: 44px;
-  height: 44px; /* big enough to tap on a phone */
-  cursor: pointer;
-  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: var(--surface-2);
 }
-.nav-button:disabled { opacity: 0.3; cursor: default; }
+.point-kicker { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+.point-headline { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; line-height: 1.15; }
+.point-detail { font-size: 0.875rem; color: var(--text-muted); }
 
 /* Hidden visually but still read out by screen readers */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

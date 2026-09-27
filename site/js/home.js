@@ -27,8 +27,8 @@ async function main() {
     totalMatchdays = summary.matchdays;
     document.getElementById("season").textContent = summary.season;
     document.getElementById("updated").textContent = `Updated ${formatDate(summary.generated_at.slice(0, 10))}.`;
-    renderStats(matches, summary);
-    setUpPicker(summary.current_matchday);
+    renderTalkingPoints(matches);
+    setUpStrip(summary.current_matchday);
   } catch (error) {
     showError(document.querySelector("main"), error);
   }
@@ -60,34 +60,102 @@ function outlook(match, p) {
   return `Close call, ${team} slightly ahead`;
 }
 
-// ---------- Headline numbers ----------
+// ---------- Talking points: headlines worked out from the results ----------
 
-function renderStats(matches, summary) {
-  const played = matches.filter((m) => m.status === "played" && m[`${MAIN}_home`] !== null);
-  const container = document.getElementById("stats");
-  const addStat = (value, label, { wide = false } = {}) => {
-    const box = el("div", `stat${wide ? " wide" : ""}`);
-    box.append(el("div", `stat-value${wide ? " compact" : ""}`, value), el("div", "stat-label", label));
-    container.append(box);
+/** Each team's results so far, oldest first: { team: { results: ["W", "D", ...], gf, ga } }. */
+function teamRecords(played) {
+  const records = {};
+  const add = (team, gf, ga) => {
+    records[team] ??= { team, results: [], gf: 0, ga: 0 };
+    records[team].results.push(gf > ga ? "W" : gf === ga ? "D" : "L");
+    records[team].gf += gf;
+    records[team].ga += ga;
   };
-
-  if (played.length) {
-    const called = played.filter((m) => favourite(probs(m, MAIN)) === RESULT_TO_OUTCOME[m.result]).length;
-    addStat(`${called}/${played.length}`, "results we called right");
-
-    // Biggest upset: the result we rated least likely
-    const upset = played.reduce((a, b) =>
-      probs(a, MAIN)[RESULT_TO_OUTCOME[a.result]] <= probs(b, MAIN)[RESULT_TO_OUTCOME[b.result]] ? a : b);
-    const chance = probs(upset, MAIN)[RESULT_TO_OUTCOME[upset.result]];
-    if (summary.favourite_win_rate !== null) {
-      addStat(percent(summary.favourite_win_rate), "won by the bookmakers' favourite");
-    }
-    addStat(`${upset.home_team} ${upset.home_goals}–${upset.away_goals} ${upset.away_team}`,
-      `Biggest shock so far: ${chanceText(upset, RESULT_TO_OUTCOME[upset.result], chance)}`, { wide: true });
+  for (const m of [...played].sort((a, b) => a.date.localeCompare(b.date))) {
+    add(m.home_team, m.home_goals, m.away_goals);
+    add(m.away_team, m.away_goals, m.home_goals);
   }
+  return Object.values(records);
 }
 
-// ---------- Matchday picker ----------
+/** How many of the most recent results in a row pass `test`. */
+function currentRun(results, test) {
+  let n = 0;
+  for (let i = results.length - 1; i >= 0 && test(results[i]); i--) n++;
+  return n;
+}
+
+/** "1 win", "3 wins". */
+function plural(n, word) {
+  return `${n} ${word}${n === 1 ? "" : "s"}`;
+}
+
+/** The item with the highest score (ties go to the first). */
+function best(items, score) {
+  return items.reduce((a, b) => (score(b) > score(a) ? b : a));
+}
+
+function renderTalkingPoints(matches) {
+  const played = matches.filter((m) => m.status === "played");
+  const section = document.getElementById("talking-points");
+  if (!played.length) return;
+
+  const points = [];
+  const records = teamRecords(played);
+  const wins = (r) => r.results.filter((x) => x === "W").length;
+
+  // Biggest shock: the result our prediction rated least likely
+  const withPrediction = played.filter((m) => probs(m, MAIN));
+  if (withPrediction.length) {
+    const chanceOf = (m) => probs(m, MAIN)[RESULT_TO_OUTCOME[m.result]];
+    const shock = best(withPrediction, (m) => -chanceOf(m));
+    const text = chanceText(shock, RESULT_TO_OUTCOME[shock.result], chanceOf(shock));
+    points.push(["⚡", "Biggest shock", `${shock.home_team} ${shock.home_goals}–${shock.away_goals} ${shock.away_team}`,
+      text[0].toUpperCase() + text.slice(1)]);
+  }
+
+  // In form: longest current unbeaten run (then most wins in that run, then goal difference)
+  const unbeaten = (r) => currentRun(r.results, (x) => x !== "L");
+  const winsInRun = (r) => r.results.slice(-unbeaten(r)).filter((x) => x === "W").length;
+  const hot = best(records, (r) => unbeaten(r) * 1000 + winsInRun(r) * 10 + (r.gf - r.ga) / 100);
+  if (unbeaten(hot) >= 2) {
+    const run = unbeaten(hot);
+    const w = winsInRun(hot);
+    const span = run === hot.results.length ? `all ${run} games so far` : `their last ${run}`;
+    points.push(["🔥", "In form", hot.team, w === run
+      ? `Won ${span}`
+      : `Unbeaten in ${span} (${plural(w, "win")}, ${plural(run - w, "draw")})`]);
+  }
+
+  // Struggling: longest current run without a win
+  const winless = (r) => currentRun(r.results, (x) => x !== "W");
+  const cold = best(records, (r) => winless(r) * 1000 + currentRun(r.results, (x) => x === "L") * 10 - (r.gf - r.ga) / 100);
+  if (winless(cold) >= 2) {
+    const lossRun = currentRun(cold.results, (x) => x === "L");
+    points.push(["🥶", "Struggling", cold.team, lossRun === winless(cold)
+      ? `Lost their last ${lossRun} in a row`
+      : `No win in their last ${winless(cold)}`]);
+  }
+
+  // Goals: the most prolific attack
+  const scorers = best(records, (r) => r.gf * 100 - r.results.length);
+  const joint = records.filter((r) => r.gf === scorers.gf).length > 1;
+  points.push(["⚽", "Goal machine", scorers.team,
+    `${scorers.gf} goals in ${scorers.results.length} games, ${joint ? "joint " : ""}most in Serie A`]);
+
+  section.append(el("h2", "section-kicker", "The story so far"));
+  const grid = el("div", "points");
+  for (const [icon, kicker, headline, detail] of points) {
+    const card = el("article", "point");
+    const iconEl = el("span", "point-icon", icon);
+    iconEl.setAttribute("aria-hidden", "true");
+    card.append(iconEl, el("div", "point-kicker", kicker), el("div", "point-headline", headline), el("div", "point-detail", detail));
+    grid.append(card);
+  }
+  section.append(grid);
+}
+
+// ---------- Matchday strip ----------
 
 /** The matchday in the page address (e.g. #matchday-4), if there is a valid one. */
 function matchdayFromUrl() {
@@ -96,29 +164,59 @@ function matchdayFromUrl() {
   return n >= 1 && n <= totalMatchdays ? n : null;
 }
 
-function setUpPicker(defaultMatchday) {
-  const select = document.getElementById("matchday-select");
+/** "10–12 Oct", "30 Sept–2 Oct" or "10 Oct". */
+function shortRange(first, last) {
+  const date = (d) => new Date(`${d}T12:00:00`);
+  const day = (d) => date(d).getDate();
+  const month = (d) => date(d).toLocaleDateString("en-GB", { month: "short" });
+  if (first === last) return `${day(first)} ${month(first)}`;
+  if (month(first) === month(last)) return `${day(first)}–${day(last)} ${month(last)}`;
+  return `${day(first)} ${month(first)}–${day(last)} ${month(last)}`;
+}
+
+/** The dates of a matchday, ignoring postponed games played weeks later. */
+function matchdayDates(n) {
+  const dates = allMatches.filter((m) => m.matchday === n).map((m) => m.date).sort();
+  if (!dates.length) return "";
+  const middle = new Date(dates[Math.floor(dates.length / 2)]);
+  const near = dates.filter((d) => Math.abs(new Date(d) - middle) <= 4 * 86_400_000);
+  return shortRange(near[0], near[near.length - 1]);
+}
+
+function setUpStrip(nextMatchday) {
+  const scroller = document.getElementById("md-scroller");
+  const chips = [];
   for (let n = 1; n <= totalMatchdays; n++) {
-    const option = el("option", "", `Matchday ${n}`);
-    option.value = n;
-    if (n === defaultMatchday) option.textContent += " · next";
-    select.append(option);
+    const dates = matchdayDates(n);
+    const chip = el("button", `md-chip${n === nextMatchday ? " is-next" : ""}`);
+    chip.type = "button";
+    chip.append(el("span", "md-num", `MD ${n}`), el("span", "md-dates", n === nextMatchday ? `Next · ${dates}` : dates));
+    chip.setAttribute("aria-label", `Matchday ${n}, ${dates}${n === nextMatchday ? ", next to be played" : ""}`);
+    chip.addEventListener("click", () => show(n));
+    scroller.append(chip);
+    chips.push(chip);
   }
 
-  const show = (n) => {
-    select.value = n;
+  let current = nextMatchday;
+  function show(n, smooth = true) {
+    current = n;
+    chips.forEach((chip, i) => chip.setAttribute("aria-pressed", String(i + 1 === n)));
+    // Slide the strip so the chosen chip is in the middle (without scrolling the page)
+    const chip = chips[n - 1];
+    scroller.scrollTo({
+      left: chip.offsetLeft - scroller.clientWidth / 2 + chip.offsetWidth / 2,
+      behavior: smooth ? "smooth" : "auto",
+    });
     document.getElementById("prev").disabled = n <= 1;
     document.getElementById("next").disabled = n >= totalMatchdays;
     history.replaceState(null, "", `#matchday-${n}`); // update the address without reloading
     renderMatchday(n);
-  };
+  }
 
-  select.addEventListener("change", () => show(Number(select.value)));
-  document.getElementById("prev").addEventListener("click", () => show(Number(select.value) - 1));
-  document.getElementById("next").addEventListener("click", () => show(Number(select.value) + 1));
+  document.getElementById("prev").addEventListener("click", () => show(current - 1));
+  document.getElementById("next").addEventListener("click", () => show(current + 1));
   window.addEventListener("hashchange", () => matchdayFromUrl() && show(matchdayFromUrl()));
-
-  show(matchdayFromUrl() ?? defaultMatchday);
+  show(matchdayFromUrl() ?? nextMatchday, false);
 }
 
 function renderMatchday(n) {

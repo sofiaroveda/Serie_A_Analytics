@@ -37,18 +37,17 @@
       <div class="container">
         <h1>Serie A <span id="season"></span></h1>
         <p>Our prediction for every match, and how it turned out.</p>
-        <div class="matchday-bar">
-          <button class="nav-button" id="prev" aria-label="Previous matchday">‹</button>
-          <label class="visually-hidden" for="matchday-select">Matchday</label>
-          <select id="matchday-select"></select>
-          <button class="nav-button" id="next" aria-label="Next matchday">›</button>
-        </div>
+        <nav class="md-strip" aria-label="Matchdays">
+          <button class="strip-arrow" id="prev" aria-label="Previous matchday">‹</button>
+          <div class="md-scroller" id="md-scroller"></div>
+          <button class="strip-arrow" id="next" aria-label="Next matchday">›</button>
+        </nav>
       </div>
     </section>
 
     <main class="container">
       <!-- The script fills these empty sections with data -->
-      <div class="stats" id="stats"></div>
+      <section id="talking-points"></section>
       <div id="matchday"></div>
     </main>
 
