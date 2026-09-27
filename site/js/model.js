@@ -23,9 +23,9 @@ function renderStats(backtest) {
   // Share of the market's improvement over base rates that our best model achieves
   const share = (overall.base_rates - overall[best]) / (overall.base_rates - overall.pinnacle);
   const stats = [
-    [overall[best].toFixed(4), `${forecasters[best]} (our best model), ${overall.season}`],
+    [overall[best].toFixed(4), `${forecasters[best]}, our best, ${overall.season}`],
     [overall.pinnacle.toFixed(4), "Pinnacle closing odds"],
-    [percent(share), `of the market's edge over base rates that ${forecasters[best]} captures`],
+    [percent(share), `of the bookmakers' edge over guessing that our ${forecasters[best].toLowerCase()} captures`],
   ];
   const container = document.getElementById("stats");
   for (const [value, label] of stats) {

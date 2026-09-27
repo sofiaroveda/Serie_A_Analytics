@@ -29,6 +29,7 @@ def test_outcome_probabilities_hand_check():
     assert (p["p_home"], p["p_draw"], p["p_away"]) == pytest.approx((0.5, 0.3, 0.2))
     assert p["p_over_2_5"] == pytest.approx(0.7)  # 2-1 and 0-3 have 3 goals
     assert p["p_btts"] == pytest.approx(0.8)  # 2-1 and 1-1
+    assert p["most_likely_score"] == "2-1"
 
 
 def test_gradient_matches_numerical_derivative():

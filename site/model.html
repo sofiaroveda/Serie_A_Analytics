@@ -2,39 +2,99 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Makes the page scale properly on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Model vs Market</title>
-    <meta name="description" content="How our Elo model's forecasts compare with Pinnacle closing odds over 12 Serie A seasons." />
+    <title>How It Works</title>
+    <meta name="description" content="How our Serie A predictions are made, and how accurate they are." />
+    <meta name="theme-color" content="#0f4a32" />
+    <!-- Fonts: Barlow (text) and Barlow Condensed (headings), a sporty, scoreboard-like family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container">
-        <a class="brand" href="./">Serie A Analytics</a>
+        <a class="brand" href="./">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" fill="#ffffff" />
+            <polygon points="16,10 21.7,14.1 19.5,20.9 12.5,20.9 10.3,14.1" fill="#14171a" />
+            <path d="M16 10V2.5M21.7 14.1l7-2.3M19.5 20.9l4.3 6M12.5 20.9l-4.3 6M10.3 14.1l-7-2.3" stroke="#14171a" stroke-width="1.6" fill="none" />
+          </svg>
+          Serie A Analytics
+        </a>
         <nav class="nav">
           <a href="./">Matches</a>
           <a href="table.html">Table</a>
-          <a href="model.html" aria-current="page">Model vs market</a>
+          <a href="model.html" aria-current="page">How it works</a>
           <a href="about.html">About</a>
         </nav>
       </div>
     </header>
 
+    <section class="hero">
+      <div class="container">
+        <h1>How it works</h1>
+        <p>Where our predictions come from, in plain English, and an honest look at how good they are.</p>
+      </div>
+    </section>
+
     <main class="container">
-      <h1>Model vs market</h1>
+      <h2>Reading a prediction</h2>
+      <p>
+        Each match has a bar split into three: the chance of a <strong>home win</strong>, a <strong>draw</strong>
+        and an <strong>away win</strong>. Wider means more likely. After the match, the part that actually
+        happened stays bright and the rest fades.
+      </p>
+      <div class="legend">
+        <span><span class="swatch" style="background: var(--home)"></span>Home win</span>
+        <span><span class="swatch" style="background: var(--draw)"></span>Draw</span>
+        <span><span class="swatch" style="background: var(--away)"></span>Away win</span>
+      </div>
       <p class="muted">
-        How accurate are our models compared with the betting market? We replayed 12 past seasons
-        match by match. Each forecast used only results from before that match's date, just as if we had
-        made it at the time.
+        A 70% favourite should still lose or draw about 3 times in 10. That is not the prediction being
+        "wrong": football is unpredictable, and good predictions are honest about it.
       </p>
 
-      <div class="stats" id="stats"></div>
+      <h2>Three ways to predict a match</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="icon" aria-hidden="true">⚽</div>
+          <h3>Goals model</h3>
+          <p>
+            Our main prediction (known as Dixon-Coles). Every team has an attack and a defence rating, learned from
+            its results, with recent matches counting most. It estimates how many goals each side will score, and
+            so the chance of every scoreline.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">📈</div>
+          <h3>Elo ratings</h3>
+          <p>
+            The system used to rank chess players. Beat a strong team and your rating jumps; beat a weak one and it
+            barely moves. Simple, but surprisingly good.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">🏦</div>
+          <h3>The bookmakers</h3>
+          <p>
+            Betting odds turned into chances (odds of 2.00 mean about 50%). The market knows about injuries and team
+            news, so it is the benchmark to beat. Tap "Compare with bookmakers" under any match to see it.
+          </p>
+        </div>
+      </div>
 
-      <h2>Season by season</h2>
+      <h2>How accurate are we?</h2>
+      <p>
+        We replayed 12 past seasons match by match. Each prediction used only results from before that match,
+        exactly as if we had made it at the time.
+      </p>
+      <div class="stats" id="stats"></div>
       <p class="muted small">
-        Accuracy is measured by the Ranked Probability Score (RPS): 0 would be a perfect forecast, and
-        <strong>lower is better</strong>. "Base rates" is a no-skill forecast that ignores the teams and always
-        predicts the league's usual share of home wins, draws and away wins.
+        Accuracy uses the Ranked Probability Score (RPS): 0 would be perfect, and <strong>lower is better</strong>.
+        "Base rates" is a no-skill guess that ignores the teams.
       </p>
       <div class="table-wrap">
         <table>
@@ -44,27 +104,33 @@
           <tbody id="backtest-body"></tbody>
         </table>
       </div>
+      <p>
+        Both our models are clearly better than guessing, and the goals model beats Elo. The bookmakers are better
+        still, in every season. That is expected: their prices include team news and the views of professional
+        bettors, while our models only know past scores.
+      </p>
 
-      <h2>What this shows</h2>
-      <div class="prose">
-        <p>
-          Both models are clearly better than guessing from base rates, and the goals-based Dixon-Coles model
-          beats Elo overall. But the market is better still, in every season. That is the expected result:
-          Pinnacle's closing odds reflect team news, injuries and the views of professional bettors, while our
-          models only know past scores.
-        </p>
-        <p class="muted small" id="settings-elo"></p>
-        <p class="muted small" id="settings-dc"></p>
-      </div>
+      <h2>Our prediction record</h2>
+      <p>
+        Before each round, our predictions are saved to a
+        <a href="https://github.com/sofiaroveda/Serie_A_Analytics/tree/main/predictions">public record on GitHub</a>
+        and never edited afterwards. GitHub keeps a history of every change, so anyone can check what we predicted
+        and when it was published.
+      </p>
+
+      <h2>The fine print</h2>
+      <p class="muted small" id="settings-dc"></p>
+      <p class="muted small" id="settings-elo"></p>
     </main>
 
     <footer class="site-footer">
       <div class="container small muted">
-        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and <a href="https://github.com/openfootball/football.json">openfootball</a>.
-        An analysis project, not betting advice.
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and
+        <a href="https://github.com/openfootball/football.json">openfootball</a>.
+        An independent analysis project, not affiliated with Lega Serie A or any club. Not betting advice.
+        <span id="updated"></span>
       </div>
     </footer>
-
     <script type="module" src="js/model.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
  "forecasters": {
   "base_rates": "Base rates",
   "elo": "Elo",
-  "dc": "Dixon-Coles",
+  "dc": "Goals model",
   "pinnacle": "Pinnacle"
  },
  "seasons": [

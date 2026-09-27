@@ -22,9 +22,12 @@ SITE_DATA_DIR = ROOT / "site" / "data"
 CLOSING_SOURCES = ["pin_close", "avg_close", "b365_close"]
 PRE_MATCH_SOURCES = ["pin", "avg", "b365"]
 # Our models: key used in the data files -> display name
-MODELS = {"elo": "Elo", "dc": "Dixon-Coles"}
+MODELS = {"elo": "Elo", "dc": "Goals model"}
 # Extra model outputs copied to the site when a model provides them (Dixon-Coles does)
-EXTRA_OUTPUTS = {"exp_home_goals": "xg_home", "exp_away_goals": "xg_away", "p_over_2_5": "over_2_5", "p_btts": "btts"}
+EXTRA_OUTPUTS = {
+    "exp_home_goals": "xg_home", "exp_away_goals": "xg_away", "p_over_2_5": "over_2_5", "p_btts": "btts",
+    "most_likely_score": "score",
+}  # fmt: skip
 
 SOURCE_LABELS = {
     "pin_close": "Pinnacle closing",

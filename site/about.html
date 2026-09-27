@@ -2,103 +2,91 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Makes the page scale properly on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>About Serie A Analytics</title>
-    <meta name="description" content="What this site is, how the numbers are made, and where the data comes from." />
+    <meta name="description" content="Who built this site, why, and where the data comes from." />
+    <meta name="theme-color" content="#0f4a32" />
+    <!-- Fonts: Barlow (text) and Barlow Condensed (headings), a sporty, scoreboard-like family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container">
-        <a class="brand" href="./">Serie A Analytics</a>
+        <a class="brand" href="./">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" fill="#ffffff" />
+            <polygon points="16,10 21.7,14.1 19.5,20.9 12.5,20.9 10.3,14.1" fill="#14171a" />
+            <path d="M16 10V2.5M21.7 14.1l7-2.3M19.5 20.9l4.3 6M12.5 20.9l-4.3 6M10.3 14.1l-7-2.3" stroke="#14171a" stroke-width="1.6" fill="none" />
+          </svg>
+          Serie A Analytics
+        </a>
         <nav class="nav">
           <a href="./">Matches</a>
           <a href="table.html">Table</a>
-          <a href="model.html">Model vs market</a>
+          <a href="model.html">How it works</a>
           <a href="about.html" aria-current="page">About</a>
         </nav>
       </div>
     </header>
 
+    <section class="hero">
+      <div class="container">
+        <h1>About</h1>
+        <p>An independent project putting honest numbers on Serie A.</p>
+      </div>
+    </section>
+
     <main class="container prose">
-      <h1>About</h1>
+      <h2>What this is</h2>
       <p>
-        Serie A Analytics puts a probability on every Serie A match and checks, honestly and in public,
-        how those probabilities compare with the betting market. It is an analysis project, not a betting
-        product: there are no tips here, and past results do not predict future ones.
+        Serie A Analytics puts a probability on every Serie A match and checks, in public, how those predictions
+        compare with the betting market. It is an analysis project, not a betting product: there are no tips here,
+        and past results do not predict future ones.
       </p>
+      <p><a href="model.html">How the predictions work</a></p>
 
-      <h2>What you see now</h2>
+      <h2>Who built it</h2>
       <p>
-        For each match, the bars show the market's view: the chance of a home win, a draw and an away win.
-        We work these out from bookmakers' decimal odds. Odds of 2.00 imply a 1 in 2 (50%) chance. Because
-        bookmakers build in a profit margin, the three implied chances add up to a little over 100%, so we
-        scale them down proportionally until they add up to exactly 100%.
+        Sofia, a materials science and engineering student at Imperial College London, as a project in
+        forecasting and data analysis. The code is
+        <a href="https://github.com/sofiaroveda/Serie_A_Analytics">on GitHub</a>.
       </p>
-      <p>
-        For finished matches we use the <strong>closing odds</strong>, the last prices before kick-off,
-        when the market knows the most (team news, injuries, late money). We use Pinnacle's closing
-        prices where available, since Pinnacle is a low-margin bookmaker whose prices are widely seen as
-        the most accurate. Pinnacle odds are not available from January 2026, so from then on we use the
-        average closing price across bookmakers, which in past seasons was typically within half a
-        percentage point of Pinnacle's.
-      </p>
-
-      <h2>The Elo model</h2>
-      <p>
-        Every team has a rating. Beat a stronger team and your rating rises a lot; beat a weaker one and it
-        rises a little. Bigger winning margins count for more. Between seasons, ratings drift part of the
-        way back to average (squads change), and promoted teams start below average. A statistical model
-        fitted on earlier seasons turns the gap between two teams' ratings into chances of a home win,
-        draw and away win.
-      </p>
-      <p>
-        The model's settings were chosen using the 2008/09 to 2013/14 seasons only, then tested on
-        2014/15 to 2025/26, which it had never seen. Each prediction uses only matches played before its
-        date. <a href="model.html">See how it did.</a>
-      </p>
-
-      <h2>The Dixon-Coles model</h2>
-      <p>
-        This model predicts goals. Each team has an attack strength (how much it tends to score) and a defence
-        strength (how much it tends to concede), plus there is a home advantage. From these it estimates how
-        many goals each side will score, and so the chance of every possible scoreline: 0-0, 1-0, 2-1 and so on.
-        A small correction accounts for low-scoring draws being a bit more common than simple maths suggests.
-        Recent matches count more: a match from nine months ago counts half as much as one played today.
-      </p>
-      <p>
-        It is refitted before every match date using only earlier results, and its settings were chosen on the
-        same early seasons as Elo's. <a href="model.html">See how the two compare.</a>
-      </p>
-
-      <h2>What's coming</h2>
-      <ul>
-        <li><strong>Match pages:</strong> the chance of every scoreline, over/under 2.5 goals and both teams to score.</li>
-        <li><strong>Serie A as a stock market:</strong> each team's chances of the title, Champions League and relegation, tracked after every matchday like a share price.</li>
-        <li><strong>"What if?" simulator:</strong> pick results of upcoming matches and see the table chances change.</li>
-        <li><strong>A public prediction record:</strong> every forecast saved before kick-off and never edited.</li>
-        <li><strong>Automatic updates</strong> twice a week.</li>
-      </ul>
 
       <h2>Data</h2>
       <p>
-        Results and odds come from <a href="https://www.football-data.co.uk/">football-data.co.uk</a>,
-        which generously makes them available for free. Matchday numbers and the season's fixture list
-        come from <a href="https://github.com/openfootball/football.json">openfootball</a>
-        (public domain). Thank you to both.
+        Results and betting odds come from <a href="https://www.football-data.co.uk/">football-data.co.uk</a>,
+        which generously makes them available for free. Matchday numbers and the season's fixture list come from
+        <a href="https://github.com/openfootball/football.json">openfootball</a> (public domain). Thank you to both.
+      </p>
+      <p class="muted small">
+        For finished matches, the bookmakers' view uses closing odds (the last prices before kick-off): Pinnacle's
+        where available, and the average across bookmakers from January 2026, when Pinnacle's odds stopped being
+        published. In past seasons the two were typically within half a percentage point of each other.
       </p>
 
-      <h2>Who built this</h2>
-      <p>
-        Sofia, a materials science and engineering student at Imperial College London, as a project in
-        forecasting and data analysis. The code is on GitHub.
+      <h2>Coming soon</h2>
+      <ul>
+        <li><strong>Serie A as a stock market:</strong> each team's chances of the title, Champions League and relegation, tracked after every matchday like a share price.</li>
+        <li><strong>"What if?" simulator:</strong> pick results of upcoming matches and see the table chances change.</li>
+        <li><strong>Match pages:</strong> the chance of every scoreline.</li>
+      </ul>
+
+      <p class="muted small">
+        Serie A Analytics is not affiliated with, or endorsed by, Lega Serie A or any club. Team colours are shown
+        only to make teams easy to recognise.
       </p>
     </main>
 
     <footer class="site-footer">
       <div class="container small muted">
-        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and <a href="https://github.com/openfootball/football.json">openfootball</a>.
-        An analysis project, not betting advice.
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and
+        <a href="https://github.com/openfootball/football.json">openfootball</a>.
+        An independent analysis project, not affiliated with Lega Serie A or any club. Not betting advice.
+        <span id="updated"></span>
       </div>
     </footer>
   </body>

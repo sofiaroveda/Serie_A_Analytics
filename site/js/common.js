@@ -39,10 +39,10 @@ export function probs(match, prefix) {
  * A horizontal bar split into home / draw / away segments.
  * `p` is {home, draw, away}; `source` names who made the forecast (for screen
  * readers and tooltips); `happened` is "home" | "draw" | "away" for played
- * matches (that segment gets outlined).
+ * matches: that segment stays bright with a tick, the others fade.
  */
-export function probabilityBar(p, match, source, happened) {
-  const bar = el("div", "prob-bar");
+export function probabilityBar(p, match, source, happened, { big = false } = {}) {
+  const bar = el("div", `prob-bar${big ? " big" : ""}${happened ? " decided" : ""}`);
   bar.setAttribute("role", "img");
   bar.setAttribute(
     "aria-label",
@@ -54,7 +54,7 @@ export function probabilityBar(p, match, source, happened) {
     const seg = el("div", `prob-seg ${outcome}`);
     seg.style.flexGrow = p[outcome]; // segment width is proportional to the probability
     seg.style.flexBasis = "0";
-    seg.dataset.label = percent(p[outcome]);
+    seg.dataset.label = outcome === happened ? `✓ ${percent(p[outcome])}` : percent(p[outcome]);
     if (outcome === happened) seg.classList.add("happened");
 
     const team = outcome === "home" ? match.home_team : outcome === "away" ? match.away_team : null;

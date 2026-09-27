@@ -84,6 +84,8 @@ The goal is a portfolio project for finance, trading, data science and consultin
   - **Methodology:** plain-English explanation of the models and evaluation, plus data credits.
   - **About:** who built it and why.
 - Home page is organised by **matchday** (dropdown + prev/next, address `#matchday-N`), opening on the next matchday to be played. Future matchdays show Elo forecasts; market odds appear once football-data publishes them.
+- **Design (Sep 2026, Sofia's feedback):** football look: pitch-green striped header with a green-white-red top stripe, centre-circle hero, Barlow / Barlow Condensed fonts, our own football logo, kit-colour badges (`site/js/teams.js`), table zones. **Never use the official Serie A logo or club crests** (trademarks; the site must not look official); footer states it is not affiliated.
+- **Keep it simple for casual fans:** each match shows one prediction (Dixon-Coles, labelled "Our prediction"/"Goals model"), a plain-words outlook or verdict (✓ Called it / ✗ Upset / ✗ Not this time), and a collapsed "Compare with bookmakers" panel with market + Elo bars, expected goals, over 2.5, BTTS, most likely score. Played matches: the outcome that happened stays bright with a ✓, the others fade. Model explanations and accuracy live on the "How it works" tab (`model.html`); About is who/why/data.
 - Mobile-friendly, fast, clean. Available in English (Italian translation is a possible later extra).
 - Hosting: **GitHub Pages** on the free tier, deployed by `.github/workflows/deploy.yml` on every push to `main` (tests must pass first). Free Pages needs a **public** repo.
 
