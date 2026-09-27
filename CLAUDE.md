@@ -141,12 +141,12 @@ If other people join the project:
 
 ## Status
 
-- [x] Phase 0: Setup. Repo at github.com/sofiaroveda/Serie_A_Analytics (private for now; make public before sharing). `.venv` + pinned `pyproject.toml`, downloader and cleaner (`python -m pipeline.data`), team-name table, 14 tests.
+- [x] Phase 0: Setup. Repo at github.com/sofiaroveda/Serie_A_Analytics (public). `.venv` + pinned `pyproject.toml`, downloader and cleaner (`python -m pipeline.data`), team-name table, 14 tests.
   - Pushing: Sofia pushes with GitHub Desktop; the terminal has no GitHub credentials, so Claude commits and Sofia clicks "Push origin".
   - Data notes (checked Sep 2026): 22 seasons, 8,030 matches, all UTF-8, all passing validation. Pinnacle closing odds cover 2012/13 to 14 Jan 2026 only; football-data stopped publishing Pinnacle odds mid-2025/26, so 2026/27 has none. Market average (`avg_close_*`) and Bet365 closing odds exist from 2019/20. The benchmark for the live season needs a decision (see Market comparison).
   - `fixtures.csv` can have zero Serie A rows between rounds; code handles this.
 - [ ] Phase 1: Models + backtest
-- [ ] Phase 1b: First site. Brought forward: a market-only version (fixtures, latest results with market probabilities, table, About) is built; models get added as they're finished.
+- [ ] Phase 1b: First site. Brought forward: a market-only version (fixtures, latest results with market probabilities, table, About) is **live at https://sofiaroveda.github.io/Serie_A_Analytics/** (repo public, Pages source = GitHub Actions). Models get added as they're finished. Data is only refreshed when `python -m pipeline.data && python -m pipeline.export` is run and committed, until Phase 2 automation.
 - [ ] Phase 2: Automation + depth
 - [ ] Phase 3: Transfer valuations
 - [ ] Phase 4: Polish
