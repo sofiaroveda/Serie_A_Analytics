@@ -13,11 +13,13 @@ async function main() {
   enableTooltips();
   try {
     // Load both files at the same time rather than one after another
-    const [summary, matches] = await Promise.all([loadData("summary"), loadData("matches")]);
+    const [summary, matches, simulation] = await Promise.all([
+      loadData("summary"), loadData("matches"), loadData("simulation"),
+    ]);
     allMatches = matches;
     document.getElementById("season").textContent = summary.season;
     document.getElementById("updated").textContent = `Updated ${formatDate(summary.generated_at.slice(0, 10))}.`;
-    renderTalkingPoints(matches);
+    renderTalkingPoints(matches, simulation);
     setUpStrip({ matches, total: summary.matchdays, next: summary.current_matchday, onShow: renderMatchday });
   } catch (error) {
     showError(document.querySelector("main"), error);
@@ -80,7 +82,7 @@ function best(items, score) {
   return items.reduce((a, b) => (score(b) > score(a) ? b : a));
 }
 
-function renderTalkingPoints(matches) {
+function renderTalkingPoints(matches, simulation) {
   const played = matches.filter((m) => m.status === "played");
   const section = document.getElementById("talking-points");
   if (!played.length) return;
@@ -127,6 +129,17 @@ function renderTalkingPoints(matches) {
   const joint = records.filter((r) => r.gf === scorers.gf).length > 1;
   points.push(["⚽", "Goal machine", scorers.team,
     `${scorers.gf} goals in ${scorers.results.length} games, ${joint ? "joint " : ""}most in Serie A`]);
+
+  // From the season simulation: who is likely to win it, and who is in trouble
+  if (simulation.remaining_matches > 0) {
+    const favourites = [...simulation.teams].sort((a, b) => b.p_title - a.p_title);
+    const [first, second] = favourites;
+    points.unshift(["🏆", "Title race", `${first.team} ${percent(first.p_title)}`,
+      `Chance of winning the league, ahead of ${second.team} (${percent(second.p_title)}). From 10,000 simulated seasons.`]);
+    const danger = [...simulation.teams].sort((a, b) => b.p_relegation - a.p_relegation).slice(0, 3);
+    points.splice(1, 0, ["⬇️", "Relegation battle", danger.map((t) => t.team).join(", "),
+      `Most likely to go down: ${danger.map((t) => percent(t.p_relegation)).join(", ")} chance.`]);
+  }
 
   section.append(el("h2", "section-kicker", "The story so far"));
   const grid = el("div", "points");

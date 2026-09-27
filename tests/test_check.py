@@ -2,7 +2,7 @@
 
 import copy
 
-from pipeline.check import check_matches, check_site_data, check_table, compare_ledgers
+from pipeline.check import check_matches, check_simulation, check_site_data, check_table, compare_ledgers
 
 
 def match(i: int, matchday: int, **extra) -> dict:
@@ -70,3 +70,12 @@ def test_changing_removing_or_deleting_a_forecast_is_caught():
 def test_the_published_site_data_passes():
     # The committed site/data files must always pass the checks
     assert check_site_data() == []
+
+
+def test_simulation_totals_are_checked():
+    too_few_teams = {"teams": [{"team": t, "p_title": 0.5, "p_top4": 1.0, "p_europe": 1.0, "p_relegation": 0.0,
+                       "positions": [0.5, 0.5]} for t in ("A", "B")]}  # fmt: skip
+    errors = check_simulation(too_few_teams)
+    assert any("p_top4" in e for e in errors) and any("p_relegation" in e for e in errors)  # 2 teams can't fill 4 / 3
+    bad_order = {"teams": [{"team": "A", "p_title": 0.6, "p_top4": 0.5, "p_europe": 1, "p_relegation": 0, "positions": [1]}]}
+    assert any("inconsistent" in e for e in check_simulation(bad_order))

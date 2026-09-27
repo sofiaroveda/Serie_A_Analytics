@@ -37,39 +37,68 @@
     <section class="hero">
       <div class="container">
         <h1>Table <span id="season"></span></h1>
-        <p>The current standings.</p>
+        <p>The standings now, and how we expect the season to finish.</p>
       </div>
     </section>
 
     <main class="container">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th class="team">Team</th>
-              <th title="Played">P</th>
-              <th title="Won">W</th>
-              <th title="Drawn">D</th>
-              <th title="Lost">L</th>
-              <th class="hide-narrow" title="Goals for">GF</th>
-              <th class="hide-narrow" title="Goals against">GA</th>
-              <th title="Goal difference">GD</th>
-              <th title="Points">Pts</th>
-            </tr>
-          </thead>
-          <tbody id="table-body"></tbody>
-        </table>
+      <div class="segmented" role="tablist" aria-label="Table view">
+        <button role="tab" id="tab-now" aria-selected="true" aria-controls="view-now">Now</button>
+        <button role="tab" id="tab-predicted" aria-selected="false" aria-controls="view-predicted">Predicted final table</button>
       </div>
-      <div class="zone-key">
-        <span class="cl">Champions League</span>
-        <span class="europe">Europa / Conference League</span>
-        <span class="releg">Relegation</span>
-      </div>
-      <p class="muted small">
-        Teams level on points are ordered by goal difference, then goals scored (Serie A officially uses
-        head-to-head results first). European places can change with cup winners.
-      </p>
+
+      <section id="view-now" role="tabpanel" aria-labelledby="tab-now">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="team">Team</th>
+                <th title="Played">P</th>
+                <th title="Won">W</th>
+                <th title="Drawn">D</th>
+                <th title="Lost">L</th>
+                <th class="hide-narrow" title="Goals for">GF</th>
+                <th class="hide-narrow" title="Goals against">GA</th>
+                <th title="Goal difference">GD</th>
+                <th title="Points">Pts</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+        <div class="zone-key">
+          <span class="cl">Champions League</span>
+          <span class="europe">Europa / Conference League</span>
+          <span class="releg">Relegation</span>
+        </div>
+        <p class="muted small">
+          Teams level on points are ordered by goal difference, then goals scored (Serie A officially uses
+          head-to-head results first). European places can change with cup winners.
+        </p>
+      </section>
+
+      <section id="view-predicted" role="tabpanel" aria-labelledby="tab-predicted" hidden>
+        <p id="sim-intro"></p>
+        <div class="table-wrap">
+          <table class="sim-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="team">Team</th>
+                <th class="hide-narrow" title="Points now">Now</th>
+                <th title="Expected final points">Pts</th>
+                <th title="Chance of winning the league">Title</th>
+                <th title="Chance of finishing in the top 4 (Champions League)">Top 4</th>
+                <th class="hide-narrow" title="Chance of finishing in the top 6 (Europe)">Europe</th>
+                <th title="Chance of finishing in the bottom 3">Down</th>
+              </tr>
+            </thead>
+            <tbody id="sim-body"></tbody>
+          </table>
+        </div>
+        <p class="muted small" id="sim-note"></p>
+      </section>
     </main>
 
     <footer class="site-footer">

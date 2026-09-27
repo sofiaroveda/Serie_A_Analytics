@@ -74,14 +74,30 @@ def check_table(table: list[dict], matches: list[dict]) -> list[str]:
     return errors
 
 
+def check_simulation(simulation: dict) -> list[str]:
+    """Simulated chances are valid probabilities and add up (1 champion, 4 top-4 places, 3 relegated)."""
+    teams = simulation["teams"]
+    errors = []
+    for field, total in (("p_title", 1), ("p_top4", 4), ("p_relegation", 3)):
+        if abs(sum(t[field] for t in teams) - total) > 0.01:
+            errors.append(f"simulation: {field} adds up to {sum(t[field] for t in teams):.3f}, expected {total}")
+    for t in teams:
+        if not 0 <= t["p_title"] <= t["p_top4"] <= t["p_europe"] <= 1:
+            errors.append(f"simulation: {t['team']} has inconsistent chances")
+        if abs(sum(t["positions"]) - 1) > 0.01:
+            errors.append(f"simulation: {t['team']}'s position chances don't add up to 1")
+    return errors
+
+
 def check_site_data(data_dir: Path = SITE_DATA_DIR) -> list[str]:
     try:
         load = lambda name: json.loads((data_dir / f"{name}.json").read_text())  # noqa: E731
         summary, matches, table = load("summary"), load("matches"), load("table")
+        simulation = load("simulation")
         load("backtest"), load("ratings")
     except (OSError, json.JSONDecodeError) as error:
         return [f"Could not read the site data: {error}"]
-    return check_matches(matches, summary["matchdays"]) + check_table(table, matches)
+    return check_matches(matches, summary["matchdays"]) + check_table(table, matches) + check_simulation(simulation)
 
 
 # ---------------------------------------------------------------------------

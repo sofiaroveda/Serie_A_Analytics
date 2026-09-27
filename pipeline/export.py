@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from pipeline.data import PROCESSED_DIR, ROOT, make_match_ids, season_label
-from pipeline import dixon_coles, elo
+from pipeline import dixon_coles, elo, simulate
 from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, hit_rate, rps
 from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
@@ -254,6 +254,29 @@ def team_ratings(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.Dat
     }
 
 
+def season_simulation(matches: pd.DataFrame, season: int, dc_upcoming: pd.DataFrame | None) -> dict[str, object]:
+    """Chances of the title, top 4, Europe and relegation from simulating the rest of the season."""
+    played = matches[matches["season"] == season]
+    remaining = dc_upcoming if dc_upcoming is not None else pd.DataFrame(
+        columns=["home_team", "away_team", "exp_home_goals", "exp_away_goals"]
+    )
+    table = simulate.simulate_season(played, remaining)
+    teams = [{
+        "team": row.team, "played": int(row.played), "points": int(row.points),
+        "exp_points": round(float(row.exp_points), 1), "exp_position": round(float(row.exp_position), 1),
+        "p_title": round(float(row.p_title), 4), "p_top4": round(float(row.p_top4), 4),
+        "p_europe": round(float(row.p_europe), 4), "p_relegation": round(float(row.p_relegation), 4),
+        "positions": [round(float(p), 4) for p in row.position_probs],
+    } for row in table.itertuples()]  # fmt: skip
+    return {
+        "season": season_label(season),
+        "n_sims": simulate.N_SIMS,
+        "strength_sd": simulate.STRENGTH_SD,
+        "remaining_matches": len(remaining),
+        "teams": teams,
+    }
+
+
 def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     """Read the processed CSVs, run the models and write one JSON file per page dataset."""
     matches = pd.read_csv(PROCESSED_DIR / "matches.csv", parse_dates=["date"])
@@ -285,6 +308,7 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     content = build_site_data(matches, fixtures, schedule, predictions)
     content["backtest"] = backtest_summary(matches, played_preds)
     content["ratings"] = team_ratings(matches, schedule, upcoming)
+    content["simulation"] = season_simulation(matches, season, upcoming_preds.get("dc"))
 
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, data in content.items():
