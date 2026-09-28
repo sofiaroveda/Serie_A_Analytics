@@ -131,7 +131,7 @@ For every remaining fixture we take the goals model's $\lambda, \mu$. In each of
 
 1. every team $t$ gets a strength shock $s_t \sim N(0, \sigma^2)$ for the whole simulated season (our uncertainty about how good teams really are, plus form, injuries and transfers);
 2. each match is drawn as $X \sim \text{Poisson}(\lambda e^{s_h - s_a})$, $Y \sim \text{Poisson}(\mu e^{s_a - s_h})$ (the $\rho$ correction is left out; it barely changes points);
-3. points and goals are added to the real current table, and teams are ranked by points, goal difference, goals scored, then a coin toss (Serie A uses head-to-head first: a known simplification).
+3. points and goals are added to the real current table, and teams are ranked by Serie A's rules (`pipeline/tiebreak.py`): points; for teams level on points, the mini-league of their matches against each other (head-to-head points, then head-to-head goal difference); then overall goal difference, goals scored and lots. A two-team tie for first place or across the relegation line would be decided by a play-off, which the simulation treats as a coin toss. The same rules order the current table and the "what if?" simulator.
 
 A team's title chance is the share of simulated seasons it finishes first; likewise top 4, top 6 (Europe) and bottom 3.
 
@@ -206,7 +206,7 @@ Per season (RPS):
 ## 8. Limitations
 
 - The models only learn from scores: no injuries, suspensions, transfers, coaching changes or rotation. This is the main reason the bookmakers are more accurate.
-- The simulation keeps each team's strength fixed within a simulated season (apart from the random shock) and ignores head-to-head tie-breaks and cup winners' European places.
+- The simulation keeps each team's strength fixed within a simulated season (apart from the random shock), treats play-offs as coin tosses, and ignores cup winners' European places.
 - The live-season benchmark is the market average, because Pinnacle's odds are no longer published.
 - This season's scoreboard covers few matches: its ranking is mostly noise until well into the season.
 - Settings were tuned on 2008 to 2014 and not re-tuned since; football has changed (e.g. smaller home advantage), which time weighting only partly absorbs.

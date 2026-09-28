@@ -67,8 +67,9 @@ function renderPredicted(sim) {
   document.getElementById("sim-note").textContent =
     "Ordered by expected final points. \"Pts\" is the average final total across all simulated seasons. Each " +
     "simulated season, every team is randomly a little stronger or weaker than its current rating, because form, " +
-    "injuries and transfers change teams (how much was tuned on past seasons). Ties are broken by goal difference, " +
-    "then goals scored.";
+    "injuries and transfers change teams (how much was tuned on past seasons). Ties on points follow Serie A's " +
+    "rules (head-to-head first); a tie for first place or across the relegation line would be a play-off, which we " +
+    "count as a coin toss.";
 }
 
 /** The Now / Predicted / What if? tabs. The choice is kept in the page address (#predicted, #whatif). */

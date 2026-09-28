@@ -10,9 +10,10 @@ random strength shock (normal, standard deviation `strength_sd` in log-goals) th
 lasts the whole simulated season. Without it the simulation is overconfident.
 `strength_sd` is tuned on the tuning seasons with `calibrate_strength_sd`.
 
-Simplifications (stated on the site): the low-score correction (rho) is left out
-of the simulation (it barely changes points), and ties on points are broken by
-goal difference, then goals scored, then at random (Serie A uses head-to-head first).
+Teams level on points are ordered by Serie A's rules (pipeline/tiebreak.py), with a
+two-team tie for the title or across the relegation line settled by a coin toss
+standing in for the play-off. Simplification (stated on the site): the low-score
+correction (rho) is left out of the simulation; it barely changes points.
 """
 
 from __future__ import annotations
@@ -22,6 +23,7 @@ import pandas as pd
 
 from pipeline.dixon_coles import DCParams, _predict_rows, fit_latest
 from pipeline.evaluate import TUNING_SEASONS
+from pipeline.tiebreak import order_teams
 
 N_SIMS = 10_000
 STRENGTH_SD = 0.10  # chosen by calibrate_strength_sd on 2008/09-2013/14 (Brier 0.0532 vs 0.0535 at 0)
@@ -67,10 +69,13 @@ def simulate_season(
     gf, ga = np.tile(now_gf, (n_sims, 1)), np.tile(now_ga, (n_sims, 1))
     # Each simulated season, every team is randomly a bit stronger or weaker than its rating
     shock = rng.normal(0.0, strength_sd, size=(n_sims, n_teams))
-    for m in remaining.itertuples():
+    sim_home_goals = np.zeros((n_sims, len(remaining)), dtype=int)  # kept for head-to-head tie-breaks
+    sim_away_goals = np.zeros((n_sims, len(remaining)), dtype=int)
+    for f, m in enumerate(remaining.itertuples()):
         h, a = index[m.home_team], index[m.away_team]
         home_goals = rng.poisson(m.exp_home_goals * np.exp(shock[:, h] - shock[:, a]))
         away_goals = rng.poisson(m.exp_away_goals * np.exp(shock[:, a] - shock[:, h]))
+        sim_home_goals[:, f], sim_away_goals[:, f] = home_goals, away_goals
         gf[:, h] += home_goals
         ga[:, h] += away_goals
         gf[:, a] += away_goals
@@ -78,9 +83,19 @@ def simulate_season(
         points[:, h] += np.where(home_goals > away_goals, 3, np.where(home_goals == away_goals, 1, 0))
         points[:, a] += np.where(away_goals > home_goals, 3, np.where(home_goals == away_goals, 1, 0))
 
-    # Rank each simulated table: points, then goal difference, then goals scored, then a coin toss
-    tiebreak = rng.random((n_sims, n_teams))
-    order = np.lexsort((tiebreak, gf, gf - ga, points), axis=1)[:, ::-1]  # best team first
+    # Rank each simulated table by Serie A's rules: points, head-to-head, goal difference,
+    # goals scored, lots; a two-team tie for the title or across the relegation line is a play-off
+    home_idx = np.concatenate([played["home_team"].map(index).to_numpy(), remaining["home_team"].map(index).to_numpy()]).astype(int)
+    away_idx = np.concatenate([played["away_team"].map(index).to_numpy(), remaining["away_team"].map(index).to_numpy()]).astype(int)
+    played_home_goals = played["home_goals"].to_numpy(dtype=float)
+    played_away_goals = played["away_goals"].to_numpy(dtype=float)
+    order = np.empty((n_sims, n_teams), dtype=int)
+    for s in range(n_sims):
+        order[s] = order_teams(
+            points[s], gf[s] - ga[s], gf[s], home_idx, away_idx,
+            np.concatenate([played_home_goals, sim_home_goals[s]]), np.concatenate([played_away_goals, sim_away_goals[s]]),
+            rng=rng, playoffs=True,
+        )  # fmt: skip
     positions = np.empty_like(order)
     rows = np.arange(n_sims)[:, None]
     positions[rows, order] = np.arange(n_teams)  # 0 = champions

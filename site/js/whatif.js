@@ -42,11 +42,52 @@ function poisson(mean, rand) {
 
 const outcomeOf = (home, away) => (home > away ? "H" : home === away ? "D" : "A");
 
+/**
+ * League order, best first, by Serie A's rules (same as pipeline/tiebreak.py): points, then for
+ * teams level on points their head-to-head points and goal difference, then overall goal
+ * difference, goals scored, and lots. A two-team tie for first place or across the relegation
+ * line is a play-off, settled here by a coin toss (`coin`).
+ * matchHome/matchAway/matchHG/matchAG list every match of the season (played and simulated).
+ */
+function orderTeams(n, points, gf, ga, lots, matchHome, matchAway, matchHG, matchAG, coin) {
+  const order = [...Array(n).keys()].sort((x, y) =>
+    points[y] - points[x] || (gf[y] - ga[y]) - (gf[x] - ga[x]) || gf[y] - gf[x] || lots[y] - lots[x]);
+  const ranked = [];
+  const safePlaces = n - 3;
+  for (let i = 0; i < n;) {
+    let j = i;
+    while (j + 1 < n && points[order[j + 1]] === points[order[i]]) j++;
+    const group = order.slice(i, j + 1);
+    if (group.length > 1) {
+      const inGroup = new Set(group);
+      const h2hPoints = new Array(n).fill(0), h2hGd = new Array(n).fill(0);
+      for (let k = 0; k < matchHome.length; k++) {
+        const h = matchHome[k], a = matchAway[k];
+        if (!inGroup.has(h) || !inGroup.has(a)) continue;
+        const hg = matchHG[k], ag = matchAG[k];
+        h2hGd[h] += hg - ag;
+        h2hGd[a] += ag - hg;
+        if (hg > ag) h2hPoints[h] += 3;
+        else if (hg < ag) h2hPoints[a] += 3;
+        else { h2hPoints[h] += 1; h2hPoints[a] += 1; }
+      }
+      group.sort((x, y) => h2hPoints[y] - h2hPoints[x] || h2hGd[y] - h2hGd[x]
+        || (gf[y] - ga[y]) - (gf[x] - ga[x]) || gf[y] - gf[x] || lots[y] - lots[x]);
+      const crossesLine = i === 0 || (i < safePlaces && safePlaces <= j);
+      if (group.length === 2 && crossesLine && coin() < 0.5) group.reverse(); // the play-off
+    }
+    ranked.push(...group);
+    i = j + 1;
+  }
+  return ranked;
+}
+
 // ---------- The simulation ----------
 
 /**
  * Simulate the rest of the season.
  * teams: names; table: current rows {team, points, goals_for, goals_against};
+ * played: this season's results [{home, away, homeGoals, awayGoals}] (for head-to-head tie-breaks);
  * fixtures: [{id, home, away, lam, mu}]; picks: {id: "H" | "D" | "A"}; sd: strength uncertainty.
  * Returns {team: {title, top4, europe, relegation, expPoints}}.
  *
@@ -54,7 +95,7 @@ const outcomeOf = (home, away) => (home > away ? "H" : home === away ? "D" : "A"
  * that comes out differently is redrawn from a separate stream), so comparing "with picks"
  * against "without picks" shows the effect of the picks, not random noise.
  */
-export function simulate({ teams, table, fixtures, picks, sd, nSims = N_SIMS }) {
+export function simulate({ teams, table, played = [], fixtures, picks, sd, nSims = N_SIMS }) {
   const n = teams.length;
   const index = Object.fromEntries(teams.map((t, i) => [t, i]));
   const base = { points: new Array(n).fill(0), gf: new Array(n).fill(0), ga: new Array(n).fill(0) };
@@ -71,8 +112,15 @@ export function simulate({ teams, table, fixtures, picks, sd, nSims = N_SIMS }) 
   const counts = { title: new Array(n).fill(0), top4: new Array(n).fill(0), europe: new Array(n).fill(0), relegation: new Array(n).fill(0), points: new Array(n).fill(0) };
   const rand = seededRandom(SEED);
   const redraw = seededRandom(SEED + 1); // only used to redraw picked matches
+  const coin = seededRandom(SEED + 2); // only used for play-offs
   const points = new Array(n), gf = new Array(n), ga = new Array(n), shock = new Array(n), tiebreak = new Array(n);
-  const order = teams.map((_, i) => i);
+
+  // Every match of the season, for head-to-head: played results first, then this simulation's scores
+  const P = played.length, F = fixtures.length;
+  const matchHome = [...played.map((m) => index[m.home]), ...home];
+  const matchAway = [...played.map((m) => index[m.away]), ...away];
+  const matchHG = [...played.map((m) => m.homeGoals), ...new Array(F).fill(0)];
+  const matchAG = [...played.map((m) => m.awayGoals), ...new Array(F).fill(0)];
 
   for (let s = 0; s < nSims; s++) {
     for (let i = 0; i < n; i++) {
@@ -97,12 +145,14 @@ export function simulate({ teams, table, fixtures, picks, sd, nSims = N_SIMS }) 
         if (outcomeOf(hg, ag) !== pick[f]) [hg, ag] = pick[f] === "H" ? [1, 0] : pick[f] === "A" ? [0, 1] : [1, 1];
       }
       gf[h] += hg; ga[h] += ag; gf[a] += ag; ga[a] += hg;
+      matchHG[P + f] = hg;
+      matchAG[P + f] = ag;
       if (hg > ag) points[h] += 3;
       else if (hg < ag) points[a] += 3;
       else { points[h] += 1; points[a] += 1; }
     }
     for (let i = 0; i < n; i++) tiebreak[i] = rand();
-    order.sort((x, y) => points[y] - points[x] || (gf[y] - ga[y]) - (gf[x] - ga[x]) || gf[y] - gf[x] || tiebreak[y] - tiebreak[x]);
+    const order = orderTeams(n, points, gf, ga, tiebreak, matchHome, matchAway, matchHG, matchAG, coin);
     order.forEach((t, place) => {
       if (place === 0) counts.title[t]++;
       if (place < 4) counts.top4[t]++;
@@ -125,8 +175,10 @@ export function setUpWhatIf({ matches, table, simulation }) {
   const upcoming = matches.filter((m) => m.status === "upcoming" && m.dc_xg_home !== null);
   const fixtures = upcoming.map((m) => ({ id: m.match_id, home: m.home_team, away: m.away_team, lam: m.dc_xg_home, mu: m.dc_xg_away }));
   const teams = [...new Set([...table.map((r) => r.team), ...matches.flatMap((m) => [m.home_team, m.away_team])])];
+  const played = matches.filter((m) => m.status === "played")
+    .map((m) => ({ home: m.home_team, away: m.away_team, homeGoals: m.home_goals, awayGoals: m.away_goals }));
   const picks = {};
-  const run = () => simulate({ teams, table, fixtures, picks, sd: simulation.strength_sd });
+  const run = () => simulate({ teams, table, played, fixtures, picks, sd: simulation.strength_sd });
 
   const baseline = run(); // no picks: the model decides every match
   renderPicker(upcoming, picks, () => update());

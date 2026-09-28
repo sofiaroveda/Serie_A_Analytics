@@ -54,7 +54,7 @@
    "away_xg": 1.23
   },
   "scorers": null,
-  "report": "Inter thrashed Monza 4–1. It went to form: our model made Inter favourites at 85%. Inter had 13 shots (5 on target) to Monza's 7 (3). After the round, Inter's title chance went from 54% to 53%, and Monza's relegation chance from 66% to 67%."
+  "report": "Inter thrashed Monza 4–1. It went to form: our model made Inter favourites at 85%. Inter had 13 shots (5 on target) to Monza's 7 (3). After the round, Monza's relegation chance went from 65% to 66%."
  },
  "2026-08-22_Udinese_Como": {
   "h2h": [
@@ -218,7 +218,7 @@
    "away_xg": 0.94
   },
   "scorers": null,
-  "report": "Cagliari edged past Parma 1–0 away from home. Not what we expected: our model had Parma as favourites (36%). Parma had 13 shots (2 on target) to Cagliari's 14 (5). After the round, Parma's relegation chance went from 22% to 25%, and Cagliari's from 18% to 10%."
+  "report": "Cagliari edged past Parma 1–0 away from home. Not what we expected: our model had Parma as favourites (36%). Parma had 13 shots (2 on target) to Cagliari's 14 (5). After the round, Parma's relegation chance went from 22% to 26%, and Cagliari's from 18% to 10%."
  },
  "2026-08-23_Frosinone_Juventus": {
   "h2h": [
@@ -275,7 +275,7 @@
    "away_xg": 2.18
   },
   "scorers": null,
-  "report": "Juventus edged past Frosinone 1–0 away from home. It went to form: our model made Juventus favourites at 66%. Frosinone had 11 shots (2 on target) to Juventus's 20 (5). A deserved win on the chances created (expected goals: Frosinone 0.4, Juventus 2.2). After the round, Frosinone's relegation chance went from 57% to 56%, and Juventus's title chance from 8% to 7%."
+  "report": "Juventus edged past Frosinone 1–0 away from home. It went to form: our model made Juventus favourites at 66%. Frosinone had 11 shots (2 on target) to Juventus's 20 (5). A deserved win on the chances created (expected goals: Frosinone 0.4, Juventus 2.2). After the round, Frosinone's relegation chance went from 57% to 55%, and Juventus's title chance from 8% to 7%."
  },
  "2026-08-23_Venezia_Lecce": {
   "h2h": [
@@ -482,7 +482,7 @@
    "away_xg": 0.63
   },
   "scorers": null,
-  "report": "Lazio edged past Bologna 1–0 away from home. Not what we expected: our model had Bologna as favourites (40%). Bologna had 14 shots (5 on target) to Lazio's 10 (3). Lazio won despite creating less (expected goals: Bologna 1.8, Lazio 0.6). After the round, Bologna's top-4 chance went from 12% to 6%, and Lazio's from 9% to 12%."
+  "report": "Lazio edged past Bologna 1–0 away from home. Not what we expected: our model had Bologna as favourites (40%). Bologna had 14 shots (5 on target) to Lazio's 10 (3). Lazio won despite creating less (expected goals: Bologna 1.8, Lazio 0.6). After the round, Bologna's top-4 chance went from 12% to 7%, and Lazio's from 9% to 12%."
  },
  "2026-08-24_Roma_Fiorentina": {
   "h2h": [
@@ -539,7 +539,7 @@
    "away_xg": 0.28
   },
   "scorers": null,
-  "report": "Roma thrashed Fiorentina 4–0. It went to form: our model made Roma favourites at 54%. Roma had 17 shots (8 on target) to Fiorentina's 9 (4). A deserved win on the chances created (expected goals: Roma 2.8, Fiorentina 0.3). After the round, Roma's title chance went from 10% to 14%."
+  "report": "Roma thrashed Fiorentina 4–0. It went to form: our model made Roma favourites at 54%. Roma had 17 shots (8 on target) to Fiorentina's 9 (4). A deserved win on the chances created (expected goals: Roma 2.8, Fiorentina 0.3). After the round, Roma's title chance went from 11% to 14%."
  },
  "2026-08-28_Milan_Venezia": {
   "h2h": [
@@ -646,7 +646,7 @@
    "away_xg": 1.09
   },
   "scorers": null,
-  "report": "Frosinone stunned Fiorentina 3–0 away from home. A real upset: our model gave Frosinone only a 19% chance. Fiorentina had 25 shots (4 on target) to Frosinone's 12 (6). Frosinone won despite creating less (expected goals: Fiorentina 1.9, Frosinone 1.1). After the round, Frosinone's relegation chance went from 56% to 11%."
+  "report": "Frosinone stunned Fiorentina 3–0 away from home. A real upset: our model gave Frosinone only a 19% chance. Fiorentina had 25 shots (4 on target) to Frosinone's 12 (6). Frosinone won despite creating less (expected goals: Fiorentina 1.9, Frosinone 1.1). After the round, Frosinone's relegation chance went from 55% to 11%."
  },
  "2026-08-29_Monza_Udinese": {
   "h2h": [
@@ -703,7 +703,7 @@
    "away_xg": 0.89
   },
   "scorers": null,
-  "report": "Udinese edged past Monza 3–2 away from home. It went to form: our model made Udinese favourites at 51%. Monza had 15 shots (5 on target) to Udinese's 12 (5). Udinese won despite creating less (expected goals: Monza 1.6, Udinese 0.9). After the round, Monza's relegation chance went from 67% to 72%."
+  "report": "Udinese edged past Monza 3–2 away from home. It went to form: our model made Udinese favourites at 51%. Monza had 15 shots (5 on target) to Udinese's 12 (5). Udinese won despite creating less (expected goals: Monza 1.6, Udinese 0.9). After the round, Monza's relegation chance went from 66% to 71%."
  },
  "2026-08-29_Sassuolo_Torino": {
   "h2h": [
@@ -760,7 +760,7 @@
    "away_xg": 1.26
   },
   "scorers": null,
-  "report": "Sassuolo edged past Torino 2–1. It went to form: our model made Sassuolo narrow favourites at 43%. Sassuolo had 19 shots (7 on target) to Torino's 10 (4). After the round, Torino's relegation chance went from 16% to 21%."
+  "report": "Sassuolo edged past Torino 2–1. It went to form: our model made Sassuolo narrow favourites at 43%. Sassuolo had 19 shots (7 on target) to Torino's 10 (4). After the round, Torino's relegation chance went from 16% to 22%."
  },
  "2026-08-29_Juventus_Parma": {
   "h2h": [
@@ -817,7 +817,7 @@
    "away_xg": 0.22
   },
   "scorers": null,
-  "report": "Juventus beat Parma 2–0. It went to form: our model made Juventus favourites at 60%. Juventus had 21 shots (6 on target) to Parma's 4 (3). A deserved win on the chances created (expected goals: Juventus 1.7, Parma 0.2). After the round, Juventus's title chance went from 7% to 8%, and Parma's relegation chance from 25% to 33%."
+  "report": "Juventus beat Parma 2–0. It went to form: our model made Juventus favourites at 60%. Juventus had 21 shots (6 on target) to Parma's 4 (3). A deserved win on the chances created (expected goals: Juventus 1.7, Parma 0.2). After the round, Juventus's title chance went from 7% to 8%, and Parma's relegation chance from 26% to 33%."
  },
  "2026-08-30_Napoli_Como": {
   "h2h": [
@@ -924,7 +924,7 @@
    "away_xg": 3.91
   },
   "scorers": null,
-  "report": "Inter edged past Cagliari 1–0 away from home. It went to form: our model made Inter favourites at 69%. Cagliari had 10 shots (0 on target) to Inter's 31 (7). A deserved win on the chances created (expected goals: Cagliari 0.5, Inter 3.9). After the round, Cagliari's relegation chance went from 10% to 12%, and Inter's title chance from 53% to 51%."
+  "report": "Inter edged past Cagliari 1–0 away from home. It went to form: our model made Inter favourites at 69%. Cagliari had 10 shots (0 on target) to Inter's 31 (7). A deserved win on the chances created (expected goals: Cagliari 0.5, Inter 3.9). After the round, Cagliari's relegation chance went from 10% to 12%, and Inter's title chance from 53% to 50%."
  },
  "2026-08-30_Lazio_Genoa": {
   "h2h": [
@@ -981,7 +981,7 @@
    "away_xg": 0.58
   },
   "scorers": null,
-  "report": "Lazio edged past Genoa 1–0. It went to form: our model made Lazio favourites at 47%. Lazio had 15 shots (2 on target) to Genoa's 8 (1). After the round, Genoa's relegation chance went from 11% to 15%."
+  "report": "Lazio edged past Genoa 1–0. It went to form: our model made Lazio favourites at 47%. Lazio had 15 shots (2 on target) to Genoa's 8 (1). After the round, Lazio's top-4 chance went from 12% to 13%, and Genoa's relegation chance from 11% to 15%."
  },
  "2026-08-31_Lecce_Roma": {
   "h2h": [
@@ -1038,7 +1038,7 @@
    "away_xg": 3.26
   },
   "scorers": null,
-  "report": "Roma thrashed Lecce 4–0 away from home. It went to form: our model made Roma favourites at 61%. Lecce had 7 shots (3 on target) to Roma's 15 (8). A deserved win on the chances created (expected goals: Lecce 0.8, Roma 3.3). After the round, Lecce's relegation chance went from 24% to 36%, and Roma's title chance from 14% to 18%."
+  "report": "Roma thrashed Lecce 4–0 away from home. It went to form: our model made Roma favourites at 61%. Lecce had 7 shots (3 on target) to Roma's 15 (8). A deserved win on the chances created (expected goals: Lecce 0.8, Roma 3.3). After the round, Lecce's relegation chance went from 24% to 35%, and Roma's title chance from 14% to 18%."
  },
  "2026-08-31_Atalanta_Bologna": {
   "h2h": [
@@ -1202,7 +1202,7 @@
    "away_xg": 0.58
   },
   "scorers": null,
-  "report": "Torino edged past Fiorentina 2–1 away from home. Not what we expected: our model had Fiorentina as favourites (45%). Fiorentina had 14 shots (6 on target) to Torino's 7 (4). Torino won despite creating less (expected goals: Fiorentina 1.7, Torino 0.6). After the round, Fiorentina's relegation chance went from 9% to 12%, and Torino's from 21% to 13%."
+  "report": "Torino edged past Fiorentina 2–1 away from home. Not what we expected: our model had Fiorentina as favourites (45%). Fiorentina had 14 shots (6 on target) to Torino's 7 (4). Torino won despite creating less (expected goals: Fiorentina 1.7, Torino 0.6). After the round, Fiorentina's relegation chance went from 9% to 12%, and Torino's from 22% to 13%."
  },
  "2026-09-05_Inter_Napoli": {
   "h2h": [
@@ -1259,7 +1259,7 @@
    "away_xg": 2.44
   },
   "scorers": null,
-  "report": "Inter edged past Napoli 3–2. It went to form: our model made Inter favourites at 52%. Inter had 29 shots (8 on target) to Napoli's 16 (7). A deserved win on the chances created (expected goals: Inter 3.9, Napoli 2.4). After the round, Inter's title chance went from 51% to 54%, and Napoli's top-4 chance from 37% to 31%."
+  "report": "Inter edged past Napoli 3–2. It went to form: our model made Inter favourites at 52%. Inter had 29 shots (8 on target) to Napoli's 16 (7). A deserved win on the chances created (expected goals: Inter 3.9, Napoli 2.4). After the round, Inter's title chance went from 50% to 53%, and Napoli's top-4 chance from 37% to 30%."
  },
  "2026-09-05_Roma_Atalanta": {
   "h2h": [
@@ -1373,7 +1373,7 @@
    "away_xg": 1.72
   },
   "scorers": null,
-  "report": "Parma and Monza drew 1–1. Parma were favourites (46%) but couldn't find a winner. Parma had 7 shots (3 on target) to Monza's 16 (5). Monza will feel they deserved more (expected goals: Parma 0.7, Monza 1.7). After the round, Parma's relegation chance went from 33% to 35%, and Monza's from 72% to 71%."
+  "report": "Parma and Monza drew 1–1. Parma were favourites (46%) but couldn't find a winner. Parma had 7 shots (3 on target) to Monza's 16 (5). Monza will feel they deserved more (expected goals: Parma 0.7, Monza 1.7). After the round, Parma's relegation chance went from 33% to 36%, and Monza's from 71% to 70%."
  },
  "2026-09-06_Bologna_Sassuolo": {
   "h2h": [
@@ -1544,7 +1544,7 @@
    "away_xg": 0.41
   },
   "scorers": null,
-  "report": "Cagliari edged past Lecce 1–0. It went to form: our model made Cagliari narrow favourites at 44%. Cagliari had 20 shots (9 on target) to Lecce's 10 (3). After the round, Cagliari's relegation chance went from 12% to 8%, and Lecce's from 36% to 40%."
+  "report": "Cagliari edged past Lecce 1–0. It went to form: our model made Cagliari narrow favourites at 44%. Cagliari had 20 shots (9 on target) to Lecce's 10 (3). After the round, Cagliari's relegation chance went from 12% to 8%, and Lecce's from 35% to 40%."
  },
  "2026-09-07_Udinese_Lazio": {
   "h2h": [
@@ -1601,7 +1601,7 @@
    "away_xg": 1.88
   },
   "scorers": null,
-  "report": "Lazio edged past Udinese 2–1 away from home. It went to form: our model made Lazio narrow favourites at 39%. Udinese had 10 shots (6 on target) to Lazio's 19 (6). A deserved win on the chances created (expected goals: Udinese 0.8, Lazio 1.9). After the round, Lazio's top-4 chance went from 12% to 16%."
+  "report": "Lazio edged past Udinese 2–1 away from home. It went to form: our model made Lazio narrow favourites at 39%. Udinese had 10 shots (6 on target) to Lazio's 19 (6). A deserved win on the chances created (expected goals: Udinese 0.8, Lazio 1.9). After the round, Lazio's top-4 chance went from 13% to 16%."
  },
  "2026-09-11_Venezia_Fiorentina": {
   "h2h": [
@@ -1708,7 +1708,7 @@
    "away_xg": 1.93
   },
   "scorers": null,
-  "report": "Genoa and Frosinone drew 1–1. Genoa were favourites (38%) but couldn't find a winner. Genoa had 17 shots (5 on target) to Frosinone's 26 (6). Genoa finished with ten men. After the round, Genoa's relegation chance went from 20% to 21%."
+  "report": "Genoa and Frosinone drew 1–1. Genoa were favourites (38%) but couldn't find a winner. Genoa had 17 shots (5 on target) to Frosinone's 26 (6). Genoa finished with ten men. After the round, Genoa's relegation chance went from 20% to 22%."
  },
  "2026-09-12_Lazio_Milan": {
   "h2h": [
@@ -1765,7 +1765,7 @@
    "away_xg": 1.25
   },
   "scorers": null,
-  "report": "Lazio and Milan drew 2–2. Milan were favourites (39%) but couldn't find a winner. Lazio had 8 shots (6 on target) to Milan's 16 (7). After the round, Milan's top-4 chance went from 30% to 27%."
+  "report": "Lazio and Milan drew 2–2. Milan were favourites (39%) but couldn't find a winner. Lazio had 8 shots (6 on target) to Milan's 16 (7). After the round, Milan's top-4 chance went from 30% to 28%."
  },
  "2026-09-12_Atalanta_Cagliari": {
   "h2h": [
@@ -1879,7 +1879,7 @@
    "away_xg": 2.47
   },
   "scorers": null,
-  "report": "Lecce edged past Monza 3–2. It went to form: our model made Lecce narrow favourites at 41%. Lecce had 7 shots (3 on target) to Monza's 19 (11). Lecce won despite creating less (expected goals: Lecce 1.1, Monza 2.5). After the round, Lecce's relegation chance went from 40% to 31%, and Monza's from 71% to 75%."
+  "report": "Lecce edged past Monza 3–2. It went to form: our model made Lecce narrow favourites at 41%. Lecce had 7 shots (3 on target) to Monza's 19 (11). Lecce won despite creating less (expected goals: Lecce 1.1, Monza 2.5). After the round, Lecce's relegation chance went from 40% to 30%, and Monza's from 70% to 75%."
  },
  "2026-09-13_Napoli_Bologna": {
   "h2h": [
@@ -1936,7 +1936,7 @@
    "away_xg": 0.3
   },
   "scorers": null,
-  "report": "Napoli edged past Bologna 1–0. It went to form: our model made Napoli favourites at 50%. Napoli had 14 shots (3 on target) to Bologna's 5 (2). After the round, Napoli's top-4 chance went from 31% to 39%."
+  "report": "Napoli edged past Bologna 1–0. It went to form: our model made Napoli favourites at 50%. Napoli had 14 shots (3 on target) to Bologna's 5 (2). After the round, Napoli's top-4 chance went from 30% to 38%."
  },
  "2026-09-13_Sassuolo_Juventus": {
   "h2h": [
@@ -2043,7 +2043,7 @@
    "away_xg": 1.22
   },
   "scorers": null,
-  "report": "Como edged past Parma 2–1. It went to form: our model made Como favourites at 64%. Como had 29 shots (7 on target) to Parma's 12 (4). A deserved win on the chances created (expected goals: Como 3.2, Parma 1.2). After the round, Como's title chance went from 10% to 11%, and Parma's relegation chance from 35% to 37%."
+  "report": "Como edged past Parma 2–1. It went to form: our model made Como favourites at 64%. Como had 29 shots (7 on target) to Parma's 12 (4). A deserved win on the chances created (expected goals: Como 3.2, Parma 1.2). After the round, Como's title chance went from 10% to 11%, and Parma's relegation chance from 36% to 38%."
  },
  "2026-09-14_Torino_Roma": {
   "h2h": [
@@ -2157,7 +2157,7 @@
    "away_xg": 0.9
   },
   "scorers": null,
-  "report": "Inter beat Udinese 5–3. It went to form: our model made Inter favourites at 71%. Inter had 27 shots (12 on target) to Udinese's 6 (5). A deserved win on the chances created (expected goals: Inter 3.1, Udinese 0.9). After the round, Inter's title chance went from 54% to 55%."
+  "report": "Inter beat Udinese 5–3. It went to form: our model made Inter favourites at 71%. Inter had 27 shots (12 on target) to Udinese's 6 (5). A deserved win on the chances created (expected goals: Inter 3.1, Udinese 0.9). After the round, Inter's title chance went from 53% to 55%."
  },
  "2026-09-18_Monza_Sassuolo": {
   "h2h": [
@@ -2321,7 +2321,7 @@
    "away_xg": 1.12
   },
   "scorers": null,
-  "report": "Cagliari edged past Udinese 1–0 away from home. Not what we expected: our model had Udinese as favourites (42%). Udinese had 26 shots (5 on target) to Cagliari's 5 (2). Cagliari won despite creating less (expected goals: Udinese 2.1, Cagliari 1.1). After the round, Udinese's relegation chance went from 6% to 10%."
+  "report": "Cagliari edged past Udinese 1–0 away from home. Not what we expected: our model had Udinese as favourites (42%). Udinese had 26 shots (5 on target) to Cagliari's 5 (2). Cagliari won despite creating less (expected goals: Udinese 2.1, Cagliari 1.1). After the round, Udinese's relegation chance went from 6% to 11%."
  },
  "2026-09-19_Roma_Inter": {
   "h2h": [
@@ -2378,7 +2378,7 @@
    "away_xg": 2.37
   },
   "scorers": null,
-  "report": "Roma and Inter drew 2–2. Inter were favourites (39%) but couldn't find a winner. Roma had 18 shots (4 on target) to Inter's 16 (5). After the round, Inter's title chance went from 55% to 56%."
+  "report": "Roma and Inter drew 2–2. Inter were favourites (39%) but couldn't find a winner. Roma had 18 shots (4 on target) to Inter's 16 (5)."
  },
  "2026-09-19_Venezia_Lazio": {
   "h2h": [
@@ -2428,7 +2428,7 @@
    "away_xg": 1.6
   },
   "scorers": null,
-  "report": "Lazio beat Venezia 2–0 away from home. It went to form: our model made Lazio favourites at 60%. Venezia had 17 shots (6 on target) to Lazio's 12 (2). After the round, Venezia's relegation chance went from 86% to 91%, and Lazio's top-4 chance from 16% to 20%."
+  "report": "Lazio beat Venezia 2–0 away from home. It went to form: our model made Lazio favourites at 60%. Venezia had 17 shots (6 on target) to Lazio's 12 (2). After the round, Venezia's relegation chance went from 86% to 91%, and Lazio's top-4 chance from 16% to 21%."
  },
  "2026-09-20_Fiorentina_Napoli": {
   "h2h": [
@@ -2485,7 +2485,7 @@
    "away_xg": 1.4
   },
   "scorers": null,
-  "report": "Fiorentina and Napoli drew 1–1. Napoli were favourites (50%) but couldn't find a winner. Fiorentina had 17 shots (4 on target) to Napoli's 13 (5). After the round, Napoli's top-4 chance went from 39% to 33%."
+  "report": "Fiorentina and Napoli drew 1–1. Napoli were favourites (50%) but couldn't find a winner. Fiorentina had 17 shots (4 on target) to Napoli's 13 (5). After the round, Napoli's top-4 chance went from 38% to 33%."
  },
  "2026-09-20_Frosinone_Como": {
   "h2h": [],
@@ -2506,7 +2506,7 @@
    "away_xg": 2.12
   },
   "scorers": null,
-  "report": "Frosinone stunned Como 2–0. A real upset: our model gave Frosinone only a 19% chance. Frosinone had 22 shots (6 on target) to Como's 27 (8). After the round, Como's title chance went from 11% to 6%."
+  "report": "Frosinone stunned Como 2–0. A real upset: our model gave Frosinone only a 19% chance. Frosinone had 22 shots (6 on target) to Como's 27 (8). After the round, Como's title chance went from 11% to 7%."
  },
  "2026-09-20_Parma_Genoa": {
   "h2h": [
@@ -2563,7 +2563,7 @@
    "away_xg": 0.7
   },
   "scorers": null,
-  "report": "Parma edged past Genoa 2–1. Not what we expected: our model had Genoa as favourites (36%). Parma had 5 shots (2 on target) to Genoa's 12 (5). After the round, Parma's relegation chance went from 37% to 28%, and Genoa's from 21% to 28%."
+  "report": "Parma edged past Genoa 2–1. Not what we expected: our model had Genoa as favourites (36%). Parma had 5 shots (2 on target) to Genoa's 12 (5). After the round, Parma's relegation chance went from 38% to 29%, and Genoa's from 22% to 28%."
  },
  "2026-09-20_Juventus_Atalanta": {
   "h2h": [
@@ -2677,7 +2677,7 @@
    "away_xg": 0.21
   },
   "scorers": null,
-  "report": "Milan thrashed Lecce 3–0. It went to form: our model made Milan favourites at 61%. Milan had 10 shots (4 on target) to Lecce's 6 (3). A deserved win on the chances created (expected goals: Milan 2.2, Lecce 0.2). After the round, Milan's top-4 chance went from 27% to 36%, and Lecce's relegation chance from 31% to 41%."
+  "report": "Milan thrashed Lecce 3–0. It went to form: our model made Milan favourites at 61%. Milan had 10 shots (4 on target) to Lecce's 6 (3). A deserved win on the chances created (expected goals: Milan 2.2, Lecce 0.2). After the round, Milan's top-4 chance went from 28% to 36%, and Lecce's relegation chance from 30% to 40%."
  },
  "2026-10-10_Genoa_Fiorentina": {
   "h2h": [

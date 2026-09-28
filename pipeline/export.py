@@ -15,6 +15,7 @@ from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_mar
 from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
 from pipeline.scorers import scorers_by_match
+from pipeline.tiebreak import order_teams
 
 SITE_DATA_DIR = ROOT / "site" / "data"
 
@@ -43,8 +44,9 @@ SOURCE_LABELS = {
 def league_table(matches: pd.DataFrame) -> pd.DataFrame:
     """Standings from results: 3 points for a win, 1 for a draw.
 
-    Ties are broken by goal difference, then goals scored (Serie A actually uses
-    head-to-head first, which we can add later).
+    Teams level on points are ordered by Serie A's rules (pipeline/tiebreak.py):
+    head-to-head points, head-to-head goal difference, goal difference, goals
+    scored, then alphabetically (standing in for drawing lots).
     """
     home = pd.DataFrame({
         "team": matches["home_team"], "gf": matches["home_goals"], "ga": matches["away_goals"],
@@ -63,9 +65,15 @@ def league_table(matches: pd.DataFrame) -> pd.DataFrame:
     )  # fmt: skip
     table["goal_diff"] = table["goals_for"] - table["goals_against"]
     table["points"] = 3 * table["won"] + table["drawn"]
-    table = table.reset_index().sort_values(
-        ["points", "goal_diff", "goals_for", "team"], ascending=[False, False, False, True]
-    )
+    table = table.reset_index().sort_values("team").reset_index(drop=True)  # alphabetical = last resort
+
+    index = {team: i for i, team in enumerate(table["team"])}
+    order = order_teams(
+        table["points"].to_numpy(), table["goal_diff"].to_numpy(), table["goals_for"].to_numpy(),
+        matches["home_team"].map(index).to_numpy(), matches["away_team"].map(index).to_numpy(),
+        matches["home_goals"].to_numpy(dtype=float), matches["away_goals"].to_numpy(dtype=float),
+    )  # fmt: skip
+    table = table.iloc[order]
     table.insert(0, "position", range(1, len(table) + 1))
     return table.reset_index(drop=True)
 
