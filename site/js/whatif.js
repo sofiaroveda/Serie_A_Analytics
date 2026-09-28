@@ -212,7 +212,7 @@ function renderSummary(baseline, scenario, nPicks) {
   const byDrop = Object.keys(scenario).sort((a, b) => scenario[b].relegation - scenario[a].relegation);
   const item = (team, key, goodIfUp) => {
     const span = el("span", "summary-item", `${team} ${price(scenario[team][key])} `);
-    if (Math.abs(scenario[team][key] - baseline[team][key]) >= 0.005) span.append(changeBadge(scenario[team][key] - baseline[team][key], goodIfUp));
+    span.append(changeBadge(baseline[team][key], scenario[team][key], goodIfUp, "because of your picks"));
     return span;
   };
   bar.replaceChildren(
@@ -236,7 +236,9 @@ function renderResults(container, baseline, scenario, nPicks) {
     row.append(el("td", "pos", i + 1), name, el("td", "pts", Math.round(now.expPoints)));
     for (const [key, goodIfUp] of [["title", true], ["top4", true], ["relegation", false]]) {
       const cell = el("td", "whatif-cell", price(now[key]));
-      if (nPicks && Math.abs(now[key] - before[key]) >= 0.005) cell.append(changeBadge(now[key] - before[key], goodIfUp));
+      if (nPicks && Math.round(now[key] * 100) !== Math.round(before[key] * 100)) {
+        cell.append(changeBadge(before[key], now[key], goodIfUp, "because of your picks"));
+      }
       row.append(cell);
     }
     body.append(row);

@@ -22,7 +22,7 @@ function renderMovers(metric) {
     const icon = el("span", "point-icon", delta > 0 ? "📈" : "📉");
     icon.setAttribute("aria-hidden", "true");
     const headline = el("div", "point-headline");
-    headline.append(team, " ", changeBadge(delta, m.goodIfUp));
+    headline.append(team, " ", changeBadge(prev.teams[team]?.[m.key] ?? 0, last.teams[team][m.key], m.goodIfUp));
     card.append(icon, el("div", "point-kicker", `${kicker} · ${m.label}`), headline,
       el("div", "point-detail", `${price(prev.teams[team]?.[m.key] ?? 0)} → ${price(last.teams[team][m.key])} since ${prev.label === "Start" ? "the start of the season" : `after ${prev.label}`}`));
     container.append(card);
@@ -46,13 +46,13 @@ function renderBoard(metric) {
     const trend = el("td", "trend");
     trend.append(sparkline(series(market, team, m.key), { colour: m.colour }));
     const change = el("td", "");
-    change.append(changeBadge(last.teams[team][m.key] - (prev.teams[team]?.[m.key] ?? 0), m.goodIfUp));
+    change.append(changeBadge(prev.teams[team]?.[m.key] ?? 0, last.teams[team][m.key], m.goodIfUp));
     row.append(el("td", "pos", i + 1), name, el("td", "pts", price(last.teams[team][m.key])), change, trend);
     body.append(row);
   });
   document.getElementById("board-note").textContent =
     `${m.label}: the ${m.long}, from ${market.n_sims.toLocaleString("en-GB")} simulated seasons after each matchday. ` +
-    `Change is in percentage points since ${prev.label === "Start" ? "the start of the season" : `after ${prev.label}`}. ` +
+    `Change: how many percentage points the chance moved since ${prev.label === "Start" ? "the start of the season" : `after ${prev.label}`} (e.g. 20% to 26% is +6%). ` +
     `Latest results: ${formatDate(last.as_of)}.`;
 }
 

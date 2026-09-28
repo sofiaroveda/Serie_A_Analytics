@@ -17,13 +17,17 @@ export function price(p) {
   return `${Math.round(p * 100)}%`;
 }
 
-/** A change in percentage points as "▲ 4" / "▼ 3" / "–", coloured by whether it's good news for the team. */
-export function changeBadge(delta, goodIfUp) {
-  const points = Math.round(delta * 100);
+/**
+ * The change between two chances as "+12%" / "−3%" / "–" (always with a % sign, so it can't be
+ * mistaken for places in the table), coloured by whether it's good news for the team.
+ * Hovering shows the full sentence, e.g. "Up 12 percentage points since the previous matchday (from 51% to 63%)".
+ */
+export function changeBadge(before, after, goodIfUp, since = "since the previous matchday") {
+  const points = Math.round(after * 100) - Math.round(before * 100); // same rounding as the % shown
   if (points === 0) return el("span", "change flat", "–");
   const good = (points > 0) === goodIfUp;
-  const badge = el("span", `change ${good ? "up" : "down"}`, `${points > 0 ? "▲" : "▼"} ${Math.abs(points)}`);
-  badge.title = `${points > 0 ? "Up" : "Down"} ${Math.abs(points)} percentage points since the previous matchday`;
+  const badge = el("span", `change ${good ? "up" : "down"}`, `${points > 0 ? "+" : "−"}${Math.abs(points)}%`);
+  badge.title = `${points > 0 ? "Up" : "Down"} ${Math.abs(points)} percentage points ${since} (from ${price(before)} to ${price(after)})`;
   return badge;
 }
 

@@ -657,3 +657,5 @@ td.whatif-cell .change { display: block; width: fit-content; margin: 2px 0 0 aut
 .summary-label { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; color: var(--neon); letter-spacing: 0.04em; }
 .summary-item { font-weight: 600; white-space: nowrap; }
 .summary-more { margin-left: auto; color: var(--on-pitch-muted); font-size: 0.8rem; }
+
+th .th-sub { display: block; font-size: 0.68rem; font-weight: 500; text-transform: none; letter-spacing: 0; white-space: nowrap; }

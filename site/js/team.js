@@ -48,7 +48,7 @@ function renderTickers(team, market) {
   for (const m of Object.values(METRICS)) {
     const box = el("div", "stat ticker");
     const value = el("div", "stat-value", price(last[m.key]));
-    if (last[m.key] > 0 || prev[m.key] > 0) value.append(" ", changeBadge(last[m.key] - prev[m.key], m.goodIfUp));
+    if (last[m.key] > 0 || prev[m.key] > 0) value.append(" ", changeBadge(prev[m.key], last[m.key], m.goodIfUp));
     box.append(el("div", "stat-label", m.label), value);
     container.append(box);
   }
@@ -97,7 +97,7 @@ function renderMoves(team, market, matches, m) {
   }
   for (const move of moves.slice(0, 4)) {
     const item = el("li");
-    item.append(changeBadge(move.delta, m.goodIfUp), el("strong", "", ` ${move.label}`),
+    item.append(changeBadge(move.before, move.after, m.goodIfUp, `after ${move.label}`), el("strong", "", ` ${move.label}`),
       `: ${price(move.before)} → ${price(move.after)}`,
       move.games.length ? ` after they ${move.games.map((g) => resultText(team, g)).join(" and ")}` : " (other results)");
     list.append(item);
