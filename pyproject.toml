@@ -12,6 +12,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest==9.1.1"]
+tools = ["pillow==12.3.0"]  # only for tools/make_share_image.py (the link-preview image)
 
 [build-system]
 requires = ["setuptools>=68"]
