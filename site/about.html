@@ -38,44 +38,64 @@
     <section class="hero">
       <div class="container">
         <h1>About</h1>
-        <p>An independent project putting honest numbers on Serie A.</p>
+        <p>An independent project putting honest numbers on Serie A, and checking them against the market.</p>
       </div>
     </section>
 
     <main class="container prose">
       <h2>What this is</h2>
       <p>
-        Serie A Analytics puts a probability on every Serie A match and checks, in public, how those predictions
-        compare with the betting market. It is an analysis project, not a betting product: there are no tips here,
+        Serie A Analytics puts a probability on every Serie A match using two models built from scratch, simulates the
+        rest of the season 10,000 times, and checks in public how the predictions compare with the betting market. The
+        site updates itself every morning. It is an analysis project, not a betting product: there are no tips here,
         and past results do not predict future ones.
       </p>
-      <p><a href="model.html">How the predictions work</a> · <a href="lab.html">Data lab</a></p>
+
+      <h2>The results so far</h2>
+      <p>
+        We replayed 12 past seasons (4,378 matches) as if we were predicting each match beforehand, using only earlier
+        results. Our main prediction picked the right result <strong>54.1%</strong> of the time, against
+        <strong>55.2%</strong> for the sharpest bookmaker and 33% for guessing. On the stricter measure we use to judge
+        forecasts, it gets about <strong>85% of the way</strong> from no skill to the bookmakers. It doesn't beat
+        them, and that's expected: they know about injuries and team news, and our models only know past results.
+      </p>
+
+      <h2>What you can do here</h2>
+      <ul>
+        <li><a href="./">Matches</a>: our prediction for every match, and after full time a short report, the goals and the stats.</li>
+        <li><a href="table.html">Table</a>: the standings, the predicted final table, and a "what if?" simulator to try your own results.</li>
+        <li><a href="market.html">Market</a>: every team's chances of the title, top 4 and relegation, tracked like share prices.</li>
+        <li><a href="model.html">How it works</a>: the methods in plain English.</li>
+        <li><a href="lab.html">Data lab</a>: our models side by side with the bookmakers, and the full test results.</li>
+      </ul>
+
+      <h2>How it's built</h2>
+      <p>
+        The models, the testing and the season simulation are written in Python. A scheduled job on GitHub downloads the
+        latest results every morning, refits the models, checks the numbers and republishes the site; if a check
+        fails, nothing is published. Before each round, our predictions are saved to a
+        <a href="https://github.com/sofiaroveda/Serie_A_Analytics/tree/main/predictions">public record</a> that can't
+        be edited afterwards. The site itself is plain HTML, CSS and JavaScript. All the code is
+        <a href="https://github.com/sofiaroveda/Serie_A_Analytics">on GitHub</a>.
+      </p>
 
       <h2>Who built it</h2>
       <p>
-        Sofia, a materials science and engineering student at Imperial College London, as a project in
-        forecasting and data analysis. The code is
-        <a href="https://github.com/sofiaroveda/Serie_A_Analytics">on GitHub</a>.
+        Sofia, a materials science and engineering student at Imperial College London, as a project in forecasting,
+        data analysis and building things that run on their own.
       </p>
 
       <h2>Data</h2>
       <p>
-        Results and betting odds come from <a href="https://www.football-data.co.uk/">football-data.co.uk</a>,
-        which generously makes them available for free. Matchday numbers and the season's fixture list come from
-        <a href="https://github.com/openfootball/football.json">openfootball</a> (public domain). Thank you to both.
+        Results, betting odds and match statistics come from <a href="https://www.football-data.co.uk/">football-data.co.uk</a>,
+        which generously makes them available for free. Matchday numbers, the fixture list and goal scorers come from
+        <a href="https://github.com/openfootball">openfootball</a> (public domain). Thank you to both.
       </p>
       <p class="muted small">
         For finished matches, the bookmakers' view uses closing odds (the last prices before kick-off): Pinnacle's
         where available, and the average across bookmakers from January 2026, when Pinnacle's odds stopped being
         published. In past seasons the two were typically within half a percentage point of each other.
       </p>
-
-      <h2>Coming soon</h2>
-      <ul>
-        <li><strong>Serie A as a stock market:</strong> each team's chances of the title, Champions League and relegation, tracked after every matchday like a share price.</li>
-        <li><strong>"What if?" simulator:</strong> pick results of upcoming matches and see the table chances change.</li>
-        <li><strong>Match pages:</strong> the chance of every scoreline.</li>
-      </ul>
 
       <p class="muted small">
         Serie A Analytics is not affiliated with, or endorsed by, Lega Serie A or any club. Team colours are shown
