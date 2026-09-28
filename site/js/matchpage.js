@@ -90,6 +90,73 @@ function statsBlock(match, stats) {
   return table;
 }
 
+// The stats we predict: key in match_details.stat_predictions, label, and the match's actual-stat key
+const PREDICTED_STATS = [
+  ["corners", "Corners", "corners"],
+  ["yellow_cards", "Yellow cards", "yellow"],
+  ["shots", "Shots", "shots"],
+  ["shots_on_target", "Shots on target", "on_target"],
+];
+
+/** Goals first (from the goals model), then corners, cards and shots, in one list of rows. */
+function statPredictionRows(match, info) {
+  const rows = [];
+  if (match.dc_xg_home !== null && match.dc_xg_home !== undefined) {
+    rows.push({ label: "Goals", home: match.dc_xg_home, away: match.dc_xg_away, line: 2.5, pOver: match.dc_over_2_5,
+      actualHome: match.home_goals, actualAway: match.away_goals });
+  }
+  for (const [key, label, actualKey] of PREDICTED_STATS) {
+    const p = info.stat_predictions?.[key];
+    if (!p) continue;
+    rows.push({ label, home: p.home, away: p.away, line: p.line, pOver: p.p_over,
+      actualHome: info.stats?.[`home_${actualKey}`], actualAway: info.stats?.[`away_${actualKey}`] });
+  }
+  return rows;
+}
+
+/** Before kick-off: what we expect for each stat. After full time: expected vs what happened. */
+function statPredictionsBlock(match, info) {
+  const played = match.status === "played";
+  const rows = statPredictionRows(match, info);
+  if (!rows.length) return el("p", "muted", "Stat predictions aren't available for this match.");
+  const table = el("table", "stat-predictions");
+  const head = el("tr");
+  const headings = played
+    ? ["", "We expected", "Actual", "Over / under"]
+    : ["", match.home_team, match.away_team, "Total", "Over / under"];
+  for (const h of headings) head.append(el("th", h ? "" : "team", h));
+  const thead = el("thead");
+  thead.append(head);
+  table.append(thead);
+  const body = el("tbody");
+  for (const r of rows) {
+    const tr = el("tr");
+    tr.append(el("td", "team", r.label));
+    const expected = `${r.home.toFixed(1)}–${r.away.toFixed(1)}`;
+    const total = r.home + r.away;
+    if (played && r.actualHome !== null && r.actualHome !== undefined) {
+      const actualTotal = r.actualHome + r.actualAway;
+      tr.append(el("td", "", `${expected} (${total.toFixed(1)})`), el("td", "pts", `${r.actualHome}–${r.actualAway} (${actualTotal})`));
+      const went = actualTotal > r.line ? "over" : "under";
+      const called = (r.pOver > 0.5) === (actualTotal > r.line);
+      const cell = el("td", `call ${called ? "good" : "bad"}`, `${called ? "✓" : "✗"} ${went} ${r.line}`);
+      cell.title = `We gave over ${r.line} a ${percent(r.pOver)} chance; there were ${actualTotal}.`;
+      tr.append(cell);
+    } else {
+      tr.append(el("td", "", r.home.toFixed(1)), el("td", "", r.away.toFixed(1)), el("td", "pts", total.toFixed(1)),
+        el("td", "", `Over ${r.line}: ${percent(r.pOver)}`));
+    }
+    body.append(tr);
+  }
+  table.append(body);
+  const wrap = el("div", "table-wrap");
+  wrap.append(table);
+  const note = el("p", "muted small", played
+    ? "\"We expected\" is our prediction made before the match (home–away, total in brackets). ✓ means we called the over / under correctly."
+    : "Expected numbers for each team. The over / under chance is for the match total.");
+  return [wrap, note];
+}
+
 function topScoresBlock(match) {
   const scores = match.dc_top_scores;
   const wrap = el("div", "top-scores");
@@ -164,11 +231,13 @@ async function main() {
         section("Goals", scorersBlock(match, info.scorers)),
         section("Our prediction", predictionBlock(match)),
         section("Match stats", statsBlock(match, info.stats ?? {})),
+        section("Predicted vs actual", ...[statPredictionsBlock(match, info)].flat()),
       );
     } else {
       main.append(
         section("Our prediction", predictionBlock(match)),
         section("Most likely scores", ...topScoresBlock(match)),
+        section("Match stats predictions", ...[statPredictionsBlock(match, info)].flat()),
         section("Form", formBlock(match, matches)),
       );
     }

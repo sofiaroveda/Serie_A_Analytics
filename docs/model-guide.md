@@ -149,6 +149,21 @@ Without the shock the simulation is overconfident (Inter 67% for the title after
 
 ---
 
+## 5b. Corners, cards and shots (`pipeline/stats_model.py`)
+
+The same log-linear team-strength model as the goals model, fitted with $\rho$ fixed at 0 (the low-score correction only makes sense for goals): for each stat, $\log E[\text{home}] = c + h + a_{\text{home}} + d_{\text{away}}$ and $\log E[\text{away}] = c + a_{\text{away}} + d_{\text{home}}$, where $a$ is "won" (e.g. corners won) and $d$ is "conceded". Time-weighted, ridge prior (0.1 for promoted teams), refitted before every match date.
+
+Over / under chances for the match total use a negative binomial with mean $m = \lambda + \mu$ and variance $m + m^2/k$; $k$ is estimated on the tuning seasons by moments, $1/k = (\overline{(y - m)^2} - \bar m)/\overline{m^2}$. Yellow cards vary *less* than Poisson (referees are consistent), so they use a Poisson.
+
+| Stat | Half-life (days) | $k$ | Our mean absolute error (total) | League-average guess | Over / under right |
+|---|---|---|---|---|---|
+| Corners | 730 | 59.2 | 2.76 | 2.79 | 57.5% (9.5) |
+| Yellow cards | 365 | Poisson | 1.60 | 1.63 | 56.5% (4.5) |
+| Shots | 180 | 110.5 | 4.40 | 4.72 | 62.9% (24.5) |
+| Shots on target | 365 | 64.6 | 2.57 | 2.61 | 58.1% (8.5) |
+
+Test seasons 2014/15 to 2025/26 (about 4,560 matches each); half-lives chosen by Poisson deviance on 2008/09 to 2013/14. **Honest reading**: the models beat the league average on every stat but only slightly, except shots; match stats are mostly noise from game to game, and cards depend on the referee, which the model doesn't know. Re-run with `python -m pipeline.stats_model` (writes `site/data/stats_backtest.json`, which the daily update does not regenerate).
+
 ## 6. How accuracy is measured (`pipeline/evaluate.py`)
 
 For a forecast $p = (p_H, p_D, p_A)$ and outcome $o$ (one-hot):

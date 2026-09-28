@@ -17,8 +17,8 @@ let allMatches = [];
 async function main() {
   enableTooltips();
   try {
-    const [summary, matches, backtest] = await Promise.all([
-      loadData("summary"), loadData("matches"), loadData("backtest"),
+    const [summary, matches, backtest, statsBacktest] = await Promise.all([
+      loadData("summary"), loadData("matches"), loadData("backtest"), loadData("stats_backtest"),
     ]);
     allMatches = matches;
     document.getElementById("updated").textContent = `Updated ${formatDate(summary.generated_at.slice(0, 10))}.`;
@@ -26,6 +26,7 @@ async function main() {
     renderScoreboard(summary);
     renderBacktest(backtest);
     renderHitRates(backtest);
+    renderStatsBacktest(statsBacktest);
   } catch (error) {
     showError(document.querySelector("main"), error);
   }
@@ -118,6 +119,27 @@ function renderScoreboard(summary) {
 }
 
 // ---------- 12 seasons of testing ----------
+
+/** Corners, cards and shots: our average miss vs always guessing the league average (lower is better). */
+function renderStatsBacktest(data) {
+  const body = document.getElementById("stats-body");
+  let matches = 0;
+  for (const s of Object.values(data.stats)) {
+    matches = Math.max(matches, s.matches);
+    const better = s.mae_model < s.mae_baseline;
+    const tr = el("tr");
+    tr.append(
+      el("td", "team", s.label),
+      el("td", better ? "pts" : "", s.mae_model.toFixed(2)),
+      el("td", better ? "" : "pts", s.mae_baseline.toFixed(2)),
+      el("td", "", `${percent(s.hit_rate_model)} (over ${s.line})`),
+    );
+    body.append(tr);
+  }
+  document.getElementById("stats-note").textContent =
+    `Test seasons ${data.seasons.replace("-", " to ")}, about ${matches.toLocaleString("en-GB")} matches per stat. ` +
+    "Bold = the more accurate of the two. Cards depend a lot on the referee, which our model doesn't know.";
+}
 
 function renderHitRates(backtest) {
   const labels = { ...backtest.forecasters, base_rates: "Always home" };

@@ -1,0 +1,57 @@
+{
+ "seasons": "2014-2025",
+ "stats": {
+  "corners": {
+   "label": "Corners",
+   "line": 9.5,
+   "matches": 4560,
+   "mae_model": 2.764,
+   "mae_baseline": 2.792,
+   "brier_model": 0.2423,
+   "brier_baseline": 0.2463,
+   "over_rate": 0.534,
+   "hit_rate_model": 0.575,
+   "half_life": 730,
+   "dispersion": 59.16832983946318
+  },
+  "yellow_cards": {
+   "label": "Yellow cards",
+   "line": 4.5,
+   "matches": 4559,
+   "mae_model": 1.596,
+   "mae_baseline": 1.627,
+   "brier_model": 0.2418,
+   "brier_baseline": 0.2487,
+   "over_rate": 0.466,
+   "hit_rate_model": 0.565,
+   "half_life": 365,
+   "dispersion": null
+  },
+  "shots": {
+   "label": "Shots",
+   "line": 24.5,
+   "matches": 4560,
+   "mae_model": 4.396,
+   "mae_baseline": 4.721,
+   "brier_model": 0.2277,
+   "brier_baseline": 0.252,
+   "over_rate": 0.473,
+   "hit_rate_model": 0.629,
+   "half_life": 180,
+   "dispersion": 110.50907796045803
+  },
+  "shots_on_target": {
+   "label": "Shots on target",
+   "line": 8.5,
+   "matches": 4560,
+   "mae_model": 2.572,
+   "mae_baseline": 2.614,
+   "brier_model": 0.2397,
+   "brier_baseline": 0.2444,
+   "over_rate": 0.539,
+   "hit_rate_model": 0.581,
+   "half_life": 365,
+   "dispersion": 64.58003061828623
+  }
+ }
+}

@@ -696,3 +696,12 @@ p.report { font-size: 1.1rem; line-height: 1.6; background: var(--surface); bord
 a.match-link { display: block; color: inherit; text-decoration: none; }
 a.match-link:hover .match { border-color: var(--accent); }
 .match-more { display: block; margin-top: 8px; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-align: right; }
+
+/* Stat predictions table on match pages */
+.stat-predictions td, .stat-predictions th { white-space: nowrap; }
+.stat-predictions td.call.good { color: var(--good); font-weight: 600; }
+.stat-predictions td.call.bad { color: var(--bad); font-weight: 600; }
+@media (max-width: 480px) {
+  .stat-predictions td, .stat-predictions th { white-space: normal; } /* wrap so the table fits a phone */
+  .stat-predictions td:first-child { min-width: 5.5em; }
+}

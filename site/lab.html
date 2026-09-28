@@ -93,6 +93,27 @@
         RPS rewards getting the probabilities right, which is why we use it to choose and compare models.
       </p>
 
+      <h2>Corners, cards and shots</h2>
+      <p>
+        We also predict each match's corners, yellow cards, shots and shots on target, tested the same way. "Average
+        miss" is how far our expected total was from the real one; "league average" is what you'd get by always
+        guessing last season's average. The last column is how often we called the over / under line correctly.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="team">Stat</th>
+              <th title="Average distance between our expected total and the real total">Our average miss</th>
+              <th title="The same, always guessing last season's league average">League average</th>
+              <th title="How often the over / under line went the way we rated more likely">Over / under right</th>
+            </tr>
+          </thead>
+          <tbody id="stats-body"></tbody>
+        </table>
+      </div>
+      <p class="muted small" id="stats-note"></p>
+
       <p class="muted small">
         Both models' settings were chosen on the 2008/09 to 2013/14 seasons, before the test period, and every
         forecast only uses results from before its match. <a href="https://github.com/sofiaroveda/Serie_A_Analytics">The code is on GitHub.</a>

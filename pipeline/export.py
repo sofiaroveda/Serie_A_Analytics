@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from pipeline.data import PROCESSED_DIR, ROOT, STAT_COLUMNS, load_team_map, make_match_ids, raw_scorers_path, season_label
-from pipeline import dixon_coles, elo, report, simulate
+from pipeline import dixon_coles, elo, report, simulate, stats_model
 from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, hit_rate, rps
 from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
@@ -359,14 +359,46 @@ def head_to_head(matches: pd.DataFrame, home: str, away: str, before: pd.Timesta
              "home_goals": int(r.home_goals), "away_goals": int(r.away_goals)} for r in pair.itertuples()]  # fmt: skip
 
 
-def match_details(matches: pd.DataFrame, site_matches: list[dict], market: dict, scorers: dict) -> dict[str, dict]:
-    """Extra detail for each match page: report, scorers, stats and head-to-head, keyed by match_id."""
+def stat_predictions(matches: pd.DataFrame, upcoming: pd.DataFrame, season: int) -> dict[str, pd.DataFrame]:
+    """Predicted corners, cards and shots for this season's matches, indexed by match_id.
+
+    Played matches get walk-forward predictions (made with only earlier results);
+    upcoming ones get the latest.
+    """
+    out = {}
+    for stat in stats_model.STATS:
+        parts = []
+        if (matches["season"] == season).any():
+            parts.append(stats_model.predict_matches(matches, stat, first_season=season))
+        if len(upcoming):
+            parts.append(stats_model.predict_fixtures(matches, upcoming, stat, season))
+        preds = pd.concat(parts) if parts else pd.DataFrame(columns=["match_id", "exp_home", "exp_away"])
+        out[stat] = stats_model.with_over(preds, stat).set_index("match_id")
+    return out
+
+
+def match_details(
+    matches: pd.DataFrame, site_matches: list[dict], market: dict, scorers: dict,
+    stat_preds: dict[str, pd.DataFrame] | None = None,
+) -> dict[str, dict]:  # fmt: skip
+    """Extra detail for each match page: report, scorers, stats, stat predictions and head-to-head."""
     stats = matches.set_index("match_id")[STAT_COLUMNS]
     checkpoints = {c["label"]: i for i, c in enumerate(market["checkpoints"])}
+    stat_preds = stat_preds or {}
     details = {}
     for m in site_matches:
         date = pd.Timestamp(m["date"])
         entry = {"h2h": head_to_head(matches, m["home_team"], m["away_team"], date)}
+        predicted = {}
+        for stat, preds in stat_preds.items():
+            if m["match_id"] in preds.index:
+                p = preds.loc[m["match_id"]]
+                predicted[stat] = {
+                    "home": round(float(p["exp_home"]), 2), "away": round(float(p["exp_away"]), 2),
+                    "line": stats_model.STATS[stat][2], "p_over": round(float(p["p_over"]), 4),
+                }  # fmt: skip
+        if predicted:
+            entry["stat_predictions"] = predicted
         if m["status"] == "played":
             row = {**m, **{k: (None if pd.isna(v) else float(v)) for k, v in stats.loc[m["match_id"]].items()}}
             goals = scorers.get((m["home_team"], m["away_team"]))
@@ -419,7 +451,9 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     # Goal scorers from openfootball, when its file is there and lists them
     scorers_file = raw_scorers_path(season)
     scorers = scorers_by_match(scorers_file.read_text(), load_team_map()) if scorers_file.exists() else {}
-    content["match_details"] = match_details(matches, content["matches"], content["market"], scorers)
+    content["match_details"] = match_details(
+        matches, content["matches"], content["market"], scorers, stat_predictions(matches, upcoming, season)
+    )
 
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, data in content.items():

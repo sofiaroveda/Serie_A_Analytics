@@ -157,12 +157,16 @@ def fit(
     promoted: set[str] = frozenset(),
     extra_teams: set[str] = frozenset(),
     start: DCFit | None = None,
+    low_score_correction: bool = True,
 ) -> DCFit:
     """Fit the model on `train` (matches before `as_of`), weighting recent matches more.
 
     `promoted` teams get a weaker-than-average prior. `extra_teams` are teams
     to include even with no matches in `train` (e.g. this season's promoted
     clubs). `start` is a previous fit to start the optimiser from (faster).
+    `low_score_correction=False` fixes rho at 0: a plain team-strength count model,
+    used for corners, cards and shots (pipeline/stats_model.py), where the
+    0-0 / 1-1 correction for goals makes no sense.
     """
     teams = tuple(sorted(set(train["home_team"]) | set(train["away_team"]) | set(extra_teams)))
     index = {team: i for i, team in enumerate(teams)}
@@ -176,15 +180,18 @@ def fit(
     prior_att = np.where(is_promoted, -params.promoted_prior, 0.0)
     prior_def = np.where(is_promoted, params.promoted_prior, 0.0)
 
-    theta0 = np.concatenate([prior_att, prior_def, [0.3, 0.25, -0.05]])
+    # Start the baseline and home advantage from the data's averages (works for goals and for corners)
+    mean_home, mean_away = max(train["home_goals"].mean(), 0.1), max(train["away_goals"].mean(), 0.1)
+    rho0 = -0.05 if low_score_correction else 0.0
+    theta0 = np.concatenate([prior_att, prior_def, [np.log(mean_away), np.log(mean_home / mean_away), rho0]])
     if start is not None:  # warm start from the previous fit where teams overlap
         old = {team: i for i, team in enumerate(start.teams)}
         for team, i in index.items():
             if team in old:
                 theta0[i], theta0[n + i] = start.attack[old[team]], start.defence[old[team]]
-        theta0[2 * n :] = [start.intercept, start.home_advantage, start.rho]
+        theta0[2 * n :] = [start.intercept, start.home_advantage, start.rho if low_score_correction else 0.0]
 
-    bounds = [(None, None)] * (2 * n + 2) + [(-0.3, 0.3)]
+    bounds = [(None, None)] * (2 * n + 2) + [(-0.3, 0.3) if low_score_correction else (0.0, 0.0)]
     result = minimize(
         _negative_log_likelihood, theta0, jac=True, method="L-BFGS-B", bounds=bounds,
         args=(home_idx, away_idx, train["home_goals"].to_numpy(), train["away_goals"].to_numpy(),
