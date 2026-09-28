@@ -87,8 +87,10 @@ def outcome_probabilities(matrix: np.ndarray) -> dict[str, float]:
     """Home/draw/away, over 2.5 goals and both-teams-to-score from a score matrix."""
     i, j = np.indices(matrix.shape)
     top_home, top_away = np.unravel_index(matrix.argmax(), matrix.shape)
+    best = np.argsort(matrix, axis=None)[::-1][:5]  # the five most likely scorelines
     return {
         "most_likely_score": f"{top_home}-{top_away}",
+        "top_scores": [[int(k // matrix.shape[1]), int(k % matrix.shape[1]), round(float(matrix.flat[k]), 4)] for k in best],
         "p_home": float(matrix[i > j].sum()),
         "p_draw": float(np.trace(matrix)),
         "p_away": float(matrix[i < j].sum()),

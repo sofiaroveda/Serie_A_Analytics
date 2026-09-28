@@ -1,7 +1,7 @@
 // Data lab: our two models side by side with the bookmakers, this season's scoreboard,
 // and the 12-season walk-forward backtest.
 import { loadData, formatDate, percent, el, probs, probabilityBar, outcomeLegend, enableTooltips, showError } from "./common.js";
-import { RESULT_TO_OUTCOME, OUTCOMES, groupByDate, matchHeader, matchdayStatus } from "./match.js";
+import { RESULT_TO_OUTCOME, OUTCOMES, groupByDate, matchHeader, matchdayStatus, matchUrl } from "./match.js";
 import { setUpStrip } from "./strip.js";
 
 // Forecasters shown for each match: key prefix in the data files and label
@@ -71,6 +71,9 @@ function comparisonCard(match) {
   if (match.dc_btts !== null) addFact("Both teams score", percent(match.dc_btts));
   if (match.odds_source) addFact("Odds", match.odds_source);
   card.append(facts);
+  const more = el("a", "match-more", "Match page →");
+  more.href = matchUrl(match);
+  card.append(more);
   return card;
 }
 

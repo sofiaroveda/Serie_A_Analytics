@@ -104,16 +104,28 @@ def check_market(market: dict, simulation: dict) -> list[str]:
     return errors
 
 
+def check_match_details(details: dict, matches: list[dict]) -> list[str]:
+    """Every match has a details entry, and every played match has a written report."""
+    errors = []
+    for m in matches:
+        entry = details.get(m["match_id"])
+        if entry is None:
+            errors.append(f"match_details: {m['match_id']} is missing")
+        elif m["status"] == "played" and not entry.get("report"):
+            errors.append(f"match_details: {m['match_id']} has no report")
+    return errors
+
+
 def check_site_data(data_dir: Path = SITE_DATA_DIR) -> list[str]:
     try:
         load = lambda name: json.loads((data_dir / f"{name}.json").read_text())  # noqa: E731
         summary, matches, table = load("summary"), load("matches"), load("table")
-        simulation, market = load("simulation"), load("market")
+        simulation, market, details = load("simulation"), load("market"), load("match_details")
         load("backtest"), load("ratings")
     except (OSError, json.JSONDecodeError) as error:
         return [f"Could not read the site data: {error}"]
     return (check_matches(matches, summary["matchdays"]) + check_table(table, matches)
-            + check_simulation(simulation) + check_market(market, simulation))  # fmt: skip
+            + check_simulation(simulation) + check_market(market, simulation) + check_match_details(details, matches))  # fmt: skip
 
 
 # ---------------------------------------------------------------------------

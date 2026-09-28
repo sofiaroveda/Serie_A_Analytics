@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Makes the page scale properly on phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Match · Serie A Analytics</title>
+    <meta name="description" content="Serie A match: report, goals, stats and our prediction." />
+    <meta name="theme-color" content="#0c1210" />
+    <!-- Fonts: Barlow (text) and Barlow Condensed (headings), a sporty, scoreboard-like family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="./">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" fill="#ffffff" />
+            <polygon points="16,10 21.7,14.1 19.5,20.9 12.5,20.9 10.3,14.1" fill="#14171a" />
+            <path d="M16 10V2.5M21.7 14.1l7-2.3M19.5 20.9l4.3 6M12.5 20.9l-4.3 6M10.3 14.1l-7-2.3" stroke="#14171a" stroke-width="1.6" fill="none" />
+          </svg>
+          Serie A Analytics
+        </a>
+        <nav class="nav">
+          <a href="./">Matches</a>
+          <a href="table.html">Table</a>
+          <a href="market.html">Market</a>
+          <a href="model.html">How it works</a>
+          <a href="lab.html">Data lab</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1 class="match-title" id="match-title"></h1>
+        <p id="match-meta"></p>
+      </div>
+    </section>
+    <main class="container" id="match-main"></main>
+
+    <footer class="site-footer">
+      <div class="container small muted">
+        Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and
+        <a href="https://github.com/openfootball/football.json">openfootball</a>.
+        An independent analysis project, not affiliated with Lega Serie A or any club. Not betting advice.
+        <span id="updated"></span>
+      </div>
+    </footer>
+    <script type="module" src="js/matchpage.js"></script>
+  </body>
+</html>

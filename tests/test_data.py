@@ -178,3 +178,11 @@ def test_schedule_cross_check_with_results():
         data.check_schedule_matches_results(schedule, results.assign(away_goals=3))
     with pytest.raises(ValueError, match="not found"):
         data.check_schedule_matches_results(schedule, results.assign(home_team="Juventus"))
+
+
+def test_match_stats_are_kept_and_missing_ones_are_blank():
+    raw = new_format_raw().assign(HS=[14], AS=[9], HST=[5], AST=[4], HC=[6], AC=[2], HF=[11], AF=[13],
+                                  HY=[2], AY=[3], HR=[0], AR=[1])  # fmt: skip
+    row = data.clean_season(raw, 2024, TEAM_MAP).iloc[0]
+    assert (row["home_shots"], row["away_on_target"], row["away_red"]) == (14, 4, 1)
+    assert np.isnan(row["home_xg"])  # xG only exists from 2026/27

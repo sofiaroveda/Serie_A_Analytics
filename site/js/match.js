@@ -1,5 +1,5 @@
 // Small helpers about matches, shared by the Matches and Data lab pages.
-import { el } from "./common.js";
+import { el, percent } from "./common.js";
 import { kitBadge } from "./teams.js";
 
 export const RESULT_TO_OUTCOME = { H: "home", D: "draw", A: "away" };
@@ -45,4 +45,43 @@ export function matchHeader(match) {
     : el("span", "kickoff", match.time ?? "TBC");
   teams.append(teamName(match.home_team, "home"), middle, teamName(match.away_team, "away"));
   return teams;
+}
+
+/** "we gave Cagliari an 18% chance of winning" / "we gave a draw a 28% chance". */
+export function chanceText(match, outcome, p) {
+  const pct = percent(p);
+  const article = /^(8|11|18)/.test(pct) ? "an" : "a"; // "an 18%", "a 28%"
+  if (outcome === "draw") return `we gave a draw ${article} ${pct} chance`;
+  const team = outcome === "home" ? match.home_team : match.away_team;
+  return `we gave ${team} ${article} ${pct} chance of winning`;
+}
+
+/** A short sentence about who is expected to win. */
+export function outlook(match, p) {
+  const fav = favourite(p);
+  if (fav === "draw") return "A draw is the single most likely result";
+  const team = fav === "home" ? match.home_team : match.away_team;
+  if (p[fav] >= 0.6) return `${team} strong favourites`;
+  if (p[fav] >= 0.45) return `${team} favourites`;
+  return `Close call, ${team} slightly ahead`;
+}
+
+/** One line under the bar: the outlook before the match, or how the prediction did after it. */
+export function verdict(match, p, happened) {
+  if (!happened) return el("div", "verdict neutral", outlook(match, p));
+  const detail = el("span", "detail", `· ${chanceText(match, happened, p[happened])}`);
+  if (favourite(p) === happened) {
+    const line = el("div", "verdict good", "✓ Called it ");
+    line.append(detail);
+    return line;
+  }
+  const upset = happened !== "draw" && p[happened] < 0.25; // a team winning when we gave it under 25%
+  const line = el("div", "verdict bad", upset ? "✗ Upset " : "✗ Not this time ");
+  line.append(detail);
+  return line;
+}
+
+/** Address of a match's own page. */
+export function matchUrl(match) {
+  return `match.html?id=${encodeURIComponent(match.match_id)}`;
 }

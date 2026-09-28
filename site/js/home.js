@@ -1,6 +1,6 @@
 // Matches page: talking points, then one matchday at a time with our prediction for each match.
 import { loadData, formatDate, percent, el, probs, probabilityBar, outcomeLegend, enableTooltips, showError } from "./common.js";
-import { RESULT_TO_OUTCOME, favourite, groupByDate, matchHeader, matchdayStatus } from "./match.js";
+import { RESULT_TO_OUTCOME, chanceText, groupByDate, matchHeader, matchdayStatus, matchUrl, verdict } from "./match.js";
 import { setUpStrip } from "./strip.js";
 
 // Our prediction comes from the goals model (Dixon-Coles), our most accurate model.
@@ -27,25 +27,6 @@ async function main() {
 }
 
 // ---------- Small helpers about one match ----------
-
-/** "we gave Cagliari an 18% chance of winning" / "we gave a draw a 28% chance". */
-function chanceText(match, outcome, p) {
-  const pct = percent(p);
-  const article = /^(8|11|18)/.test(pct) ? "an" : "a"; // "an 18%", "a 28%"
-  if (outcome === "draw") return `we gave a draw ${article} ${pct} chance`;
-  const team = outcome === "home" ? match.home_team : match.away_team;
-  return `we gave ${team} ${article} ${pct} chance of winning`;
-}
-
-/** A short sentence about who is expected to win. */
-function outlook(match, p) {
-  const fav = favourite(p);
-  if (fav === "draw") return "A draw is the single most likely result";
-  const team = fav === "home" ? match.home_team : match.away_team;
-  if (p[fav] >= 0.6) return `${team} strong favourites`;
-  if (p[fav] >= 0.45) return `${team} favourites`;
-  return `Close call, ${team} slightly ahead`;
-}
 
 // ---------- Talking points: headlines worked out from the results ----------
 
@@ -177,22 +158,13 @@ function matchCard(match) {
   }
   card.append(el("div", "forecast-title", "Our prediction"), probabilityBar(p, match, "Our prediction", happened, { big: true }));
   card.append(verdict(match, p, happened));
-  return card;
+  card.append(el("span", "match-more", match.status === "played" ? "Report and stats →" : "Match preview →"));
+  // The whole card links to the match page
+  const link = el("a", "match-link");
+  link.href = matchUrl(match);
+  link.append(card);
+  return link;
 }
 
-/** One line under the bar: the outlook before the match, or how the prediction did after it. */
-function verdict(match, p, happened) {
-  if (!happened) return el("div", "verdict neutral", outlook(match, p));
-  const detail = el("span", "detail", `· ${chanceText(match, happened, p[happened])}`);
-  if (favourite(p) === happened) {
-    const line = el("div", "verdict good", "✓ Called it ");
-    line.append(detail);
-    return line;
-  }
-  const upset = happened !== "draw" && p[happened] < 0.25; // a team winning when we gave it under 25%
-  const line = el("div", "verdict bad", upset ? "✗ Upset " : "✗ Not this time ");
-  line.append(detail);
-  return line;
-}
 
 main();

@@ -24,7 +24,7 @@ pytest                               # run the tests
 To view the website locally:
 
 ```bash
-python3 -m http.server 8000 --directory site   # then open http://localhost:8000
+python3 tools/serve.py   # then open http://localhost:8000 (always shows your latest edits)
 ```
 
 ## How the models work

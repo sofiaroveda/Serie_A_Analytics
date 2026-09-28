@@ -9,11 +9,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pipeline.data import PROCESSED_DIR, ROOT, make_match_ids, season_label
-from pipeline import dixon_coles, elo, simulate
+from pipeline.data import PROCESSED_DIR, ROOT, STAT_COLUMNS, load_team_map, make_match_ids, raw_scorers_path, season_label
+from pipeline import dixon_coles, elo, report, simulate
 from pipeline.evaluate import TEST_SEASONS, base_rate_forecast, compare_with_market, hit_rate, rps
 from pipeline.ledger import next_round, record_forecasts
 from pipeline.market import best_available_probabilities
+from pipeline.scorers import scorers_by_match
 
 SITE_DATA_DIR = ROOT / "site" / "data"
 
@@ -26,7 +27,7 @@ MODELS = {"elo": "Elo", "dc": "Goals model"}
 # Extra model outputs copied to the site when a model provides them (Dixon-Coles does)
 EXTRA_OUTPUTS = {
     "exp_home_goals": "xg_home", "exp_away_goals": "xg_away", "p_over_2_5": "over_2_5", "p_btts": "btts",
-    "most_likely_score": "score",
+    "most_likely_score": "score", "top_scores": "top_scores",
 }  # fmt: skip
 
 SOURCE_LABELS = {
@@ -339,6 +340,40 @@ def market_history(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: pd.D
     return {"season": season_label(season), "n_sims": simulate.N_SIMS, "checkpoints": history}
 
 
+def head_to_head(matches: pd.DataFrame, home: str, away: str, before: pd.Timestamp, n: int = 5) -> list[dict]:
+    """The last `n` meetings between two teams (either ground) before a date, newest first."""
+    pair = matches[
+        (((matches["home_team"] == home) & (matches["away_team"] == away))
+         | ((matches["home_team"] == away) & (matches["away_team"] == home)))
+        & (matches["date"] < before)
+    ].sort_values("date", ascending=False).head(n)  # fmt: skip
+    return [{"date": r.date.strftime("%Y-%m-%d"), "home_team": r.home_team, "away_team": r.away_team,
+             "home_goals": int(r.home_goals), "away_goals": int(r.away_goals)} for r in pair.itertuples()]  # fmt: skip
+
+
+def match_details(matches: pd.DataFrame, site_matches: list[dict], market: dict, scorers: dict) -> dict[str, dict]:
+    """Extra detail for each match page: report, scorers, stats and head-to-head, keyed by match_id."""
+    stats = matches.set_index("match_id")[STAT_COLUMNS]
+    checkpoints = {c["label"]: i for i, c in enumerate(market["checkpoints"])}
+    details = {}
+    for m in site_matches:
+        date = pd.Timestamp(m["date"])
+        entry = {"h2h": head_to_head(matches, m["home_team"], m["away_team"], date)}
+        if m["status"] == "played":
+            row = {**m, **{k: (None if pd.isna(v) else float(v)) for k, v in stats.loc[m["match_id"]].items()}}
+            goals = scorers.get((m["home_team"], m["away_team"]))
+            after_i = checkpoints.get(f"MD {m['matchday']}")
+            before = market["checkpoints"][after_i - 1]["teams"] if after_i else None
+            after = market["checkpoints"][after_i]["teams"] if after_i else None
+            entry.update({
+                "stats": {k: row[k] for k in STAT_COLUMNS},
+                "scorers": goals,
+                "report": report.match_report(row, goals, before, after),
+            })  # fmt: skip
+        details[m["match_id"]] = entry
+    return details
+
+
 def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     """Read the processed CSVs, run the models and write one JSON file per page dataset."""
     matches = pd.read_csv(PROCESSED_DIR / "matches.csv", parse_dates=["date"])
@@ -372,6 +407,11 @@ def write_site_data(out_dir: Path = SITE_DATA_DIR) -> None:
     content["ratings"] = team_ratings(matches, schedule, upcoming)
     content["simulation"] = season_simulation(matches, schedule, upcoming)
     content["market"] = market_history(matches, schedule, upcoming)
+
+    # Goal scorers from openfootball, when its file is there and lists them
+    scorers_file = raw_scorers_path(season)
+    scorers = scorers_by_match(scorers_file.read_text(), load_team_map()) if scorers_file.exists() else {}
+    content["match_details"] = match_details(matches, content["matches"], content["market"], scorers)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, data in content.items():

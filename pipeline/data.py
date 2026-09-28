@@ -99,6 +99,25 @@ def download_schedule(start_year: int) -> Path:
     return _download(SCHEDULE_URL.format(season=season), raw_schedule_path(start_year))
 
 
+def raw_scorers_path(start_year: int) -> Path:
+    return RAW_DIR / f"openfootball_italy_{season_code(start_year)}.txt"
+
+
+def download_scorers(start_year: int) -> Path | None:
+    """Download openfootball's Serie A text file (it lists goal scorers once volunteers add them).
+
+    Scorers are an extra, so a failed download is reported but doesn't stop the update.
+    """
+    from pipeline.scorers import SCORERS_URL
+
+    season = f"{start_year}-{(start_year + 1) % 100:02d}"
+    try:
+        return _download(SCORERS_URL.format(season=season), raw_scorers_path(start_year))
+    except (requests.RequestException, ValueError) as error:
+        print(f"Warning: could not download goal scorers ({error}); continuing without them")
+        return None
+
+
 def download_fixtures() -> Path:
     """Download upcoming fixtures (all leagues) with current odds."""
     return _download(f"{BASE_URL}/fixtures.csv", RAW_DIR / "fixtures.csv")
@@ -121,10 +140,19 @@ ODDS_SOURCES = {
 OUTCOMES = {"h": "H", "d": "D", "a": "A"}
 ODDS_COLUMNS = [f"{book}_{o}" for book in ODDS_SOURCES for o in OUTCOMES]
 
+# Match statistics: our column name -> football-data column (xG only exists from 2026/27)
+STAT_SOURCES = {
+    "home_shots": "HS", "away_shots": "AS", "home_on_target": "HST", "away_on_target": "AST",
+    "home_corners": "HC", "away_corners": "AC", "home_fouls": "HF", "away_fouls": "AF",
+    "home_yellow": "HY", "away_yellow": "AY", "home_red": "HR", "away_red": "AR",
+    "home_xg": "HxG", "away_xg": "AxG",
+}  # fmt: skip
+STAT_COLUMNS = list(STAT_SOURCES)
+
 MATCH_COLUMNS = [
     "match_id", "season", "date", "time",
     "home_team", "away_team", "home_goals", "away_goals", "result",
-    *ODDS_COLUMNS,
+    *ODDS_COLUMNS, *STAT_COLUMNS,
 ]  # fmt: skip
 
 
@@ -173,6 +201,14 @@ def _extract_odds(raw: pd.DataFrame) -> pd.DataFrame:
     return odds
 
 
+def _extract_stats(raw: pd.DataFrame) -> pd.DataFrame:
+    """Shots, corners, fouls, cards and xG; missing columns are filled with NaN."""
+    stats = pd.DataFrame(index=raw.index)
+    for ours, theirs in STAT_SOURCES.items():
+        stats[ours] = pd.to_numeric(raw[theirs], errors="coerce") if theirs in raw else float("nan")
+    return stats
+
+
 def make_match_ids(dates: pd.Series, home: pd.Series, away: pd.Series) -> pd.Series:
     """IDs like "2026-09-20_Milan_Lecce"."""
     return dates.dt.strftime("%Y-%m-%d") + "_" + home.str.replace(" ", "") + "_" + away.str.replace(" ", "")
@@ -202,7 +238,7 @@ def clean_season(raw: pd.DataFrame, start_year: int, team_map: dict[str, str]) -
             "result": raw["FTR"].str.strip(),
         }
     )
-    matches = pd.concat([matches, _extract_odds(raw)], axis=1)
+    matches = pd.concat([matches, _extract_odds(raw), _extract_stats(raw)], axis=1)
     validate_matches(matches)
     return matches.sort_values(["date", "home_team"]).reset_index(drop=True)
 
@@ -304,6 +340,7 @@ def main() -> None:
     download_all_seasons()
     download_fixtures()
     download_schedule(years[-1])
+    download_scorers(years[-1])
 
     team_map = load_team_map()
     matches = build_matches(years)

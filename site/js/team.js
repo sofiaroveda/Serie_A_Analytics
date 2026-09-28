@@ -2,6 +2,7 @@
 // moves, form, ratings, next matches and results.
 import { loadData, el, formatDate, probs, probabilityBar, enableTooltips, showError } from "./common.js";
 import { kitBadge } from "./teams.js";
+import { matchUrl } from "./match.js";
 import { METRICS, price, changeBadge, series, teamLink } from "./stocks.js";
 import { priceChart } from "./chart.js";
 
@@ -116,8 +117,10 @@ function renderForm(team, matches) {
   const results = document.getElementById("results");
   for (const m of [...played].reverse()) {
     const row = el("li");
+    const link = el("a", "", resultText(team, m));
+    link.href = matchUrl(m);
     row.append(el("span", `form-chip small ${outcomeFor(team, m)}`, outcomeFor(team, m)),
-      el("span", "muted", `MD ${m.matchday} · ${formatDate(m.date)}`), ` ${resultText(team, m)}`);
+      el("span", "muted", `MD ${m.matchday} · ${formatDate(m.date)}`), link);
     results.append(row);
   }
   if (!played.length) results.append(el("li", "muted", "No matches played yet."));
@@ -156,6 +159,9 @@ function renderNext(team, matches) {
     card.append(head);
     const p = probs(m, MAIN);
     if (p) card.append(probabilityBar(p, m, "Our prediction", null));
+    const more = el("a", "match-more", "Match preview →");
+    more.href = matchUrl(m);
+    card.append(more);
     container.append(card);
   }
 }
