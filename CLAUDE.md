@@ -36,6 +36,11 @@ The goal is a portfolio project for finance, trading, data science and consultin
 - Joined to football-data by (season, home_team, away_team), which is unique per season, so postponed matches keep their official matchday. `check_schedule_matches_results` fails the pipeline if a played match is missing from the schedule or the two sources disagree on a score.
 - Why: football-data has no matchday numbers, and deriving them from dates fails in 12 of 22 seasons because of postponements.
 
+### Source: football-data.org (free plan, Oct 2026)
+- Scores within hours of the final whistle (football-data.co.uk adds a round a day or two after it ends). `pipeline/live_results.py` fills only the gap: matches football-data.co.uk doesn't have yet get the score (odds/stats blank until it catches up); once both have a match, scores must agree or the pipeline stops. Rows carry a `source` column.
+- Terms: free plan is non-commercial, one app / one domain, and requires the visible credit "Data provided by football-data.org" (in every footer, About, README). 10 requests/min.
+- Key in the `FOOTBALL_DATA_ORG_KEY` GitHub Actions secret (Sofia's account); never in the repo. Without it the source is skipped.
+
 ### Rules
 - Respect every site's terms of use. **Do not scrape Transfermarkt** or any site that forbids scraping. If a data source's terms are unclear, stop and ask Sofia.
 - No API keys or secrets in the repository. Use environment variables / GitHub Actions secrets if ever needed.
@@ -103,6 +108,8 @@ Brainstormed to make the site stand out. Build in this order:
 Not chosen for now: luck index, upset hall of fame, Italian translation. Players/transfers stay in Phase 3 (need a licence-compliant source).
 
 ## Automation
+
+**Oct 2026:** the "Results update" workflow now runs every 2 hours (cron `20 */2 * * *`) with the football-data.org key, so results appear within hours of each match. The project folder moved to `~/Desktop/Github/Serie_A_Analytics`; the `.venv` scripts still point at the old path, so run tools as `.venv/bin/python -m pytest` / `-m pipeline...` (or recreate the venv).
 
 **Built (Sep 2026):** `.github/workflows/update.yml` runs daily at 06:30 UTC (and via "Run workflow"): tests, download (finished seasons cached), `pipeline.export` (also saves next-round forecasts to `predictions/`), `python -m pipeline.check --since HEAD` (site data sanity + prediction record append-only), then commits only if something besides `summary.json` changed and calls `deploy.yml` (reusable via `workflow_call`; checks out latest `main`). `deploy.yml` also runs the append-only check on every push against `github.event.before`, so nobody can edit a past forecast. Daily (not Tue/Fri) because it's free for public repos and guarantees forecasts are saved before any kick-off. Failure = no commit, no deploy, last good site stays up, GitHub emails the owner. GitHub pauses scheduled workflows after 60 days without repo activity; daily bot commits during the season keep it alive, but check it after the summer break.
 

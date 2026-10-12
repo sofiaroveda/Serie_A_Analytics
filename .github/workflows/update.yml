@@ -1,12 +1,13 @@
-# Daily update: new results, refitted models, next-round forecasts saved to the
-# prediction record, then the site is republished. If any step fails, nothing is
-# committed or published (the live site keeps its last good data) and GitHub emails
-# the repository owner.
-name: Daily update
+# Regular update: new results, refitted models, next-round forecasts saved to the
+# prediction record, then the site is republished. Runs every 2 hours so results
+# from football-data.org appear soon after each match; when nothing has changed,
+# nothing is committed. If any step fails, nothing is committed or published (the
+# live site keeps its last good data) and GitHub emails the repository owner.
+name: Results update
 
 on:
   schedule:
-    - cron: "30 6 * * *" # every day at 06:30 UTC (07:30 UK summer time, 06:30 winter)
+    - cron: "20 */2 * * *" # every 2 hours (GitHub may start scheduled runs a little late)
   workflow_dispatch: # adds a "Run workflow" button in the Actions tab
 
 permissions:
@@ -44,6 +45,9 @@ jobs:
 
       - name: Download and clean the data
         run: python -m pipeline.data
+        env:
+          # Free football-data.org key, stored as a repository secret (Settings > Secrets and variables > Actions)
+          FOOTBALL_DATA_ORG_KEY: ${{ secrets.FOOTBALL_DATA_ORG_KEY }}
 
       - name: Run the models and write the site data (saves next-round forecasts)
         run: python -m pipeline.export

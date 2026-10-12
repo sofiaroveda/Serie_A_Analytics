@@ -212,7 +212,7 @@ Per season (RPS):
 
 ## 7. Keeping it honest in production
 
-- **Daily automation** (`.github/workflows/update.yml`): download, refit, save next-round forecasts, check, commit, redeploy.
+- **Automation** (`.github/workflows/update.yml`, every 2 hours): download, refit, save next-round forecasts, check, commit, redeploy. Scores arrive within hours from football-data.org (free plan); football-data.co.uk, the main source, adds odds and stats a day or two later, and the two must agree on every score.
 - **Prediction record** (`pipeline/ledger.py`, `predictions/`): forecasts for the next round are saved before kick-off and never changed. `pipeline/check.py` blocks publishing (and every push) if any past forecast was edited or removed. Caveat: local commit times can be set by anyone; the strong evidence is GitHub's own record of when pushes and automated runs happened.
 - **Pre-publish checks**: 380 matches, 10 per matchday, probabilities sum to 1, the table matches the results, the simulation totals add up (one champion, four top-4 places, three relegated), the market's latest point equals the predicted table.
 

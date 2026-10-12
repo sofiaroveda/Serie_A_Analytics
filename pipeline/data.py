@@ -333,6 +333,30 @@ def build_matches(start_years: list[int], league: str = LEAGUE) -> pd.DataFrame:
     return matches[MATCH_COLUMNS]
 
 
+def add_live_results(matches: pd.DataFrame, season: int, team_map: dict[str, str]) -> pd.DataFrame:
+    """Fill in this season's results that football-data.co.uk hasn't published yet (pipeline/live_results.py).
+
+    Skipped without an access key; a failed download is reported but doesn't stop the update.
+    A score that disagrees with football-data.co.uk does stop it (see live_results.fill_gaps).
+    """
+    from pipeline import live_results
+
+    key = live_results.api_key()
+    if key is None:
+        print("No football-data.org key set: using football-data.co.uk results only")
+        return matches.assign(source=live_results.SOURCE_MAIN)
+    path = RAW_DIR / f"football-data-org_SA_{season_code(season)}.json"
+    try:
+        live_results.download(season, key, path)
+    except requests.RequestException as error:
+        print(f"Warning: could not download football-data.org results ({error}); continuing without them")
+        return matches.assign(source=live_results.SOURCE_MAIN)
+    live = live_results.parse(live_results.load_saved(path), season, team_map)
+    combined, added = live_results.fill_gaps(matches, live)
+    print(f"football-data.org: {len(live)} finished matches, {added} not yet on football-data.co.uk added")
+    return combined
+
+
 def main() -> None:
     """Download everything, clean it and write data/processed/*.csv."""
     years = season_starts()
@@ -344,6 +368,7 @@ def main() -> None:
 
     team_map = load_team_map()
     matches = build_matches(years)
+    matches = add_live_results(matches, years[-1], team_map)
     fixtures = clean_fixtures(load_raw_csv(RAW_DIR / "fixtures.csv"), team_map)
     schedule = clean_schedule(json.loads(raw_schedule_path(years[-1]).read_text()), years[-1], team_map)
     check_schedule_matches_results(schedule, matches)

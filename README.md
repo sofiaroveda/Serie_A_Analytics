@@ -2,7 +2,7 @@
 
 **Live site: https://sofiaroveda.github.io/Serie_A_Analytics/**
 
-A forecasting project: my own models put a probability on every Serie A match, the rest of the season is simulated 10,000 times, and everything is tested honestly against the betting market. The site updates itself every morning.
+A forecasting project: my own models put a probability on every Serie A match, the rest of the season is simulated 10,000 times, and everything is tested honestly against the betting market. The site updates itself within hours of each match.
 
 It is an analysis project, not a betting product.
 
@@ -20,7 +20,7 @@ It is an analysis project, not a betting product.
   | Pinnacle closing odds | 0.1881 | 55.2% |
 
 - **Season simulation**: 10,000 Monte Carlo seasons give each team's chance of the title, the top 4 and relegation, with the uncertainty level calibrated on past seasons and Serie A's real tie-break rules.
-- **Runs itself**: a daily GitHub Actions pipeline downloads results, refits the models, checks the data and republishes the site. Forecasts are saved to an append-only public record before kick-off, and CI blocks any edit to a past prediction.
+- **Runs itself**: a GitHub Actions pipeline (every 2 hours) downloads results, refits the models, checks the data and republishes the site. Forecasts are saved to an append-only public record before kick-off, and CI blocks any edit to a past prediction.
 
 ## What's on the site
 
@@ -47,7 +47,7 @@ tests/      pytest, including the no-look-ahead test
 site/       the website; site/data/ is written by the pipeline
 predictions/  the append-only prediction record
 docs/       the model guide
-.github/workflows/  daily update and deploy
+.github/workflows/  scheduled update (every 2 hours) and deploy
 ```
 
 ## Run it yourself
@@ -69,6 +69,7 @@ python3 tools/serve.py       # preview the site at http://localhost:8000
 
 - Results, odds and match statistics: [football-data.co.uk](https://www.football-data.co.uk/), free of charge.
 - Matchday numbers, fixtures and goal scorers: [openfootball](https://github.com/openfootball) (public domain).
+- Latest results within hours of the final whistle: data provided by [football-data.org](https://www.football-data.org/) (free plan; optional `FOOTBALL_DATA_ORG_KEY`).
 - Not affiliated with Lega Serie A or any club. Team colours are shown only to make teams easy to recognise.
 
 ## About me

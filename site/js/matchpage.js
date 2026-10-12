@@ -87,6 +87,8 @@ function statsBlock(match, stats) {
     row.append(el("strong", "", h.toFixed(decimals)), middle, el("strong", "", a.toFixed(decimals)));
     table.append(row);
   }
+  // Results we get within hours arrive before their stats (those come a day or two later)
+  if (table.children.length === 1) return el("p", "muted", "Match stats usually arrive a day or two after the game.");
   return table;
 }
 
@@ -142,6 +144,9 @@ function statPredictionsBlock(match, info) {
       const cell = el("td", `call ${called ? "good" : "bad"}`, `${called ? "✓" : "✗"} ${went} ${r.line}`);
       cell.title = `We gave over ${r.line} a ${percent(r.pOver)} chance; there were ${actualTotal}.`;
       tr.append(cell);
+    } else if (played) {
+      // Played, but this stat hasn't arrived yet (it comes a day or two after the score)
+      tr.append(el("td", "", `${expected} (${total.toFixed(1)})`), el("td", "muted", "to follow"), el("td", "muted", "–"));
     } else {
       tr.append(el("td", "", r.home.toFixed(1)), el("td", "", r.away.toFixed(1)), el("td", "pts", total.toFixed(1)),
         el("td", "", `Over ${r.line}: ${percent(r.pOver)}`));

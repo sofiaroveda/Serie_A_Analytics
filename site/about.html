@@ -60,7 +60,7 @@
       <p>
         Serie A Analytics puts a probability on every Serie A match using two models built from scratch, simulates the
         rest of the season 10,000 times, and checks in public how the predictions compare with the betting market. The
-        site updates itself every morning. It is an analysis project, not a betting product: there are no tips here,
+        site updates itself within hours of each match. It is an analysis project, not a betting product: there are no tips here,
         and past results do not predict future ones.
       </p>
 
@@ -85,7 +85,7 @@
       <h2>How it's built</h2>
       <p>
         The models, the testing and the season simulation are written in Python. A scheduled job on GitHub downloads the
-        latest results every morning, refits the models, checks the numbers and republishes the site; if a check
+        latest results every two hours, refits the models, checks the numbers and republishes the site; if a check
         fails, nothing is published. Before each round, our predictions are saved to a
         <a href="https://github.com/sofiaroveda/Serie_A_Analytics/tree/main/predictions">public record</a> that can't
         be edited afterwards. The site itself is plain HTML, CSS and JavaScript. All the code is
@@ -102,7 +102,9 @@
       <p>
         Results, betting odds and match statistics come from <a href="https://www.football-data.co.uk/">football-data.co.uk</a>,
         which generously makes them available for free. Matchday numbers, the fixture list and goal scorers come from
-        <a href="https://github.com/openfootball">openfootball</a> (public domain). Thank you to both.
+        <a href="https://github.com/openfootball">openfootball</a> (public domain). The latest results, within hours of
+        the final whistle: data provided by <a href="https://www.football-data.org/">football-data.org</a>. Thank you
+        to all three.
       </p>
       <p class="muted small">
         For finished matches, the bookmakers' view uses closing odds (the last prices before kick-off): Pinnacle's
@@ -120,6 +122,7 @@
       <div class="container small muted">
         Data: <a href="https://www.football-data.co.uk/">football-data.co.uk</a> and
         <a href="https://github.com/openfootball/football.json">openfootball</a>.
+        Latest results: data provided by <a href="https://www.football-data.org/">football-data.org</a>.
         An independent analysis project, not affiliated with Lega Serie A or any club. Not betting advice.
         <span id="updated"></span>
       </div>
