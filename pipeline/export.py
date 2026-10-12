@@ -297,7 +297,9 @@ def market_checkpoints(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: 
 
     A matchday counts as completed once at least 8 of its 10 matches are played (so a
     postponed game doesn't hold the chart up). Its cutoff is the first date of the next
-    matchday: results before that date are known, everything later is simulated.
+    matchday (results before that date are known, everything later is simulated), but
+    never later than "now": while the last games of a matchday are still to be played,
+    its point is simply today's simulation, so the Market always matches the predicted table.
     """
     season = int(schedule["season"].iloc[0])
     played = matches[matches["season"] == season].drop(columns="matchday", errors="ignore").merge(
@@ -316,7 +318,7 @@ def market_checkpoints(matches: pd.DataFrame, schedule: pd.DataFrame, upcoming: 
     now = _now_cutoff(matches, upcoming)
     points = [("Start", 0, first_date.iloc[0])]
     for md in range(1, last_completed + 1):
-        points.append((f"MD {md}", md, first_date.get(md + 1, now)))
+        points.append((f"MD {md}", md, min(first_date.get(md + 1, now), now)))
     n_before = lambda cutoff: int((played["date"] < cutoff).sum())  # noqa: E731
     if n_before(now) > n_before(points[-1][2]):  # results since the last completed matchday
         points.append(("Now", last_completed, now))

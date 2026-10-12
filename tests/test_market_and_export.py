@@ -137,3 +137,20 @@ def test_market_checkpoints_follow_completed_matchdays():
     assert [label for label, _, _ in points] == ["Start", "MD 1", "Now"]
     assert points[1][2] == pd.Timestamp("2026-08-29")  # after MD 1 = before MD 2 starts
     assert points[2][2] > points[1][2]  # "Now" includes the three MD 2 results
+
+
+def test_market_point_for_an_unfinished_matchday_is_dated_now():
+    # 8 of matchday 1's 10 matches played (so it counts as completed), 2 still to come;
+    # matchday 2 starts a week later. The "MD 1" point must be today's simulation, not next week's.
+    teams = [f"T{i}" for i in range(20)]
+    rows = []
+    for md, date in ((1, "2026-08-22"), (2, "2026-08-29")):
+        for k in range(10):
+            rows.append({"season": 2026, "matchday": md, "date": pd.Timestamp(date), "time": "15:00",
+                         "home_team": teams[(k + md) % 20], "away_team": teams[(19 - k + md) % 20]})  # fmt: skip
+    schedule = pd.DataFrame(rows).assign(home_goals=pd.NA, away_goals=pd.NA)
+    schedule.loc[[8, 9], "date"] = pd.Timestamp("2026-08-24")  # matchday 1's last two games, still to play
+    played = schedule.head(8).assign(home_goals=1, away_goals=0, result="H", match_id=range(8))
+    points = market_checkpoints(played, schedule, upcoming_from_schedule(schedule, played))
+    assert [label for label, _, _ in points] == ["Start", "MD 1"]
+    assert points[-1][2] == pd.Timestamp("2026-08-24")  # "now": the next kick-off, not matchday 2's start
