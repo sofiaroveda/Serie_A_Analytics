@@ -4835,30 +4835,48 @@
   ],
   "stat_predictions": {
    "corners": {
-    "home": 7.16,
+    "home": 7.15,
     "away": 4.55,
     "line": 9.5,
-    "p_over": 0.7083
+    "p_over": 0.7082
    },
    "yellow_cards": {
     "home": 1.81,
     "away": 2.74,
     "line": 4.5,
-    "p_over": 0.4773
+    "p_over": 0.4772
    },
    "shots": {
     "home": 21.48,
     "away": 16.17,
     "line": 24.5,
-    "p_over": 0.9755
+    "p_over": 0.9756
    },
    "shots_on_target": {
-    "home": 5.97,
+    "home": 5.98,
     "away": 4.78,
     "line": 8.5,
-    "p_over": 0.7257
+    "p_over": 0.7259
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Frosinone beat Sassuolo 4–2. It went to form: our model made Frosinone narrow favourites at 39%."
  },
  "2026-10-17_Venezia_Napoli": {
   "h2h": [
@@ -4902,7 +4920,7 @@
     "home": 1.98,
     "away": 1.22,
     "line": 4.5,
-    "p_over": 0.2187
+    "p_over": 0.2186
    },
    "shots": {
     "home": 12.17,
@@ -4991,7 +5009,7 @@
     "home": 11.32,
     "away": 13.15,
     "line": 24.5,
-    "p_over": 0.4804
+    "p_over": 0.4807
    },
    "shots_on_target": {
     "home": 3.43,
@@ -4999,7 +5017,25 @@
     "line": 8.5,
     "p_over": 0.386
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Inter beat Bologna 3–1 away from home. It went to form: our model made Inter favourites at 59%."
  },
  "2026-10-17_Roma_Genoa": {
   "h2h": [
@@ -21274,6 +21310,13 @@
  "2027-04-25_Inter_Bologna": {
   "h2h": [
    {
+    "date": "2026-10-17",
+    "home_team": "Bologna",
+    "away_team": "Inter",
+    "home_goals": 1,
+    "away_goals": 3
+   },
+   {
     "date": "2026-05-23",
     "home_team": "Bologna",
     "away_team": "Inter",
@@ -21300,13 +21343,6 @@
     "away_team": "Bologna",
     "home_goals": 2,
     "away_goals": 2
-   },
-   {
-    "date": "2024-03-09",
-    "home_team": "Bologna",
-    "away_team": "Inter",
-    "home_goals": 0,
-    "away_goals": 1
    }
   ],
   "stat_predictions": {
@@ -22142,6 +22178,13 @@
  "2027-05-02_Sassuolo_Frosinone": {
   "h2h": [
    {
+    "date": "2026-10-16",
+    "home_team": "Frosinone",
+    "away_team": "Sassuolo",
+    "home_goals": 4,
+    "away_goals": 2
+   },
+   {
     "date": "2024-03-09",
     "home_team": "Sassuolo",
     "away_team": "Frosinone",
@@ -22168,13 +22211,6 @@
     "away_team": "Sassuolo",
     "home_goals": 0,
     "away_goals": 2
-   },
-   {
-    "date": "2016-05-08",
-    "home_team": "Frosinone",
-    "away_team": "Sassuolo",
-    "home_goals": 0,
-    "away_goals": 1
    }
   ],
   "stat_predictions": {
