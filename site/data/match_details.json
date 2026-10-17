@@ -5092,15 +5092,33 @@
     "home": 16.44,
     "away": 8.11,
     "line": 24.5,
-    "p_over": 0.486
+    "p_over": 0.4861
    },
    "shots_on_target": {
     "home": 5.17,
     "away": 2.93,
     "line": 8.5,
-    "p_over": 0.4207
+    "p_over": 0.4206
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Roma beat Genoa 2–0. It went to form: our model made Roma favourites at 66%."
  },
  "2026-10-18_Udinese_Lecce": {
   "h2h": [
@@ -18209,6 +18227,13 @@
  "2027-03-14_Genoa_Roma": {
   "h2h": [
    {
+    "date": "2026-10-17",
+    "home_team": "Roma",
+    "away_team": "Genoa",
+    "home_goals": 2,
+    "away_goals": 0
+   },
+   {
     "date": "2026-03-08",
     "home_team": "Genoa",
     "away_team": "Roma",
@@ -18235,13 +18260,6 @@
     "away_team": "Roma",
     "home_goals": 1,
     "away_goals": 1
-   },
-   {
-    "date": "2024-05-19",
-    "home_team": "Roma",
-    "away_team": "Genoa",
-    "home_goals": 1,
-    "away_goals": 0
    }
   ],
   "stat_predictions": {
