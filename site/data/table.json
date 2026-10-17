@@ -37,18 +37,6 @@
  },
  {
   "position": 4,
-  "team": "Frosinone",
-  "played": 7,
-  "won": 4,
-  "drawn": 1,
-  "lost": 2,
-  "goals_for": 13,
-  "goals_against": 9,
-  "goal_diff": 4,
-  "points": 13
- },
- {
-  "position": 5,
   "team": "Cagliari",
   "played": 6,
   "won": 4,
@@ -60,7 +48,7 @@
   "points": 13
  },
  {
-  "position": 6,
+  "position": 5,
   "team": "Milan",
   "played": 6,
   "won": 3,
@@ -72,7 +60,7 @@
   "points": 12
  },
  {
-  "position": 7,
+  "position": 6,
   "team": "Juventus",
   "played": 6,
   "won": 3,
@@ -84,7 +72,7 @@
   "points": 11
  },
  {
-  "position": 8,
+  "position": 7,
   "team": "Como",
   "played": 6,
   "won": 3,
@@ -96,15 +84,27 @@
   "points": 11
  },
  {
-  "position": 9,
+  "position": 8,
   "team": "Napoli",
+  "played": 7,
+  "won": 3,
+  "drawn": 1,
+  "lost": 3,
+  "goals_for": 10,
+  "goals_against": 7,
+  "goal_diff": 3,
+  "points": 10
+ },
+ {
+  "position": 9,
+  "team": "Frosinone",
   "played": 6,
   "won": 3,
   "drawn": 1,
   "lost": 2,
-  "goals_for": 10,
-  "goals_against": 6,
-  "goal_diff": 4,
+  "goals_for": 9,
+  "goals_against": 7,
+  "goal_diff": 2,
   "points": 10
  },
  {
@@ -122,13 +122,13 @@
  {
   "position": 11,
   "team": "Sassuolo",
-  "played": 7,
+  "played": 6,
   "won": 2,
   "drawn": 2,
-  "lost": 3,
-  "goals_for": 12,
-  "goals_against": 14,
-  "goal_diff": -2,
+  "lost": 2,
+  "goals_for": 10,
+  "goals_against": 10,
+  "goal_diff": 0,
   "points": 8
  },
  {
@@ -230,13 +230,13 @@
  {
   "position": 20,
   "team": "Venezia",
-  "played": 6,
-  "won": 0,
+  "played": 7,
+  "won": 1,
   "drawn": 0,
   "lost": 6,
-  "goals_for": 5,
+  "goals_for": 6,
   "goals_against": 16,
-  "goal_diff": -11,
-  "points": 0
+  "goal_diff": -10,
+  "points": 3
  }
 ]
