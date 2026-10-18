@@ -5337,12 +5337,30 @@
     "p_over": 0.6418
    },
    "shots_on_target": {
-    "home": 5.13,
+    "home": 5.14,
     "away": 4.1,
     "line": 8.5,
     "p_over": 0.5647
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Milan edged past Atalanta 3–2. It went to form: our model made Milan narrow favourites at 40%."
  },
  "2026-10-18_Juventus_Lazio": {
   "h2h": [
@@ -18653,6 +18671,13 @@
  "2027-03-21_Atalanta_Milan": {
   "h2h": [
    {
+    "date": "2026-10-18",
+    "home_team": "Milan",
+    "away_team": "Atalanta",
+    "home_goals": 3,
+    "away_goals": 2
+   },
+   {
     "date": "2026-05-10",
     "home_team": "Milan",
     "away_team": "Atalanta",
@@ -18678,13 +18703,6 @@
     "home_team": "Atalanta",
     "away_team": "Milan",
     "home_goals": 2,
-    "away_goals": 1
-   },
-   {
-    "date": "2024-02-25",
-    "home_team": "Milan",
-    "away_team": "Atalanta",
-    "home_goals": 1,
     "away_goals": 1
    }
   ],

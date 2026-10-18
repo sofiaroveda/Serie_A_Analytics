@@ -16,8 +16,8 @@
   {
    "team": "Juventus",
    "elo": 1567,
-   "attack": 1.27,
-   "defence": 0.72
+   "attack": 1.26,
+   "defence": 0.71
   },
   {
    "team": "Napoli",
@@ -27,27 +27,27 @@
   },
   {
    "team": "Milan",
-   "elo": 1558,
-   "attack": 1.26,
-   "defence": 0.8
+   "elo": 1562,
+   "attack": 1.3,
+   "defence": 0.82
   },
   {
    "team": "Como",
    "elo": 1553,
-   "attack": 1.37,
+   "attack": 1.36,
    "defence": 0.74
-  },
-  {
-   "team": "Atalanta",
-   "elo": 1539,
-   "attack": 1.27,
-   "defence": 0.81
   },
   {
    "team": "Lazio",
    "elo": 1537,
-   "attack": 1.09,
+   "attack": 1.08,
    "defence": 0.83
+  },
+  {
+   "team": "Atalanta",
+   "elo": 1535,
+   "attack": 1.29,
+   "defence": 0.84
   },
   {
    "team": "Bologna",
@@ -76,7 +76,7 @@
   {
    "team": "Sassuolo",
    "elo": 1465,
-   "attack": 1.11,
+   "attack": 1.1,
    "defence": 1.15
   },
   {
@@ -94,7 +94,7 @@
   {
    "team": "Genoa",
    "elo": 1443,
-   "attack": 0.89,
+   "attack": 0.88,
    "defence": 1.03
   },
   {
@@ -123,8 +123,8 @@
   }
  ],
  "goals_model": {
-  "base_goals": 1.156,
-  "home_boost": 1.117,
+  "base_goals": 1.157,
+  "home_boost": 1.119,
   "rho": -0.006
  },
  "elo_k": 10.0
