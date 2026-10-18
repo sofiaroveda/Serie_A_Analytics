@@ -4952,7 +4952,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Venezia stunned Napoli 1–0. A real upset: our model gave Venezia only a 10% chance."
+  "report": "Venezia stunned Napoli 1–0. A real upset: our model gave Venezia only a 10% chance. After the round, Venezia's relegation chance went from 92% to 80%, and Napoli's top-4 chance from 42% to 27%."
  },
  "2026-10-17_Bologna_Inter": {
   "h2h": [
@@ -5035,7 +5035,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Inter beat Bologna 3–1 away from home. It went to form: our model made Inter favourites at 59%."
+  "report": "Inter beat Bologna 3–1 away from home. It went to form: our model made Inter favourites at 59%. After the round, Inter's title chance went from 61% to 64%."
  },
  "2026-10-17_Roma_Genoa": {
   "h2h": [
@@ -5118,7 +5118,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Roma beat Genoa 2–0. It went to form: our model made Roma favourites at 66%."
+  "report": "Roma beat Genoa 2–0. It went to form: our model made Roma favourites at 66%. After the round, Roma's title chance went from 20% to 21%, and Genoa's relegation chance from 18% to 23%."
  },
  "2026-10-18_Udinese_Lecce": {
   "h2h": [
@@ -5201,7 +5201,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Lecce stunned Udinese 3–0 away from home. A real upset: our model gave Lecce only a 23% chance."
+  "report": "Lecce stunned Udinese 3–0 away from home. A real upset: our model gave Lecce only a 23% chance. After the round, Udinese's relegation chance went from 13% to 24%, and Lecce's from 44% to 27%."
  },
  "2026-10-18_Fiorentina_Como": {
   "h2h": [
@@ -5277,7 +5277,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Como beat Fiorentina 3–1 away from home. It went to form: our model made Como favourites at 51%."
+  "report": "Como beat Fiorentina 3–1 away from home. It went to form: our model made Como favourites at 51%. After the round, Fiorentina's relegation chance went from 11% to 15%, and Como's title chance from 5% to 6%."
  },
  "2026-10-18_Milan_Atalanta": {
   "h2h": [
@@ -5360,7 +5360,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Milan edged past Atalanta 3–2. It went to form: our model made Milan narrow favourites at 40%."
+  "report": "Milan edged past Atalanta 3–2. It went to form: our model made Milan narrow favourites at 40%. After the round, Milan's top-4 chance went from 32% to 41%, and Atalanta's from 23% to 17%."
  },
  "2026-10-18_Juventus_Lazio": {
   "h2h": [
@@ -5425,7 +5425,25 @@
     "line": 8.5,
     "p_over": 0.5057
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Lazio stunned Juventus 3–0 away from home. A real upset: our model gave Lazio only a 25% chance. After the round, Juventus's top-4 chance went from 42% to 27%, and Lazio's from 24% to 39%."
  },
  "2026-10-19_Monza_Cagliari": {
   "h2h": [
@@ -18346,6 +18364,13 @@
  "2027-03-14_Lazio_Juventus": {
   "h2h": [
    {
+    "date": "2026-10-18",
+    "home_team": "Juventus",
+    "away_team": "Lazio",
+    "home_goals": 0,
+    "away_goals": 3
+   },
+   {
     "date": "2026-02-08",
     "home_team": "Juventus",
     "away_team": "Lazio",
@@ -18370,13 +18395,6 @@
     "date": "2024-10-19",
     "home_team": "Juventus",
     "away_team": "Lazio",
-    "home_goals": 1,
-    "away_goals": 0
-   },
-   {
-    "date": "2024-03-30",
-    "home_team": "Lazio",
-    "away_team": "Juventus",
     "home_goals": 1,
     "away_goals": 0
    }
