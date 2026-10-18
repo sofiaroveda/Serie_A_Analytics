@@ -1,16 +1,16 @@
 {
- "as_of": "2026-10-18",
+ "as_of": "2026-10-19",
  "teams": [
   {
    "team": "Inter",
    "elo": 1643,
-   "attack": 1.95,
-   "defence": 0.79
+   "attack": 1.94,
+   "defence": 0.78
   },
   {
    "team": "Roma",
    "elo": 1591,
-   "attack": 1.42,
+   "attack": 1.41,
    "defence": 0.65
   },
   {
@@ -22,25 +22,25 @@
   {
    "team": "Napoli",
    "elo": 1565,
-   "attack": 1.24,
+   "attack": 1.23,
    "defence": 0.72
   },
   {
    "team": "Milan",
    "elo": 1558,
-   "attack": 1.27,
-   "defence": 0.81
+   "attack": 1.26,
+   "defence": 0.8
   },
   {
    "team": "Como",
-   "elo": 1547,
-   "attack": 1.34,
+   "elo": 1553,
+   "attack": 1.37,
    "defence": 0.74
   },
   {
    "team": "Atalanta",
    "elo": 1539,
-   "attack": 1.28,
+   "attack": 1.27,
    "defence": 0.81
   },
   {
@@ -57,9 +57,9 @@
   },
   {
    "team": "Fiorentina",
-   "elo": 1475,
+   "elo": 1469,
    "attack": 1.06,
-   "defence": 1.05
+   "defence": 1.07
   },
   {
    "team": "Cagliari",
@@ -71,13 +71,13 @@
    "team": "Frosinone",
    "elo": 1467,
    "attack": 1.2,
-   "defence": 1.15
+   "defence": 1.14
   },
   {
    "team": "Sassuolo",
    "elo": 1465,
    "attack": 1.11,
-   "defence": 1.16
+   "defence": 1.15
   },
   {
    "team": "Torino",
@@ -87,9 +87,9 @@
   },
   {
    "team": "Udinese",
-   "elo": 1463,
-   "attack": 1.02,
-   "defence": 1.06
+   "elo": 1453,
+   "attack": 0.98,
+   "defence": 1.1
   },
   {
    "team": "Genoa",
@@ -104,27 +104,27 @@
    "defence": 0.98
   },
   {
+   "team": "Lecce",
+   "elo": 1435,
+   "attack": 0.75,
+   "defence": 1.06
+  },
+  {
    "team": "Monza",
    "elo": 1431,
    "attack": 0.88,
-   "defence": 1.46
-  },
-  {
-   "team": "Lecce",
-   "elo": 1426,
-   "attack": 0.71,
-   "defence": 1.09
+   "defence": 1.45
   },
   {
    "team": "Venezia",
    "elo": 1418,
    "attack": 0.75,
-   "defence": 1.36
+   "defence": 1.35
   }
  ],
  "goals_model": {
-  "base_goals": 1.148,
-  "home_boost": 1.129,
+  "base_goals": 1.156,
+  "home_boost": 1.117,
   "rho": -0.006
  },
  "elo_k": 10.0
