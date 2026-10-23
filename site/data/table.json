@@ -73,6 +73,18 @@
  },
  {
   "position": 7,
+  "team": "Torino",
+  "played": 8,
+  "won": 4,
+  "drawn": 1,
+  "lost": 3,
+  "goals_for": 13,
+  "goals_against": 11,
+  "goal_diff": 2,
+  "points": 13
+ },
+ {
+  "position": 8,
   "team": "Cagliari",
   "played": 7,
   "won": 4,
@@ -84,7 +96,7 @@
   "points": 13
  },
  {
-  "position": 8,
+  "position": 9,
   "team": "Juventus",
   "played": 7,
   "won": 3,
@@ -96,7 +108,7 @@
   "points": 11
  },
  {
-  "position": 9,
+  "position": 10,
   "team": "Napoli",
   "played": 7,
   "won": 3,
@@ -105,18 +117,6 @@
   "goals_for": 10,
   "goals_against": 7,
   "goal_diff": 3,
-  "points": 10
- },
- {
-  "position": 10,
-  "team": "Torino",
-  "played": 7,
-  "won": 3,
-  "drawn": 1,
-  "lost": 3,
-  "goals_for": 10,
-  "goals_against": 9,
-  "goal_diff": 1,
   "points": 10
  },
  {
@@ -158,13 +158,13 @@
  {
   "position": 14,
   "team": "Monza",
-  "played": 7,
+  "played": 8,
   "won": 2,
   "drawn": 1,
-  "lost": 4,
-  "goals_for": 13,
-  "goals_against": 15,
-  "goal_diff": -2,
+  "lost": 5,
+  "goals_for": 15,
+  "goals_against": 18,
+  "goal_diff": -3,
   "points": 7
  },
  {
