@@ -1,6 +1,18 @@
 [
  {
   "position": 1,
+  "team": "Lazio",
+  "played": 8,
+  "won": 7,
+  "drawn": 1,
+  "lost": 0,
+  "goals_for": 16,
+  "goals_against": 5,
+  "goal_diff": 11,
+  "points": 22
+ },
+ {
+  "position": 2,
   "team": "Inter",
   "played": 7,
   "won": 6,
@@ -9,18 +21,6 @@
   "goals_for": 21,
   "goals_against": 9,
   "goal_diff": 12,
-  "points": 19
- },
- {
-  "position": 2,
-  "team": "Lazio",
-  "played": 7,
-  "won": 6,
-  "drawn": 1,
-  "lost": 0,
-  "goals_for": 14,
-  "goals_against": 4,
-  "goal_diff": 10,
   "points": 19
  },
  {
@@ -86,13 +86,13 @@
  {
   "position": 8,
   "team": "Cagliari",
-  "played": 7,
+  "played": 8,
   "won": 4,
   "drawn": 1,
-  "lost": 2,
+  "lost": 3,
   "goals_for": 6,
-  "goals_against": 7,
-  "goal_diff": -1,
+  "goals_against": 9,
+  "goal_diff": -3,
   "points": 13
  },
  {
@@ -157,6 +157,18 @@
  },
  {
   "position": 14,
+  "team": "Bologna",
+  "played": 8,
+  "won": 2,
+  "drawn": 2,
+  "lost": 4,
+  "goals_for": 8,
+  "goals_against": 10,
+  "goal_diff": -2,
+  "points": 8
+ },
+ {
+  "position": 15,
   "team": "Monza",
   "played": 8,
   "won": 2,
@@ -168,27 +180,15 @@
   "points": 7
  },
  {
-  "position": 15,
-  "team": "Bologna",
-  "played": 7,
-  "won": 1,
-  "drawn": 2,
-  "lost": 4,
-  "goals_for": 6,
-  "goals_against": 10,
-  "goal_diff": -4,
-  "points": 5
- },
- {
   "position": 16,
   "team": "Parma",
-  "played": 7,
+  "played": 8,
   "won": 1,
   "drawn": 1,
-  "lost": 5,
-  "goals_for": 4,
-  "goals_against": 13,
-  "goal_diff": -9,
+  "lost": 6,
+  "goals_for": 5,
+  "goals_against": 15,
+  "goal_diff": -10,
   "points": 4
  },
  {
