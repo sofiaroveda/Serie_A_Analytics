@@ -5685,7 +5685,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Torino edged past Monza 3–2. It went to form: our model made Torino favourites at 51%. After the round, Monza's relegation chance went from 45% to 50%."
+  "report": "Torino edged past Monza 3–2. It went to form: our model made Torino favourites at 51%. After the round, Monza's relegation chance went from 45% to 49%."
  },
  "2026-10-24_Cagliari_Bologna": {
   "h2h": [
@@ -5830,7 +5830,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Como beat Sassuolo 2–0. It went to form: our model made Como favourites at 62%. After the round, Como's title chance went from 6% to 7%, and Sassuolo's relegation chance from 9% to 10%."
+  "report": "Como beat Sassuolo 2–0. It went to form: our model made Como favourites at 62%. After the round, Como's title chance went from 6% to 8%."
  },
  "2026-10-24_Napoli_Roma": {
   "h2h": [
@@ -5913,7 +5913,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Napoli and Roma drew 3–3. Roma were favourites (39%) but couldn't find a winner. After the round, Napoli's top-4 chance went from 28% to 26%, and Roma's title chance from 21% to 18%."
+  "report": "Napoli and Roma drew 3–3. Roma were favourites (39%) but couldn't find a winner. After the round, Napoli's top-4 chance went from 28% to 25%, and Roma's title chance from 21% to 18%."
  },
  "2026-10-24_Lazio_Parma": {
   "h2h": [
@@ -5996,7 +5996,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Lazio edged past Parma 2–1. It went to form: our model made Lazio favourites at 57%. After the round, Lazio's top-4 chance went from 40% to 43%, and Parma's relegation chance from 50% to 54%."
+  "report": "Lazio edged past Parma 2–1. It went to form: our model made Lazio favourites at 57%. After the round, Lazio's top-4 chance went from 40% to 43%, and Parma's relegation chance from 50% to 53%."
  },
  "2026-10-25_Inter_Fiorentina": {
   "h2h": [
@@ -6079,7 +6079,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Inter edged past Fiorentina 2–1. It went to form: our model made Inter favourites at 73%. After the round, Inter's title chance went from 64% to 66%, and Fiorentina's relegation chance from 17% to 15%."
+  "report": "Inter edged past Fiorentina 2–1. It went to form: our model made Inter favourites at 73%. After the round, Inter's title chance went from 64% to 65%, and Fiorentina's relegation chance from 17% to 14%."
  },
  "2026-10-25_Atalanta_Frosinone": {
   "h2h": [
@@ -6238,7 +6238,7 @@
    "away_xg": null
   },
   "scorers": null,
-  "report": "Genoa edged past Venezia 1–0. It went to form: our model made Genoa favourites at 52%. After the round, Genoa's relegation chance went from 26% to 19%, and Venezia's from 81% to 86%."
+  "report": "Genoa edged past Venezia 1–0. It went to form: our model made Genoa favourites at 52%. After the round, Genoa's relegation chance went from 26% to 18%, and Venezia's from 81% to 85%."
  },
  "2026-10-25_Lecce_Juventus": {
   "h2h": [
@@ -6295,7 +6295,7 @@
     "home": 9.02,
     "away": 15.17,
     "line": 24.5,
-    "p_over": 0.4601
+    "p_over": 0.4602
    },
    "shots_on_target": {
     "home": 2.59,
@@ -6303,7 +6303,25 @@
     "line": 8.5,
     "p_over": 0.4325
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Juventus beat Lecce 2–0 away from home. It went to form: our model made Juventus favourites at 56%. After the round, Lecce's relegation chance went from 28% to 33%, and Juventus's top-4 chance from 26% to 30%."
  },
  "2026-10-25_Udinese_Milan": {
   "h2h": [
@@ -20473,6 +20491,13 @@
  "2027-04-11_Juventus_Lecce": {
   "h2h": [
    {
+    "date": "2026-10-25",
+    "home_team": "Lecce",
+    "away_team": "Juventus",
+    "home_goals": 0,
+    "away_goals": 2
+   },
+   {
     "date": "2026-05-09",
     "home_team": "Lecce",
     "away_team": "Juventus",
@@ -20499,13 +20524,6 @@
     "away_team": "Juventus",
     "home_goals": 1,
     "away_goals": 1
-   },
-   {
-    "date": "2024-01-21",
-    "home_team": "Lecce",
-    "away_team": "Juventus",
-    "home_goals": 0,
-    "away_goals": 3
    }
   ],
   "stat_predictions": {
