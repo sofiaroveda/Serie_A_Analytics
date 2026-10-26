@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-10-26T07:52+00:00",
+ "generated_at": "2026-10-26T15:15+00:00",
  "season": "2026/27",
- "matches_played": 75,
- "last_result_date": "2026-10-24",
+ "matches_played": 80,
+ "last_result_date": "2026-10-25",
  "favourite_win_rate": 0.6,
  "scoreboard": {
   "matches": 70,
@@ -13,6 +13,6 @@
   "dc_rps": 0.1993,
   "dc_hit_rate": 0.5857
  },
- "current_matchday": 8,
+ "current_matchday": 9,
  "matchdays": 38
 }
