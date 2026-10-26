@@ -37,6 +37,18 @@
  },
  {
   "position": 4,
+  "team": "Milan",
+  "played": 8,
+  "won": 5,
+  "drawn": 3,
+  "lost": 0,
+  "goals_for": 16,
+  "goals_against": 7,
+  "goal_diff": 9,
+  "points": 18
+ },
+ {
+  "position": 5,
   "team": "Como",
   "played": 8,
   "won": 5,
@@ -46,18 +58,6 @@
   "goals_against": 7,
   "goal_diff": 7,
   "points": 17
- },
- {
-  "position": 5,
-  "team": "Milan",
-  "played": 7,
-  "won": 4,
-  "drawn": 3,
-  "lost": 0,
-  "goals_for": 14,
-  "goals_against": 7,
-  "goal_diff": 7,
-  "points": 15
  },
  {
   "position": 6,
@@ -194,13 +194,13 @@
  {
   "position": 17,
   "team": "Udinese",
-  "played": 7,
+  "played": 8,
   "won": 1,
   "drawn": 1,
-  "lost": 5,
+  "lost": 6,
   "goals_for": 9,
-  "goals_against": 16,
-  "goal_diff": -7,
+  "goals_against": 18,
+  "goal_diff": -9,
   "points": 4
  },
  {
