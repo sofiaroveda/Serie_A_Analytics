@@ -1,22 +1,22 @@
 {
- "as_of": "2026-10-27",
+ "as_of": "2026-10-28",
  "teams": [
   {
    "team": "Inter",
    "elo": 1646,
-   "attack": 1.9,
+   "attack": 1.89,
    "defence": 0.77
   },
   {
    "team": "Roma",
    "elo": 1591,
-   "attack": 1.44,
+   "attack": 1.43,
    "defence": 0.68
   },
   {
    "team": "Milan",
    "elo": 1567,
-   "attack": 1.29,
+   "attack": 1.28,
    "defence": 0.79
   },
   {
@@ -28,68 +28,68 @@
   {
    "team": "Juventus",
    "elo": 1563,
-   "attack": 1.23,
+   "attack": 1.22,
    "defence": 0.73
   },
   {
    "team": "Como",
    "elo": 1559,
-   "attack": 1.34,
+   "attack": 1.33,
    "defence": 0.71
   },
   {
    "team": "Lazio",
-   "elo": 1550,
-   "attack": 1.13,
-   "defence": 0.8
+   "elo": 1557,
+   "attack": 1.21,
+   "defence": 0.82
   },
   {
    "team": "Atalanta",
    "elo": 1534,
-   "attack": 1.32,
-   "defence": 0.89
+   "attack": 1.31,
+   "defence": 0.88
   },
   {
    "team": "Bologna",
    "elo": 1500,
-   "attack": 1.08,
+   "attack": 1.07,
    "defence": 0.9
   },
   {
    "team": "Torino",
    "elo": 1477,
-   "attack": 1.02,
-   "defence": 1.07
+   "attack": 1.01,
+   "defence": 1.06
   },
   {
    "team": "Frosinone",
    "elo": 1468,
-   "attack": 1.38,
+   "attack": 1.37,
    "defence": 1.26
   },
   {
    "team": "Fiorentina",
    "elo": 1467,
-   "attack": 1.05,
+   "attack": 1.04,
    "defence": 1.04
   },
   {
    "team": "Sassuolo",
-   "elo": 1459,
-   "attack": 1.06,
-   "defence": 1.13
+   "elo": 1452,
+   "attack": 1.08,
+   "defence": 1.22
   },
   {
    "team": "Cagliari",
    "elo": 1451,
    "attack": 0.85,
-   "defence": 1.03
+   "defence": 1.02
   },
   {
    "team": "Udinese",
    "elo": 1448,
    "attack": 0.95,
-   "defence": 1.09
+   "defence": 1.08
   },
   {
    "team": "Genoa",
@@ -100,8 +100,8 @@
   {
    "team": "Monza",
    "elo": 1437,
-   "attack": 1.01,
-   "defence": 1.43
+   "attack": 1.0,
+   "defence": 1.42
   },
   {
    "team": "Lecce",
@@ -123,9 +123,9 @@
   }
  ],
  "goals_model": {
-  "base_goals": 1.183,
-  "home_boost": 1.104,
-  "rho": 0.0
+  "base_goals": 1.192,
+  "home_boost": 1.095,
+  "rho": 0.001
  },
  "elo_k": 10.0
 }

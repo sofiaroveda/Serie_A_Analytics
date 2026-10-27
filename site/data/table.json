@@ -1,6 +1,18 @@
 [
  {
   "position": 1,
+  "team": "Lazio",
+  "played": 9,
+  "won": 8,
+  "drawn": 1,
+  "lost": 0,
+  "goals_for": 22,
+  "goals_against": 7,
+  "goal_diff": 15,
+  "points": 25
+ },
+ {
+  "position": 2,
   "team": "Inter",
   "played": 8,
   "won": 7,
@@ -9,18 +21,6 @@
   "goals_for": 23,
   "goals_against": 10,
   "goal_diff": 13,
-  "points": 22
- },
- {
-  "position": 2,
-  "team": "Lazio",
-  "played": 8,
-  "won": 7,
-  "drawn": 1,
-  "lost": 0,
-  "goals_for": 16,
-  "goals_against": 5,
-  "goal_diff": 11,
   "points": 22
  },
  {
@@ -158,13 +158,13 @@
  {
   "position": 14,
   "team": "Sassuolo",
-  "played": 8,
+  "played": 9,
   "won": 2,
   "drawn": 2,
-  "lost": 4,
-  "goals_for": 12,
-  "goals_against": 16,
-  "goal_diff": -4,
+  "lost": 5,
+  "goals_for": 14,
+  "goals_against": 22,
+  "goal_diff": -8,
   "points": 8
  },
  {
