@@ -6544,7 +6544,7 @@
     "home": 17.98,
     "away": 8.1,
     "line": 24.5,
-    "p_over": 0.594
+    "p_over": 0.5939
    },
    "shots_on_target": {
     "home": 5.49,
@@ -6552,7 +6552,25 @@
     "line": 8.5,
     "p_over": 0.4645
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Roma beat Cagliari 4–2. It went to form: our model made Roma favourites at 67%."
  },
  "2026-10-27_Torino_Como": {
   "h2h": [
@@ -6602,15 +6620,33 @@
     "home": 10.0,
     "away": 16.14,
     "line": 24.5,
-    "p_over": 0.5978
+    "p_over": 0.5976
    },
    "shots_on_target": {
     "home": 3.21,
-    "away": 5.15,
+    "away": 5.16,
     "line": 8.5,
     "p_over": 0.4549
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Como beat Torino 3–1 away from home. It went to form: our model made Como favourites at 55%."
  },
  "2026-10-28_Milan_Bologna": {
   "h2h": [
@@ -16486,6 +16522,13 @@
  "2027-02-21_Como_Torino": {
   "h2h": [
    {
+    "date": "2026-10-27",
+    "home_team": "Torino",
+    "away_team": "Como",
+    "home_goals": 1,
+    "away_goals": 3
+   },
+   {
     "date": "2026-01-24",
     "home_team": "Como",
     "away_team": "Torino",
@@ -24670,6 +24713,13 @@
  "2027-05-30_Cagliari_Roma": {
   "h2h": [
    {
+    "date": "2026-10-27",
+    "home_team": "Roma",
+    "away_team": "Cagliari",
+    "home_goals": 4,
+    "away_goals": 2
+   },
+   {
     "date": "2026-02-09",
     "home_team": "Roma",
     "away_team": "Cagliari",
@@ -24695,13 +24745,6 @@
     "home_team": "Cagliari",
     "away_team": "Roma",
     "home_goals": 0,
-    "away_goals": 0
-   },
-   {
-    "date": "2024-02-05",
-    "home_team": "Roma",
-    "away_team": "Cagliari",
-    "home_goals": 4,
     "away_goals": 0
    }
   ],

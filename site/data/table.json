@@ -26,17 +26,29 @@
  {
   "position": 3,
   "team": "Roma",
-  "played": 8,
-  "won": 5,
+  "played": 9,
+  "won": 6,
   "drawn": 3,
   "lost": 0,
-  "goals_for": 19,
-  "goals_against": 6,
-  "goal_diff": 13,
-  "points": 18
+  "goals_for": 23,
+  "goals_against": 8,
+  "goal_diff": 15,
+  "points": 21
  },
  {
   "position": 4,
+  "team": "Como",
+  "played": 9,
+  "won": 6,
+  "drawn": 2,
+  "lost": 1,
+  "goals_for": 17,
+  "goals_against": 8,
+  "goal_diff": 9,
+  "points": 20
+ },
+ {
+  "position": 5,
   "team": "Milan",
   "played": 8,
   "won": 5,
@@ -46,18 +58,6 @@
   "goals_against": 7,
   "goal_diff": 9,
   "points": 18
- },
- {
-  "position": 5,
-  "team": "Como",
-  "played": 8,
-  "won": 5,
-  "drawn": 2,
-  "lost": 1,
-  "goals_for": 14,
-  "goals_against": 7,
-  "goal_diff": 7,
-  "points": 17
  },
  {
   "position": 6,
@@ -86,25 +86,25 @@
  {
   "position": 8,
   "team": "Torino",
-  "played": 8,
+  "played": 9,
   "won": 4,
   "drawn": 1,
-  "lost": 3,
-  "goals_for": 13,
-  "goals_against": 11,
-  "goal_diff": 2,
+  "lost": 4,
+  "goals_for": 14,
+  "goals_against": 14,
+  "goal_diff": 0,
   "points": 13
  },
  {
   "position": 9,
   "team": "Cagliari",
-  "played": 8,
+  "played": 9,
   "won": 4,
   "drawn": 1,
-  "lost": 3,
-  "goals_for": 6,
-  "goals_against": 9,
-  "goal_diff": -3,
+  "lost": 4,
+  "goals_for": 8,
+  "goals_against": 13,
+  "goal_diff": -5,
   "points": 13
  },
  {
