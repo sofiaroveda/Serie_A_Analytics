@@ -1,71 +1,71 @@
 {
- "as_of": "2026-10-29",
+ "as_of": "2026-10-30",
  "teams": [
   {
    "team": "Inter",
    "elo": 1649,
-   "attack": 1.86,
+   "attack": 1.85,
    "defence": 0.75
   },
   {
    "team": "Roma",
    "elo": 1596,
-   "attack": 1.47,
+   "attack": 1.46,
    "defence": 0.7
   },
   {
    "team": "Napoli",
    "elo": 1571,
-   "attack": 1.29,
+   "attack": 1.28,
    "defence": 0.74
   },
   {
    "team": "Como",
    "elo": 1564,
-   "attack": 1.36,
-   "defence": 0.71
+   "attack": 1.35,
+   "defence": 0.7
   },
   {
    "team": "Milan",
    "elo": 1559,
-   "attack": 1.29,
+   "attack": 1.28,
    "defence": 0.84
   },
   {
    "team": "Lazio",
    "elo": 1557,
-   "attack": 1.21,
+   "attack": 1.2,
    "defence": 0.81
   },
   {
    "team": "Juventus",
    "elo": 1553,
-   "attack": 1.19,
+   "attack": 1.18,
    "defence": 0.74
   },
   {
    "team": "Atalanta",
    "elo": 1534,
-   "attack": 1.31,
-   "defence": 0.88
+   "attack": 1.3,
+   "defence": 0.87
   },
   {
    "team": "Bologna",
    "elo": 1509,
-   "attack": 1.13,
+   "attack": 1.12,
    "defence": 0.9
+  },
+  {
+   "team": "Frosinone",
+   "elo": 1476,
+   "attack": 1.55,
+   "defence": 1.25
   },
   {
    "team": "Torino",
    "elo": 1471,
    "attack": 1.01,
    "defence": 1.08
-  },
-  {
-   "team": "Frosinone",
-   "elo": 1468,
-   "attack": 1.37,
-   "defence": 1.25
   },
   {
    "team": "Fiorentina",
@@ -76,38 +76,32 @@
   {
    "team": "Genoa",
    "elo": 1457,
-   "attack": 0.88,
-   "defence": 0.96
+   "attack": 0.87,
+   "defence": 0.95
   },
   {
    "team": "Sassuolo",
    "elo": 1452,
-   "attack": 1.08,
+   "attack": 1.07,
    "defence": 1.21
   },
   {
    "team": "Udinese",
    "elo": 1448,
-   "attack": 0.92,
+   "attack": 0.91,
    "defence": 1.06
   },
   {
    "team": "Cagliari",
    "elo": 1446,
-   "attack": 0.88,
+   "attack": 0.87,
    "defence": 1.06
   },
   {
    "team": "Monza",
    "elo": 1431,
-   "attack": 1.0,
+   "attack": 0.99,
    "defence": 1.48
-  },
-  {
-   "team": "Lecce",
-   "elo": 1430,
-   "attack": 0.72,
-   "defence": 1.04
   },
   {
    "team": "Parma",
@@ -116,15 +110,21 @@
    "defence": 0.99
   },
   {
+   "team": "Lecce",
+   "elo": 1422,
+   "attack": 0.72,
+   "defence": 1.1
+  },
+  {
    "team": "Venezia",
    "elo": 1410,
-   "attack": 0.67,
-   "defence": 1.24
+   "attack": 0.66,
+   "defence": 1.23
   }
  ],
  "goals_model": {
-  "base_goals": 1.199,
-  "home_boost": 1.09,
+  "base_goals": 1.201,
+  "home_boost": 1.096,
   "rho": -0.003
  },
  "elo_k": 10.0

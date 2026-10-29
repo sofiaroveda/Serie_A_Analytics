@@ -1328,145 +1328,145 @@
   {
    "label": "MD 9",
    "matchday": 9,
-   "as_of": "2026-10-28",
+   "as_of": "2026-10-29",
    "teams": {
     "Inter": {
-     "p_title": 0.6419,
-     "p_top4": 0.9682,
+     "p_title": 0.6475,
+     "p_top4": 0.9637,
      "p_relegation": 0.0,
      "exp_points": 85.8,
      "points": 25
     },
     "Roma": {
-     "p_title": 0.1864,
-     "p_top4": 0.8465,
+     "p_title": 0.1752,
+     "p_top4": 0.8313,
      "p_relegation": 0.0,
-     "exp_points": 77.8,
+     "exp_points": 77.5,
      "points": 21
     },
     "Como": {
-     "p_title": 0.0833,
-     "p_top4": 0.6743,
+     "p_title": 0.0861,
+     "p_top4": 0.6703,
      "p_relegation": 0.0,
-     "exp_points": 73.2,
+     "exp_points": 73.3,
      "points": 20
     },
     "Lazio": {
-     "p_title": 0.0507,
-     "p_top4": 0.5383,
+     "p_title": 0.0518,
+     "p_top4": 0.5235,
      "p_relegation": 0.0,
-     "exp_points": 70.4,
+     "exp_points": 70.3,
      "points": 25
     },
     "Napoli": {
-     "p_title": 0.0109,
-     "p_top4": 0.2985,
-     "p_relegation": 0.0003,
+     "p_title": 0.0106,
+     "p_top4": 0.2865,
+     "p_relegation": 0.0004,
      "exp_points": 65.2,
      "points": 14
     },
     "Milan": {
-     "p_title": 0.0146,
-     "p_top4": 0.2898,
+     "p_title": 0.0158,
+     "p_top4": 0.2805,
      "p_relegation": 0.0001,
-     "exp_points": 65.1,
+     "exp_points": 64.9,
      "points": 18
     },
     "Juventus": {
-     "p_title": 0.0072,
-     "p_top4": 0.1703,
-     "p_relegation": 0.0003,
-     "exp_points": 61.8,
+     "p_title": 0.005,
+     "p_top4": 0.1618,
+     "p_relegation": 0.0005,
+     "exp_points": 61.6,
      "points": 14
-    },
-    "Atalanta": {
-     "p_title": 0.0027,
-     "p_top4": 0.1044,
-     "p_relegation": 0.0039,
-     "exp_points": 58.8,
-     "points": 10
     },
     "Frosinone": {
-     "p_title": 0.0017,
-     "p_top4": 0.0587,
-     "p_relegation": 0.0099,
-     "exp_points": 55.1,
-     "points": 14
+     "p_title": 0.0053,
+     "p_top4": 0.1371,
+     "p_relegation": 0.0015,
+     "exp_points": 59.9,
+     "points": 17
+    },
+    "Atalanta": {
+     "p_title": 0.0024,
+     "p_top4": 0.1024,
+     "p_relegation": 0.0022,
+     "exp_points": 58.7,
+     "points": 10
     },
     "Bologna": {
-     "p_title": 0.0005,
-     "p_top4": 0.0348,
-     "p_relegation": 0.0074,
-     "exp_points": 54.1,
+     "p_title": 0.0002,
+     "p_top4": 0.0304,
+     "p_relegation": 0.008,
+     "exp_points": 53.8,
      "points": 11
     },
     "Torino": {
-     "p_title": 0.0001,
-     "p_top4": 0.0071,
-     "p_relegation": 0.0437,
-     "exp_points": 47.6,
-     "points": 13
-    },
-    "Cagliari": {
      "p_title": 0.0,
-     "p_top4": 0.0035,
-     "p_relegation": 0.0695,
-     "exp_points": 45.1,
+     "p_top4": 0.005,
+     "p_relegation": 0.0375,
+     "exp_points": 47.3,
      "points": 13
     },
     "Genoa": {
+     "p_title": 0.0001,
+     "p_top4": 0.0015,
+     "p_relegation": 0.069,
+     "exp_points": 44.9,
+     "points": 10
+    },
+    "Cagliari": {
      "p_title": 0.0,
      "p_top4": 0.0022,
-     "p_relegation": 0.081,
+     "p_relegation": 0.0665,
      "exp_points": 44.7,
-     "points": 10
+     "points": 13
     },
     "Fiorentina": {
      "p_title": 0.0,
-     "p_top4": 0.0016,
-     "p_relegation": 0.1329,
+     "p_top4": 0.0025,
+     "p_relegation": 0.123,
      "exp_points": 43.0,
      "points": 4
     },
     "Sassuolo": {
      "p_title": 0.0,
-     "p_top4": 0.0013,
-     "p_relegation": 0.141,
-     "exp_points": 42.3,
+     "p_top4": 0.0011,
+     "p_relegation": 0.1293,
+     "exp_points": 42.4,
      "points": 8
     },
     "Udinese": {
      "p_title": 0.0,
-     "p_top4": 0.0003,
-     "p_relegation": 0.2885,
-     "exp_points": 37.7,
+     "p_top4": 0.0001,
+     "p_relegation": 0.2843,
+     "exp_points": 37.5,
      "points": 5
     },
     "Lecce": {
      "p_title": 0.0,
-     "p_top4": 0.0002,
-     "p_relegation": 0.2943,
-     "exp_points": 37.3,
+     "p_top4": 0.0,
+     "p_relegation": 0.3811,
+     "exp_points": 35.2,
      "points": 9
     },
     "Parma": {
      "p_title": 0.0,
      "p_top4": 0.0,
-     "p_relegation": 0.5184,
-     "exp_points": 33.2,
+     "p_relegation": 0.5047,
+     "exp_points": 33.0,
      "points": 5
     },
     "Monza": {
      "p_title": 0.0,
-     "p_top4": 0.0,
-     "p_relegation": 0.5663,
-     "exp_points": 32.4,
+     "p_top4": 0.0001,
+     "p_relegation": 0.5551,
+     "exp_points": 32.2,
      "points": 7
     },
     "Venezia": {
      "p_title": 0.0,
      "p_top4": 0.0,
-     "p_relegation": 0.8425,
+     "p_relegation": 0.8368,
      "exp_points": 26.0,
      "points": 3
     }
