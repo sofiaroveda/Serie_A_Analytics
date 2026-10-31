@@ -7333,7 +7333,7 @@
     "home": 2.11,
     "away": 1.76,
     "line": 4.5,
-    "p_over": 0.3454
+    "p_over": 0.3453
    },
    "shots": {
     "home": 11.63,
@@ -7347,7 +7347,25 @@
     "line": 8.5,
     "p_over": 0.4912
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Roma thrashed Udinese 5–2 away from home. It went to form: our model made Roma favourites at 61%."
  },
  "2026-10-31_Milan_Inter": {
   "h2h": [
@@ -7398,13 +7416,13 @@
     "home": 1.49,
     "away": 1.75,
     "line": 4.5,
-    "p_over": 0.2264
+    "p_over": 0.2263
    },
    "shots": {
     "home": 11.45,
     "away": 14.32,
     "line": 24.5,
-    "p_over": 0.5729
+    "p_over": 0.5728
    },
    "shots_on_target": {
     "home": 3.97,
@@ -7412,7 +7430,25 @@
     "line": 8.5,
     "p_over": 0.5286
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Milan beat Inter 3–1. Not what we expected: our model had Inter as favourites (51%)."
  },
  "2026-11-01_Como_Venezia": {
   "h2h": [
@@ -14663,6 +14699,13 @@
  "2027-01-24_Roma_Udinese": {
   "h2h": [
    {
+    "date": "2026-10-31",
+    "home_team": "Udinese",
+    "away_team": "Roma",
+    "home_goals": 2,
+    "away_goals": 5
+   },
+   {
     "date": "2026-02-02",
     "home_team": "Udinese",
     "away_team": "Roma",
@@ -14689,13 +14732,6 @@
     "away_team": "Udinese",
     "home_goals": 3,
     "away_goals": 0
-   },
-   {
-    "date": "2024-04-25",
-    "home_team": "Udinese",
-    "away_team": "Roma",
-    "home_goals": 1,
-    "away_goals": 2
    }
   ],
   "stat_predictions": {
@@ -16225,6 +16261,13 @@
  "2027-02-14_Inter_Milan": {
   "h2h": [
    {
+    "date": "2026-10-31",
+    "home_team": "Milan",
+    "away_team": "Inter",
+    "home_goals": 3,
+    "away_goals": 1
+   },
+   {
     "date": "2026-03-08",
     "home_team": "Milan",
     "away_team": "Inter",
@@ -16249,13 +16292,6 @@
     "date": "2024-09-22",
     "home_team": "Inter",
     "away_team": "Milan",
-    "home_goals": 1,
-    "away_goals": 2
-   },
-   {
-    "date": "2024-04-22",
-    "home_team": "Milan",
-    "away_team": "Inter",
     "home_goals": 1,
     "away_goals": 2
    }
