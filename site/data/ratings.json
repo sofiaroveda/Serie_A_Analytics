@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-31",
+ "as_of": "2026-11-01",
  "teams": [
   {
    "team": "Inter",
@@ -51,8 +51,8 @@
   },
   {
    "team": "Bologna",
-   "elo": 1509,
-   "attack": 1.12,
+   "elo": 1513,
+   "attack": 1.11,
    "defence": 0.9
   },
   {
@@ -83,7 +83,7 @@
    "team": "Sassuolo",
    "elo": 1452,
    "attack": 1.07,
-   "defence": 1.2
+   "defence": 1.21
   },
   {
    "team": "Udinese",
@@ -98,16 +98,16 @@
    "defence": 1.06
   },
   {
-   "team": "Monza",
-   "elo": 1431,
-   "attack": 0.99,
-   "defence": 1.48
-  },
-  {
    "team": "Parma",
    "elo": 1429,
    "attack": 0.69,
    "defence": 0.99
+  },
+  {
+   "team": "Monza",
+   "elo": 1427,
+   "attack": 0.99,
+   "defence": 1.47
   },
   {
    "team": "Lecce",
@@ -124,7 +124,7 @@
  ],
  "goals_model": {
   "base_goals": 1.201,
-  "home_boost": 1.097,
+  "home_boost": 1.096,
   "rho": -0.003
  },
  "elo_k": 10.0

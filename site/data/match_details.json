@@ -7244,7 +7244,7 @@
     "home": 5.22,
     "away": 3.07,
     "line": 9.5,
-    "p_over": 0.3251
+    "p_over": 0.3252
    },
    "yellow_cards": {
     "home": 1.59,
@@ -7256,7 +7256,7 @@
     "home": 15.23,
     "away": 8.63,
     "line": 24.5,
-    "p_over": 0.4357
+    "p_over": 0.4359
    },
    "shots_on_target": {
     "home": 5.38,
@@ -7264,7 +7264,25 @@
     "line": 8.5,
     "p_over": 0.4481
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Bologna edged past Monza 2–1. It went to form: our model made Bologna favourites at 62%."
  },
  "2026-10-31_Udinese_Roma": {
   "h2h": [
@@ -7315,13 +7333,13 @@
     "home": 2.11,
     "away": 1.76,
     "line": 4.5,
-    "p_over": 0.3453
+    "p_over": 0.3454
    },
    "shots": {
     "home": 11.63,
     "away": 15.13,
     "line": 24.5,
-    "p_over": 0.6385
+    "p_over": 0.6387
    },
    "shots_on_target": {
     "home": 3.92,
@@ -7380,13 +7398,13 @@
     "home": 1.49,
     "away": 1.75,
     "line": 4.5,
-    "p_over": 0.2263
+    "p_over": 0.2264
    },
    "shots": {
     "home": 11.45,
     "away": 14.32,
     "line": 24.5,
-    "p_over": 0.5728
+    "p_over": 0.5729
    },
    "shots_on_target": {
     "home": 3.97,
@@ -7424,13 +7442,13 @@
     "home": 1.55,
     "away": 2.57,
     "line": 4.5,
-    "p_over": 0.3934
+    "p_over": 0.3933
    },
    "shots": {
-    "home": 20.2,
+    "home": 20.19,
     "away": 9.62,
     "line": 24.5,
-    "p_over": 0.8037
+    "p_over": 0.8035
    },
    "shots_on_target": {
     "home": 7.14,
@@ -7492,16 +7510,16 @@
     "p_over": 0.2884
    },
    "shots": {
-    "home": 22.62,
+    "home": 22.63,
     "away": 14.76,
     "line": 24.5,
-    "p_over": 0.9734
+    "p_over": 0.9735
    },
    "shots_on_target": {
     "home": 6.24,
     "away": 4.47,
     "line": 8.5,
-    "p_over": 0.722
+    "p_over": 0.7219
    }
   }
  },
@@ -7625,7 +7643,7 @@
     "home": 12.63,
     "away": 10.43,
     "line": 24.5,
-    "p_over": 0.3771
+    "p_over": 0.3772
    },
    "shots_on_target": {
     "home": 3.58,
@@ -7684,13 +7702,13 @@
     "home": 1.42,
     "away": 1.38,
     "line": 4.5,
-    "p_over": 0.1536
+    "p_over": 0.1537
    },
    "shots": {
     "home": 15.44,
     "away": 10.47,
     "line": 24.5,
-    "p_over": 0.5822
+    "p_over": 0.5823
    },
    "shots_on_target": {
     "home": 4.27,
@@ -7749,13 +7767,13 @@
     "home": 2.14,
     "away": 2.46,
     "line": 4.5,
-    "p_over": 0.4861
+    "p_over": 0.486
    },
    "shots": {
     "home": 13.02,
     "away": 13.54,
     "line": 24.5,
-    "p_over": 0.6257
+    "p_over": 0.6258
    },
    "shots_on_target": {
     "home": 4.75,
@@ -7812,7 +7830,7 @@
    },
    "yellow_cards": {
     "home": 1.4,
-    "away": 1.41,
+    "away": 1.42,
     "line": 4.5,
     "p_over": 0.1552
    },
@@ -7820,7 +7838,7 @@
     "home": 17.88,
     "away": 10.17,
     "line": 24.5,
-    "p_over": 0.7161
+    "p_over": 0.7163
    },
    "shots_on_target": {
     "home": 5.51,
@@ -7866,7 +7884,7 @@
     "home": 5.31,
     "away": 4.7,
     "line": 9.5,
-    "p_over": 0.5336
+    "p_over": 0.5335
    },
    "yellow_cards": {
     "home": 1.59,
@@ -7878,7 +7896,7 @@
     "home": 15.68,
     "away": 13.41,
     "line": 24.5,
-    "p_over": 0.7706
+    "p_over": 0.7703
    },
    "shots_on_target": {
     "home": 4.42,
@@ -7934,7 +7952,7 @@
    },
    "shots": {
     "home": 17.54,
-    "away": 18.93,
+    "away": 18.94,
     "line": 24.5,
     "p_over": 0.9653
    },
@@ -7995,7 +8013,7 @@
     "home": 1.47,
     "away": 1.58,
     "line": 4.5,
-    "p_over": 0.1934
+    "p_over": 0.1935
    },
    "shots": {
     "home": 12.88,
@@ -8063,10 +8081,10 @@
     "p_over": 0.3227
    },
    "shots": {
-    "home": 9.37,
+    "home": 9.38,
     "away": 13.27,
     "line": 24.5,
-    "p_over": 0.3465
+    "p_over": 0.3469
    },
    "shots_on_target": {
     "home": 2.86,
@@ -8131,7 +8149,7 @@
     "home": 18.36,
     "away": 9.26,
     "line": 24.5,
-    "p_over": 0.6916
+    "p_over": 0.6917
    },
    "shots_on_target": {
     "home": 6.34,
@@ -8255,13 +8273,13 @@
     "home": 1.76,
     "away": 2.26,
     "line": 4.5,
-    "p_over": 0.3745
+    "p_over": 0.3746
    },
    "shots": {
     "home": 10.51,
     "away": 12.49,
     "line": 24.5,
-    "p_over": 0.3724
+    "p_over": 0.3726
    },
    "shots_on_target": {
     "home": 3.42,
@@ -8326,7 +8344,7 @@
     "home": 13.31,
     "away": 14.44,
     "line": 24.5,
-    "p_over": 0.6992
+    "p_over": 0.6993
    },
    "shots_on_target": {
     "home": 4.34,
@@ -8382,7 +8400,7 @@
    },
    "shots": {
     "home": 15.73,
-    "away": 11.7,
+    "away": 11.71,
     "line": 24.5,
     "p_over": 0.6808
    },
@@ -8449,7 +8467,7 @@
     "home": 11.43,
     "away": 14.27,
     "line": 24.5,
-    "p_over": 0.5681
+    "p_over": 0.5683
    },
    "shots_on_target": {
     "home": 3.28,
@@ -8507,13 +8525,13 @@
     "home": 19.38,
     "away": 8.38,
     "line": 24.5,
-    "p_over": 0.6997
+    "p_over": 0.6998
    },
    "shots_on_target": {
     "home": 6.12,
     "away": 2.74,
     "line": 8.5,
-    "p_over": 0.5177
+    "p_over": 0.5176
    }
   }
  },
@@ -8625,7 +8643,7 @@
     "home": 3.71,
     "away": 5.07,
     "line": 9.5,
-    "p_over": 0.385
+    "p_over": 0.3849
    },
    "yellow_cards": {
     "home": 1.8,
@@ -8634,10 +8652,10 @@
     "p_over": 0.3297
    },
    "shots": {
-    "home": 9.79,
+    "home": 9.8,
     "away": 15.97,
     "line": 24.5,
-    "p_over": 0.5722
+    "p_over": 0.5725
    },
    "shots_on_target": {
     "home": 3.24,
@@ -8767,7 +8785,7 @@
     "home": 13.65,
     "away": 11.3,
     "line": 24.5,
-    "p_over": 0.5155
+    "p_over": 0.5156
    },
    "shots_on_target": {
     "home": 4.42,
@@ -8829,10 +8847,10 @@
     "p_over": 0.3702
    },
    "shots": {
-    "home": 20.22,
+    "home": 20.21,
     "away": 14.89,
     "line": 24.5,
-    "p_over": 0.9484
+    "p_over": 0.9485
    },
    "shots_on_target": {
     "home": 6.57,
@@ -8897,7 +8915,7 @@
     "home": 14.99,
     "away": 9.33,
     "line": 24.5,
-    "p_over": 0.4695
+    "p_over": 0.4698
    },
    "shots_on_target": {
     "home": 4.63,
@@ -8962,7 +8980,7 @@
     "home": 12.32,
     "away": 17.08,
     "line": 24.5,
-    "p_over": 0.785
+    "p_over": 0.7849
    },
    "shots_on_target": {
     "home": 4.14,
@@ -9027,7 +9045,7 @@
     "home": 12.68,
     "away": 13.51,
     "line": 24.5,
-    "p_over": 0.6017
+    "p_over": 0.6018
    },
    "shots_on_target": {
     "home": 4.44,
@@ -9085,7 +9103,7 @@
     "home": 19.85,
     "away": 9.48,
     "line": 24.5,
-    "p_over": 0.7818
+    "p_over": 0.7816
    },
    "shots_on_target": {
     "home": 7.14,
@@ -9150,7 +9168,7 @@
     "home": 10.85,
     "away": 13.33,
     "line": 24.5,
-    "p_over": 0.4589
+    "p_over": 0.459
    },
    "shots_on_target": {
     "home": 3.61,
@@ -9202,13 +9220,13 @@
     "home": 1.86,
     "away": 1.96,
     "line": 4.5,
-    "p_over": 0.3373
+    "p_over": 0.3374
    },
    "shots": {
     "home": 13.84,
-    "away": 11.57,
+    "away": 11.58,
     "line": 24.5,
-    "p_over": 0.5478
+    "p_over": 0.5481
    },
    "shots_on_target": {
     "home": 4.16,
@@ -9249,10 +9267,10 @@
     "p_over": 0.3296
    },
    "shots": {
-    "home": 23.6,
+    "home": 23.61,
     "away": 13.79,
     "line": 24.5,
-    "p_over": 0.9735
+    "p_over": 0.9736
    },
    "shots_on_target": {
     "home": 6.18,
@@ -9314,10 +9332,10 @@
     "p_over": 0.2582
    },
    "shots": {
-    "home": 20.35,
+    "home": 20.34,
     "away": 8.07,
     "line": 24.5,
-    "p_over": 0.7362
+    "p_over": 0.7361
    },
    "shots_on_target": {
     "home": 6.22,
@@ -9376,13 +9394,13 @@
     "home": 1.32,
     "away": 1.52,
     "line": 4.5,
-    "p_over": 0.1592
+    "p_over": 0.1593
    },
    "shots": {
     "home": 12.64,
     "away": 13.35,
     "line": 24.5,
-    "p_over": 0.5884
+    "p_over": 0.5885
    },
    "shots_on_target": {
     "home": 3.76,
@@ -9441,13 +9459,13 @@
     "home": 1.67,
     "away": 2.52,
     "line": 4.5,
-    "p_over": 0.4086
+    "p_over": 0.4087
    },
    "shots": {
-    "home": 18.32,
+    "home": 18.33,
     "away": 9.02,
     "line": 24.5,
-    "p_over": 0.6752
+    "p_over": 0.6754
    },
    "shots_on_target": {
     "home": 6.4,
@@ -9506,13 +9524,13 @@
     "home": 1.79,
     "away": 1.43,
     "line": 4.5,
-    "p_over": 0.2237
+    "p_over": 0.2238
    },
    "shots": {
     "home": 11.81,
     "away": 14.78,
     "line": 24.5,
-    "p_over": 0.6283
+    "p_over": 0.6282
    },
    "shots_on_target": {
     "home": 3.35,
@@ -9575,9 +9593,9 @@
    },
    "shots": {
     "home": 11.98,
-    "away": 12.63,
+    "away": 12.64,
     "line": 24.5,
-    "p_over": 0.491
+    "p_over": 0.4911
    },
    "shots_on_target": {
     "home": 3.77,
@@ -9642,7 +9660,7 @@
     "home": 13.71,
     "away": 13.3,
     "line": 24.5,
-    "p_over": 0.6545
+    "p_over": 0.6546
    },
    "shots_on_target": {
     "home": 4.5,
@@ -9694,13 +9712,13 @@
     "home": 2.19,
     "away": 1.66,
     "line": 4.5,
-    "p_over": 0.3416
+    "p_over": 0.3415
    },
    "shots": {
     "home": 11.48,
     "away": 13.23,
     "line": 24.5,
-    "p_over": 0.4976
+    "p_over": 0.4974
    },
    "shots_on_target": {
     "home": 3.42,
@@ -9753,7 +9771,7 @@
     "home": 4.09,
     "away": 3.84,
     "line": 9.5,
-    "p_over": 0.2834
+    "p_over": 0.2835
    },
    "yellow_cards": {
     "home": 1.93,
@@ -9763,9 +9781,9 @@
    },
    "shots": {
     "home": 11.47,
-    "away": 11.07,
+    "away": 11.08,
     "line": 24.5,
-    "p_over": 0.3392
+    "p_over": 0.3395
    },
    "shots_on_target": {
     "home": 4.07,
@@ -9824,7 +9842,7 @@
     "home": 1.71,
     "away": 2.41,
     "line": 4.5,
-    "p_over": 0.3938
+    "p_over": 0.3939
    },
    "shots": {
     "home": 16.0,
@@ -9892,8 +9910,8 @@
     "p_over": 0.2692
    },
    "shots": {
-    "home": 16.25,
-    "away": 23.17,
+    "home": 16.26,
+    "away": 23.16,
     "line": 24.5,
     "p_over": 0.9859
    },
@@ -9901,7 +9919,7 @@
     "home": 4.65,
     "away": 7.02,
     "line": 8.5,
-    "p_over": 0.7991
+    "p_over": 0.799
    }
   }
  },
@@ -9954,13 +9972,13 @@
     "home": 1.35,
     "away": 2.18,
     "line": 4.5,
-    "p_over": 0.2799
+    "p_over": 0.28
    },
    "shots": {
     "home": 13.39,
     "away": 10.87,
     "line": 24.5,
-    "p_over": 0.4652
+    "p_over": 0.4653
    },
    "shots_on_target": {
     "home": 3.91,
@@ -10013,7 +10031,7 @@
     "home": 7.15,
     "away": 3.67,
     "line": 9.5,
-    "p_over": 0.6238
+    "p_over": 0.6237
    },
    "yellow_cards": {
     "home": 1.22,
@@ -10025,7 +10043,7 @@
     "home": 18.87,
     "away": 9.19,
     "line": 24.5,
-    "p_over": 0.7165
+    "p_over": 0.7167
    },
    "shots_on_target": {
     "home": 6.0,
@@ -10090,7 +10108,7 @@
     "home": 14.1,
     "away": 12.43,
     "line": 24.5,
-    "p_over": 0.6235
+    "p_over": 0.6236
    },
    "shots_on_target": {
     "home": 4.99,
@@ -10153,9 +10171,9 @@
    },
    "shots": {
     "home": 16.62,
-    "away": 8.52,
+    "away": 8.53,
     "line": 24.5,
-    "p_over": 0.5289
+    "p_over": 0.5292
    },
    "shots_on_target": {
     "home": 5.28,
@@ -10199,13 +10217,13 @@
     "home": 10.28,
     "away": 16.36,
     "line": 24.5,
-    "p_over": 0.6313
+    "p_over": 0.6315
    },
    "shots_on_target": {
     "home": 3.4,
     "away": 5.99,
     "line": 8.5,
-    "p_over": 0.583
+    "p_over": 0.5829
    }
   }
  },
@@ -10258,7 +10276,7 @@
     "home": 1.07,
     "away": 1.95,
     "line": 4.5,
-    "p_over": 0.1895
+    "p_over": 0.1896
    },
    "shots": {
     "home": 16.27,
@@ -10302,13 +10320,13 @@
     "home": 1.97,
     "away": 1.75,
     "line": 4.5,
-    "p_over": 0.3172
+    "p_over": 0.3171
    },
    "shots": {
     "home": 15.96,
     "away": 12.74,
     "line": 24.5,
-    "p_over": 0.751
+    "p_over": 0.7507
    },
    "shots_on_target": {
     "home": 5.08,
@@ -10370,10 +10388,10 @@
     "p_over": 0.2191
    },
    "shots": {
-    "home": 16.02,
+    "home": 16.03,
     "away": 10.51,
     "line": 24.5,
-    "p_over": 0.6244
+    "p_over": 0.6246
    },
    "shots_on_target": {
     "home": 5.22,
@@ -10428,10 +10446,10 @@
     "p_over": 0.2381
    },
    "shots": {
-    "home": 14.38,
-    "away": 13.28,
+    "home": 14.37,
+    "away": 13.27,
     "line": 24.5,
-    "p_over": 0.6937
+    "p_over": 0.6932
    },
    "shots_on_target": {
     "home": 4.91,
@@ -10486,10 +10504,10 @@
     "p_over": 0.4644
    },
    "shots": {
-    "home": 14.05,
+    "home": 14.06,
     "away": 9.2,
     "line": 24.5,
-    "p_over": 0.3904
+    "p_over": 0.3908
    },
    "shots_on_target": {
     "home": 4.66,
@@ -10554,7 +10572,7 @@
     "home": 21.76,
     "away": 8.36,
     "line": 24.5,
-    "p_over": 0.8165
+    "p_over": 0.8163
    },
    "shots_on_target": {
     "home": 6.63,
@@ -10619,7 +10637,7 @@
     "home": 19.17,
     "away": 8.5,
     "line": 24.5,
-    "p_over": 0.6945
+    "p_over": 0.6946
    },
    "shots_on_target": {
     "home": 6.98,
@@ -10684,7 +10702,7 @@
     "home": 11.39,
     "away": 13.23,
     "line": 24.5,
-    "p_over": 0.491
+    "p_over": 0.4912
    },
    "shots_on_target": {
     "home": 4.45,
@@ -10746,7 +10764,7 @@
     "p_over": 0.3093
    },
    "shots": {
-    "home": 13.6,
+    "home": 13.59,
     "away": 11.38,
     "line": 24.5,
     "p_over": 0.5166
@@ -10814,7 +10832,7 @@
     "home": 13.74,
     "away": 10.81,
     "line": 24.5,
-    "p_over": 0.4861
+    "p_over": 0.4862
    },
    "shots_on_target": {
     "home": 4.88,
@@ -10879,7 +10897,7 @@
     "home": 11.55,
     "away": 14.04,
     "line": 24.5,
-    "p_over": 0.5599
+    "p_over": 0.5602
    },
    "shots_on_target": {
     "home": 3.71,
@@ -10932,7 +10950,7 @@
     "home": 5.78,
     "away": 6.09,
     "line": 9.5,
-    "p_over": 0.723
+    "p_over": 0.7229
    },
    "yellow_cards": {
     "home": 2.27,
@@ -11009,7 +11027,7 @@
     "home": 13.86,
     "away": 13.75,
     "line": 24.5,
-    "p_over": 0.6911
+    "p_over": 0.6912
    },
    "shots_on_target": {
     "home": 3.96,
@@ -11074,7 +11092,7 @@
     "home": 11.61,
     "away": 11.34,
     "line": 24.5,
-    "p_over": 0.3684
+    "p_over": 0.3687
    },
    "shots_on_target": {
     "home": 3.67,
@@ -11127,7 +11145,7 @@
     "home": 6.19,
     "away": 4.89,
     "line": 9.5,
-    "p_over": 0.6487
+    "p_over": 0.6486
    },
    "yellow_cards": {
     "home": 2.22,
@@ -11136,10 +11154,10 @@
     "p_over": 0.5738
    },
    "shots": {
-    "home": 19.55,
+    "home": 19.56,
     "away": 16.03,
     "line": 24.5,
-    "p_over": 0.955
+    "p_over": 0.9551
    },
    "shots_on_target": {
     "home": 5.57,
@@ -11204,7 +11222,7 @@
     "home": 13.24,
     "away": 12.06,
     "line": 24.5,
-    "p_over": 0.5398
+    "p_over": 0.54
    },
    "shots_on_target": {
     "home": 3.92,
@@ -11257,7 +11275,7 @@
     "home": 3.7,
     "away": 5.93,
     "line": 9.5,
-    "p_over": 0.4889
+    "p_over": 0.4888
    },
    "yellow_cards": {
     "home": 1.52,
@@ -11269,7 +11287,7 @@
     "home": 9.71,
     "away": 16.95,
     "line": 24.5,
-    "p_over": 0.6325
+    "p_over": 0.6324
    },
    "shots_on_target": {
     "home": 2.84,
@@ -11327,7 +11345,7 @@
     "home": 11.52,
     "away": 12.78,
     "line": 24.5,
-    "p_over": 0.4675
+    "p_over": 0.4678
    },
    "shots_on_target": {
     "home": 4.12,
@@ -11392,7 +11410,7 @@
     "home": 13.0,
     "away": 12.11,
     "line": 24.5,
-    "p_over": 0.5262
+    "p_over": 0.5264
    },
    "shots_on_target": {
     "home": 3.81,
@@ -11457,7 +11475,7 @@
     "home": 15.24,
     "away": 10.93,
     "line": 24.5,
-    "p_over": 0.6
+    "p_over": 0.6001
    },
    "shots_on_target": {
     "home": 4.66,
@@ -11566,7 +11584,7 @@
     "home": 15.93,
     "away": 12.41,
     "line": 24.5,
-    "p_over": 0.7321
+    "p_over": 0.7318
    },
    "shots_on_target": {
     "home": 5.13,
@@ -11629,9 +11647,9 @@
    },
    "shots": {
     "home": 10.81,
-    "away": 11.58,
+    "away": 11.59,
     "line": 24.5,
-    "p_over": 0.3284
+    "p_over": 0.3287
    },
    "shots_on_target": {
     "home": 3.21,
@@ -11751,10 +11769,10 @@
     "p_over": 0.3722
    },
    "shots": {
-    "home": 18.03,
+    "home": 18.04,
     "away": 8.19,
     "line": 24.5,
-    "p_over": 0.604
+    "p_over": 0.6042
    },
    "shots_on_target": {
     "home": 6.35,
@@ -11819,7 +11837,7 @@
     "home": 13.86,
     "away": 11.27,
     "line": 24.5,
-    "p_over": 0.5278
+    "p_over": 0.5279
    },
    "shots_on_target": {
     "home": 4.22,
@@ -11872,19 +11890,19 @@
     "home": 7.29,
     "away": 2.94,
     "line": 9.5,
-    "p_over": 0.5584
+    "p_over": 0.5583
    },
    "yellow_cards": {
     "home": 1.53,
     "away": 1.84,
     "line": 4.5,
-    "p_over": 0.25
+    "p_over": 0.2501
    },
    "shots": {
-    "home": 21.9,
+    "home": 21.89,
     "away": 8.8,
     "line": 24.5,
-    "p_over": 0.8393
+    "p_over": 0.8392
    },
    "shots_on_target": {
     "home": 7.65,
@@ -11937,19 +11955,19 @@
     "home": 3.93,
     "away": 4.37,
     "line": 9.5,
-    "p_over": 0.3265
+    "p_over": 0.3266
    },
    "yellow_cards": {
     "home": 2.02,
     "away": 1.81,
     "line": 4.5,
-    "p_over": 0.3374
+    "p_over": 0.3375
    },
    "shots": {
     "home": 11.16,
     "away": 13.42,
     "line": 24.5,
-    "p_over": 0.4883
+    "p_over": 0.4885
    },
    "shots_on_target": {
     "home": 3.85,
@@ -12008,13 +12026,13 @@
     "home": 1.58,
     "away": 1.31,
     "line": 4.5,
-    "p_over": 0.1667
+    "p_over": 0.1668
    },
    "shots": {
     "home": 10.48,
     "away": 15.33,
     "line": 24.5,
-    "p_over": 0.5753
+    "p_over": 0.5755
    },
    "shots_on_target": {
     "home": 2.62,
@@ -12137,7 +12155,7 @@
     "home": 14.42,
     "away": 13.3,
     "line": 24.5,
-    "p_over": 0.6978
+    "p_over": 0.6974
    },
    "shots_on_target": {
     "home": 5.03,
@@ -12202,7 +12220,7 @@
     "home": 14.39,
     "away": 14.21,
     "line": 24.5,
-    "p_over": 0.7458
+    "p_over": 0.7459
    },
    "shots_on_target": {
     "home": 4.4,
@@ -12248,7 +12266,7 @@
     "home": 4.6,
     "away": 3.76,
     "line": 9.5,
-    "p_over": 0.3339
+    "p_over": 0.334
    },
    "yellow_cards": {
     "home": 1.73,
@@ -12260,7 +12278,7 @@
     "home": 12.39,
     "away": 15.24,
     "line": 24.5,
-    "p_over": 0.6924
+    "p_over": 0.6926
    },
    "shots_on_target": {
     "home": 4.3,
@@ -12322,16 +12340,16 @@
     "p_over": 0.4268
    },
    "shots": {
-    "home": 16.37,
+    "home": 16.38,
     "away": 16.14,
     "line": 24.5,
-    "p_over": 0.8966
+    "p_over": 0.8968
    },
    "shots_on_target": {
     "home": 4.85,
     "away": 4.89,
     "line": 8.5,
-    "p_over": 0.6229
+    "p_over": 0.6228
    }
   }
  },
@@ -12377,13 +12395,13 @@
     "home": 1.57,
     "away": 2.59,
     "line": 4.5,
-    "p_over": 0.4036
+    "p_over": 0.4037
    },
    "shots": {
     "home": 13.45,
-    "away": 11.16,
+    "away": 11.15,
     "line": 24.5,
-    "p_over": 0.4901
+    "p_over": 0.4902
    },
    "shots_on_target": {
     "home": 4.56,
@@ -12445,10 +12463,10 @@
     "p_over": 0.1929
    },
    "shots": {
-    "home": 19.08,
+    "home": 19.09,
     "away": 8.29,
     "line": 24.5,
-    "p_over": 0.6767
+    "p_over": 0.6769
    },
    "shots_on_target": {
     "home": 5.99,
@@ -12510,10 +12528,10 @@
     "p_over": 0.3917
    },
    "shots": {
-    "home": 10.82,
+    "home": 10.83,
     "away": 15.78,
     "line": 24.5,
-    "p_over": 0.6287
+    "p_over": 0.6286
    },
    "shots_on_target": {
     "home": 3.76,
@@ -12578,13 +12596,13 @@
     "home": 14.1,
     "away": 10.09,
     "line": 24.5,
-    "p_over": 0.4594
+    "p_over": 0.4596
    },
    "shots_on_target": {
     "home": 3.77,
     "away": 3.34,
     "line": 8.5,
-    "p_over": 0.2919
+    "p_over": 0.292
    }
   }
  },
@@ -12641,9 +12659,9 @@
    },
    "shots": {
     "home": 14.2,
-    "away": 10.55,
+    "away": 10.56,
     "line": 24.5,
-    "p_over": 0.5012
+    "p_over": 0.5014
    },
    "shots_on_target": {
     "home": 5.38,
@@ -12708,7 +12726,7 @@
     "home": 17.48,
     "away": 9.38,
     "line": 24.5,
-    "p_over": 0.645
+    "p_over": 0.6449
    },
    "shots_on_target": {
     "home": 5.69,
@@ -12828,10 +12846,10 @@
     "p_over": 0.3443
    },
    "shots": {
-    "home": 12.0,
-    "away": 15.92,
+    "home": 11.99,
+    "away": 15.91,
     "line": 24.5,
-    "p_over": 0.7084
+    "p_over": 0.7081
    },
    "shots_on_target": {
     "home": 3.88,
@@ -12896,7 +12914,7 @@
     "home": 14.18,
     "away": 8.13,
     "line": 24.5,
-    "p_over": 0.3225
+    "p_over": 0.3228
    },
    "shots_on_target": {
     "home": 4.34,
@@ -12961,13 +12979,13 @@
     "home": 13.91,
     "away": 12.22,
     "line": 24.5,
-    "p_over": 0.5977
+    "p_over": 0.5976
    },
    "shots_on_target": {
     "home": 4.76,
     "away": 4.11,
     "line": 8.5,
-    "p_over": 0.5203
+    "p_over": 0.5202
    }
   }
  },
@@ -13016,10 +13034,10 @@
     "p_over": 0.6124
    },
    "shots": {
-    "home": 16.78,
-    "away": 9.13,
+    "home": 16.79,
+    "away": 9.14,
     "line": 24.5,
-    "p_over": 0.5831
+    "p_over": 0.5834
    },
    "shots_on_target": {
     "home": 5.36,
@@ -13081,10 +13099,10 @@
     "p_over": 0.4053
    },
    "shots": {
-    "home": 14.89,
-    "away": 10.11,
+    "home": 14.9,
+    "away": 10.1,
     "line": 24.5,
-    "p_over": 0.5186
+    "p_over": 0.5187
    },
    "shots_on_target": {
     "home": 5.0,
@@ -13137,7 +13155,7 @@
     "home": 6.04,
     "away": 3.69,
     "line": 9.5,
-    "p_over": 0.5005
+    "p_over": 0.5004
    },
    "yellow_cards": {
     "home": 1.48,
@@ -13146,10 +13164,10 @@
     "p_over": 0.1747
    },
    "shots": {
-    "home": 15.51,
-    "away": 11.5,
+    "home": 15.5,
+    "away": 11.51,
     "line": 24.5,
-    "p_over": 0.6547
+    "p_over": 0.6546
    },
    "shots_on_target": {
     "home": 4.6,
@@ -13199,7 +13217,7 @@
     "home": 5.42,
     "away": 6.24,
     "line": 8.5,
-    "p_over": 0.799
+    "p_over": 0.7989
    }
   }
  },
@@ -13237,7 +13255,7 @@
     "home": 13.47,
     "away": 13.88,
     "line": 24.5,
-    "p_over": 0.6757
+    "p_over": 0.6755
    },
    "shots_on_target": {
     "home": 4.38,
@@ -13299,10 +13317,10 @@
     "p_over": 0.3839
    },
    "shots": {
-    "home": 14.31,
+    "home": 14.32,
     "away": 10.11,
     "line": 24.5,
-    "p_over": 0.4764
+    "p_over": 0.4767
    },
    "shots_on_target": {
     "home": 4.81,
@@ -13355,7 +13373,7 @@
     "home": 3.97,
     "away": 4.57,
     "line": 9.5,
-    "p_over": 0.3557
+    "p_over": 0.3558
    },
    "yellow_cards": {
     "home": 1.26,
@@ -13367,7 +13385,7 @@
     "home": 12.97,
     "away": 14.38,
     "line": 24.5,
-    "p_over": 0.6755
+    "p_over": 0.6756
    },
    "shots_on_target": {
     "home": 4.17,
@@ -13497,7 +13515,7 @@
     "home": 12.96,
     "away": 14.32,
     "line": 24.5,
-    "p_over": 0.6714
+    "p_over": 0.6716
    },
    "shots_on_target": {
     "home": 4.89,
@@ -13555,7 +13573,7 @@
     "home": 10.0,
     "away": 16.25,
     "line": 24.5,
-    "p_over": 0.6053
+    "p_over": 0.6054
    },
    "shots_on_target": {
     "home": 3.19,
@@ -13618,9 +13636,9 @@
    },
    "shots": {
     "home": 17.84,
-    "away": 8.0,
+    "away": 8.01,
     "line": 24.5,
-    "p_over": 0.5782
+    "p_over": 0.5784
    },
    "shots_on_target": {
     "home": 5.63,
@@ -13683,9 +13701,9 @@
    },
    "shots": {
     "home": 10.9,
-    "away": 10.99,
+    "away": 11.0,
     "line": 24.5,
-    "p_over": 0.2937
+    "p_over": 0.294
    },
    "shots_on_target": {
     "home": 3.93,
@@ -13813,9 +13831,9 @@
    },
    "shots": {
     "home": 15.93,
-    "away": 9.12,
+    "away": 9.13,
     "line": 24.5,
-    "p_over": 0.5225
+    "p_over": 0.5226
    },
    "shots_on_target": {
     "home": 5.33,
@@ -13874,7 +13892,7 @@
     "home": 1.4,
     "away": 2.32,
     "line": 4.5,
-    "p_over": 0.3175
+    "p_over": 0.3176
    },
    "shots": {
     "home": 15.62,
@@ -13933,7 +13951,7 @@
     "home": 3.38,
     "away": 6.1,
     "line": 9.5,
-    "p_over": 0.4704
+    "p_over": 0.4703
    },
    "yellow_cards": {
     "home": 1.41,
@@ -13943,9 +13961,9 @@
    },
    "shots": {
     "home": 9.31,
-    "away": 19.05,
+    "away": 19.04,
     "line": 24.5,
-    "p_over": 0.7327
+    "p_over": 0.7326
    },
    "shots_on_target": {
     "home": 2.74,
@@ -14008,7 +14026,7 @@
    },
    "shots": {
     "home": 14.67,
-    "away": 12.01,
+    "away": 12.0,
     "line": 24.5,
     "p_over": 0.6332
    },
@@ -14041,13 +14059,13 @@
     "home": 2.28,
     "away": 1.57,
     "line": 4.5,
-    "p_over": 0.3427
+    "p_over": 0.3426
    },
    "shots": {
-    "home": 20.13,
-    "away": 19.74,
+    "home": 20.12,
+    "away": 19.73,
     "line": 24.5,
-    "p_over": 0.9878
+    "p_over": 0.9877
    },
    "shots_on_target": {
     "home": 5.44,
@@ -14110,9 +14128,9 @@
    },
    "shots": {
     "home": 14.19,
-    "away": 10.4,
+    "away": 10.41,
     "line": 24.5,
-    "p_over": 0.4892
+    "p_over": 0.4895
    },
    "shots_on_target": {
     "home": 4.56,
@@ -14177,7 +14195,7 @@
     "home": 15.71,
     "away": 10.62,
     "line": 24.5,
-    "p_over": 0.6107
+    "p_over": 0.6108
    },
    "shots_on_target": {
     "home": 4.27,
@@ -14307,7 +14325,7 @@
     "home": 17.75,
     "away": 16.96,
     "line": 24.5,
-    "p_over": 0.9423
+    "p_over": 0.9424
    },
    "shots_on_target": {
     "home": 5.46,
@@ -14372,7 +14390,7 @@
     "home": 13.97,
     "away": 10.16,
     "line": 24.5,
-    "p_over": 0.4552
+    "p_over": 0.4555
    },
    "shots_on_target": {
     "home": 3.88,
@@ -14425,7 +14443,7 @@
     "home": 7.73,
     "away": 2.74,
     "line": 9.5,
-    "p_over": 0.5849
+    "p_over": 0.5848
    },
    "yellow_cards": {
     "home": 1.23,
@@ -14434,10 +14452,10 @@
     "p_over": 0.2085
    },
    "shots": {
-    "home": 22.64,
+    "home": 22.62,
     "away": 9.56,
     "line": 24.5,
-    "p_over": 0.8881
+    "p_over": 0.8877
    },
    "shots_on_target": {
     "home": 7.89,
@@ -14502,7 +14520,7 @@
     "home": 19.04,
     "away": 8.26,
     "line": 24.5,
-    "p_over": 0.6728
+    "p_over": 0.6729
    },
    "shots_on_target": {
     "home": 6.11,
@@ -14632,7 +14650,7 @@
     "home": 12.3,
     "away": 12.69,
     "line": 24.5,
-    "p_over": 0.5175
+    "p_over": 0.5176
    },
    "shots_on_target": {
     "home": 3.93,
@@ -14697,7 +14715,7 @@
     "home": 18.04,
     "away": 9.75,
     "line": 24.5,
-    "p_over": 0.7014
+    "p_over": 0.7015
    },
    "shots_on_target": {
     "home": 5.5,
@@ -14750,7 +14768,7 @@
     "home": 5.01,
     "away": 3.58,
     "line": 9.5,
-    "p_over": 0.3629
+    "p_over": 0.363
    },
    "yellow_cards": {
     "home": 1.73,
@@ -14762,7 +14780,7 @@
     "home": 15.28,
     "away": 12.59,
     "line": 24.5,
-    "p_over": 0.706
+    "p_over": 0.7062
    },
    "shots_on_target": {
     "home": 5.61,
@@ -14827,7 +14845,7 @@
     "home": 14.42,
     "away": 10.84,
     "line": 24.5,
-    "p_over": 0.5374
+    "p_over": 0.5376
    },
    "shots_on_target": {
     "home": 4.09,
@@ -14892,7 +14910,7 @@
     "home": 12.44,
     "away": 10.6,
     "line": 24.5,
-    "p_over": 0.3748
+    "p_over": 0.3749
    },
    "shots_on_target": {
     "home": 4.14,
@@ -14954,10 +14972,10 @@
     "p_over": 0.5023
    },
    "shots": {
-    "home": 15.67,
+    "home": 15.66,
     "away": 11.5,
     "line": 24.5,
-    "p_over": 0.6644
+    "p_over": 0.6641
    },
    "shots_on_target": {
     "home": 6.02,
@@ -15010,7 +15028,7 @@
     "home": 4.75,
     "away": 4.4,
     "line": 9.5,
-    "p_over": 0.4307
+    "p_over": 0.4306
    },
    "yellow_cards": {
     "home": 1.71,
@@ -15022,13 +15040,13 @@
     "home": 11.35,
     "away": 12.56,
     "line": 24.5,
-    "p_over": 0.4392
+    "p_over": 0.4395
    },
    "shots_on_target": {
     "home": 3.7,
     "away": 4.5,
     "line": 8.5,
-    "p_over": 0.4331
+    "p_over": 0.4332
    }
   }
  },
@@ -15075,7 +15093,7 @@
     "home": 3.62,
     "away": 4.61,
     "line": 9.5,
-    "p_over": 0.3188
+    "p_over": 0.3189
    },
    "yellow_cards": {
     "home": 2.19,
@@ -15087,7 +15105,7 @@
     "home": 10.76,
     "away": 15.37,
     "line": 24.5,
-    "p_over": 0.5972
+    "p_over": 0.5974
    },
    "shots_on_target": {
     "home": 3.87,
@@ -15146,13 +15164,13 @@
     "home": 1.05,
     "away": 1.66,
     "line": 4.5,
-    "p_over": 0.1386
+    "p_over": 0.1387
    },
    "shots": {
     "home": 12.59,
-    "away": 14.77,
+    "away": 14.76,
     "line": 24.5,
-    "p_over": 0.6756
+    "p_over": 0.6755
    },
    "shots_on_target": {
     "home": 4.16,
@@ -15191,7 +15209,7 @@
     "home": 3.86,
     "away": 4.77,
     "line": 9.5,
-    "p_over": 0.3666
+    "p_over": 0.3667
    },
    "yellow_cards": {
     "home": 2.15,
@@ -15203,7 +15221,7 @@
     "home": 10.56,
     "away": 16.39,
     "line": 24.5,
-    "p_over": 0.6507
+    "p_over": 0.6508
    },
    "shots_on_target": {
     "home": 3.63,
@@ -15266,7 +15284,7 @@
    },
    "shots": {
     "home": 17.59,
-    "away": 18.97,
+    "away": 18.98,
     "line": 24.5,
     "p_over": 0.9662
    },
@@ -15331,9 +15349,9 @@
    },
    "shots": {
     "home": 11.13,
-    "away": 12.57,
+    "away": 12.58,
     "line": 24.5,
-    "p_over": 0.4237
+    "p_over": 0.424
    },
    "shots_on_target": {
     "home": 3.46,
@@ -15398,7 +15416,7 @@
     "home": 14.82,
     "away": 11.82,
     "line": 24.5,
-    "p_over": 0.631
+    "p_over": 0.6312
    },
    "shots_on_target": {
     "home": 4.97,
@@ -15463,7 +15481,7 @@
     "home": 11.9,
     "away": 9.67,
     "line": 24.5,
-    "p_over": 0.2714
+    "p_over": 0.2718
    },
    "shots_on_target": {
     "home": 4.04,
@@ -15501,13 +15519,13 @@
     "home": 1.71,
     "away": 2.65,
     "line": 4.5,
-    "p_over": 0.441
+    "p_over": 0.4411
    },
    "shots": {
-    "home": 19.5,
+    "home": 19.51,
     "away": 8.63,
     "line": 24.5,
-    "p_over": 0.7205
+    "p_over": 0.7207
    },
    "shots_on_target": {
     "home": 6.99,
@@ -15572,7 +15590,7 @@
     "home": 15.86,
     "away": 11.5,
     "line": 24.5,
-    "p_over": 0.6757
+    "p_over": 0.6759
    },
    "shots_on_target": {
     "home": 4.73,
@@ -15634,10 +15652,10 @@
     "p_over": 0.1887
    },
    "shots": {
-    "home": 21.72,
+    "home": 21.71,
     "away": 8.33,
     "line": 24.5,
-    "p_over": 0.8136
+    "p_over": 0.8133
    },
    "shots_on_target": {
     "home": 6.76,
@@ -15702,7 +15720,7 @@
     "home": 19.2,
     "away": 8.73,
     "line": 24.5,
-    "p_over": 0.7095
+    "p_over": 0.7096
    },
    "shots_on_target": {
     "home": 6.91,
@@ -15765,7 +15783,7 @@
    },
    "shots": {
     "home": 10.93,
-    "away": 13.64,
+    "away": 13.65,
     "line": 24.5,
     "p_over": 0.4878
    },
@@ -15808,7 +15826,7 @@
     "p_over": 0.3186
    },
    "shots": {
-    "home": 16.43,
+    "home": 16.44,
     "away": 19.8,
     "line": 24.5,
     "p_over": 0.9627
@@ -15817,7 +15835,7 @@
     "home": 4.54,
     "away": 5.31,
     "line": 8.5,
-    "p_over": 0.6345
+    "p_over": 0.6344
    }
   }
  },
@@ -15861,7 +15879,7 @@
   ],
   "stat_predictions": {
    "corners": {
-    "home": 5.37,
+    "home": 5.38,
     "away": 3.01,
     "line": 9.5,
     "p_over": 0.3375
@@ -15874,9 +15892,9 @@
    },
    "shots": {
     "home": 18.24,
-    "away": 8.79,
+    "away": 8.8,
     "line": 24.5,
-    "p_over": 0.6563
+    "p_over": 0.6565
    },
    "shots_on_target": {
     "home": 5.5,
@@ -15935,13 +15953,13 @@
     "home": 2.18,
     "away": 1.64,
     "line": 4.5,
-    "p_over": 0.3362
+    "p_over": 0.3361
    },
    "shots": {
     "home": 14.83,
     "away": 11.68,
     "line": 24.5,
-    "p_over": 0.623
+    "p_over": 0.6226
    },
    "shots_on_target": {
     "home": 4.14,
@@ -15996,10 +16014,10 @@
     "p_over": 0.4675
    },
    "shots": {
-    "home": 10.96,
+    "home": 10.97,
     "away": 11.79,
     "line": 24.5,
-    "p_over": 0.3542
+    "p_over": 0.3546
    },
    "shots_on_target": {
     "home": 3.57,
@@ -16067,7 +16085,7 @@
     "p_over": 0.4866
    },
    "shots_on_target": {
-    "home": 3.68,
+    "home": 3.69,
     "away": 4.42,
     "line": 8.5,
     "p_over": 0.4214
@@ -16129,7 +16147,7 @@
     "home": 20.17,
     "away": 17.07,
     "line": 24.5,
-    "p_over": 0.9723
+    "p_over": 0.9724
    },
    "shots_on_target": {
     "home": 6.3,
@@ -16194,7 +16212,7 @@
     "home": 12.53,
     "away": 13.44,
     "line": 24.5,
-    "p_over": 0.5869
+    "p_over": 0.587
    },
    "shots_on_target": {
     "home": 3.86,
@@ -16442,7 +16460,7 @@
     "home": 6.34,
     "away": 2.97,
     "line": 9.5,
-    "p_over": 0.4495
+    "p_over": 0.4494
    },
    "yellow_cards": {
     "home": 1.73,
@@ -16451,10 +16469,10 @@
     "p_over": 0.3317
    },
    "shots": {
-    "home": 19.03,
+    "home": 19.04,
     "away": 8.22,
     "line": 24.5,
-    "p_over": 0.6694
+    "p_over": 0.6697
    },
    "shots_on_target": {
     "home": 5.44,
@@ -16519,7 +16537,7 @@
     "home": 13.95,
     "away": 12.25,
     "line": 24.5,
-    "p_over": 0.6022
+    "p_over": 0.6021
    },
    "shots_on_target": {
     "home": 4.87,
@@ -16571,13 +16589,13 @@
     "home": 1.57,
     "away": 1.84,
     "line": 4.5,
-    "p_over": 0.2577
+    "p_over": 0.2576
    },
    "shots": {
     "home": 15.99,
     "away": 13.15,
     "line": 24.5,
-    "p_over": 0.773
+    "p_over": 0.7727
    },
    "shots_on_target": {
     "home": 5.31,
@@ -16639,16 +16657,16 @@
     "p_over": 0.1986
    },
    "shots": {
-    "home": 17.21,
+    "home": 17.22,
     "away": 11.17,
     "line": 24.5,
-    "p_over": 0.7342
+    "p_over": 0.7343
    },
    "shots_on_target": {
     "home": 6.48,
     "away": 3.72,
     "line": 8.5,
-    "p_over": 0.6716
+    "p_over": 0.6715
    }
   }
  },
@@ -16707,7 +16725,7 @@
     "home": 19.42,
     "away": 8.41,
     "line": 24.5,
-    "p_over": 0.7035
+    "p_over": 0.7036
    },
    "shots_on_target": {
     "home": 6.0,
@@ -16760,7 +16778,7 @@
     "home": 3.87,
     "away": 4.54,
     "line": 9.5,
-    "p_over": 0.3404
+    "p_over": 0.3403
    },
    "yellow_cards": {
     "home": 1.8,
@@ -16769,10 +16787,10 @@
     "p_over": 0.3288
    },
    "shots": {
-    "home": 11.52,
-    "away": 16.28,
+    "home": 11.53,
+    "away": 16.27,
     "line": 24.5,
-    "p_over": 0.702
+    "p_over": 0.7019
    },
    "shots_on_target": {
     "home": 3.52,
@@ -16837,7 +16855,7 @@
     "home": 13.81,
     "away": 9.06,
     "line": 24.5,
-    "p_over": 0.3632
+    "p_over": 0.3635
    },
    "shots_on_target": {
     "home": 4.65,
@@ -16902,7 +16920,7 @@
     "home": 12.18,
     "away": 12.7,
     "line": 24.5,
-    "p_over": 0.5102
+    "p_over": 0.5103
    },
    "shots_on_target": {
     "home": 3.6,
@@ -16950,10 +16968,10 @@
     "p_over": 0.3268
    },
    "shots": {
-    "home": 17.15,
-    "away": 17.62,
+    "home": 17.14,
+    "away": 17.63,
     "line": 24.5,
-    "p_over": 0.9433
+    "p_over": 0.9434
    },
    "shots_on_target": {
     "home": 4.7,
@@ -17015,10 +17033,10 @@
     "p_over": 0.3686
    },
    "shots": {
-    "home": 14.89,
-    "away": 8.81,
+    "home": 14.9,
+    "away": 8.82,
     "line": 24.5,
-    "p_over": 0.4242
+    "p_over": 0.4244
    },
    "shots_on_target": {
     "home": 5.0,
@@ -17083,7 +17101,7 @@
     "home": 11.04,
     "away": 15.4,
     "line": 24.5,
-    "p_over": 0.6182
+    "p_over": 0.6183
    },
    "shots_on_target": {
     "home": 4.14,
@@ -17148,13 +17166,13 @@
     "home": 16.04,
     "away": 10.74,
     "line": 24.5,
-    "p_over": 0.6401
+    "p_over": 0.6404
    },
    "shots_on_target": {
     "home": 4.42,
     "away": 3.16,
     "line": 8.5,
-    "p_over": 0.3518
+    "p_over": 0.3519
    }
   }
  },
@@ -17200,13 +17218,13 @@
     "home": 1.58,
     "away": 1.71,
     "line": 4.5,
-    "p_over": 0.2358
+    "p_over": 0.2357
    },
    "shots": {
-    "home": 15.83,
+    "home": 15.82,
     "away": 12.06,
     "line": 24.5,
-    "p_over": 0.7071
+    "p_over": 0.7067
    },
    "shots_on_target": {
     "home": 4.49,
@@ -17259,7 +17277,7 @@
     "home": 5.57,
     "away": 3.44,
     "line": 9.5,
-    "p_over": 0.4145
+    "p_over": 0.4144
    },
    "yellow_cards": {
     "home": 1.55,
@@ -17271,7 +17289,7 @@
     "home": 14.08,
     "away": 8.2,
     "line": 24.5,
-    "p_over": 0.3209
+    "p_over": 0.3211
    },
    "shots_on_target": {
     "home": 4.89,
@@ -17324,7 +17342,7 @@
     "home": 5.67,
     "away": 4.61,
     "line": 9.5,
-    "p_over": 0.5639
+    "p_over": 0.5638
    },
    "yellow_cards": {
     "home": 1.5,
@@ -17391,10 +17409,10 @@
     "p_over": 0.414
    },
    "shots": {
-    "home": 15.23,
+    "home": 15.24,
     "away": 9.66,
     "line": 24.5,
-    "p_over": 0.5111
+    "p_over": 0.5114
    },
    "shots_on_target": {
     "home": 5.25,
@@ -17524,7 +17542,7 @@
     "home": 11.58,
     "away": 11.81,
     "line": 24.5,
-    "p_over": 0.4008
+    "p_over": 0.4009
    },
    "shots_on_target": {
     "home": 3.49,
@@ -17586,10 +17604,10 @@
     "p_over": 0.1241
    },
    "shots": {
-    "home": 20.37,
+    "home": 20.36,
     "away": 10.33,
     "line": 24.5,
-    "p_over": 0.8392
+    "p_over": 0.8391
    },
    "shots_on_target": {
     "home": 6.54,
@@ -17654,7 +17672,7 @@
     "home": 10.14,
     "away": 16.08,
     "line": 24.5,
-    "p_over": 0.6031
+    "p_over": 0.6032
    },
    "shots_on_target": {
     "home": 3.05,
@@ -17719,7 +17737,7 @@
     "home": 13.03,
     "away": 12.78,
     "line": 24.5,
-    "p_over": 0.5758
+    "p_over": 0.576
    },
    "shots_on_target": {
     "home": 4.24,
@@ -17771,13 +17789,13 @@
     "home": 1.51,
     "away": 2.44,
     "line": 4.5,
-    "p_over": 0.3622
+    "p_over": 0.3621
    },
    "shots": {
-    "home": 18.98,
+    "home": 18.97,
     "away": 10.06,
     "line": 24.5,
-    "p_over": 0.7678
+    "p_over": 0.7675
    },
    "shots_on_target": {
     "home": 6.54,
@@ -17842,7 +17860,7 @@
     "home": 12.36,
     "away": 13.45,
     "line": 24.5,
-    "p_over": 0.5759
+    "p_over": 0.576
    },
    "shots_on_target": {
     "home": 4.26,
@@ -17907,7 +17925,7 @@
     "home": 17.14,
     "away": 10.88,
     "line": 24.5,
-    "p_over": 0.7146
+    "p_over": 0.7147
    },
    "shots_on_target": {
     "home": 5.56,
@@ -17960,25 +17978,25 @@
     "home": 6.03,
     "away": 3.13,
     "line": 9.5,
-    "p_over": 0.4324
+    "p_over": 0.4323
    },
    "yellow_cards": {
     "home": 1.71,
-    "away": 2.56,
+    "away": 2.55,
     "line": 4.5,
-    "p_over": 0.4238
+    "p_over": 0.4237
    },
    "shots": {
     "home": 16.68,
     "away": 11.86,
     "line": 24.5,
-    "p_over": 0.7429
+    "p_over": 0.7426
    },
    "shots_on_target": {
     "home": 5.62,
     "away": 3.82,
     "line": 8.5,
-    "p_over": 0.5886
+    "p_over": 0.5885
    }
   }
  },
@@ -18034,10 +18052,10 @@
     "p_over": 0.3167
    },
    "shots": {
-    "home": 14.43,
-    "away": 10.9,
+    "home": 14.44,
+    "away": 10.91,
     "line": 24.5,
-    "p_over": 0.5426
+    "p_over": 0.5429
    },
    "shots_on_target": {
     "home": 5.27,
@@ -18090,7 +18108,7 @@
     "home": 6.11,
     "away": 4.95,
     "line": 9.5,
-    "p_over": 0.6471
+    "p_over": 0.647
    },
    "yellow_cards": {
     "home": 2.49,
@@ -18099,8 +18117,8 @@
     "p_over": 0.5669
    },
    "shots": {
-    "home": 19.12,
-    "away": 16.4,
+    "home": 19.11,
+    "away": 16.41,
     "line": 24.5,
     "p_over": 0.9541
    },
@@ -18108,7 +18126,7 @@
     "home": 6.24,
     "away": 4.78,
     "line": 8.5,
-    "p_over": 0.7487
+    "p_over": 0.7486
    }
   }
  },
@@ -18160,7 +18178,7 @@
     "home": 9.77,
     "away": 15.13,
     "line": 24.5,
-    "p_over": 0.5111
+    "p_over": 0.5113
    },
    "shots_on_target": {
     "home": 2.94,
@@ -18277,13 +18295,13 @@
     "home": 2.25,
     "away": 1.81,
     "line": 4.5,
-    "p_over": 0.3835
+    "p_over": 0.3836
    },
    "shots": {
     "home": 13.3,
     "away": 11.28,
     "line": 24.5,
-    "p_over": 0.4883
+    "p_over": 0.4884
    },
    "shots_on_target": {
     "home": 4.13,
@@ -18336,7 +18354,7 @@
     "home": 7.23,
     "away": 2.72,
     "line": 9.5,
-    "p_over": 0.5268
+    "p_over": 0.5267
    },
    "yellow_cards": {
     "home": 1.14,
@@ -18348,7 +18366,7 @@
     "home": 18.28,
     "away": 8.79,
     "line": 24.5,
-    "p_over": 0.6579
+    "p_over": 0.658
    },
    "shots_on_target": {
     "home": 5.53,
@@ -18413,7 +18431,7 @@
     "home": 10.57,
     "away": 12.8,
     "line": 24.5,
-    "p_over": 0.3991
+    "p_over": 0.3993
    },
    "shots_on_target": {
     "home": 3.65,
@@ -18464,9 +18482,9 @@
   "stat_predictions": {
    "corners": {
     "home": 3.78,
-    "away": 6.16,
+    "away": 6.15,
     "line": 9.5,
-    "p_over": 0.5245
+    "p_over": 0.5244
    },
    "yellow_cards": {
     "home": 1.65,
@@ -18476,9 +18494,9 @@
    },
    "shots": {
     "home": 11.05,
-    "away": 18.05,
+    "away": 18.04,
     "line": 24.5,
-    "p_over": 0.7706
+    "p_over": 0.7705
    },
    "shots_on_target": {
     "home": 3.32,
@@ -18543,7 +18561,7 @@
     "home": 12.27,
     "away": 10.63,
     "line": 24.5,
-    "p_over": 0.3649
+    "p_over": 0.3651
    },
    "shots_on_target": {
     "home": 3.29,
@@ -18673,7 +18691,7 @@
     "home": 19.2,
     "away": 9.32,
     "line": 24.5,
-    "p_over": 0.7416
+    "p_over": 0.7418
    },
    "shots_on_target": {
     "home": 6.01,
@@ -18714,7 +18732,7 @@
     "p_over": 0.4143
    },
    "shots": {
-    "home": 22.72,
+    "home": 22.73,
     "away": 15.14,
     "line": 24.5,
     "p_over": 0.9771
@@ -18782,7 +18800,7 @@
     "home": 10.13,
     "away": 14.31,
     "line": 24.5,
-    "p_over": 0.4776
+    "p_over": 0.4778
    },
    "shots_on_target": {
     "home": 3.44,
@@ -18847,7 +18865,7 @@
     "home": 10.73,
     "away": 13.84,
     "line": 24.5,
-    "p_over": 0.4875
+    "p_over": 0.4877
    },
    "shots_on_target": {
     "home": 3.51,
@@ -18900,19 +18918,19 @@
     "home": 5.74,
     "away": 3.5,
     "line": 9.5,
-    "p_over": 0.4416
+    "p_over": 0.4415
    },
    "yellow_cards": {
     "home": 1.77,
     "away": 2.17,
     "line": 4.5,
-    "p_over": 0.3591
+    "p_over": 0.3592
    },
    "shots": {
     "home": 16.03,
     "away": 9.61,
     "line": 24.5,
-    "p_over": 0.5639
+    "p_over": 0.564
    },
    "shots_on_target": {
     "home": 6.15,
@@ -18977,7 +18995,7 @@
     "home": 12.03,
     "away": 11.82,
     "line": 24.5,
-    "p_over": 0.4349
+    "p_over": 0.4351
    },
    "shots_on_target": {
     "home": 3.9,
@@ -19030,7 +19048,7 @@
     "home": 3.43,
     "away": 5.17,
     "line": 9.5,
-    "p_over": 0.3638
+    "p_over": 0.3637
    },
    "yellow_cards": {
     "home": 1.44,
@@ -19042,7 +19060,7 @@
     "home": 9.96,
     "away": 18.25,
     "line": 24.5,
-    "p_over": 0.7253
+    "p_over": 0.7252
    },
    "shots_on_target": {
     "home": 3.14,
@@ -19107,7 +19125,7 @@
     "home": 14.84,
     "away": 14.95,
     "line": 24.5,
-    "p_over": 0.8029
+    "p_over": 0.8026
    },
    "shots_on_target": {
     "home": 4.35,
@@ -19170,9 +19188,9 @@
    },
    "shots": {
     "home": 13.45,
-    "away": 12.5,
+    "away": 12.51,
     "line": 24.5,
-    "p_over": 0.5854
+    "p_over": 0.5856
    },
    "shots_on_target": {
     "home": 4.87,
@@ -19234,10 +19252,10 @@
     "p_over": 0.499
    },
    "shots": {
-    "home": 14.99,
+    "home": 15.0,
     "away": 10.02,
     "line": 24.5,
-    "p_over": 0.5193
+    "p_over": 0.5195
    },
    "shots_on_target": {
     "home": 4.43,
@@ -19299,8 +19317,8 @@
     "p_over": 0.2597
    },
    "shots": {
-    "home": 27.62,
-    "away": 13.63,
+    "home": 27.61,
+    "away": 13.64,
     "line": 24.5,
     "p_over": 0.9922
    },
@@ -19348,19 +19366,19 @@
     "home": 4.84,
     "away": 3.95,
     "line": 9.5,
-    "p_over": 0.3871
+    "p_over": 0.3872
    },
    "yellow_cards": {
     "home": 1.71,
     "away": 2.14,
     "line": 4.5,
-    "p_over": 0.3419
+    "p_over": 0.342
    },
    "shots": {
     "home": 13.8,
     "away": 11.61,
     "line": 24.5,
-    "p_over": 0.5474
+    "p_over": 0.5476
    },
    "shots_on_target": {
     "home": 4.63,
@@ -19372,6 +19390,13 @@
  },
  "2027-03-21_Monza_Bologna": {
   "h2h": [
+   {
+    "date": "2026-10-31",
+    "home_team": "Bologna",
+    "away_team": "Monza",
+    "home_goals": 2,
+    "away_goals": 1
+   },
    {
     "date": "2025-01-18",
     "home_team": "Bologna",
@@ -19399,13 +19424,6 @@
     "away_team": "Bologna",
     "home_goals": 0,
     "away_goals": 0
-   },
-   {
-    "date": "2023-02-12",
-    "home_team": "Bologna",
-    "away_team": "Monza",
-    "home_goals": 0,
-    "away_goals": 1
    }
   ],
   "stat_predictions": {
@@ -19413,7 +19431,7 @@
     "home": 3.84,
     "away": 4.17,
     "line": 9.5,
-    "p_over": 0.2921
+    "p_over": 0.2922
    },
    "yellow_cards": {
     "home": 2.26,
@@ -19423,9 +19441,9 @@
    },
    "shots": {
     "home": 10.29,
-    "away": 12.77,
+    "away": 12.78,
     "line": 24.5,
-    "p_over": 0.3773
+    "p_over": 0.3776
    },
    "shots_on_target": {
     "home": 3.41,
@@ -19487,10 +19505,10 @@
     "p_over": 0.2089
    },
    "shots": {
-    "home": 18.22,
+    "home": 18.21,
     "away": 10.76,
     "line": 24.5,
-    "p_over": 0.765
+    "p_over": 0.7646
    },
    "shots_on_target": {
     "home": 6.65,
@@ -19552,10 +19570,10 @@
     "p_over": 0.4574
    },
    "shots": {
-    "home": 11.19,
+    "home": 11.2,
     "away": 13.18,
     "line": 24.5,
-    "p_over": 0.4734
+    "p_over": 0.4737
    },
    "shots_on_target": {
     "home": 3.29,
@@ -19605,7 +19623,7 @@
   ],
   "stat_predictions": {
    "corners": {
-    "home": 6.16,
+    "home": 6.17,
     "away": 3.25,
     "line": 9.5,
     "p_over": 0.4627
@@ -19620,7 +19638,7 @@
     "home": 16.94,
     "away": 8.57,
     "line": 24.5,
-    "p_over": 0.5551
+    "p_over": 0.5552
    },
    "shots_on_target": {
     "home": 5.82,
@@ -19685,7 +19703,7 @@
     "home": 14.57,
     "away": 11.67,
     "line": 24.5,
-    "p_over": 0.6048
+    "p_over": 0.6047
    },
    "shots_on_target": {
     "home": 4.8,
@@ -19750,7 +19768,7 @@
     "home": 15.37,
     "away": 11.5,
     "line": 24.5,
-    "p_over": 0.6459
+    "p_over": 0.646
    },
    "shots_on_target": {
     "home": 4.46,
@@ -19815,7 +19833,7 @@
     "home": 11.18,
     "away": 14.66,
     "line": 24.5,
-    "p_over": 0.5779
+    "p_over": 0.5778
    },
    "shots_on_target": {
     "home": 2.94,
@@ -19880,7 +19898,7 @@
     "home": 17.31,
     "away": 9.73,
     "line": 24.5,
-    "p_over": 0.6564
+    "p_over": 0.6566
    },
    "shots_on_target": {
     "home": 6.06,
@@ -19942,7 +19960,7 @@
     "p_over": 0.3697
    },
    "shots": {
-    "home": 22.36,
+    "home": 22.37,
     "away": 16.36,
     "line": 24.5,
     "p_over": 0.9825
@@ -20004,13 +20022,13 @@
     "home": 1.49,
     "away": 1.95,
     "line": 4.5,
-    "p_over": 0.2638
+    "p_over": 0.2639
    },
    "shots": {
-    "home": 9.62,
-    "away": 17.07,
+    "home": 9.63,
+    "away": 17.06,
     "line": 24.5,
-    "p_over": 0.6343
+    "p_over": 0.6342
    },
    "shots_on_target": {
     "home": 2.91,
@@ -20073,7 +20091,7 @@
    },
    "shots": {
     "home": 11.68,
-    "away": 11.73,
+    "away": 11.74,
     "line": 24.5,
     "p_over": 0.4026
    },
@@ -20140,13 +20158,13 @@
     "home": 16.0,
     "away": 9.36,
     "line": 24.5,
-    "p_over": 0.5443
+    "p_over": 0.5445
    },
    "shots_on_target": {
     "home": 6.2,
     "away": 3.3,
     "line": 8.5,
-    "p_over": 0.5963
+    "p_over": 0.5962
    }
   }
  },
@@ -20205,7 +20223,7 @@
     "home": 13.2,
     "away": 9.62,
     "line": 24.5,
-    "p_over": 0.3593
+    "p_over": 0.3597
    },
    "shots_on_target": {
     "home": 4.27,
@@ -20264,13 +20282,13 @@
     "home": 1.4,
     "away": 1.76,
     "line": 4.5,
-    "p_over": 0.212
+    "p_over": 0.2121
    },
    "shots": {
     "home": 13.67,
     "away": 14.47,
     "line": 24.5,
-    "p_over": 0.7207
+    "p_over": 0.7208
    },
    "shots_on_target": {
     "home": 4.64,
@@ -20335,7 +20353,7 @@
     "home": 9.88,
     "away": 16.01,
     "line": 24.5,
-    "p_over": 0.5809
+    "p_over": 0.5811
    },
    "shots_on_target": {
     "home": 2.93,
@@ -20367,7 +20385,7 @@
     "home": 5.26,
     "away": 4.2,
     "line": 9.5,
-    "p_over": 0.4689
+    "p_over": 0.4688
    },
    "yellow_cards": {
     "home": 1.81,
@@ -20379,7 +20397,7 @@
     "home": 16.55,
     "away": 11.3,
     "line": 24.5,
-    "p_over": 0.7048
+    "p_over": 0.7046
    },
    "shots_on_target": {
     "home": 4.36,
@@ -20437,7 +20455,7 @@
     "home": 15.77,
     "away": 9.63,
     "line": 24.5,
-    "p_over": 0.5471
+    "p_over": 0.5469
    },
    "shots_on_target": {
     "home": 5.5,
@@ -20502,11 +20520,11 @@
     "home": 12.94,
     "away": 14.35,
     "line": 24.5,
-    "p_over": 0.6714
+    "p_over": 0.6715
    },
    "shots_on_target": {
     "home": 4.07,
-    "away": 4.87,
+    "away": 4.86,
     "line": 8.5,
     "p_over": 0.5278
    }
@@ -20564,10 +20582,10 @@
     "p_over": 0.4521
    },
    "shots": {
-    "home": 12.58,
+    "home": 12.59,
     "away": 11.91,
     "line": 24.5,
-    "p_over": 0.4822
+    "p_over": 0.4824
    },
    "shots_on_target": {
     "home": 4.13,
@@ -20632,7 +20650,7 @@
     "home": 21.15,
     "away": 14.25,
     "line": 24.5,
-    "p_over": 0.9526
+    "p_over": 0.9527
    },
    "shots_on_target": {
     "home": 5.86,
@@ -20759,10 +20777,10 @@
     "p_over": 0.2376
    },
    "shots": {
-    "home": 17.72,
+    "home": 17.73,
     "away": 8.08,
     "line": 24.5,
-    "p_over": 0.5749
+    "p_over": 0.5751
    },
    "shots_on_target": {
     "home": 6.34,
@@ -20827,7 +20845,7 @@
     "home": 15.06,
     "away": 10.05,
     "line": 24.5,
-    "p_over": 0.5268
+    "p_over": 0.5269
    },
    "shots_on_target": {
     "home": 5.06,
@@ -20954,10 +20972,10 @@
     "p_over": 0.3563
    },
    "shots": {
-    "home": 9.36,
-    "away": 16.99,
+    "home": 9.37,
+    "away": 17.0,
     "line": 24.5,
-    "p_over": 0.6126
+    "p_over": 0.6129
    },
    "shots_on_target": {
     "home": 2.84,
@@ -21014,7 +21032,7 @@
    },
    "yellow_cards": {
     "home": 1.74,
-    "away": 1.89,
+    "away": 1.9,
     "line": 4.5,
     "p_over": 0.3003
    },
@@ -21087,7 +21105,7 @@
     "home": 16.95,
     "away": 12.07,
     "line": 24.5,
-    "p_over": 0.7666
+    "p_over": 0.7667
    },
    "shots_on_target": {
     "home": 5.57,
@@ -21152,7 +21170,7 @@
     "home": 15.13,
     "away": 8.39,
     "line": 24.5,
-    "p_over": 0.4106
+    "p_over": 0.4107
    },
    "shots_on_target": {
     "home": 4.71,
@@ -21189,7 +21207,7 @@
     "home": 24.64,
     "away": 13.72,
     "line": 24.5,
-    "p_over": 0.9803
+    "p_over": 0.9804
    },
    "shots_on_target": {
     "home": 7.4,
@@ -21251,10 +21269,10 @@
     "p_over": 0.3955
    },
    "shots": {
-    "home": 16.73,
+    "home": 16.74,
     "away": 9.69,
     "line": 24.5,
-    "p_over": 0.6167
+    "p_over": 0.6169
    },
    "shots_on_target": {
     "home": 4.68,
@@ -21319,7 +21337,7 @@
     "home": 12.89,
     "away": 11.53,
     "line": 24.5,
-    "p_over": 0.476
+    "p_over": 0.4761
    },
    "shots_on_target": {
     "home": 3.79,
@@ -21370,7 +21388,7 @@
   "stat_predictions": {
    "corners": {
     "home": 3.29,
-    "away": 5.56,
+    "away": 5.55,
     "line": 9.5,
     "p_over": 0.3939
    },
@@ -21378,13 +21396,13 @@
     "home": 1.71,
     "away": 1.56,
     "line": 4.5,
-    "p_over": 0.2328
+    "p_over": 0.2329
    },
    "shots": {
     "home": 10.22,
     "away": 18.33,
     "line": 24.5,
-    "p_over": 0.7434
+    "p_over": 0.7433
    },
    "shots_on_target": {
     "home": 3.27,
@@ -21447,9 +21465,9 @@
    },
    "shots": {
     "home": 15.77,
-    "away": 9.55,
+    "away": 9.56,
     "line": 24.5,
-    "p_over": 0.5417
+    "p_over": 0.5419
    },
    "shots_on_target": {
     "home": 4.91,
@@ -21579,7 +21597,7 @@
     "home": 12.96,
     "away": 11.23,
     "line": 24.5,
-    "p_over": 0.4601
+    "p_over": 0.4602
    },
    "shots_on_target": {
     "home": 3.97,
@@ -21637,7 +21655,7 @@
     "home": 11.3,
     "away": 16.65,
     "line": 24.5,
-    "p_over": 0.7107
+    "p_over": 0.7105
    },
    "shots_on_target": {
     "home": 3.06,
@@ -21696,11 +21714,11 @@
     "home": 1.65,
     "away": 1.87,
     "line": 4.5,
-    "p_over": 0.2782
+    "p_over": 0.2783
    },
    "shots": {
     "home": 13.89,
-    "away": 11.91,
+    "away": 11.9,
     "line": 24.5,
     "p_over": 0.5743
    },
@@ -21759,7 +21777,7 @@
    },
    "yellow_cards": {
     "home": 1.83,
-    "away": 2.51,
+    "away": 2.52,
     "line": 4.5,
     "p_over": 0.4383
    },
@@ -21773,7 +21791,7 @@
     "home": 5.49,
     "away": 5.81,
     "line": 8.5,
-    "p_over": 0.7724
+    "p_over": 0.7723
    }
   }
  },
@@ -21832,7 +21850,7 @@
     "home": 13.48,
     "away": 11.45,
     "line": 24.5,
-    "p_over": 0.5134
+    "p_over": 0.5135
    },
    "shots_on_target": {
     "home": 4.51,
@@ -21897,7 +21915,7 @@
     "home": 15.75,
     "away": 9.14,
     "line": 24.5,
-    "p_over": 0.5105
+    "p_over": 0.5106
    },
    "shots_on_target": {
     "home": 5.15,
@@ -21962,7 +21980,7 @@
     "home": 17.02,
     "away": 9.59,
     "line": 24.5,
-    "p_over": 0.6286
+    "p_over": 0.6288
    },
    "shots_on_target": {
     "home": 6.05,
@@ -22020,7 +22038,7 @@
     "home": 10.89,
     "away": 14.08,
     "line": 24.5,
-    "p_over": 0.5164
+    "p_over": 0.5166
    },
    "shots_on_target": {
     "home": 3.91,
@@ -22085,7 +22103,7 @@
     "home": 10.6,
     "away": 12.41,
     "line": 24.5,
-    "p_over": 0.3731
+    "p_over": 0.3733
    },
    "shots_on_target": {
     "home": 3.33,
@@ -22215,7 +22233,7 @@
     "home": 12.12,
     "away": 15.0,
     "line": 24.5,
-    "p_over": 0.6614
+    "p_over": 0.6617
    },
    "shots_on_target": {
     "home": 3.63,
@@ -22271,9 +22289,9 @@
    },
    "shots": {
     "home": 15.86,
-    "away": 12.1,
+    "away": 12.09,
     "line": 24.5,
-    "p_over": 0.711
+    "p_over": 0.7106
    },
    "shots_on_target": {
     "home": 4.41,
@@ -22338,7 +22356,7 @@
     "home": 12.21,
     "away": 14.98,
     "line": 24.5,
-    "p_over": 0.666
+    "p_over": 0.6662
    },
    "shots_on_target": {
     "home": 3.86,
@@ -22401,9 +22419,9 @@
    },
    "shots": {
     "home": 13.52,
-    "away": 9.73,
+    "away": 9.74,
     "line": 24.5,
-    "p_over": 0.391
+    "p_over": 0.3912
    },
    "shots_on_target": {
     "home": 4.67,
@@ -22455,13 +22473,13 @@
     "home": 1.62,
     "away": 1.99,
     "line": 4.5,
-    "p_over": 0.2965
+    "p_over": 0.2966
    },
    "shots": {
-    "home": 13.95,
+    "home": 13.96,
     "away": 13.2,
     "line": 24.5,
-    "p_over": 0.6633
+    "p_over": 0.6635
    },
    "shots_on_target": {
     "home": 4.47,
@@ -22591,7 +22609,7 @@
     "home": 13.77,
     "away": 9.91,
     "line": 24.5,
-    "p_over": 0.4224
+    "p_over": 0.4226
    },
    "shots_on_target": {
     "home": 4.76,
@@ -22632,10 +22650,10 @@
     "p_over": 0.302
    },
    "shots": {
-    "home": 14.8,
+    "home": 14.79,
     "away": 13.36,
     "line": 24.5,
-    "p_over": 0.7222
+    "p_over": 0.7218
    },
    "shots_on_target": {
     "home": 5.23,
@@ -22700,7 +22718,7 @@
     "home": 14.76,
     "away": 11.11,
     "line": 24.5,
-    "p_over": 0.5796
+    "p_over": 0.5797
    },
    "shots_on_target": {
     "home": 3.91,
@@ -22759,11 +22777,11 @@
     "home": 2.2,
     "away": 1.96,
     "line": 4.5,
-    "p_over": 0.4016
+    "p_over": 0.4015
    },
    "shots": {
     "home": 18.53,
-    "away": 19.09,
+    "away": 19.1,
     "line": 24.5,
     "p_over": 0.9754
    },
@@ -22771,7 +22789,7 @@
     "home": 5.8,
     "away": 6.18,
     "line": 8.5,
-    "p_over": 0.8209
+    "p_over": 0.8208
    }
   }
  },
@@ -22828,9 +22846,9 @@
    },
    "shots": {
     "home": 14.47,
-    "away": 10.86,
+    "away": 10.87,
     "line": 24.5,
-    "p_over": 0.542
+    "p_over": 0.5422
    },
    "shots_on_target": {
     "home": 4.18,
@@ -22895,7 +22913,7 @@
     "home": 14.37,
     "away": 11.11,
     "line": 24.5,
-    "p_over": 0.5527
+    "p_over": 0.5528
    },
    "shots_on_target": {
     "home": 4.19,
@@ -22948,7 +22966,7 @@
     "home": 4.26,
     "away": 3.77,
     "line": 9.5,
-    "p_over": 0.294
+    "p_over": 0.2941
    },
    "yellow_cards": {
     "home": 2.3,
@@ -22960,7 +22978,7 @@
     "home": 12.13,
     "away": 13.64,
     "line": 24.5,
-    "p_over": 0.573
+    "p_over": 0.5733
    },
    "shots_on_target": {
     "home": 4.16,
@@ -23031,7 +23049,7 @@
     "home": 6.16,
     "away": 5.89,
     "line": 8.5,
-    "p_over": 0.825
+    "p_over": 0.8249
    }
   }
  },
@@ -23153,9 +23171,9 @@
    },
    "shots": {
     "home": 20.21,
-    "away": 8.14,
+    "away": 8.15,
     "line": 24.5,
-    "p_over": 0.7328
+    "p_over": 0.7326
    },
    "shots_on_target": {
     "home": 7.02,
@@ -23279,13 +23297,13 @@
     "home": 1.1,
     "away": 2.21,
     "line": 4.5,
-    "p_over": 0.2401
+    "p_over": 0.2402
    },
    "shots": {
     "home": 17.59,
     "away": 9.65,
     "line": 24.5,
-    "p_over": 0.669
+    "p_over": 0.6691
    },
    "shots_on_target": {
     "home": 6.5,
@@ -23350,7 +23368,7 @@
     "home": 10.16,
     "away": 13.94,
     "line": 24.5,
-    "p_over": 0.4533
+    "p_over": 0.4536
    },
    "shots_on_target": {
     "home": 3.22,
@@ -23415,7 +23433,7 @@
     "home": 10.03,
     "away": 12.72,
     "line": 24.5,
-    "p_over": 0.3544
+    "p_over": 0.3546
    },
    "shots_on_target": {
     "home": 3.28,
@@ -23480,7 +23498,7 @@
     "home": 10.96,
     "away": 15.83,
     "line": 24.5,
-    "p_over": 0.6402
+    "p_over": 0.6404
    },
    "shots_on_target": {
     "home": 3.09,
@@ -23518,13 +23536,13 @@
     "home": 2.23,
     "away": 1.78,
     "line": 4.5,
-    "p_over": 0.3733
+    "p_over": 0.3732
    },
    "shots": {
     "home": 11.47,
     "away": 16.94,
     "line": 24.5,
-    "p_over": 0.7357
+    "p_over": 0.7355
    },
    "shots_on_target": {
     "home": 3.4,
@@ -23587,9 +23605,9 @@
    },
    "shots": {
     "home": 19.24,
-    "away": 13.73,
+    "away": 13.74,
     "line": 24.5,
-    "p_over": 0.9082
+    "p_over": 0.9083
    },
    "shots_on_target": {
     "home": 5.7,
@@ -23654,7 +23672,7 @@
     "home": 13.82,
     "away": 11.6,
     "line": 24.5,
-    "p_over": 0.5491
+    "p_over": 0.549
    },
    "shots_on_target": {
     "home": 4.13,
@@ -23700,19 +23718,19 @@
     "home": 4.7,
     "away": 3.68,
     "line": 9.5,
-    "p_over": 0.3363
+    "p_over": 0.3364
    },
    "yellow_cards": {
     "home": 1.42,
     "away": 2.0,
     "line": 4.5,
-    "p_over": 0.2583
+    "p_over": 0.2584
    },
    "shots": {
     "home": 18.17,
-    "away": 10.39,
+    "away": 10.4,
     "line": 24.5,
-    "p_over": 0.7439
+    "p_over": 0.7442
    },
    "shots_on_target": {
     "home": 5.92,
@@ -23765,7 +23783,7 @@
     "home": 4.61,
     "away": 4.83,
     "line": 9.5,
-    "p_over": 0.4663
+    "p_over": 0.4662
    },
    "yellow_cards": {
     "home": 1.27,
@@ -23774,10 +23792,10 @@
     "p_over": 0.1798
    },
    "shots": {
-    "home": 13.71,
-    "away": 13.01,
+    "home": 13.72,
+    "away": 13.0,
     "line": 24.5,
-    "p_over": 0.6363
+    "p_over": 0.6364
    },
    "shots_on_target": {
     "home": 4.46,
@@ -23828,9 +23846,9 @@
   "stat_predictions": {
    "corners": {
     "home": 6.19,
-    "away": 3.81,
+    "away": 3.8,
     "line": 9.5,
-    "p_over": 0.5316
+    "p_over": 0.5315
    },
    "yellow_cards": {
     "home": 1.74,
@@ -23842,7 +23860,7 @@
     "home": 14.89,
     "away": 11.15,
     "line": 24.5,
-    "p_over": 0.5913
+    "p_over": 0.5914
    },
    "shots_on_target": {
     "home": 5.06,
@@ -23905,9 +23923,9 @@
    },
    "shots": {
     "home": 12.05,
-    "away": 12.49,
+    "away": 12.5,
     "line": 24.5,
-    "p_over": 0.4853
+    "p_over": 0.4854
    },
    "shots_on_target": {
     "home": 3.85,
@@ -23972,7 +23990,7 @@
     "home": 12.05,
     "away": 12.01,
     "line": 24.5,
-    "p_over": 0.4496
+    "p_over": 0.4499
    },
    "shots_on_target": {
     "home": 4.69,
@@ -24011,7 +24029,7 @@
     "home": 5.06,
     "away": 3.78,
     "line": 9.5,
-    "p_over": 0.3931
+    "p_over": 0.393
    },
    "yellow_cards": {
     "home": 1.86,
@@ -24023,7 +24041,7 @@
     "home": 14.84,
     "away": 10.91,
     "line": 24.5,
-    "p_over": 0.5716
+    "p_over": 0.5718
    },
    "shots_on_target": {
     "home": 4.36,
@@ -24082,7 +24100,7 @@
     "home": 1.38,
     "away": 1.93,
     "line": 4.5,
-    "p_over": 0.2384
+    "p_over": 0.2385
    },
    "shots": {
     "home": 16.38,
@@ -24129,10 +24147,10 @@
     "p_over": 0.3302
    },
    "shots": {
-    "home": 15.19,
+    "home": 15.18,
     "away": 13.39,
     "line": 24.5,
-    "p_over": 0.7446
+    "p_over": 0.7442
    },
    "shots_on_target": {
     "home": 5.6,
@@ -24197,7 +24215,7 @@
     "home": 15.92,
     "away": 10.61,
     "line": 24.5,
-    "p_over": 0.6235
+    "p_over": 0.6236
    },
    "shots_on_target": {
     "home": 5.89,
@@ -24256,13 +24274,13 @@
     "home": 1.9,
     "away": 2.64,
     "line": 4.5,
-    "p_over": 0.4741
+    "p_over": 0.4742
    },
    "shots": {
     "home": 16.11,
     "away": 10.64,
     "line": 24.5,
-    "p_over": 0.6379
+    "p_over": 0.6381
    },
    "shots_on_target": {
     "home": 5.5,
@@ -24308,7 +24326,7 @@
     "home": 7.5,
     "away": 4.47,
     "line": 9.5,
-    "p_over": 0.7309
+    "p_over": 0.731
    },
    "yellow_cards": {
     "home": 1.36,
@@ -24317,8 +24335,8 @@
     "p_over": 0.3391
    },
    "shots": {
-    "home": 22.57,
-    "away": 14.72,
+    "home": 22.58,
+    "away": 14.71,
     "line": 24.5,
     "p_over": 0.9727
    },
@@ -24385,7 +24403,7 @@
     "home": 9.69,
     "away": 11.89,
     "line": 24.5,
-    "p_over": 0.2725
+    "p_over": 0.2728
    },
    "shots_on_target": {
     "home": 3.04,
@@ -24450,7 +24468,7 @@
     "home": 18.81,
     "away": 9.08,
     "line": 24.5,
-    "p_over": 0.7072
+    "p_over": 0.707
    },
    "shots_on_target": {
     "home": 5.92,
@@ -24509,13 +24527,13 @@
     "home": 1.61,
     "away": 1.59,
     "line": 4.5,
-    "p_over": 0.2202
+    "p_over": 0.2203
    },
    "shots": {
     "home": 9.23,
     "away": 16.7,
     "line": 24.5,
-    "p_over": 0.5839
+    "p_over": 0.5842
    },
    "shots_on_target": {
     "home": 2.55,
@@ -24580,7 +24598,7 @@
     "home": 13.19,
     "away": 12.32,
     "line": 24.5,
-    "p_over": 0.5546
+    "p_over": 0.5549
    },
    "shots_on_target": {
     "home": 4.24,
@@ -24710,7 +24728,7 @@
     "home": 15.47,
     "away": 12.11,
     "line": 24.5,
-    "p_over": 0.6892
+    "p_over": 0.6893
    },
    "shots_on_target": {
     "home": 5.14,
@@ -24772,10 +24790,10 @@
     "p_over": 0.292
    },
    "shots": {
-    "home": 12.45,
+    "home": 12.44,
     "away": 13.9,
     "line": 24.5,
-    "p_over": 0.6117
+    "p_over": 0.6114
    },
    "shots_on_target": {
     "home": 3.86,
@@ -24828,19 +24846,19 @@
     "home": 5.73,
     "away": 3.15,
     "line": 9.5,
-    "p_over": 0.397
+    "p_over": 0.3969
    },
    "yellow_cards": {
     "home": 1.65,
     "away": 2.14,
     "line": 4.5,
-    "p_over": 0.3287
+    "p_over": 0.3288
    },
    "shots": {
     "home": 15.82,
     "away": 7.86,
     "line": 24.5,
-    "p_over": 0.4224
+    "p_over": 0.4227
    },
    "shots_on_target": {
     "home": 4.58,
@@ -24902,10 +24920,10 @@
     "p_over": 0.3193
    },
    "shots": {
-    "home": 10.45,
+    "home": 10.46,
     "away": 15.27,
     "line": 24.5,
-    "p_over": 0.5697
+    "p_over": 0.5698
    },
    "shots_on_target": {
     "home": 3.63,
@@ -24958,19 +24976,19 @@
     "home": 6.03,
     "away": 2.77,
     "line": 9.5,
-    "p_over": 0.388
+    "p_over": 0.3881
    },
    "yellow_cards": {
     "home": 2.14,
     "away": 2.31,
     "line": 4.5,
-    "p_over": 0.4573
+    "p_over": 0.4574
    },
    "shots": {
-    "home": 18.15,
+    "home": 18.16,
     "away": 8.12,
     "line": 24.5,
-    "p_over": 0.6072
+    "p_over": 0.6075
    },
    "shots_on_target": {
     "home": 5.63,
@@ -25100,7 +25118,7 @@
     "home": 13.43,
     "away": 11.63,
     "line": 24.5,
-    "p_over": 0.5228
+    "p_over": 0.5229
    },
    "shots_on_target": {
     "home": 5.1,
@@ -25145,13 +25163,13 @@
     "home": 1.44,
     "away": 1.96,
     "line": 4.5,
-    "p_over": 0.2558
+    "p_over": 0.2557
    },
    "shots": {
     "home": 14.05,
-    "away": 12.36,
+    "away": 12.35,
     "line": 24.5,
-    "p_over": 0.6161
+    "p_over": 0.6157
    },
    "shots_on_target": {
     "home": 4.54,
@@ -25204,7 +25222,7 @@
     "home": 6.06,
     "away": 3.6,
     "line": 9.5,
-    "p_over": 0.4922
+    "p_over": 0.4921
    },
    "yellow_cards": {
     "home": 1.43,
@@ -25216,7 +25234,7 @@
     "home": 15.75,
     "away": 10.12,
     "line": 24.5,
-    "p_over": 0.5796
+    "p_over": 0.5798
    },
    "shots_on_target": {
     "home": 5.34,
@@ -25275,7 +25293,7 @@
     "home": 1.55,
     "away": 1.74,
     "line": 4.5,
-    "p_over": 0.2363
+    "p_over": 0.2364
    },
    "shots": {
     "home": 14.22,
@@ -25408,10 +25426,10 @@
     "p_over": 0.248
    },
    "shots": {
-    "home": 10.49,
-    "away": 18.37,
+    "home": 10.5,
+    "away": 18.36,
     "line": 24.5,
-    "p_over": 0.7591
+    "p_over": 0.7589
    },
    "shots_on_target": {
     "home": 3.5,
