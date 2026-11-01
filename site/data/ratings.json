@@ -4,7 +4,7 @@
   {
    "team": "Inter",
    "elo": 1639,
-   "attack": 1.84,
+   "attack": 1.83,
    "defence": 0.78
   },
   {
@@ -12,12 +12,6 @@
    "elo": 1601,
    "attack": 1.52,
    "defence": 0.72
-  },
-  {
-   "team": "Napoli",
-   "elo": 1571,
-   "attack": 1.28,
-   "defence": 0.74
   },
   {
    "team": "Milan",
@@ -32,22 +26,28 @@
    "defence": 0.69
   },
   {
-   "team": "Lazio",
-   "elo": 1560,
-   "attack": 1.21,
-   "defence": 0.82
+   "team": "Napoli",
+   "elo": 1563,
+   "attack": 1.26,
+   "defence": 0.75
   },
   {
    "team": "Juventus",
-   "elo": 1553,
-   "attack": 1.18,
-   "defence": 0.74
+   "elo": 1561,
+   "attack": 1.19,
+   "defence": 0.72
+  },
+  {
+   "team": "Lazio",
+   "elo": 1560,
+   "attack": 1.21,
+   "defence": 0.81
   },
   {
    "team": "Atalanta",
    "elo": 1533,
    "attack": 1.31,
-   "defence": 0.89
+   "defence": 0.88
   },
   {
    "team": "Bologna",
@@ -75,9 +75,9 @@
   },
   {
    "team": "Genoa",
-   "elo": 1457,
-   "attack": 0.88,
-   "defence": 0.95
+   "elo": 1462,
+   "attack": 0.89,
+   "defence": 0.96
   },
   {
    "team": "Sassuolo",
@@ -111,9 +111,9 @@
   },
   {
    "team": "Lecce",
-   "elo": 1422,
+   "elo": 1417,
    "attack": 0.72,
-   "defence": 1.09
+   "defence": 1.11
   },
   {
    "team": "Venezia",
@@ -123,9 +123,9 @@
   }
  ],
  "goals_model": {
-  "base_goals": 1.197,
-  "home_boost": 1.099,
-  "rho": 0.003
+  "base_goals": 1.196,
+  "home_boost": 1.102,
+  "rho": 0.002
  },
  "elo_k": 10.0
 }

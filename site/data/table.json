@@ -73,26 +73,26 @@
  },
  {
   "position": 7,
-  "team": "Napoli",
-  "played": 9,
-  "won": 4,
+  "team": "Juventus",
+  "played": 10,
+  "won": 5,
   "drawn": 2,
   "lost": 3,
-  "goals_for": 17,
-  "goals_against": 11,
-  "goal_diff": 6,
-  "points": 14
+  "goals_for": 13,
+  "goals_against": 10,
+  "goal_diff": 3,
+  "points": 17
  },
  {
   "position": 8,
-  "team": "Juventus",
-  "played": 9,
+  "team": "Napoli",
+  "played": 10,
   "won": 4,
   "drawn": 2,
-  "lost": 3,
-  "goals_for": 11,
-  "goals_against": 10,
-  "goal_diff": 1,
+  "lost": 4,
+  "goals_for": 17,
+  "goals_against": 13,
+  "goal_diff": 4,
   "points": 14
  },
  {
@@ -121,6 +121,18 @@
  },
  {
   "position": 11,
+  "team": "Genoa",
+  "played": 10,
+  "won": 4,
+  "drawn": 1,
+  "lost": 5,
+  "goals_for": 10,
+  "goals_against": 14,
+  "goal_diff": -4,
+  "points": 13
+ },
+ {
+  "position": 12,
   "team": "Cagliari",
   "played": 10,
   "won": 4,
@@ -132,7 +144,7 @@
   "points": 13
  },
  {
-  "position": 12,
+  "position": 13,
   "team": "Atalanta",
   "played": 9,
   "won": 3,
@@ -144,27 +156,15 @@
   "points": 11
  },
  {
-  "position": 13,
-  "team": "Genoa",
-  "played": 9,
-  "won": 3,
-  "drawn": 1,
-  "lost": 5,
-  "goals_for": 8,
-  "goals_against": 13,
-  "goal_diff": -5,
-  "points": 10
- },
- {
   "position": 14,
   "team": "Lecce",
-  "played": 9,
+  "played": 10,
   "won": 3,
   "drawn": 0,
-  "lost": 6,
-  "goals_for": 10,
-  "goals_against": 19,
-  "goal_diff": -9,
+  "lost": 7,
+  "goals_for": 11,
+  "goals_against": 21,
+  "goal_diff": -10,
   "points": 9
  },
  {
