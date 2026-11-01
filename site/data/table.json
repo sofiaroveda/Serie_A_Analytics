@@ -2,14 +2,14 @@
  {
   "position": 1,
   "team": "Lazio",
-  "played": 9,
-  "won": 8,
+  "played": 10,
+  "won": 9,
   "drawn": 1,
   "lost": 0,
-  "goals_for": 22,
-  "goals_against": 7,
-  "goal_diff": 15,
-  "points": 25
+  "goals_for": 24,
+  "goals_against": 8,
+  "goal_diff": 16,
+  "points": 28
  },
  {
   "position": 2,
@@ -37,6 +37,18 @@
  },
  {
   "position": 4,
+  "team": "Como",
+  "played": 10,
+  "won": 7,
+  "drawn": 2,
+  "lost": 1,
+  "goals_for": 18,
+  "goals_against": 8,
+  "goal_diff": 10,
+  "points": 23
+ },
+ {
+  "position": 5,
   "team": "Milan",
   "played": 10,
   "won": 6,
@@ -48,28 +60,16 @@
   "points": 21
  },
  {
-  "position": 5,
-  "team": "Como",
-  "played": 9,
-  "won": 6,
-  "drawn": 2,
-  "lost": 1,
-  "goals_for": 17,
-  "goals_against": 8,
-  "goal_diff": 9,
-  "points": 20
- },
- {
   "position": 6,
   "team": "Frosinone",
-  "played": 9,
-  "won": 5,
+  "played": 10,
+  "won": 6,
   "drawn": 2,
   "lost": 2,
-  "goals_for": 22,
+  "goals_for": 24,
   "goals_against": 14,
-  "goal_diff": 8,
-  "points": 17
+  "goal_diff": 10,
+  "points": 20
  },
  {
   "position": 7,
@@ -110,25 +110,25 @@
  {
   "position": 10,
   "team": "Torino",
-  "played": 9,
+  "played": 10,
   "won": 4,
   "drawn": 1,
-  "lost": 4,
+  "lost": 5,
   "goals_for": 14,
-  "goals_against": 14,
-  "goal_diff": 0,
+  "goals_against": 16,
+  "goal_diff": -2,
   "points": 13
  },
  {
   "position": 11,
   "team": "Cagliari",
-  "played": 9,
+  "played": 10,
   "won": 4,
   "drawn": 1,
-  "lost": 4,
-  "goals_for": 8,
-  "goals_against": 13,
-  "goal_diff": -5,
+  "lost": 5,
+  "goals_for": 9,
+  "goals_against": 15,
+  "goal_diff": -6,
   "points": 13
  },
  {
@@ -230,13 +230,13 @@
  {
   "position": 20,
   "team": "Venezia",
-  "played": 9,
+  "played": 10,
   "won": 1,
   "drawn": 0,
-  "lost": 8,
+  "lost": 9,
   "goals_for": 6,
-  "goals_against": 19,
-  "goal_diff": -13,
+  "goals_against": 20,
+  "goal_diff": -14,
   "points": 3
  }
 ]
