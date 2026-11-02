@@ -1,0 +1,226 @@
+{
+ "season": "2026/27",
+ "matchday": 11,
+ "forecasts": [
+  {
+   "match_id": "2026-11-06_Venezia_Udinese",
+   "kickoff": "2026-11-06 20:45",
+   "home_team": "Venezia",
+   "away_team": "Udinese",
+   "model": "elo",
+   "p_home": 0.3588,
+   "p_draw": 0.3099,
+   "p_away": 0.3313,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Cagliari_Frosinone",
+   "kickoff": "2026-11-07 15:00",
+   "home_team": "Cagliari",
+   "away_team": "Frosinone",
+   "model": "elo",
+   "p_home": 0.3485,
+   "p_draw": 0.3101,
+   "p_away": 0.3414,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Torino_Lecce",
+   "kickoff": "2026-11-07 15:00",
+   "home_team": "Torino",
+   "away_team": "Lecce",
+   "model": "elo",
+   "p_home": 0.5351,
+   "p_draw": 0.2708,
+   "p_away": 0.1941,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Parma_Bologna",
+   "kickoff": "2026-11-07 18:00",
+   "home_team": "Parma",
+   "away_team": "Bologna",
+   "model": "elo",
+   "p_home": 0.2873,
+   "p_draw": 0.3052,
+   "p_away": 0.4075,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Roma_Sassuolo",
+   "kickoff": "2026-11-07 20:45",
+   "home_team": "Roma",
+   "away_team": "Sassuolo",
+   "model": "elo",
+   "p_home": 0.7522,
+   "p_draw": 0.1641,
+   "p_away": 0.0837,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Napoli_Lazio",
+   "kickoff": "2026-11-08 12:30",
+   "home_team": "Napoli",
+   "away_team": "Lazio",
+   "model": "elo",
+   "p_home": 0.4396,
+   "p_draw": 0.2993,
+   "p_away": 0.2611,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Genoa_Milan",
+   "kickoff": "2026-11-08 15:00",
+   "home_team": "Genoa",
+   "away_team": "Milan",
+   "model": "elo",
+   "p_home": 0.2309,
+   "p_draw": 0.289,
+   "p_away": 0.4801,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Monza_Atalanta",
+   "kickoff": "2026-11-08 15:00",
+   "home_team": "Monza",
+   "away_team": "Atalanta",
+   "model": "elo",
+   "p_home": 0.2501,
+   "p_draw": 0.296,
+   "p_away": 0.454,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Inter_Como",
+   "kickoff": "2026-11-08 18:00",
+   "home_team": "Inter",
+   "away_team": "Como",
+   "model": "elo",
+   "p_home": 0.5916,
+   "p_draw": 0.2477,
+   "p_away": 0.1606,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Fiorentina_Juventus",
+   "kickoff": "2026-11-08 20:45",
+   "home_team": "Fiorentina",
+   "away_team": "Juventus",
+   "model": "elo",
+   "p_home": 0.2645,
+   "p_draw": 0.3002,
+   "p_away": 0.4354,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-06_Venezia_Udinese",
+   "kickoff": "2026-11-06 20:45",
+   "home_team": "Venezia",
+   "away_team": "Udinese",
+   "model": "dc",
+   "p_home": 0.2606,
+   "p_draw": 0.2773,
+   "p_away": 0.4621,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Cagliari_Frosinone",
+   "kickoff": "2026-11-07 15:00",
+   "home_team": "Cagliari",
+   "away_team": "Frosinone",
+   "model": "dc",
+   "p_home": 0.2611,
+   "p_draw": 0.2195,
+   "p_away": 0.5194,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Torino_Lecce",
+   "kickoff": "2026-11-07 15:00",
+   "home_team": "Torino",
+   "away_team": "Lecce",
+   "model": "dc",
+   "p_home": 0.4827,
+   "p_draw": 0.2702,
+   "p_away": 0.2471,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Parma_Bologna",
+   "kickoff": "2026-11-07 18:00",
+   "home_team": "Parma",
+   "away_team": "Bologna",
+   "model": "dc",
+   "p_home": 0.2518,
+   "p_draw": 0.2874,
+   "p_away": 0.4608,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-07_Roma_Sassuolo",
+   "kickoff": "2026-11-07 20:45",
+   "home_team": "Roma",
+   "away_team": "Sassuolo",
+   "model": "dc",
+   "p_home": 0.7143,
+   "p_draw": 0.1647,
+   "p_away": 0.121,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Napoli_Lazio",
+   "kickoff": "2026-11-08 12:30",
+   "home_team": "Napoli",
+   "away_team": "Lazio",
+   "model": "dc",
+   "p_home": 0.4247,
+   "p_draw": 0.2712,
+   "p_away": 0.3041,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Genoa_Milan",
+   "kickoff": "2026-11-08 15:00",
+   "home_team": "Genoa",
+   "away_team": "Milan",
+   "model": "dc",
+   "p_home": 0.2431,
+   "p_draw": 0.2602,
+   "p_away": 0.4967,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Monza_Atalanta",
+   "kickoff": "2026-11-08 15:00",
+   "home_team": "Monza",
+   "away_team": "Atalanta",
+   "model": "dc",
+   "p_home": 0.1901,
+   "p_draw": 0.1944,
+   "p_away": 0.6155,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Inter_Como",
+   "kickoff": "2026-11-08 18:00",
+   "home_team": "Inter",
+   "away_team": "Como",
+   "model": "dc",
+   "p_home": 0.472,
+   "p_draw": 0.2416,
+   "p_away": 0.2863,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  },
+  {
+   "match_id": "2026-11-08_Fiorentina_Juventus",
+   "kickoff": "2026-11-08 20:45",
+   "home_team": "Fiorentina",
+   "away_team": "Juventus",
+   "model": "dc",
+   "p_home": 0.2619,
+   "p_draw": 0.2589,
+   "p_away": 0.4792,
+   "recorded_at": "2026-11-02T23:36:25+00:00"
+  }
+ ]
+}
