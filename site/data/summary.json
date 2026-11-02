@@ -1,17 +1,17 @@
 {
- "generated_at": "2026-11-01T23:40+00:00",
+ "generated_at": "2026-11-02T16:05+00:00",
  "season": "2026/27",
  "matches_played": 98,
  "last_result_date": "2026-11-01",
- "favourite_win_rate": 0.6222,
+ "favourite_win_rate": 0.6429,
  "scoreboard": {
-  "matches": 90,
-  "market_rps": 0.1904,
-  "market_hit_rate": 0.6222,
-  "elo_rps": 0.1921,
-  "elo_hit_rate": 0.6,
-  "dc_rps": 0.1885,
-  "dc_hit_rate": 0.6111
+  "matches": 98,
+  "market_rps": 0.1884,
+  "market_hit_rate": 0.6429,
+  "elo_rps": 0.1904,
+  "elo_hit_rate": 0.6122,
+  "dc_rps": 0.1869,
+  "dc_hit_rate": 0.6327
  },
  "current_matchday": 10,
  "matchdays": 38
