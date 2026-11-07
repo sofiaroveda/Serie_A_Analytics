@@ -217,26 +217,26 @@
  },
  {
   "position": 19,
-  "team": "Udinese",
-  "played": 10,
-  "won": 1,
-  "drawn": 2,
-  "lost": 7,
-  "goals_for": 11,
-  "goals_against": 23,
-  "goal_diff": -12,
-  "points": 5
+  "team": "Venezia",
+  "played": 11,
+  "won": 2,
+  "drawn": 0,
+  "lost": 9,
+  "goals_for": 8,
+  "goals_against": 21,
+  "goal_diff": -13,
+  "points": 6
  },
  {
   "position": 20,
-  "team": "Venezia",
-  "played": 10,
+  "team": "Udinese",
+  "played": 11,
   "won": 1,
-  "drawn": 0,
-  "lost": 9,
-  "goals_for": 6,
-  "goals_against": 20,
-  "goal_diff": -14,
-  "points": 3
+  "drawn": 2,
+  "lost": 8,
+  "goals_for": 12,
+  "goals_against": 25,
+  "goal_diff": -13,
+  "points": 5
  }
 ]

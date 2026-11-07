@@ -1,10 +1,10 @@
 {
- "as_of": "2026-11-06",
+ "as_of": "2026-11-07",
  "teams": [
   {
    "team": "Inter",
    "elo": 1639,
-   "attack": 1.83,
+   "attack": 1.82,
    "defence": 0.78
   },
   {
@@ -22,19 +22,19 @@
   {
    "team": "Como",
    "elo": 1567,
-   "attack": 1.32,
+   "attack": 1.31,
    "defence": 0.69
   },
   {
    "team": "Napoli",
    "elo": 1563,
-   "attack": 1.26,
+   "attack": 1.25,
    "defence": 0.75
   },
   {
    "team": "Juventus",
    "elo": 1561,
-   "attack": 1.19,
+   "attack": 1.18,
    "defence": 0.72
   },
   {
@@ -52,7 +52,7 @@
   {
    "team": "Bologna",
    "elo": 1513,
-   "attack": 1.11,
+   "attack": 1.1,
    "defence": 0.9
   },
   {
@@ -88,20 +88,20 @@
   {
    "team": "Cagliari",
    "elo": 1443,
-   "attack": 0.87,
+   "attack": 0.86,
    "defence": 1.06
-  },
-  {
-   "team": "Udinese",
-   "elo": 1442,
-   "attack": 0.93,
-   "defence": 1.11
   },
   {
    "team": "Parma",
    "elo": 1441,
    "attack": 0.73,
    "defence": 0.96
+  },
+  {
+   "team": "Udinese",
+   "elo": 1437,
+   "attack": 0.93,
+   "defence": 1.13
   },
   {
    "team": "Monza",
@@ -117,14 +117,14 @@
   },
   {
    "team": "Venezia",
-   "elo": 1407,
-   "attack": 0.64,
-   "defence": 1.19
+   "elo": 1412,
+   "attack": 0.68,
+   "defence": 1.18
   }
  ],
  "goals_model": {
-  "base_goals": 1.208,
-  "home_boost": 1.089,
+  "base_goals": 1.209,
+  "home_boost": 1.092,
   "rho": 0.001
  },
  "elo_k": 10.0
