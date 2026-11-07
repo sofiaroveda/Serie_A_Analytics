@@ -8288,13 +8288,13 @@
     "home": 3.94,
     "away": 4.58,
     "line": 9.5,
-    "p_over": 0.3539
+    "p_over": 0.3541
    },
    "yellow_cards": {
     "home": 1.83,
     "away": 1.91,
     "line": 4.5,
-    "p_over": 0.3194
+    "p_over": 0.3192
    },
    "shots": {
     "home": 9.17,
@@ -8308,7 +8308,25 @@
     "line": 8.5,
     "p_over": 0.252
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Bologna edged past Parma 2–1 away from home. It went to form: our model made Bologna favourites at 46%."
  },
  "2026-11-07_Roma_Sassuolo": {
   "h2h": [
@@ -8353,27 +8371,45 @@
     "home": 6.02,
     "away": 3.25,
     "line": 9.5,
-    "p_over": 0.4452
+    "p_over": 0.4458
    },
    "yellow_cards": {
     "home": 1.88,
     "away": 2.32,
     "line": 4.5,
-    "p_over": 0.4113
+    "p_over": 0.4111
    },
    "shots": {
     "home": 18.45,
     "away": 9.19,
     "line": 24.5,
-    "p_over": 0.6928
+    "p_over": 0.6929
    },
    "shots_on_target": {
     "home": 6.49,
     "away": 3.55,
     "line": 8.5,
-    "p_over": 0.6549
+    "p_over": 0.655
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Roma thrashed Sassuolo 3–0. It went to form: our model made Roma favourites at 71%."
  },
  "2026-11-08_Napoli_Lazio": {
   "h2h": [
@@ -17272,6 +17308,13 @@
  "2027-02-21_Sassuolo_Roma": {
   "h2h": [
    {
+    "date": "2026-11-07",
+    "home_team": "Roma",
+    "away_team": "Sassuolo",
+    "home_goals": 3,
+    "away_goals": 0
+   },
+   {
     "date": "2026-01-10",
     "home_team": "Roma",
     "away_team": "Sassuolo",
@@ -17298,13 +17341,6 @@
     "away_team": "Roma",
     "home_goals": 1,
     "away_goals": 2
-   },
-   {
-    "date": "2023-03-12",
-    "home_team": "Roma",
-    "away_team": "Sassuolo",
-    "home_goals": 3,
-    "away_goals": 4
    }
   ],
   "stat_predictions": {
@@ -25043,6 +25079,13 @@
  "2027-05-30_Bologna_Parma": {
   "h2h": [
    {
+    "date": "2026-11-07",
+    "home_team": "Parma",
+    "away_team": "Bologna",
+    "home_goals": 1,
+    "away_goals": 2
+   },
+   {
     "date": "2026-02-08",
     "home_team": "Bologna",
     "away_team": "Parma",
@@ -25069,13 +25112,6 @@
     "away_team": "Parma",
     "home_goals": 0,
     "away_goals": 0
-   },
-   {
-    "date": "2021-02-07",
-    "home_team": "Parma",
-    "away_team": "Bologna",
-    "home_goals": 0,
-    "away_goals": 3
    }
   ],
   "stat_predictions": {
