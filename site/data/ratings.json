@@ -1,10 +1,10 @@
 {
- "as_of": "2026-11-07",
+ "as_of": "2026-11-08",
  "teams": [
   {
    "team": "Inter",
    "elo": 1639,
-   "attack": 1.82,
+   "attack": 1.83,
    "defence": 0.78
   },
   {
@@ -16,25 +16,25 @@
   {
    "team": "Milan",
    "elo": 1568,
-   "attack": 1.3,
-   "defence": 0.82
+   "attack": 1.31,
+   "defence": 0.83
   },
   {
    "team": "Como",
    "elo": 1567,
-   "attack": 1.31,
+   "attack": 1.32,
    "defence": 0.69
   },
   {
    "team": "Napoli",
    "elo": 1563,
-   "attack": 1.25,
-   "defence": 0.75
+   "attack": 1.26,
+   "defence": 0.76
   },
   {
    "team": "Juventus",
    "elo": 1561,
-   "attack": 1.18,
+   "attack": 1.19,
    "defence": 0.72
   },
   {
@@ -52,25 +52,25 @@
   {
    "team": "Bologna",
    "elo": 1513,
-   "attack": 1.1,
+   "attack": 1.11,
    "defence": 0.9
   },
   {
    "team": "Frosinone",
-   "elo": 1484,
-   "attack": 1.53,
-   "defence": 1.17
+   "elo": 1478,
+   "attack": 1.43,
+   "defence": 1.15
   },
   {
    "team": "Fiorentina",
    "elo": 1475,
-   "attack": 1.09,
+   "attack": 1.1,
    "defence": 1.05
   },
   {
    "team": "Torino",
    "elo": 1463,
-   "attack": 0.97,
+   "attack": 0.96,
    "defence": 1.07
   },
   {
@@ -80,16 +80,16 @@
    "defence": 0.95
   },
   {
-   "team": "Sassuolo",
-   "elo": 1445,
-   "attack": 1.08,
-   "defence": 1.26
+   "team": "Cagliari",
+   "elo": 1449,
+   "attack": 0.86,
+   "defence": 1.03
   },
   {
-   "team": "Cagliari",
-   "elo": 1443,
-   "attack": 0.86,
-   "defence": 1.06
+   "team": "Sassuolo",
+   "elo": 1445,
+   "attack": 1.09,
+   "defence": 1.26
   },
   {
    "team": "Parma",
@@ -107,13 +107,13 @@
    "team": "Monza",
    "elo": 1427,
    "attack": 0.98,
-   "defence": 1.47
+   "defence": 1.48
   },
   {
    "team": "Lecce",
-   "elo": 1417,
+   "elo": 1418,
    "attack": 0.72,
-   "defence": 1.11
+   "defence": 1.1
   },
   {
    "team": "Venezia",
@@ -123,9 +123,9 @@
   }
  ],
  "goals_model": {
-  "base_goals": 1.209,
-  "home_boost": 1.092,
-  "rho": 0.001
+  "base_goals": 1.203,
+  "home_boost": 1.095,
+  "rho": 0.005
  },
  "elo_k": 10.0
 }
