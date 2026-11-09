@@ -53,12 +53,27 @@ def raw_season_path(start_year: int, league: str = LEAGUE) -> Path:
     return RAW_DIR / f"{league}_{season_code(start_year)}.csv"
 
 
+RETRY_WAITS_SECONDS = (10, 30)  # free sources have the odd hiccup: try again twice before giving up
+
+
 def _download(url: str, dest: Path) -> Path:
-    """Download `url` to `dest`, raising on HTTP errors or an empty response."""
-    response = requests.get(url, timeout=30)
-    response.raise_for_status()
-    if not response.content.strip():
-        raise ValueError(f"Empty file downloaded from {url}")
+    """Download `url` to `dest`, raising on HTTP errors or an empty response.
+
+    A failed attempt (network error, server error, empty file) is retried after a short
+    wait, so a brief outage at the source doesn't fail the whole update.
+    """
+    for attempt, wait in enumerate([*RETRY_WAITS_SECONDS, None], start=1):
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            if not response.content.strip():
+                raise ValueError(f"Empty file downloaded from {url}")
+            break
+        except (requests.RequestException, ValueError) as error:
+            if wait is None:
+                raise
+            print(f"Download attempt {attempt} failed ({error}); retrying in {wait}s")
+            time.sleep(wait)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(response.content)
     return dest

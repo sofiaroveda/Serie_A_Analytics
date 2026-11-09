@@ -186,3 +186,29 @@ def test_match_stats_are_kept_and_missing_ones_are_blank():
     row = data.clean_season(raw, 2024, TEAM_MAP).iloc[0]
     assert (row["home_shots"], row["away_on_target"], row["away_red"]) == (14, 4, 1)
     assert np.isnan(row["home_xg"])  # xG only exists from 2026/27
+
+
+class FakeResponse:
+    def __init__(self, status: int, content: bytes = b""):
+        self.status_code, self.content = status, content
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise data.requests.HTTPError(f"{self.status_code} error")
+
+
+def test_download_retries_after_a_brief_outage(tmp_path: Path, monkeypatch):
+    replies = iter([FakeResponse(503), FakeResponse(200, b"Div,Date\nI1,01/01/26\n")])
+    monkeypatch.setattr(data.requests, "get", lambda *args, **kwargs: next(replies))
+    monkeypatch.setattr(data.time, "sleep", lambda seconds: None)
+    dest = data._download("https://example.test/I1.csv", tmp_path / "I1.csv")
+    assert dest.read_bytes().startswith(b"Div,Date")
+
+
+def test_download_gives_up_after_repeated_failures(tmp_path: Path, monkeypatch):
+    calls = []
+    monkeypatch.setattr(data.requests, "get", lambda *args, **kwargs: calls.append(1) or FakeResponse(500))
+    monkeypatch.setattr(data.time, "sleep", lambda seconds: None)
+    with pytest.raises(data.requests.HTTPError):
+        data._download("https://example.test/I1.csv", tmp_path / "I1.csv")
+    assert len(calls) == len(data.RETRY_WAITS_SECONDS) + 1 and not (tmp_path / "I1.csv").exists()
