@@ -92,16 +92,16 @@
    "defence": 1.27
   },
   {
-   "team": "Udinese",
-   "elo": 1437,
-   "attack": 0.93,
-   "defence": 1.13
-  },
-  {
    "team": "Parma",
    "elo": 1437,
    "attack": 0.74,
    "defence": 0.97
+  },
+  {
+   "team": "Udinese",
+   "elo": 1437,
+   "attack": 0.93,
+   "defence": 1.13
   },
   {
    "team": "Monza",
