@@ -9124,7 +9124,25 @@
     "line": 8.5,
     "p_over": 0.4179
    }
-  }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Napoli edged past Torino 1–0. It went to form: our model made Napoli favourites at 59%."
  },
  "2026-11-22_Sassuolo_Genoa": {
   "h2h": [
@@ -25042,6 +25060,13 @@
  "2027-05-23_Torino_Napoli": {
   "h2h": [
    {
+    "date": "2026-11-21",
+    "home_team": "Napoli",
+    "away_team": "Torino",
+    "home_goals": 1,
+    "away_goals": 0
+   },
+   {
     "date": "2026-03-06",
     "home_team": "Napoli",
     "away_team": "Torino",
@@ -25067,13 +25092,6 @@
     "home_team": "Torino",
     "away_team": "Napoli",
     "home_goals": 0,
-    "away_goals": 1
-   },
-   {
-    "date": "2024-03-08",
-    "home_team": "Napoli",
-    "away_team": "Torino",
-    "home_goals": 1,
     "away_goals": 1
    }
   ],

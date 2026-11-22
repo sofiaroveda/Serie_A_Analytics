@@ -85,6 +85,18 @@
  },
  {
   "position": 8,
+  "team": "Napoli",
+  "played": 12,
+  "won": 5,
+  "drawn": 3,
+  "lost": 4,
+  "goals_for": 19,
+  "goals_against": 14,
+  "goal_diff": 5,
+  "points": 18
+ },
+ {
+  "position": 9,
   "team": "Bologna",
   "played": 11,
   "won": 5,
@@ -96,7 +108,7 @@
   "points": 17
  },
  {
-  "position": 9,
+  "position": 10,
   "team": "Cagliari",
   "played": 12,
   "won": 5,
@@ -108,31 +120,7 @@
   "points": 16
  },
  {
-  "position": 10,
-  "team": "Napoli",
-  "played": 11,
-  "won": 4,
-  "drawn": 3,
-  "lost": 4,
-  "goals_for": 18,
-  "goals_against": 14,
-  "goal_diff": 4,
-  "points": 15
- },
- {
   "position": 11,
-  "team": "Torino",
-  "played": 11,
-  "won": 4,
-  "drawn": 2,
-  "lost": 5,
-  "goals_for": 15,
-  "goals_against": 17,
-  "goal_diff": -2,
-  "points": 14
- },
- {
-  "position": 12,
   "team": "Atalanta",
   "played": 11,
   "won": 4,
@@ -140,6 +128,18 @@
   "lost": 5,
   "goals_for": 17,
   "goals_against": 20,
+  "goal_diff": -3,
+  "points": 14
+ },
+ {
+  "position": 12,
+  "team": "Torino",
+  "played": 12,
+  "won": 4,
+  "drawn": 2,
+  "lost": 6,
+  "goals_for": 15,
+  "goals_against": 18,
   "goal_diff": -3,
   "points": 14
  },
