@@ -169,18 +169,30 @@
  },
  {
   "position": 15,
-  "team": "Fiorentina",
-  "played": 11,
-  "won": 2,
-  "drawn": 3,
-  "lost": 6,
-  "goals_for": 17,
+  "team": "Monza",
+  "played": 12,
+  "won": 3,
+  "drawn": 1,
+  "lost": 8,
+  "goals_for": 20,
   "goals_against": 25,
-  "goal_diff": -8,
-  "points": 9
+  "goal_diff": -5,
+  "points": 10
  },
  {
   "position": 16,
+  "team": "Fiorentina",
+  "played": 12,
+  "won": 2,
+  "drawn": 3,
+  "lost": 7,
+  "goals_for": 17,
+  "goals_against": 28,
+  "goal_diff": -11,
+  "points": 9
+ },
+ {
+  "position": 17,
   "team": "Parma",
   "played": 12,
   "won": 2,
@@ -192,7 +204,7 @@
   "points": 8
  },
  {
-  "position": 17,
+  "position": 18,
   "team": "Sassuolo",
   "played": 12,
   "won": 2,
@@ -202,18 +214,6 @@
   "goals_against": 31,
   "goal_diff": -15,
   "points": 8
- },
- {
-  "position": 18,
-  "team": "Monza",
-  "played": 11,
-  "won": 2,
-  "drawn": 1,
-  "lost": 8,
-  "goals_for": 17,
-  "goals_against": 25,
-  "goal_diff": -8,
-  "points": 7
  },
  {
   "position": 19,

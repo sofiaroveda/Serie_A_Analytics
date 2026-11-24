@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-23",
+ "as_of": "2026-11-29",
  "teams": [
   {
    "team": "Inter",
@@ -10,20 +10,14 @@
   {
    "team": "Roma",
    "elo": 1611,
-   "attack": 1.59,
+   "attack": 1.58,
    "defence": 0.71
   },
   {
    "team": "Milan",
    "elo": 1578,
-   "attack": 1.37,
-   "defence": 0.81
-  },
-  {
-   "team": "Lazio",
-   "elo": 1566,
-   "attack": 1.22,
-   "defence": 0.79
+   "attack": 1.36,
+   "defence": 0.82
   },
   {
    "team": "Napoli",
@@ -34,8 +28,14 @@
   {
    "team": "Como",
    "elo": 1566,
-   "attack": 1.29,
+   "attack": 1.28,
    "defence": 0.68
+  },
+  {
+   "team": "Lazio",
+   "elo": 1566,
+   "attack": 1.22,
+   "defence": 0.79
   },
   {
    "team": "Juventus",
@@ -56,16 +56,16 @@
    "defence": 0.89
   },
   {
-   "team": "Fiorentina",
-   "elo": 1476,
-   "attack": 1.11,
-   "defence": 1.05
-  },
-  {
    "team": "Frosinone",
    "elo": 1471,
-   "attack": 1.4,
-   "defence": 1.29
+   "attack": 1.39,
+   "defence": 1.3
+  },
+  {
+   "team": "Fiorentina",
+   "elo": 1466,
+   "attack": 1.07,
+   "defence": 1.08
   },
   {
    "team": "Genoa",
@@ -92,6 +92,12 @@
    "defence": 1.11
   },
   {
+   "team": "Monza",
+   "elo": 1434,
+   "attack": 0.99,
+   "defence": 1.37
+  },
+  {
    "team": "Sassuolo",
    "elo": 1433,
    "attack": 1.03,
@@ -102,12 +108,6 @@
    "elo": 1431,
    "attack": 0.74,
    "defence": 1.02
-  },
-  {
-   "team": "Monza",
-   "elo": 1423,
-   "attack": 0.94,
-   "defence": 1.43
   },
   {
    "team": "Lecce",
@@ -123,8 +123,8 @@
   }
  ],
  "goals_model": {
-  "base_goals": 1.201,
-  "home_boost": 1.106,
+  "base_goals": 1.198,
+  "home_boost": 1.114,
   "rho": 0.006
  },
  "elo_k": 10.0
