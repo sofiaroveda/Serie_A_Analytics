@@ -24,11 +24,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main # the latest main, including any data the daily update just committed
           fetch-depth: 0 # full history, so past predictions can be compared
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
@@ -45,7 +45,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
       # Tag every CSS/JS link with this commit's ID (e.g. style.css?v=4ad3795), so after an
@@ -55,9 +55,18 @@ jobs:
           VERSION="$(git rev-parse --short HEAD)"
           sed -i -E "s#(href|src)=\"((css|js)/[^\"?]+)\"#\1=\"\2?v=${VERSION}\"#g" site/*.html
           sed -i -E "s#from \"\./([^\"?]+\.js)\"#from \"./\1?v=${VERSION}\"#g" site/js/*.js
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
+      # GitHub's publishing service sometimes can't find the files it was just given
+      # ("No artifacts named github-pages"). If so, wait a minute and try once more.
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+      - name: Wait before retrying the publish
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+      - name: Publish again
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5
