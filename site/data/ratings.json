@@ -20,10 +20,10 @@
    "defence": 0.82
   },
   {
-   "team": "Napoli",
+   "team": "Lazio",
    "elo": 1566,
-   "attack": 1.23,
-   "defence": 0.73
+   "attack": 1.22,
+   "defence": 0.79
   },
   {
    "team": "Como",
@@ -32,10 +32,10 @@
    "defence": 0.68
   },
   {
-   "team": "Lazio",
+   "team": "Napoli",
    "elo": 1566,
-   "attack": 1.22,
-   "defence": 0.79
+   "attack": 1.23,
+   "defence": 0.73
   },
   {
    "team": "Juventus",
