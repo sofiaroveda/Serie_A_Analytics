@@ -9384,7 +9384,7 @@
    "away_xg": 2.11
   },
   "scorers": null,
-  "report": "Genoa beat Sassuolo 2–0 away from home. It went to form: our model made Genoa narrow favourites at 37%. Sassuolo had 25 shots (7 on target) to Genoa's 11 (5). After the round, Sassuolo's relegation chance went from 22% to 29%."
+  "report": "Genoa beat Sassuolo 2–0 away from home. It went to form: our model made Genoa narrow favourites at 37%. Sassuolo had 25 shots (7 on target) to Genoa's 11 (5). After the round, Sassuolo's relegation chance went from 22% to 28%."
  },
  "2026-11-22_Milan_Frosinone": {
   "h2h": [
@@ -9634,6 +9634,82 @@
   },
   "scorers": null,
   "report": "Monza thrashed Fiorentina 3–0. Not what we expected: our model had Fiorentina as favourites (51%). Monza had 13 shots (5 on target) to Fiorentina's 17 (8). After the round, Monza's relegation chance went from 65% to 40%, and Fiorentina's from 6% to 10%."
+ },
+ "2026-11-27_Venezia_Bologna": {
+  "h2h": [
+   {
+    "date": "2025-03-29",
+    "home_team": "Venezia",
+    "away_team": "Bologna",
+    "home_goals": 0,
+    "away_goals": 1
+   },
+   {
+    "date": "2024-11-30",
+    "home_team": "Bologna",
+    "away_team": "Venezia",
+    "home_goals": 3,
+    "away_goals": 0
+   },
+   {
+    "date": "2022-05-08",
+    "home_team": "Venezia",
+    "away_team": "Bologna",
+    "home_goals": 4,
+    "away_goals": 3
+   },
+   {
+    "date": "2021-11-21",
+    "home_team": "Bologna",
+    "away_team": "Venezia",
+    "home_goals": 0,
+    "away_goals": 1
+   }
+  ],
+  "stat_predictions": {
+   "corners": {
+    "home": 3.76,
+    "away": 4.82,
+    "line": 9.5,
+    "p_over": 0.361
+   },
+   "yellow_cards": {
+    "home": 2.02,
+    "away": 1.58,
+    "line": 4.5,
+    "p_over": 0.2948
+   },
+   "shots": {
+    "home": 11.58,
+    "away": 13.25,
+    "line": 24.5,
+    "p_over": 0.506
+   },
+   "shots_on_target": {
+    "home": 3.26,
+    "away": 4.7,
+    "line": 8.5,
+    "p_over": 0.4011
+   }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Venezia and Bologna played out a goalless draw. Bologna were favourites (58%) but couldn't find a winner."
  },
  "2026-11-29_Cagliari_Milan": {
   "h2h": [
@@ -10189,64 +10265,6 @@
     "away": 4.22,
     "line": 8.5,
     "p_over": 0.505
-   }
-  }
- },
- "2026-11-29_Venezia_Bologna": {
-  "h2h": [
-   {
-    "date": "2025-03-29",
-    "home_team": "Venezia",
-    "away_team": "Bologna",
-    "home_goals": 0,
-    "away_goals": 1
-   },
-   {
-    "date": "2024-11-30",
-    "home_team": "Bologna",
-    "away_team": "Venezia",
-    "home_goals": 3,
-    "away_goals": 0
-   },
-   {
-    "date": "2022-05-08",
-    "home_team": "Venezia",
-    "away_team": "Bologna",
-    "home_goals": 4,
-    "away_goals": 3
-   },
-   {
-    "date": "2021-11-21",
-    "home_team": "Bologna",
-    "away_team": "Venezia",
-    "home_goals": 0,
-    "away_goals": 1
-   }
-  ],
-  "stat_predictions": {
-   "corners": {
-    "home": 3.76,
-    "away": 4.82,
-    "line": 9.5,
-    "p_over": 0.3611
-   },
-   "yellow_cards": {
-    "home": 2.02,
-    "away": 1.58,
-    "line": 4.5,
-    "p_over": 0.2949
-   },
-   "shots": {
-    "home": 11.58,
-    "away": 13.25,
-    "line": 24.5,
-    "p_over": 0.5062
-   },
-   "shots_on_target": {
-    "home": 3.26,
-    "away": 4.7,
-    "line": 8.5,
-    "p_over": 0.4011
    }
   }
  },
@@ -20945,6 +20963,13 @@
  },
  "2027-04-11_Bologna_Venezia": {
   "h2h": [
+   {
+    "date": "2026-11-27",
+    "home_team": "Venezia",
+    "away_team": "Bologna",
+    "home_goals": 0,
+    "away_goals": 0
+   },
    {
     "date": "2025-03-29",
     "home_team": "Venezia",

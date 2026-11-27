@@ -85,6 +85,18 @@
  },
  {
   "position": 8,
+  "team": "Bologna",
+  "played": 13,
+  "won": 5,
+  "drawn": 4,
+  "lost": 4,
+  "goals_for": 17,
+  "goals_against": 15,
+  "goal_diff": 2,
+  "points": 19
+ },
+ {
+  "position": 9,
   "team": "Napoli",
   "played": 12,
   "won": 5,
@@ -93,18 +105,6 @@
   "goals_for": 19,
   "goals_against": 14,
   "goal_diff": 5,
-  "points": 18
- },
- {
-  "position": 9,
-  "team": "Bologna",
-  "played": 12,
-  "won": 5,
-  "drawn": 3,
-  "lost": 4,
-  "goals_for": 17,
-  "goals_against": 15,
-  "goal_diff": 2,
   "points": 18
  },
  {
@@ -218,14 +218,14 @@
  {
   "position": 19,
   "team": "Venezia",
-  "played": 12,
+  "played": 13,
   "won": 2,
-  "drawn": 0,
+  "drawn": 1,
   "lost": 10,
   "goals_for": 8,
   "goals_against": 25,
   "goal_diff": -17,
-  "points": 6
+  "points": 7
  },
  {
   "position": 20,
