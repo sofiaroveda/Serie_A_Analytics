@@ -61,6 +61,18 @@
  },
  {
   "position": 6,
+  "team": "Frosinone",
+  "played": 13,
+  "won": 7,
+  "drawn": 2,
+  "lost": 4,
+  "goals_for": 28,
+  "goals_against": 20,
+  "goal_diff": 8,
+  "points": 23
+ },
+ {
+  "position": 7,
   "team": "Juventus",
   "played": 12,
   "won": 6,
@@ -70,18 +82,6 @@
   "goals_against": 12,
   "goal_diff": 7,
   "points": 21
- },
- {
-  "position": 7,
-  "team": "Frosinone",
-  "played": 12,
-  "won": 6,
-  "drawn": 2,
-  "lost": 4,
-  "goals_for": 25,
-  "goals_against": 20,
-  "goal_diff": 5,
-  "points": 20
  },
  {
   "position": 8,
@@ -193,18 +193,6 @@
  },
  {
   "position": 17,
-  "team": "Parma",
-  "played": 12,
-  "won": 2,
-  "drawn": 2,
-  "lost": 8,
-  "goals_for": 10,
-  "goals_against": 22,
-  "goal_diff": -12,
-  "points": 8
- },
- {
-  "position": 18,
   "team": "Sassuolo",
   "played": 12,
   "won": 2,
@@ -212,6 +200,18 @@
   "lost": 8,
   "goals_for": 16,
   "goals_against": 31,
+  "goal_diff": -15,
+  "points": 8
+ },
+ {
+  "position": 18,
+  "team": "Parma",
+  "played": 13,
+  "won": 2,
+  "drawn": 2,
+  "lost": 9,
+  "goals_for": 10,
+  "goals_against": 25,
   "goal_diff": -15,
   "points": 8
  },

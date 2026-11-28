@@ -9711,6 +9711,68 @@
   "scorers": null,
   "report": "Venezia and Bologna played out a goalless draw. Bologna were favourites (58%) but couldn't find a winner."
  },
+ "2026-11-28_Frosinone_Parma": {
+  "h2h": [
+   {
+    "date": "2019-04-03",
+    "home_team": "Frosinone",
+    "away_team": "Parma",
+    "home_goals": 3,
+    "away_goals": 2
+   },
+   {
+    "date": "2018-11-04",
+    "home_team": "Parma",
+    "away_team": "Frosinone",
+    "home_goals": 0,
+    "away_goals": 0
+   }
+  ],
+  "stat_predictions": {
+   "corners": {
+    "home": 8.42,
+    "away": 3.99,
+    "line": 9.5,
+    "p_over": 0.7658
+   },
+   "yellow_cards": {
+    "home": 1.52,
+    "away": 2.04,
+    "line": 4.5,
+    "p_over": 0.2867
+   },
+   "shots": {
+    "home": 25.86,
+    "away": 13.12,
+    "line": 24.5,
+    "p_over": 0.9838
+   },
+   "shots_on_target": {
+    "home": 6.74,
+    "away": 3.88,
+    "line": 8.5,
+    "p_over": 0.7133
+   }
+  },
+  "stats": {
+   "home_shots": null,
+   "away_shots": null,
+   "home_on_target": null,
+   "away_on_target": null,
+   "home_corners": null,
+   "away_corners": null,
+   "home_fouls": null,
+   "away_fouls": null,
+   "home_yellow": null,
+   "away_yellow": null,
+   "home_red": null,
+   "away_red": null,
+   "home_xg": null,
+   "away_xg": null
+  },
+  "scorers": null,
+  "report": "Frosinone thrashed Parma 3–0. It went to form: our model made Frosinone favourites at 55%."
+ },
  "2026-11-29_Cagliari_Milan": {
   "h2h": [
    {
@@ -9831,50 +9893,6 @@
     "away": 3.82,
     "line": 8.5,
     "p_over": 0.383
-   }
-  }
- },
- "2026-11-29_Frosinone_Parma": {
-  "h2h": [
-   {
-    "date": "2019-04-03",
-    "home_team": "Frosinone",
-    "away_team": "Parma",
-    "home_goals": 3,
-    "away_goals": 2
-   },
-   {
-    "date": "2018-11-04",
-    "home_team": "Parma",
-    "away_team": "Frosinone",
-    "home_goals": 0,
-    "away_goals": 0
-   }
-  ],
-  "stat_predictions": {
-   "corners": {
-    "home": 8.42,
-    "away": 3.99,
-    "line": 9.5,
-    "p_over": 0.7658
-   },
-   "yellow_cards": {
-    "home": 1.52,
-    "away": 2.04,
-    "line": 4.5,
-    "p_over": 0.2867
-   },
-   "shots": {
-    "home": 25.86,
-    "away": 13.12,
-    "line": 24.5,
-    "p_over": 0.9838
-   },
-   "shots_on_target": {
-    "home": 6.74,
-    "away": 3.88,
-    "line": 8.5,
-    "p_over": 0.7133
    }
   }
  },
@@ -16344,6 +16362,13 @@
  },
  "2027-02-07_Parma_Frosinone": {
   "h2h": [
+   {
+    "date": "2026-11-28",
+    "home_team": "Frosinone",
+    "away_team": "Parma",
+    "home_goals": 3,
+    "away_goals": 0
+   },
    {
     "date": "2019-04-03",
     "home_team": "Frosinone",
