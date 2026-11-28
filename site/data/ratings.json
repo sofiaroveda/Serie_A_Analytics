@@ -20,6 +20,12 @@
    "defence": 0.82
   },
   {
+   "team": "Como",
+   "elo": 1566,
+   "attack": 1.29,
+   "defence": 0.68
+  },
+  {
    "team": "Lazio",
    "elo": 1566,
    "attack": 1.23,
@@ -30,12 +36,6 @@
    "elo": 1566,
    "attack": 1.23,
    "defence": 0.73
-  },
-  {
-   "team": "Como",
-   "elo": 1566,
-   "attack": 1.29,
-   "defence": 0.68
   },
   {
    "team": "Juventus",
